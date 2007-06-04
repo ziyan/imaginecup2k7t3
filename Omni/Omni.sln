@@ -7,6 +7,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni", "Omni\Omni.csproj", 
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Data", "Omni.Data\Omni.Data.csproj", "{04934CFC-4DDC-4C4D-B16C-0A773A2B32DA}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Web", "Omni.Web\Omni.Web.csproj", "{C502CF20-D4D3-42C2-A13D-C2402C768670}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Client", "Omni.Client\Omni.Client.csproj", "{98F9DCDE-7B68-4D19-92F4-DDC49DA19C59}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +35,18 @@ Global
 		{369CB646-E412-44A6-B17B-FCCF588742C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{369CB646-E412-44A6-B17B-FCCF588742C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{369CB646-E412-44A6-B17B-FCCF588742C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04934CFC-4DDC-4C4D-B16C-0A773A2B32DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04934CFC-4DDC-4C4D-B16C-0A773A2B32DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04934CFC-4DDC-4C4D-B16C-0A773A2B32DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04934CFC-4DDC-4C4D-B16C-0A773A2B32DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C502CF20-D4D3-42C2-A13D-C2402C768670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C502CF20-D4D3-42C2-A13D-C2402C768670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C502CF20-D4D3-42C2-A13D-C2402C768670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C502CF20-D4D3-42C2-A13D-C2402C768670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98F9DCDE-7B68-4D19-92F4-DDC49DA19C59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98F9DCDE-7B68-4D19-92F4-DDC49DA19C59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98F9DCDE-7B68-4D19-92F4-DDC49DA19C59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98F9DCDE-7B68-4D19-92F4-DDC49DA19C59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
