@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Omni
 {
-    public class Class1
+    class Language
     {
     }
 }
