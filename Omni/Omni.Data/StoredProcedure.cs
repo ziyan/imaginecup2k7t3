@@ -22,7 +22,7 @@ namespace Omni.Data
             cmd.CommandText = "omni_configuration_get";
             cmd.Connection = cn.cn;
             cmd.Parameters.Add("@key", System.Data.SqlDbType.NVarChar);
-            cmd.Parameters[0] = key;
+            cmd.Parameters[0].Value = key;
             object result = cmd.ExecuteScalar();
             return result == null ? "" : result.ToString();
         }
