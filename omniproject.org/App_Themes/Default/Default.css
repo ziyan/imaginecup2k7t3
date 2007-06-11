@@ -1,0 +1,52 @@
+﻿/* ----------------------------
+   Colors for body and layers
+   ---------------------------- */
+
+body 
+{
+	background-color: #3e7eb4;
+}
+
+div.topbar
+{
+	background-color: #0b3558;
+	color: White;	
+	border-color: Black;
+}
+
+div.topbarLeft
+{
+}
+
+div.topbarRight
+{
+}
+
+div.lower
+{
+}
+
+div.lowerleft
+{
+	background-color: #a8c3d9;
+	border-color: Black;
+}
+
+div.lowerright
+{
+	background-color: #f4faff;
+	border-color: Black;
+}
+
+/* -----------------
+   Text Style Colors
+   ----------------- */
+.titleLink
+{
+	color: White;
+}
+
+.title
+{
+	color: Black;
+}
