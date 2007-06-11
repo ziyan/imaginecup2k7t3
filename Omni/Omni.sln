@@ -27,6 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Service", "Omni.Servic
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ftp://omniproject.org/omniproject.org/", "ftp://omniproject.org/omniproject.org", "{E999F8A8-B03F-4E0B-AB32-7A81173DBB62}"
 	ProjectSection(WebsiteProperties) = preProject
+		ProjectReferences = "{369CB646-E412-44A6-B17B-FCCF588742C6}|Omni.dll;{04934CFC-4DDC-4C4D-B16C-0A773A2B32DA}|Omni.Data.dll;{25682B1E-4F49-4FDD-AFF8-50DACEAB10AC}|Omni.Service.dll;{C502CF20-D4D3-42C2-A13D-C2402C768670}|Omni.Web.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/omniproject.org"
 		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\..\AppData\Local\Temp\VWDWebCache\omniproject.org_omniproject.org\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\omniproject.org\"
