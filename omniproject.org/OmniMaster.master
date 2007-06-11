@@ -1,0 +1,35 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="OmniMaster.master.cs" Inherits="OmniMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Omni Master Page</title>
+    <link rel="Stylesheet" type="text/css" href="OmniMaster.css" />        
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <div class="topbar">
+        <div class="topbarLeft">
+            <asp:HyperLink ID="homeLink" runat="server" CssClass="titleLink" NavigateUrl="~/Default.aspx">Omni</asp:HyperLink></div>
+        <div class="topbarRight">
+            Login, Logout, Register, Choose Language
+        </div>
+    </div>
+    <div class="lower">
+        <div class="lowerleft">
+        Item 1<br />
+        Item 2<br />
+        Item 3<br />
+        
+        </div>
+        <div class="lowerright">
+            <asp:contentplaceholder id="Main" runat="server">
+            </asp:contentplaceholder>
+        </div>
+    </div>
+    </div>
+    </form>
+</body>
+</html>
