@@ -8,7 +8,7 @@ namespace Omni.Service
 {
     [WebService(Namespace = "http://omniproject.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    public class PublicWebService : System.Web.Services.WebService, System.Web.SessionState.IRequiresSessionState
+    public class PublicWebService : System.Web.Services.WebService
     {
         public PublicWebService()
         {
