@@ -42,8 +42,8 @@ namespace Omni.Service
                 name == null || name == "" ||
                 captcha == null || captcha.Length != Common.CaptchaLength)
                 throw new ArgumentNullException();
-            if (!Common.ValidateEmail(email)) throw new ArgumentOutOfRangeException("Email is invalid.");
-            if (captcha != this.captcha) throw new ArgumentException("Invalid captcha.");
+            //if (!Common.ValidateEmail(email)) throw new ArgumentOutOfRangeException("Email is invalid.");
+            if (captcha.ToLower() != this.captcha.ToLower()) throw new ArgumentException("Invalid captcha.");
             string randomText = Common.GetRandomString(Common.HexCharacterSet, 10).ToLower();
             return Data.StoredProcedure.UserRegister(username, randomText+Common.GetMD5Hash(md5password.ToLower()+randomText), email, name, description, cn);
         }

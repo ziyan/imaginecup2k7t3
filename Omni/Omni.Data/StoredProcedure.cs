@@ -26,5 +26,17 @@ namespace Omni.Data
             object result = cmd.ExecuteScalar();
             return result == null ? 0 : (int)result;
         }
+        public static string UserAuthorizeByUsername(string username, SqlConnection cn)
+        {
+            if (cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_authorize_by_username";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@username", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters[0].Value = username;
+            object result = cmd.ExecuteScalar();
+            return result == null ? "" : result.ToString();
+        }
     }
 }
