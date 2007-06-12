@@ -47,6 +47,7 @@ namespace Omni.Service
             if (username == null || username == "" ||
                 md5password == null || md5password.Length != 32)
                 throw new ArgumentNullException();
+            if (HttpContext.Current.Session["User"] != null) throw new ArgumentException("User already logged in.");
             string password = Data.StoredProcedure.UserAuthorizeByUsername(username, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
             string randomText = password.Substring(0, Common.PasswordRandomTextLength).ToLower();
             if (password == randomText + Common.GetMD5Hash(md5password.ToLower() + randomText))
