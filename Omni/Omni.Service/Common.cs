@@ -6,11 +6,13 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Omni.Service
 {
     public static class Common
     {
+        #region Captcha
         public static Random Rand = new Random();
         public static string HexCharacterSet = "0123456789abcdef";
         public static string HumanFriendlyCharacterSet = "123456789abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ";
@@ -20,7 +22,7 @@ namespace Omni.Service
             new FontFamily("Arial"),
             new FontFamily("Comic Sans MS")
         };
-
+        public static int CaptchaLength = 5;
 
         public static string GetRandomString(string characters, int length)
         {
@@ -93,6 +95,19 @@ namespace Omni.Service
             byte[] image = ms.GetBuffer();
             ms.Dispose();
             return image;
+        }
+        #endregion
+
+        public static string EmailPattern = @"/^\w[-.\w]*\@[-a-b0-9]+(?:\.[-a-b0-9]+)*\.(?:com|edu|biz|org|gov|int|info|mil|net|name|museum|coop|aero|[a-z][a-z])\b/";
+        public static bool ValidateEmail(string email)
+        {
+            return email != null && email != "" && Regex.Replace(email.ToLower(), EmailPattern, "", RegexOptions.IgnoreCase) == "";
+        }
+
+        public static System.Security.Cryptography.MD5 MD5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+        public static string GetMD5Hash(string message)
+        {
+            return System.Convert.ToBase64String(MD5.ComputeHash(System.Convert.FromBase64String(message)));
         }
     }
 }
