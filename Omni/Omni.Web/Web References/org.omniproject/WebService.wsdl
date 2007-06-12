@@ -148,7 +148,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
         </s:sequence>
       </s:complexType>
-      <s:element name="LanuageNameQueryById">
+      <s:element name="LanguageNameQueryById">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="lang_id" type="s:int" />
@@ -156,10 +156,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="LanuageNameQueryByIdResponse">
+      <s:element name="LanguageNameQueryByIdResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LanuageNameQueryByIdResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LanguageNameQueryByIdResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -231,11 +231,11 @@
   <wsdl:message name="LanguageListSoapOut">
     <wsdl:part name="parameters" element="tns:LanguageListResponse" />
   </wsdl:message>
-  <wsdl:message name="LanuageNameQueryByIdSoapIn">
-    <wsdl:part name="parameters" element="tns:LanuageNameQueryById" />
+  <wsdl:message name="LanguageNameQueryByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:LanguageNameQueryById" />
   </wsdl:message>
-  <wsdl:message name="LanuageNameQueryByIdSoapOut">
-    <wsdl:part name="parameters" element="tns:LanuageNameQueryByIdResponse" />
+  <wsdl:message name="LanguageNameQueryByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:LanguageNameQueryByIdResponse" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpGetIn" />
   <wsdl:message name="InitializeHttpGetOut" />
@@ -295,11 +295,11 @@
   <wsdl:message name="LanguageListHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfLanguage" />
   </wsdl:message>
-  <wsdl:message name="LanuageNameQueryByIdHttpGetIn">
+  <wsdl:message name="LanguageNameQueryByIdHttpGetIn">
     <wsdl:part name="lang_id" type="s:string" />
     <wsdl:part name="dst_lang_id" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="LanuageNameQueryByIdHttpGetOut">
+  <wsdl:message name="LanguageNameQueryByIdHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpPostIn" />
@@ -360,11 +360,11 @@
   <wsdl:message name="LanguageListHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfLanguage" />
   </wsdl:message>
-  <wsdl:message name="LanuageNameQueryByIdHttpPostIn">
+  <wsdl:message name="LanguageNameQueryByIdHttpPostIn">
     <wsdl:part name="lang_id" type="s:string" />
     <wsdl:part name="dst_lang_id" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="LanuageNameQueryByIdHttpPostOut">
+  <wsdl:message name="LanguageNameQueryByIdHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
@@ -408,9 +408,9 @@
       <wsdl:input message="tns:LanguageListSoapIn" />
       <wsdl:output message="tns:LanguageListSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="LanuageNameQueryById">
-      <wsdl:input message="tns:LanuageNameQueryByIdSoapIn" />
-      <wsdl:output message="tns:LanuageNameQueryByIdSoapOut" />
+    <wsdl:operation name="LanguageNameQueryById">
+      <wsdl:input message="tns:LanguageNameQueryByIdSoapIn" />
+      <wsdl:output message="tns:LanguageNameQueryByIdSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
@@ -454,9 +454,9 @@
       <wsdl:input message="tns:LanguageListHttpGetIn" />
       <wsdl:output message="tns:LanguageListHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="LanuageNameQueryById">
-      <wsdl:input message="tns:LanuageNameQueryByIdHttpGetIn" />
-      <wsdl:output message="tns:LanuageNameQueryByIdHttpGetOut" />
+    <wsdl:operation name="LanguageNameQueryById">
+      <wsdl:input message="tns:LanguageNameQueryByIdHttpGetIn" />
+      <wsdl:output message="tns:LanguageNameQueryByIdHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpPost">
@@ -500,9 +500,9 @@
       <wsdl:input message="tns:LanguageListHttpPostIn" />
       <wsdl:output message="tns:LanguageListHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="LanuageNameQueryById">
-      <wsdl:input message="tns:LanuageNameQueryByIdHttpPostIn" />
-      <wsdl:output message="tns:LanuageNameQueryByIdHttpPostOut" />
+    <wsdl:operation name="LanguageNameQueryById">
+      <wsdl:input message="tns:LanguageNameQueryByIdHttpPostIn" />
+      <wsdl:output message="tns:LanguageNameQueryByIdHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -597,8 +597,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LanuageNameQueryById">
-      <soap:operation soapAction="http://omniproject.org/LanuageNameQueryById" style="document" />
+    <wsdl:operation name="LanguageNameQueryById">
+      <soap:operation soapAction="http://omniproject.org/LanguageNameQueryById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -699,8 +699,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LanuageNameQueryById">
-      <soap12:operation soapAction="http://omniproject.org/LanuageNameQueryById" style="document" />
+    <wsdl:operation name="LanguageNameQueryById">
+      <soap12:operation soapAction="http://omniproject.org/LanguageNameQueryById" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -797,8 +797,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LanuageNameQueryById">
-      <http:operation location="/LanuageNameQueryById" />
+    <wsdl:operation name="LanguageNameQueryById">
+      <http:operation location="/LanguageNameQueryById" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -895,8 +895,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LanuageNameQueryById">
-      <http:operation location="/LanuageNameQueryById" />
+    <wsdl:operation name="LanguageNameQueryById">
+      <http:operation location="/LanguageNameQueryById" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
