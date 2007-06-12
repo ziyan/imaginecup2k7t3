@@ -33,7 +33,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public byte[] UserCaptcha(int width, int height, string bgColor, string frontColor)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             HttpContext.Current.Session["Captcha"] = Common.GetRandomString(Common.HumanFriendlyCharacterSet, Common.CaptchaLength);
             return Common.GetCaptchaImage(HttpContext.Current.Session["Captcha"].ToString(), width, height, System.Drawing.Color.FromName(bgColor), System.Drawing.Color.FromName(frontColor));
         }
@@ -51,7 +51,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public int UserRegister(string username, string md5password, string email, string name, string description, string captcha)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (username == null || username == "" ||
                 md5password == null || md5password.Length != 32 ||
                 email == null || email == "" ||
@@ -73,7 +73,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public User UserAuthorizeByUsername(string username, string md5password)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (username == null || username == "" ||
                 md5password == null || md5password.Length != 32)
                 throw new ArgumentNullException();
@@ -99,7 +99,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public bool UserIsLoggedIn()
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             return HttpContext.Current.Session["User"]!=null;
         }
 
@@ -109,7 +109,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void UserLogout()
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in yet.");
             HttpContext.Current.Session["User"] = null;
         }
@@ -121,12 +121,12 @@ namespace Omni.Service
         [WebMethod(true)]
         public User UserCurrent()
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             return HttpContext.Current.Session["User"] == null ? null : (User)HttpContext.Current.Session["User"];
         }
         #endregion
 
-
+        #region External Services
         [WebMethod]
         public string DictionaryLookup(int LanguageID, string SearchWord)
         {
@@ -138,32 +138,32 @@ namespace Omni.Service
         {
             return TranslationService.Lookup(OrigLanguage, SearchLanguage, SearchWord);
         }
+        #endregion
 
         #region Language
 
         [WebMethod(true)]
         public Language[] LanguageList()
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             return Data.StoredProcedure.LangList((Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]
         public string LanguageNameQueryById(int lang_id, int dst_lang_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (lang_id < 1 || dst_lang_id < 1) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.LangLangQueryById(lang_id,dst_lang_id,(Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         #endregion
 
-
         #region Interest
         [WebMethod(true)]
         public Interest[] InterestList(int parent_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (parent_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.InterestList(parent_id,(Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -171,7 +171,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public string InterestNameQueryById(int interest_id, int lang_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (interest_id < 1 || lang_id < 1) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.InterestLangQueryById(interest_id, lang_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -179,7 +179,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Interest[] UserInterestList(int user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.UserInterestListById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -187,7 +187,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void UserInterestAddById(int user_id, int interest_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.UserInterestAddById(user_id, interest_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -195,11 +195,19 @@ namespace Omni.Service
         [WebMethod(true)]
         public void UserInterestDeleteById(int user_id, int interest_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.UserInterestDeleteById(user_id, interest_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
         #endregion
+
+        [WebMethod(true)]
+        public void RateTranslationById(int user_id, int trans_id, int rating)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (user_id <= 0) throw new ArgumentOutOfRangeException();
+            Data.StoredProcedure.RateTranslation(user_id, trans_id, rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
     }
     
 }
