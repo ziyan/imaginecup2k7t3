@@ -31,7 +31,7 @@ public partial class RegisterAccount : System.Web.UI.Page
         int result = -1;
         //try
         {
-            result = Omni.Web.Common.GetProtectedWebService().UserRegister(username, md5password, email, name, description, captcha);
+            result = Omni.Web.Common.GetWebService().UserRegister(username, md5password, email, name, description, captcha);
         }
        // catch (Exception ex)
         {
