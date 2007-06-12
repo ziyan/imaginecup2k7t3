@@ -39,10 +39,19 @@ public partial class RegisterAccount : System.Web.UI.Page
         {
             result = Omni.Web.Common.GetWebService().UserRegister(username, md5password, email, name, description, captcha);
         }
-        catch(ArgumentException) //Invalid Captcha
+        catch (System.Web.Services.Protocols.SoapException ex)
         {
-            invalidCaptchaLabel.Visible = true;
-            error = true;
+            Exception ex2 = ex.InnerException;
+            if (ex2 is ArgumentException)
+            {
+                invalidCaptchaLabel.Visible = true;
+                error = true;
+            }
+            else
+            {
+                genericErrorLabel.Visible = true;
+                error = true;
+            }
         }
         catch (Exception)
         {
