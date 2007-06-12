@@ -100,7 +100,7 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public string LanuageNameQueryById(int lang_id, int dst_lang_id)
+        public string LanguageNameQueryById(int lang_id, int dst_lang_id)
         {
             return Data.StoredProcedure.LangLangQueryById(lang_id,dst_lang_id,(Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
