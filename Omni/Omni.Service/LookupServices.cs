@@ -34,6 +34,9 @@ namespace Omni.Service
 
         public static string Lookup(int OrigLanguage, int SearchLanguage, string SearchWord)
         {
+            if (OrigLanguage == SearchLanguage)
+                return SearchWord;
+
             de.zeta_software.www.TranslationMode transMode = new de.zeta_software.www.TranslationMode();
             transMode.ObjectID = LangCodeTo2Char[OrigLanguage] + "_" + LangCodeTo2Char[SearchLanguage];
             return svc.Translate(transMode, SearchWord);
