@@ -26,20 +26,10 @@ namespace Omni.Web.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://omniproject.org/Service/ProtectedWebService.asmx")]
-        public string Omni_Web_org_omniproject_internal_ProtectedWebService {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://omniproject.org/Service/WebService.asmx")]
+        public string Omni_Web_org_omniproject_WebService {
             get {
-                return ((string)(this["Omni_Web_org_omniproject_internal_ProtectedWebService"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://omniproject.org/Service/PublicWebService.asmx")]
-        public string Omni_Web_org_omniproject_public_PublicWebService {
-            get {
-                return ((string)(this["Omni_Web_org_omniproject_public_PublicWebService"]));
+                return ((string)(this["Omni_Web_org_omniproject_WebService"]));
             }
         }
     }

@@ -7,18 +7,11 @@ namespace Omni.Web
 {
     public static class Common
     {
-        public static org.omniproject.secure.ProtectedWebService GetProtectedWebService()
+        public static org.omniproject.WebService GetWebService()
         {
-            if (HttpContext.Current.Session==null||HttpContext.Current.Session["ProtectedWebService"] == null) throw new NullReferenceException("No session used.");
-            return (org.omniproject.secure.ProtectedWebService)HttpContext.Current.Session["ProtectedWebService"];
+            if (HttpContext.Current.Session==null||HttpContext.Current.Session["WebService"] == null) throw new NullReferenceException("No session used.");
+            return (org.omniproject.WebService)HttpContext.Current.Session["WebService"];
         }
-
-        public static org.omniproject.service.PublicWebService GetPublicWebService()
-        {
-            if (HttpContext.Current.Session==null||HttpContext.Current.Session["PublicWebService"] == null) throw new NullReferenceException("No session used.");
-            return (org.omniproject.service.PublicWebService)HttpContext.Current.Session["PublicWebService"];
-        }
-
         public static string GetMD5Hash(string message)
         {
             System.Security.Cryptography.MD5 hash = new System.Security.Cryptography.MD5CryptoServiceProvider();

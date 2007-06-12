@@ -44,13 +44,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ProtectedWebService.cs">
+    <Compile Include="WebService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublicWebService.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Web References\com.aonaware.services\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

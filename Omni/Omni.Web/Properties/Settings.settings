@@ -2,11 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Omni.Web.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Omni_Web_org_omniproject_internal_ProtectedWebService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://omniproject.org/Service/ProtectedWebService.asmx</Value>
-    </Setting>
-    <Setting Name="Omni_Web_org_omniproject_public_PublicWebService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://omniproject.org/Service/PublicWebService.asmx</Value>
+    <Setting Name="Omni_Web_org_omniproject_WebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://omniproject.org/Service/WebService.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

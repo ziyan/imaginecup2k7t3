@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace Omni.Web.org.omniproject.secure {
+namespace Omni.Web.org.omniproject {
     using System.Diagnostics;
     using System.Web.Services;
     using System.ComponentModel;
@@ -26,10 +26,10 @@ namespace Omni.Web.org.omniproject.secure {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="ProtectedWebServiceSoap", Namespace="http://omniproject.org/")]
-    public partial class ProtectedWebService : System.Web.Services.Protocols.SoapHttpClientProtocol {
+    [System.Web.Services.WebServiceBindingAttribute(Name="WebServiceSoap", Namespace="http://omniproject.org/")]
+    public partial class WebService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback GetCurrentUserOperationCompleted;
+        private System.Threading.SendOrPostCallback InitializeOperationCompleted;
         
         private System.Threading.SendOrPostCallback UserCaptchaOperationCompleted;
         
@@ -39,11 +39,15 @@ namespace Omni.Web.org.omniproject.secure {
         
         private System.Threading.SendOrPostCallback UserIsLoggedInOperationCompleted;
         
+        private System.Threading.SendOrPostCallback DictionaryLookupOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
-        public ProtectedWebService() {
-            this.Url = global::Omni.Web.Properties.Settings.Default.Omni_Web_org_omniproject_internal_ProtectedWebService;
+        public WebService() {
+            this.Url = global::Omni.Web.Properties.Settings.Default.Omni_Web_org_omniproject_WebService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -78,7 +82,7 @@ namespace Omni.Web.org.omniproject.secure {
         }
         
         /// <remarks/>
-        public event GetCurrentUserCompletedEventHandler GetCurrentUserCompleted;
+        public event InitializeCompletedEventHandler InitializeCompleted;
         
         /// <remarks/>
         public event UserCaptchaCompletedEventHandler UserCaptchaCompleted;
@@ -93,29 +97,34 @@ namespace Omni.Web.org.omniproject.secure {
         public event UserIsLoggedInCompletedEventHandler UserIsLoggedInCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/GetCurrentUser", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public User GetCurrentUser() {
-            object[] results = this.Invoke("GetCurrentUser", new object[0]);
-            return ((User)(results[0]));
+        public event DictionaryLookupCompletedEventHandler DictionaryLookupCompleted;
+        
+        /// <remarks/>
+        public event TranslationLookupCompletedEventHandler TranslationLookupCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void Initialize() {
+            this.Invoke("Initialize", new object[0]);
         }
         
         /// <remarks/>
-        public void GetCurrentUserAsync() {
-            this.GetCurrentUserAsync(null);
+        public void InitializeAsync() {
+            this.InitializeAsync(null);
         }
         
         /// <remarks/>
-        public void GetCurrentUserAsync(object userState) {
-            if ((this.GetCurrentUserOperationCompleted == null)) {
-                this.GetCurrentUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCurrentUserOperationCompleted);
+        public void InitializeAsync(object userState) {
+            if ((this.InitializeOperationCompleted == null)) {
+                this.InitializeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInitializeOperationCompleted);
             }
-            this.InvokeAsync("GetCurrentUser", new object[0], this.GetCurrentUserOperationCompleted, userState);
+            this.InvokeAsync("Initialize", new object[0], this.InitializeOperationCompleted, userState);
         }
         
-        private void OnGetCurrentUserOperationCompleted(object arg) {
-            if ((this.GetCurrentUserCompleted != null)) {
+        private void OnInitializeOperationCompleted(object arg) {
+            if ((this.InitializeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetCurrentUserCompleted(this, new GetCurrentUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.InitializeCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -255,6 +264,70 @@ namespace Omni.Web.org.omniproject.secure {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/DictionaryLookup", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string DictionaryLookup(int LanguageID, string SearchWord) {
+            object[] results = this.Invoke("DictionaryLookup", new object[] {
+                        LanguageID,
+                        SearchWord});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DictionaryLookupAsync(int LanguageID, string SearchWord) {
+            this.DictionaryLookupAsync(LanguageID, SearchWord, null);
+        }
+        
+        /// <remarks/>
+        public void DictionaryLookupAsync(int LanguageID, string SearchWord, object userState) {
+            if ((this.DictionaryLookupOperationCompleted == null)) {
+                this.DictionaryLookupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDictionaryLookupOperationCompleted);
+            }
+            this.InvokeAsync("DictionaryLookup", new object[] {
+                        LanguageID,
+                        SearchWord}, this.DictionaryLookupOperationCompleted, userState);
+        }
+        
+        private void OnDictionaryLookupOperationCompleted(object arg) {
+            if ((this.DictionaryLookupCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DictionaryLookupCompleted(this, new DictionaryLookupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TranslationLookup", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string TranslationLookup(int OrigLanguage, int SearchLanguage, string SearchWord) {
+            object[] results = this.Invoke("TranslationLookup", new object[] {
+                        OrigLanguage,
+                        SearchLanguage,
+                        SearchWord});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationLookupAsync(int OrigLanguage, int SearchLanguage, string SearchWord) {
+            this.TranslationLookupAsync(OrigLanguage, SearchLanguage, SearchWord, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationLookupAsync(int OrigLanguage, int SearchLanguage, string SearchWord, object userState) {
+            if ((this.TranslationLookupOperationCompleted == null)) {
+                this.TranslationLookupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationLookupOperationCompleted);
+            }
+            this.InvokeAsync("TranslationLookup", new object[] {
+                        OrigLanguage,
+                        SearchLanguage,
+                        SearchWord}, this.TranslationLookupOperationCompleted, userState);
+        }
+        
+        private void OnTranslationLookupOperationCompleted(object arg) {
+            if ((this.TranslationLookupCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationLookupCompleted(this, new TranslationLookupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -274,51 +347,8 @@ namespace Omni.Web.org.omniproject.secure {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.312")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://omniproject.org/")]
-    public partial class User {
-        
-        private string nameField;
-        
-        /// <remarks/>
-        public string name {
-            get {
-                return this.nameField;
-            }
-            set {
-                this.nameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
-    public delegate void GetCurrentUserCompletedEventHandler(object sender, GetCurrentUserCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetCurrentUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetCurrentUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public User Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((User)(this.results[0]));
-            }
-        }
-    }
+    public delegate void InitializeCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
@@ -420,6 +450,58 @@ namespace Omni.Web.org.omniproject.secure {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void DictionaryLookupCompletedEventHandler(object sender, DictionaryLookupCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DictionaryLookupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DictionaryLookupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void TranslationLookupCompletedEventHandler(object sender, TranslationLookupCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationLookupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationLookupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }

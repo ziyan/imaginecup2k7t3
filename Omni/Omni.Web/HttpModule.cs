@@ -16,17 +16,12 @@ namespace Omni.Web
         {
             if (HttpContext.Current.Request.Path.ToLower().StartsWith("/service/")) return;
             if (HttpContext.Current.Session == null) return;
-            if (HttpContext.Current.Session["ProtectedWebService"] == null)
+            if (HttpContext.Current.Session["WebService"] == null)
             {
-                org.omniproject.secure.ProtectedWebService protectedWebService = new org.omniproject.secure.ProtectedWebService();
-                protectedWebService.CookieContainer = new System.Net.CookieContainer();
-                HttpContext.Current.Session["ProtectedWebService"] = protectedWebService;
-            }
-            if (HttpContext.Current.Session["PublicWebService"] == null)
-            {
-                org.omniproject.service.PublicWebService publicWebService = new org.omniproject.service.PublicWebService();
-                publicWebService.CookieContainer = new System.Net.CookieContainer();
-                HttpContext.Current.Session["PublicWebService"] = publicWebService;
+                org.omniproject.WebService webService = new org.omniproject.WebService();
+                webService.CookieContainer = new System.Net.CookieContainer();
+                webService.Initialize();
+                HttpContext.Current.Session["WebService"] = webService;
             }
         }
 
