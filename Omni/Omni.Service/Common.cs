@@ -125,7 +125,7 @@ namespace Omni.Service
         {
             System.Security.Cryptography.MD5 hash = new System.Security.Cryptography.MD5CryptoServiceProvider();
             hash.Initialize();
-            return BitConverter.ToString(hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(message))).ToLower();
+            return BitConverter.ToString(hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(message))).Replace("-","").ToLower();
         }
     }
 }
