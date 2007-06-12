@@ -7,6 +7,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
 
 namespace Omni.Service
 {
@@ -95,6 +96,21 @@ namespace Omni.Service
             byte[] image = ms.GetBuffer();
             ms.Dispose();
             return image;
+        }
+        #endregion
+
+        #region Email
+        private static string smtpServer = "smtp.winisp.net";
+
+        private static void SendEmail(string to, string subject, string body)
+        {
+            MailAddress from = new MailAddress("no-reply@omniproject.org");
+            MailAddress dest = new MailAddress(to);
+            MailMessage message = new MailMessage(from, dest);
+            message.Subject = subject;
+            message.Body = body;
+            SmtpClient client = new SmtpClient(smtpServer);
+            client.Send(message);
         }
         #endregion
 
