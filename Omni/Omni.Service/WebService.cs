@@ -169,6 +169,14 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
+        public Interest[] InterestList(int parent_id, int lang_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (parent_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.InterestLangList(parent_id, lang_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
         public string InterestNameQueryById(int interest_id, int lang_id)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");

@@ -115,7 +115,29 @@ namespace Omni.Data
             List<Interest> result = new List<Interest>();
             while (reader.Read())
             {
-                result.Add(new Interest(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["parent_id"])));
+                result.Add(new Interest(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["parent_id"]),"",0));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+
+        public static Interest[] InterestLangList(int parent_id, int lang_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_interest_lang_list";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@parent_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = parent_id;
+            cmd.Parameters[0].Value = lang_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Interest> result = new List<Interest>();
+            while (reader.Read())
+            {
+                result.Add(new Interest(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["parent_id"]), reader["name"].ToString(), lang_id));
             }
             reader.Close();
             reader.Dispose();
@@ -157,7 +179,7 @@ namespace Omni.Data
             List<Interest> result = new List<Interest>();
             while (reader.Read())
             {
-                result.Add(new Interest(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["parent_id"])));
+                result.Add(new Interest(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["parent_id"]),"",0));
             }
             reader.Close();
             reader.Dispose();
