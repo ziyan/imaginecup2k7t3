@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true"
- CodeFile="Login.aspx.cs" Inherits="Login" Title="Login" Theme="Default" %>
+ CodeFile="UserLogin.aspx.cs" Inherits="UserLogin" Title="Login" Theme="Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
     <asp:Label ID="loginLabel" runat="server" Text="Login" CssClass="title"></asp:Label><br />
     
