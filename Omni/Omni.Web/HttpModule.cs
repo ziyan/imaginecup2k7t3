@@ -22,6 +22,12 @@ namespace Omni.Web
                 protectedWebService.CookieContainer = new System.Net.CookieContainer();
                 HttpContext.Current.Session["ProtectedWebService"] = protectedWebService;
             }
+            if (HttpContext.Current.Session["PublicWebService"] == null)
+            {
+                org.omniproject.service.PublicWebService publicWebService = new org.omniproject.service.PublicWebService();
+                publicWebService.CookieContainer = new System.Net.CookieContainer();
+                HttpContext.Current.Session["PublicWebService"] = publicWebService;
+            }
         }
 
         public void Dispose()
