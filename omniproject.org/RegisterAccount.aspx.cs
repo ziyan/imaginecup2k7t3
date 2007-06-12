@@ -25,6 +25,21 @@ public partial class RegisterAccount : System.Web.UI.Page
         String email = emailTB.Text;
         String name = displayNameTB.Text;
         String description = profileDescTB.Text;
+        String captcha = captchaTB.Text;
+        String md5password = Omni.Web.Common.GetMD5Hash(password);
 
+        int result = -1;
+        //try
+        {
+            result = Omni.Web.Common.GetProtectedWebService().UserRegister(username, md5password, email, name, description, captcha);
+        }
+       // catch (Exception ex)
+        {
+       //     Response.Write("Something went horribly wrong.");
+        }
+        if (result > 0)
+            Response.Write("Added user w/ uid = " + result);
+        else Response.Write("No User Added");
+        
     }
 }
