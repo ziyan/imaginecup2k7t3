@@ -45,8 +45,9 @@ namespace Omni.Service
             if (timezone < -12 || timezone > 13) throw new ArgumentOutOfRangeException("Timezone out of range.");
             if (!Common.ValidateEmail(email)) throw new ArgumentOutOfRangeException("Email is invalid.");
             if (captcha != this.captcha) throw new ArgumentException("Invalid captcha.");
+            string randomText = Common.GetRandomString(Common.HexCharacterSet, 10).ToLower();
 
-            return Data.StoredProcedure.UserRegister(username,md5password,email,name,description,timezone,cn);
+            return Data.StoredProcedure.UserRegister(username, randomText+Common.GetMD5Hash(md5password.ToLower()+randomText), email, name, description, timezone, cn);
         }
 
         [WebMethod]
