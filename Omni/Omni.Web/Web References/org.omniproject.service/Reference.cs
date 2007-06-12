@@ -29,7 +29,9 @@ namespace Omni.Web.org.omniproject.service {
     [System.Web.Services.WebServiceBindingAttribute(Name="PublicWebServiceSoap", Namespace="http://omniproject.org/")]
     public partial class PublicWebService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
+        private System.Threading.SendOrPostCallback DictionaryLookupOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -70,32 +72,72 @@ namespace Omni.Web.org.omniproject.service {
         }
         
         /// <remarks/>
-        public event HelloWorldCompletedEventHandler HelloWorldCompleted;
+        public event DictionaryLookupCompletedEventHandler DictionaryLookupCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/HelloWorld", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string HelloWorld() {
-            object[] results = this.Invoke("HelloWorld", new object[0]);
+        public event TranslationLookupCompletedEventHandler TranslationLookupCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/DictionaryLookup", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string DictionaryLookup(int LanguageID, string SearchWord) {
+            object[] results = this.Invoke("DictionaryLookup", new object[] {
+                        LanguageID,
+                        SearchWord});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void HelloWorldAsync() {
-            this.HelloWorldAsync(null);
+        public void DictionaryLookupAsync(int LanguageID, string SearchWord) {
+            this.DictionaryLookupAsync(LanguageID, SearchWord, null);
         }
         
         /// <remarks/>
-        public void HelloWorldAsync(object userState) {
-            if ((this.HelloWorldOperationCompleted == null)) {
-                this.HelloWorldOperationCompleted = new System.Threading.SendOrPostCallback(this.OnHelloWorldOperationCompleted);
+        public void DictionaryLookupAsync(int LanguageID, string SearchWord, object userState) {
+            if ((this.DictionaryLookupOperationCompleted == null)) {
+                this.DictionaryLookupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDictionaryLookupOperationCompleted);
             }
-            this.InvokeAsync("HelloWorld", new object[0], this.HelloWorldOperationCompleted, userState);
+            this.InvokeAsync("DictionaryLookup", new object[] {
+                        LanguageID,
+                        SearchWord}, this.DictionaryLookupOperationCompleted, userState);
         }
         
-        private void OnHelloWorldOperationCompleted(object arg) {
-            if ((this.HelloWorldCompleted != null)) {
+        private void OnDictionaryLookupOperationCompleted(object arg) {
+            if ((this.DictionaryLookupCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.DictionaryLookupCompleted(this, new DictionaryLookupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TranslationLookup", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string TranslationLookup(int OrigLanguage, int SearchLanguage, string SearchWord) {
+            object[] results = this.Invoke("TranslationLookup", new object[] {
+                        OrigLanguage,
+                        SearchLanguage,
+                        SearchWord});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationLookupAsync(int OrigLanguage, int SearchLanguage, string SearchWord) {
+            this.TranslationLookupAsync(OrigLanguage, SearchLanguage, SearchWord, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationLookupAsync(int OrigLanguage, int SearchLanguage, string SearchWord, object userState) {
+            if ((this.TranslationLookupOperationCompleted == null)) {
+                this.TranslationLookupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationLookupOperationCompleted);
+            }
+            this.InvokeAsync("TranslationLookup", new object[] {
+                        OrigLanguage,
+                        SearchLanguage,
+                        SearchWord}, this.TranslationLookupOperationCompleted, userState);
+        }
+        
+        private void OnTranslationLookupOperationCompleted(object arg) {
+            if ((this.TranslationLookupCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationLookupCompleted(this, new TranslationLookupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -120,17 +162,43 @@ namespace Omni.Web.org.omniproject.service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
-    public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
+    public delegate void DictionaryLookupCompletedEventHandler(object sender, DictionaryLookupCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class DictionaryLookupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal HelloWorldCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal DictionaryLookupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void TranslationLookupCompletedEventHandler(object sender, TranslationLookupCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationLookupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationLookupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

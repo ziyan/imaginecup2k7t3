@@ -157,25 +157,24 @@ namespace Omni.Web.org.omniproject.secure {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserRegister", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int UserRegister(string username, string md5password, string email, string name, string description, short timezone, string captcha) {
+        public int UserRegister(string username, string md5password, string email, string name, string description, string captcha) {
             object[] results = this.Invoke("UserRegister", new object[] {
                         username,
                         md5password,
                         email,
                         name,
                         description,
-                        timezone,
                         captcha});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void UserRegisterAsync(string username, string md5password, string email, string name, string description, short timezone, string captcha) {
-            this.UserRegisterAsync(username, md5password, email, name, description, timezone, captcha, null);
+        public void UserRegisterAsync(string username, string md5password, string email, string name, string description, string captcha) {
+            this.UserRegisterAsync(username, md5password, email, name, description, captcha, null);
         }
         
         /// <remarks/>
-        public void UserRegisterAsync(string username, string md5password, string email, string name, string description, short timezone, string captcha, object userState) {
+        public void UserRegisterAsync(string username, string md5password, string email, string name, string description, string captcha, object userState) {
             if ((this.UserRegisterOperationCompleted == null)) {
                 this.UserRegisterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserRegisterOperationCompleted);
             }
@@ -185,7 +184,6 @@ namespace Omni.Web.org.omniproject.secure {
                         email,
                         name,
                         description,
-                        timezone,
                         captcha}, this.UserRegisterOperationCompleted, userState);
         }
         

@@ -42,7 +42,6 @@
             <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="timezone" type="s:short" />
             <s:element minOccurs="0" maxOccurs="1" name="captcha" type="s:string" />
           </s:sequence>
         </s:complexType>

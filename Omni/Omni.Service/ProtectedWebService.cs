@@ -34,7 +34,7 @@ namespace Omni.Service
         }
       
         [WebMethod]
-        public int UserRegister(string username, string md5password, string email, string name, string description, short timezone, string captcha)
+        public int UserRegister(string username, string md5password, string email, string name, string description, string captcha)
         {
             if (username == null || username == "" ||
                 md5password == null || md5password.Length != 32 ||
@@ -42,12 +42,10 @@ namespace Omni.Service
                 name == null || name == "" ||
                 captcha == null || captcha.Length != Common.CaptchaLength)
                 throw new ArgumentNullException();
-            if (timezone < -12 || timezone > 13) throw new ArgumentOutOfRangeException("Timezone out of range.");
             if (!Common.ValidateEmail(email)) throw new ArgumentOutOfRangeException("Email is invalid.");
             if (captcha != this.captcha) throw new ArgumentException("Invalid captcha.");
             string randomText = Common.GetRandomString(Common.HexCharacterSet, 10).ToLower();
-
-            return Data.StoredProcedure.UserRegister(username, randomText+Common.GetMD5Hash(md5password.ToLower()+randomText), email, name, description, timezone, cn);
+            return Data.StoredProcedure.UserRegister(username, randomText+Common.GetMD5Hash(md5password.ToLower()+randomText), email, name, description, cn);
         }
 
         [WebMethod]
