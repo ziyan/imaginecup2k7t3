@@ -13,6 +13,22 @@ public partial class OmniMaster : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        bool loggedIn = false;
+        Omni.Web.org.omniproject.User user = Omni.Web.Common.GetWebService().UserCurrent();
+        if (user != null)
+        {
+            Label username = (Label)userView.FindControl("usernameLabel");
+            username.Text = user.username;
+            loggedIn = true;
+        }
 
+        if (loggedIn)
+            loginViewTop.ActiveViewIndex = 1;
+        else loginViewTop.ActiveViewIndex = 0;
+    }
+    protected void logoutButton_Click(object sender, EventArgs e)
+    {
+        Omni.Web.Common.GetWebService().UserLogout();
+        Server.Transfer("~/Default.aspx");
     }
 }

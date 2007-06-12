@@ -27,13 +27,13 @@ public partial class UserLogin : System.Web.UI.Page
         {
             user = Omni.Web.Common.GetWebService().UserAuthorizeByUsername(username, md5password);
         }
-        catch (System.Web.Services.Protocols.SoapException)
+        catch (System.Web.Services.Protocols.SoapException ex)
         {
-
+            errorLabel.Text += ex.Message + "\n" + ex.StackTrace;
         }
         if (user != null)
         {
-            Server.Transfer("./Default.aspx");
+            Server.Transfer("~/Default.aspx");
         }
         else errorLabel.Visible = true;
     }

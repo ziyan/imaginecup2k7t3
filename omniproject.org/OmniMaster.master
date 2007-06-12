@@ -14,10 +14,25 @@
         <div class="topbarLeft">
             <asp:HyperLink ID="homeLink" runat="server" CssClass="titleLink" NavigateUrl="~/Default.aspx">Omni</asp:HyperLink></div>
         <div class="topbarRight">
-            Login, Logout, Register, Choose Language
+            <asp:MultiView ID="loginViewTop" runat="server">
+            <asp:View ID="guestView" runat="server">
+                <asp:HyperLink ID="loginLink" runat="server" NavigateUrl="~/UserLogin.aspx" SkinID="top">
+                <asp:Label runat="server" ID="loginLabel" Text="Login"></asp:Label>
+                </asp:HyperLink>
+                 | 
+                <asp:HyperLink ID="registerLink" runat="server" NavigateUrl="~/RegisterAccount.aspx" SkinID="top">
+                <asp:Label runat="server" ID="registerlabel" Text="Register"></asp:Label>
+                </asp:HyperLink>
+            </asp:View>
+            <asp:View ID="userView" runat="server">
+            <asp:Label runat="server" ID="usernameLabel" Text=""></asp:Label>
+             | 
+            <asp:Button ID="logoutButton" runat="server" Text="Logout" OnClick="logoutButton_Click" />
+            </asp:View>
+            </asp:MultiView> | Choose Language
         </div>
     </div>
-    <div class="lower">
+    <div class="lower" style="left: 0px; top: 32px">
         <div class="lowerleft">
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AutomaticTranslation.aspx">Automatic Translations</asp:HyperLink><br />
         Item 2<br />
