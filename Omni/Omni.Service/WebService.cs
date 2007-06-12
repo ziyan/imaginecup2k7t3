@@ -22,6 +22,14 @@ namespace Omni.Service
         }
 
         #region User Related Functions
+        /// <summary>
+        /// Get a random captcha. (Session Required)
+        /// </summary>
+        /// <param name="width">Captcha width</param>
+        /// <param name="height">Captcha height</param>
+        /// <param name="bgColor">Captcha background color</param>
+        /// <param name="frontColor">Captcha front color</param>
+        /// <returns>Binary for the captcha gif</returns>
         [WebMethod(true)]
         public byte[] UserCaptcha(int width, int height, string bgColor, string frontColor)
         {
@@ -30,6 +38,16 @@ namespace Omni.Service
             return Common.GetCaptchaImage(HttpContext.Current.Session["Captcha"].ToString(), width, height, System.Drawing.Color.FromName(bgColor), System.Drawing.Color.FromName(frontColor));
         }
       
+        /// <summary>
+        /// Register a new user. (Session Required)
+        /// </summary>
+        /// <param name="username">User name</param>
+        /// <param name="md5password">MD5ed-once password, should be hex and 32 in length</param>
+        /// <param name="email">User Email</param>
+        /// <param name="name">User name</param>
+        /// <param name="description">User profile</param>
+        /// <param name="captcha">Captcha</param>
+        /// <returns>The user id, less than 0 means username duplication</returns>
         [WebMethod(true)]
         public int UserRegister(string username, string md5password, string email, string name, string description, string captcha)
         {
@@ -46,6 +64,12 @@ namespace Omni.Service
             return Data.StoredProcedure.UserRegister(username, randomText + Common.GetMD5Hash(md5password.ToLower() + randomText), email, name, description, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
+        /// <summary>
+        /// Authorize a user. (Session Required)
+        /// </summary>
+        /// <param name="username">Username</param>
+        /// <param name="md5password">MD5ed-once password, should be hex and 32 in length</param>
+        /// <returns>User information if succeed, null otherwise</returns>
         [WebMethod(true)]
         public User UserAuthorizeByUsername(string username, string md5password)
         {
@@ -53,7 +77,7 @@ namespace Omni.Service
             if (username == null || username == "" ||
                 md5password == null || md5password.Length != 32)
                 throw new ArgumentNullException();
-            if (HttpContext.Current.Session["User"] != null) throw new ArgumentException("User already logged in.");
+            if (HttpContext.Current.Session["User"] != null) throw new InvalidOperationException("User already logged in.");
             string password = Data.StoredProcedure.UserAuthorizeByUsername(username, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
             string randomText = password.Substring(0, Common.PasswordRandomTextLength).ToLower();
             if (password == randomText + Common.GetMD5Hash(md5password.ToLower() + randomText))
@@ -68,6 +92,10 @@ namespace Omni.Service
             }
         }
 
+        /// <summary>
+        /// Check if user is logged in. (Session Required)
+        /// </summary>
+        /// <returns>True if user is logged in, False otherwise.</returns>
         [WebMethod(true)]
         public bool UserIsLoggedIn()
         {
@@ -75,12 +103,21 @@ namespace Omni.Service
             return HttpContext.Current.Session["User"]!=null;
         }
 
+        /// <summary>
+        /// Logout the current user. (Session Required)
+        /// </summary>
         [WebMethod(true)]
         public void UserLogout()
         {
             if (HttpContext.Current.Session["Initialized"] != null) throw new SystemException("Session not initiliated.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in yet.");
             HttpContext.Current.Session["User"] = null;
         }
+
+        /// <summary>
+        /// Return the current user information. (Session Required)
+        /// </summary>
+        /// <returns>null if user not logged in.</returns>
         [WebMethod(true)]
         public User UserCurrent()
         {
