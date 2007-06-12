@@ -24,12 +24,11 @@ namespace Omni.Web
                 HttpContext.Current.Session["WebService"] = webService;
             }
             //select preferred language
-            if (!HttpContext.Current.Request.Path.ToLower().StartsWith("/selectpreferredlanguage.aspx"))
+            if (HttpContext.Current.Request.Path.ToLower().EndsWith(".aspx") && !HttpContext.Current.Request.Path.ToLower().Contains("selectpreferredlanguage.aspx"))
             {
                 if (Common.GetPreferredLanguage() <= 0)
                 {
-                    HttpContext.Current.Response.Redirect("/SelectPreferredLanguage.aspx");
-                    HttpContext.Current.Response.Flush();
+                    HttpContext.Current.Response.Redirect("SelectPreferredLanguage.aspx");
                     HttpContext.Current.Response.End();
                 }
             }
