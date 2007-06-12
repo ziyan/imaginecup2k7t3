@@ -40,7 +40,8 @@ public partial class AutomaticTranslation : System.Web.UI.Page
                         language.id, defaultLanguageId);
                 sourceDropDown.Items.Add(
                             new ListItem(languageString, language.id.ToString()));
-                destinationDropDown.Items.Add(languageString);
+                destinationDropDown.Items.Add(
+                            new ListItem(languageString, language.id.ToString()));
             }
         }
     }
