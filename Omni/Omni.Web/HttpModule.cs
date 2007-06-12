@@ -23,6 +23,17 @@ namespace Omni.Web
                 webService.Initialize();
                 HttpContext.Current.Session["WebService"] = webService;
             }
+            //select preferred language
+            if (!HttpContext.Current.Request.Path.ToLower().StartsWith("/selectpreferredlanguage.aspx"))
+            {
+                if (Common.GetPreferredLanguage() <= 0)
+                {
+                    HttpContext.Current.Response.Redirect("/SelectPreferredLanguage.aspx");
+                    HttpContext.Current.Response.Flush();
+                    HttpContext.Current.Response.End();
+                }
+            }
+
         }
 
         public void Dispose()
