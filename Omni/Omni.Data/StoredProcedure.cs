@@ -11,7 +11,7 @@ namespace Omni.Data
     {
         public static int UserRegister(string username, string password, string email, string name, string description, SqlConnection cn)
         {
-            if (cn.cn == null) throw new ArgumentException("Database connection not open!");
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "omni_user_register";
@@ -31,7 +31,7 @@ namespace Omni.Data
         }
         public static string UserAuthorizeByUsername(string username, SqlConnection cn)
         {
-            if (cn.cn == null) throw new ArgumentException("Database connection not open!");
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "omni_user_authorize_by_username";
@@ -43,7 +43,7 @@ namespace Omni.Data
         }
         public static User UserPostAuthorizeByUsername(string username, SqlConnection cn)
         {
-            if (cn.cn == null) throw new ArgumentException("Database connection not open!");
+            if (cn==null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "omni_user_post_authorize_by_username";
@@ -53,9 +53,10 @@ namespace Omni.Data
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
+                User user = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"]));
                 reader.Close();
                 reader.Dispose();
-                return new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"]));
+                return user;
             }
             reader.Close();
             reader.Dispose();
@@ -63,7 +64,7 @@ namespace Omni.Data
         }
         public static Language[] LangList(SqlConnection cn)
         {
-            if (cn.cn == null) throw new ArgumentException("Database connection not open!");
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "omni_lang_list";
@@ -80,7 +81,7 @@ namespace Omni.Data
         }
         public static string LangLangQueryById(int lang_id, int dst_lang_id, SqlConnection cn)
         {
-            if (cn.cn == null) throw new ArgumentException("Database connection not open!");
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "omni_lang_lang_query_by_id";
@@ -92,9 +93,10 @@ namespace Omni.Data
             SqlDataReader reader = cmd.ExecuteReader();
             if(reader.Read())
             {
+                string name = reader["name"].ToString();
                 reader.Close();
                 reader.Dispose();
-                return reader["name"].ToString();
+                return name;
             }
             reader.Close();
             reader.Dispose();
