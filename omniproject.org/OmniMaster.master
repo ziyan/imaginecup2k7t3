@@ -19,7 +19,7 @@
     </div>
     <div class="lower">
         <div class="lowerleft">
-        Item 1<br />
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AutomaticTranslation.aspx">Automatic Translations</asp:HyperLink><br />
         Item 2<br />
         Item 3<br />
         
