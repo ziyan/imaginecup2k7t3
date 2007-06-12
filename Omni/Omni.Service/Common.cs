@@ -100,16 +100,16 @@ namespace Omni.Service
         #endregion
 
         #region Email
-        private static string smtpServer = "smtp.winisp.net";
+        public static string EmailServer = "smtp.winisp.net";
 
-        private static void SendEmail(string to, string subject, string body)
+        public static void SendEmail(string to, string subject, string body)
         {
             MailAddress from = new MailAddress("no-reply@omniproject.org");
             MailAddress dest = new MailAddress(to);
             MailMessage message = new MailMessage(from, dest);
             message.Subject = subject;
             message.Body = body;
-            SmtpClient client = new SmtpClient(smtpServer);
+            SmtpClient client = new SmtpClient(EmailServer);
             client.Send(message);
         }
         #endregion
@@ -120,10 +120,12 @@ namespace Omni.Service
             return email != null && email != "" && Regex.Replace(email.ToLower(), EmailPattern, "", RegexOptions.IgnoreCase) == "";
         }
 
-        public static System.Security.Cryptography.MD5 MD5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+        
         public static string GetMD5Hash(string message)
         {
-            return System.Convert.ToBase64String(MD5.ComputeHash(System.Convert.FromBase64String(message)));
+            System.Security.Cryptography.MD5 hash = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            hash.Initialize();
+            return BitConverter.ToString(hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(message)));
         }
     }
 }

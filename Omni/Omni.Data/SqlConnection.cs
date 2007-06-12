@@ -37,10 +37,5 @@ namespace Omni.Data
             cn.Dispose();
             cn = null;
         }
-
-        public string GetConfiguration(string key)
-        {
-            return StoredProcedure.GetConfiguration(key, this);
-        }
     }
 }
