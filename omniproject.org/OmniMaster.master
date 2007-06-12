@@ -1,4 +1,5 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="OmniMaster.master.cs" Inherits="OmniMaster" %>
+<%@ Register Src="LanguageSelector.ascx" TagName="LanguageSelector" TagPrefix="uc1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -12,7 +13,8 @@
     <div>
     <div class="topbar">
         <div class="topbarLeft">
-            <asp:HyperLink ID="homeLink" runat="server" CssClass="titleLink" NavigateUrl="~/Default.aspx">Omni</asp:HyperLink></div>
+            <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="~/Default.aspx" Font-Underline="false">
+                <asp:Label ID="titleLabel" runat="server" Text="Omni" CssClass="titleLink"></asp:Label></asp:HyperLink></div>
         <div class="topbarRight">
             <asp:MultiView ID="loginViewTop" runat="server">
             <asp:View ID="guestView" runat="server">
@@ -25,18 +27,29 @@
                 </asp:HyperLink>
             </asp:View>
             <asp:View ID="userView" runat="server">
-            <asp:Label runat="server" ID="usernameLabel" Text=""></asp:Label>
+            <asp:Label runat="server" ID="usernameLabel" Text="Username: "></asp:Label>
+            <asp:Label runat="server" ID="usernameLabel2" Text=""></asp:Label>
              | 
             <asp:Button ID="logoutButton" runat="server" Text="Logout" OnClick="logoutButton_Click" />
             </asp:View>
-            </asp:MultiView> | Choose Language
+            </asp:MultiView> |  
+            <uc1:LanguageSelector id="LanguageSelector1" runat="server">
+            </uc1:LanguageSelector>            
         </div>
     </div>
     <div class="lower" style="left: 0px; top: 32px">
         <div class="lowerleft">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/AutomaticTranslation.aspx">Automatic Translations</asp:HyperLink><br />
-        Item 2<br />
-        Item 3<br />
+            <asp:HyperLink ID="autoTransLink" runat="server" NavigateUrl="~/AutomaticTranslation.aspx">
+            <asp:Label ID="autoTransLabel" runat="server" Text="Automatic Translations"></asp:Label>
+            </asp:HyperLink><br />
+            <asp:HyperLink ID="browseGlobalTransLink" runat="server" NavigateUrl="~/BrowseGlobalTrans.aspx">
+            <asp:Label ID="browseGlobalTransLabel" runat="server" Text="Browse Global Translations"></asp:Label>
+            </asp:HyperLink><br />
+            <asp:Panel ID="userNavLinkPanel" runat="server" Visible="false">
+            <asp:HyperLink ID="returnHomeLink" runat="server" NavigateUrl="~/Default.aspx">
+            <asp:Label ID="returnHomeLabel" runat="server" Text="Return Home"></asp:Label>
+            </asp:HyperLink><br />
+            </asp:Panel>
         
         </div>
         <div class="lowerright">
