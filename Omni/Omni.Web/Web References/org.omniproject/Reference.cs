@@ -43,6 +43,10 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
         
+        private System.Threading.SendOrPostCallback LanguageListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback LanuageNameQueryByIdOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -101,6 +105,12 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event TranslationLookupCompletedEventHandler TranslationLookupCompleted;
+        
+        /// <remarks/>
+        public event LanguageListCompletedEventHandler LanguageListCompleted;
+        
+        /// <remarks/>
+        public event LanuageNameQueryByIdCompletedEventHandler LanuageNameQueryByIdCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -328,6 +338,65 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/LanguageList", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+        public Language[] LanguageList() {
+            object[] results = this.Invoke("LanguageList", new object[0]);
+            return ((Language[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LanguageListAsync() {
+            this.LanguageListAsync(null);
+        }
+        
+        /// <remarks/>
+        public void LanguageListAsync(object userState) {
+            if ((this.LanguageListOperationCompleted == null)) {
+                this.LanguageListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLanguageListOperationCompleted);
+            }
+            this.InvokeAsync("LanguageList", new object[0], this.LanguageListOperationCompleted, userState);
+        }
+        
+        private void OnLanguageListOperationCompleted(object arg) {
+            if ((this.LanguageListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LanguageListCompleted(this, new LanguageListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/LanuageNameQueryById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string LanuageNameQueryById(int lang_id, int dst_lang_id) {
+            object[] results = this.Invoke("LanuageNameQueryById", new object[] {
+                        lang_id,
+                        dst_lang_id});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LanuageNameQueryByIdAsync(int lang_id, int dst_lang_id) {
+            this.LanuageNameQueryByIdAsync(lang_id, dst_lang_id, null);
+        }
+        
+        /// <remarks/>
+        public void LanuageNameQueryByIdAsync(int lang_id, int dst_lang_id, object userState) {
+            if ((this.LanuageNameQueryByIdOperationCompleted == null)) {
+                this.LanuageNameQueryByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLanuageNameQueryByIdOperationCompleted);
+            }
+            this.InvokeAsync("LanuageNameQueryById", new object[] {
+                        lang_id,
+                        dst_lang_id}, this.LanuageNameQueryByIdOperationCompleted, userState);
+        }
+        
+        private void OnLanuageNameQueryByIdOperationCompleted(object arg) {
+            if ((this.LanuageNameQueryByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LanuageNameQueryByIdCompleted(this, new LanuageNameQueryByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -343,6 +412,39 @@ namespace Omni.Web.org.omniproject {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.312")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://omniproject.org/")]
+    public partial class Language {
+        
+        private int idField;
+        
+        private string codeField;
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
         }
     }
     
@@ -493,6 +595,58 @@ namespace Omni.Web.org.omniproject {
         private object[] results;
         
         internal TranslationLookupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void LanguageListCompletedEventHandler(object sender, LanguageListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LanguageListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LanguageListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Language[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Language[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void LanuageNameQueryByIdCompletedEventHandler(object sender, LanuageNameQueryByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LanuageNameQueryByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LanuageNameQueryByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

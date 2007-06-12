@@ -12,17 +12,9 @@ namespace Omni.Data
     {
         internal System.Data.SqlClient.SqlConnection cn = null;
         /// <summary>
-        /// Initialize an empty sql connection
+        /// Initialize a connected sql connection
         /// </summary>
         public SqlConnection()
-        {
-            cn = null;
-        }
-
-        /// <summary>
-        /// Open the sql connection
-        /// </summary>
-        public void Open()
         {
             cn = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SqlDb"].ConnectionString);
             cn.Open();

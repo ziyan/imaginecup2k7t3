@@ -101,6 +101,42 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="LanguageList">
+        <s:complexType />
+      </s:element>
+      <s:element name="LanguageListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LanguageListResult" type="tns:ArrayOfLanguage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLanguage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Language" type="tns:Language" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Language">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LanuageNameQueryById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="lang_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dst_lang_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LanuageNameQueryByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LanuageNameQueryByIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="InitializeSoapIn">
@@ -145,6 +181,18 @@
   <wsdl:message name="TranslationLookupSoapOut">
     <wsdl:part name="parameters" element="tns:TranslationLookupResponse" />
   </wsdl:message>
+  <wsdl:message name="LanguageListSoapIn">
+    <wsdl:part name="parameters" element="tns:LanguageList" />
+  </wsdl:message>
+  <wsdl:message name="LanguageListSoapOut">
+    <wsdl:part name="parameters" element="tns:LanguageListResponse" />
+  </wsdl:message>
+  <wsdl:message name="LanuageNameQueryByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:LanuageNameQueryById" />
+  </wsdl:message>
+  <wsdl:message name="LanuageNameQueryByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:LanuageNameQueryByIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Initialize">
       <wsdl:input message="tns:InitializeSoapIn" />
@@ -173,6 +221,14 @@
     <wsdl:operation name="TranslationLookup">
       <wsdl:input message="tns:TranslationLookupSoapIn" />
       <wsdl:output message="tns:TranslationLookupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LanguageList">
+      <wsdl:input message="tns:LanguageListSoapIn" />
+      <wsdl:output message="tns:LanguageListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LanuageNameQueryById">
+      <wsdl:input message="tns:LanuageNameQueryByIdSoapIn" />
+      <wsdl:output message="tns:LanuageNameQueryByIdSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -240,6 +296,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="LanguageList">
+      <soap:operation soapAction="http://omniproject.org/LanguageList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LanuageNameQueryById">
+      <soap:operation soapAction="http://omniproject.org/LanuageNameQueryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -299,6 +373,24 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationLookup">
       <soap12:operation soapAction="http://omniproject.org/TranslationLookup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LanguageList">
+      <soap12:operation soapAction="http://omniproject.org/LanguageList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LanuageNameQueryById">
+      <soap12:operation soapAction="http://omniproject.org/LanuageNameQueryById" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

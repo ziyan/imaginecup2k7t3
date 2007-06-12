@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace Omni.Data
 {
@@ -37,6 +40,39 @@ namespace Omni.Data
             cmd.Parameters[0].Value = username;
             object result = cmd.ExecuteScalar();
             return result == null ? "" : result.ToString();
+        }
+        public static Language[] LangList(SqlConnection cn)
+        {
+            if (cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_lang_list";
+            cmd.Connection = cn.cn;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Language> result = new List<Language>();
+            while (reader.Read())
+            {
+                result.Add(new Language((int)reader["id"],reader["code"].ToString()));
+            }
+            return result.ToArray();
+        }
+        public static string LangLangQueryById(int lang_id, int dst_lang_id, SqlConnection cn)
+        {
+            if (cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_lang_lang_query_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@dst_lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = lang_id;
+            cmd.Parameters[1].Value = dst_lang_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            if(reader.Read())
+            {
+                return reader["name"].ToString();
+            }
+            return "Unkown";
         }
     }
 }

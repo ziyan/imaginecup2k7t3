@@ -8,14 +8,12 @@ namespace Omni.Service
 {
     [WebService(Namespace = "http://omniproject.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    public class WebService : System.Web.Services.WebService, System.Web.SessionState.IRequiresSessionState
+    public class WebService : System.Web.Services.WebService
     {
         [WebMethod(true)]
         public void Initialize()
         {
-            Omni.Data.SqlConnection cn = new Omni.Data.SqlConnection();
-            cn.Open();
-            HttpContext.Current.Session["SqlConnection"] = cn;
+            HttpContext.Current.Session["SqlConnection"] = new Omni.Data.SqlConnection();
             HttpContext.Current.Session["Captcha"] = "";
         }
 
@@ -67,6 +65,18 @@ namespace Omni.Service
         public string TranslationLookup(int OrigLanguage, int SearchLanguage, string SearchWord)
         {
             return TranslationService.Lookup(OrigLanguage, SearchLanguage, SearchWord);
+        }
+
+        [WebMethod(true)]
+        public Language[] LanguageList()
+        {
+            return Data.StoredProcedure.LangList((Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public string LanuageNameQueryById(int lang_id, int dst_lang_id)
+        {
+            return Data.StoredProcedure.LangLangQueryById(lang_id,dst_lang_id,(Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
     }
     
