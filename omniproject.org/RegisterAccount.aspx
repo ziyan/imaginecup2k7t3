@@ -1,6 +1,8 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="RegisterAccount.aspx.cs" Inherits="RegisterAccount"
  Title="Register an Account" Theme="Default" Culture="auto" %>
 
+<%@ Register Src="InterestsPicker.ascx" TagName="InterestsPicker" TagPrefix="uc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
     <asp:Label ID="regTitleLabel" runat="server" Text="Register an Account" CssClass="title"></asp:Label><br />
     <asp:Table ID="registrationTable" runat="server" >
