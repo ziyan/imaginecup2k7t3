@@ -16,9 +16,15 @@ namespace Omni.Service
         }
 
         [WebMethod]
-        public string HelloWorld()
+        public string DictionaryLookup( int LanguageID, string SearchWord )
         {
-            return "Hello World";
+            return "Oh No! No Web Service Here!";
+        }
+
+        [WebMethod]
+        public string TranslationLookup( int OrigLanguage, int SearchLanguage, string SearchWord)
+        {
+            return "Oh No! No Web Service Here!";
         }
     }
 
