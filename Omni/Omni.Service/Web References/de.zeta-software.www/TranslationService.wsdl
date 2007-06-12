@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://zeta-software.de/TranslationWebService" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://zeta-software.de/TranslationWebService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://zeta-software.de/TranslationWebService">
+      <s:element name="GetAllTranslationModes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllTranslationModesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTranslationModesResult" type="tns:ArrayOfTranslationMode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTranslationMode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TranslationMode" type="tns:TranslationMode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TranslationMode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ObjectID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VisualNameEN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VisualNameDE" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTranslationModeByObjectID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="objectID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTranslationModeByObjectIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTranslationModeByObjectIDResult" type="tns:TranslationMode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Translate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="translationMode" type="tns:TranslationMode" />
+            <s:element minOccurs="0" maxOccurs="1" name="textToTranslate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TranslateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllTranslationModesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTranslationModes" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTranslationModesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTranslationModesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTranslationModeByObjectIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTranslationModeByObjectID" />
+  </wsdl:message>
+  <wsdl:message name="GetTranslationModeByObjectIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTranslationModeByObjectIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="TranslateSoapIn">
+    <wsdl:part name="parameters" element="tns:Translate" />
+  </wsdl:message>
+  <wsdl:message name="TranslateSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TranslationServiceSoap">
+    <wsdl:operation name="GetAllTranslationModes">
+      <wsdl:input message="tns:GetAllTranslationModesSoapIn" />
+      <wsdl:output message="tns:GetAllTranslationModesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslationModeByObjectID">
+      <wsdl:input message="tns:GetTranslationModeByObjectIDSoapIn" />
+      <wsdl:output message="tns:GetTranslationModeByObjectIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Translate">
+      <wsdl:input message="tns:TranslateSoapIn" />
+      <wsdl:output message="tns:TranslateSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TranslationServiceSoap" type="tns:TranslationServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllTranslationModes">
+      <soap:operation soapAction="http://zeta-software.de/TranslationWebService/GetAllTranslationModes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslationModeByObjectID">
+      <soap:operation soapAction="http://zeta-software.de/TranslationWebService/GetTranslationModeByObjectID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Translate">
+      <soap:operation soapAction="http://zeta-software.de/TranslationWebService/Translate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TranslationServiceSoap12" type="tns:TranslationServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllTranslationModes">
+      <soap12:operation soapAction="http://zeta-software.de/TranslationWebService/GetAllTranslationModes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslationModeByObjectID">
+      <soap12:operation soapAction="http://zeta-software.de/TranslationWebService/GetTranslationModeByObjectID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Translate">
+      <soap12:operation soapAction="http://zeta-software.de/TranslationWebService/Translate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TranslationService">
+    <wsdl:port name="TranslationServiceSoap" binding="tns:TranslationServiceSoap">
+      <soap:address location="http://www.zeta-software.de/Translator/TranslationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TranslationServiceSoap12" binding="tns:TranslationServiceSoap12">
+      <soap12:address location="http://www.zeta-software.de/Translator/TranslationService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
