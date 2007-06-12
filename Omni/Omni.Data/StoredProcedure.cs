@@ -73,7 +73,7 @@ namespace Omni.Data
             List<Language> result = new List<Language>();
             while (reader.Read())
             {
-                result.Add(new Language((int)reader["id"],reader["code"].ToString()));
+                result.Add(new Language(Convert.ToInt32(reader["id"]), reader["code"].ToString()));
             }
             reader.Close();
             reader.Dispose();
@@ -100,7 +100,49 @@ namespace Omni.Data
             }
             reader.Close();
             reader.Dispose();
-            return "Unkown";
+            return "";
+        }
+        public static Interest[] InterestList(int parent_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_interest_list";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@parent_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = parent_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Interest> result = new List<Interest>();
+            while (reader.Read())
+            {
+                result.Add(new Interest(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["parent_id"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+        public static string InterestLangQueryById(int interest_id, int lang_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_interest_lang_query_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@interest_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = interest_id;
+            cmd.Parameters[1].Value = lang_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                string name = reader["name"].ToString();
+                reader.Close();
+                reader.Dispose();
+                return name;
+            }
+            reader.Close();
+            reader.Dispose();
+            return "";
         }
     }
 }

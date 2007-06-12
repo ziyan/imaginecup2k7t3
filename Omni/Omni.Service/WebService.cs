@@ -93,6 +93,8 @@ namespace Omni.Service
             return TranslationService.Lookup(OrigLanguage, SearchLanguage, SearchWord);
         }
 
+        #region Language
+
         [WebMethod(true)]
         public Language[] LanguageList()
         {
@@ -102,8 +104,28 @@ namespace Omni.Service
         [WebMethod(true)]
         public string LanguageNameQueryById(int lang_id, int dst_lang_id)
         {
+            if (lang_id < 1 || dst_lang_id < 1) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.LangLangQueryById(lang_id,dst_lang_id,(Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        #endregion
+
+
+        #region Interest
+        [WebMethod(true)]
+        public Interest[] InterestList(int parent_id)
+        {
+            if (parent_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.InterestList(parent_id,(Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public string InterestNameQueryById(int interest_id, int lang_id)
+        {
+            if (interest_id < 1 || lang_id < 1) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.InterestLangQueryById(interest_id, lang_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+        #endregion
     }
     
 }
