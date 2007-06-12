@@ -41,6 +41,8 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback UserLogoutOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserCurrentOperationCompleted;
+        
         private System.Threading.SendOrPostCallback DictionaryLookupOperationCompleted;
         
         private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
@@ -104,6 +106,9 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event UserLogoutCompletedEventHandler UserLogoutCompleted;
+        
+        /// <remarks/>
+        public event UserCurrentCompletedEventHandler UserCurrentCompleted;
         
         /// <remarks/>
         public event DictionaryLookupCompletedEventHandler DictionaryLookupCompleted;
@@ -299,6 +304,33 @@ namespace Omni.Web.org.omniproject {
             if ((this.UserLogoutCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserLogoutCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserCurrent", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public User UserCurrent() {
+            object[] results = this.Invoke("UserCurrent", new object[0]);
+            return ((User)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserCurrentAsync() {
+            this.UserCurrentAsync(null);
+        }
+        
+        /// <remarks/>
+        public void UserCurrentAsync(object userState) {
+            if ((this.UserCurrentOperationCompleted == null)) {
+                this.UserCurrentOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserCurrentOperationCompleted);
+            }
+            this.InvokeAsync("UserCurrent", new object[0], this.UserCurrentOperationCompleted, userState);
+        }
+        
+        private void OnUserCurrentOperationCompleted(object arg) {
+            if ((this.UserCurrentCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserCurrentCompleted(this, new UserCurrentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -680,6 +712,32 @@ namespace Omni.Web.org.omniproject {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
     public delegate void UserLogoutCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserCurrentCompletedEventHandler(object sender, UserCurrentCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserCurrentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserCurrentCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public User Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((User)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
