@@ -73,6 +73,11 @@ namespace Omni.Service
         {
             HttpContext.Current.Session["User"] = null;
         }
+        [WebMethod(true)]
+        public User UserCurrent()
+        {
+            return HttpContext.Current.Session["User"] == null ? null : (User)HttpContext.Current.Session["User"];
+        }
         #endregion
 
 

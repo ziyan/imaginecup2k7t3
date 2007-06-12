@@ -18,5 +18,17 @@ namespace Omni.Web
             hash.Initialize();
             return BitConverter.ToString(hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(message))).Replace("-", "").ToLower();
         }
+        public static int GetPreferredLanguage()
+        {
+            return 1;
+        }
+        public static void SetPreferredLanguage(int lang_id)
+        {
+            HttpCookie cookie = new HttpCookie("omni_language");
+            cookie.Value = lang_id.ToString();
+            cookie.Expires = DateTime.Now.AddYears(10);
+            cookie.Path = "/";
+            HttpContext.Current.Response.Cookies.Add(cookie);
+        }
     }
 }

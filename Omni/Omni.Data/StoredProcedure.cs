@@ -53,8 +53,12 @@ namespace Omni.Data
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
+                reader.Close();
+                reader.Dispose();
                 return new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"]));
             }
+            reader.Close();
+            reader.Dispose();
             return null;
         }
         public static Language[] LangList(SqlConnection cn)
@@ -70,6 +74,8 @@ namespace Omni.Data
             {
                 result.Add(new Language((int)reader["id"],reader["code"].ToString()));
             }
+            reader.Close();
+            reader.Dispose();
             return result.ToArray();
         }
         public static string LangLangQueryById(int lang_id, int dst_lang_id, SqlConnection cn)
@@ -86,8 +92,12 @@ namespace Omni.Data
             SqlDataReader reader = cmd.ExecuteReader();
             if(reader.Read())
             {
+                reader.Close();
+                reader.Dispose();
                 return reader["name"].ToString();
             }
+            reader.Close();
+            reader.Dispose();
             return "Unkown";
         }
     }
