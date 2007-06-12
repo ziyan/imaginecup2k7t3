@@ -175,6 +175,30 @@ namespace Omni.Service
             if (interest_id < 1 || lang_id < 1) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.InterestLangQueryById(interest_id, lang_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public Interest[] UserInterestList(int user_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (user_id <= 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.UserInterestListById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public void UserInterestAddById(int user_id, int interest_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (user_id <= 0) throw new ArgumentOutOfRangeException();
+            Data.StoredProcedure.UserInterestAddById(user_id, interest_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public void UserInterestDeleteById(int user_id, int interest_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initiliated.");
+            if (user_id <= 0) throw new ArgumentOutOfRangeException();
+            Data.StoredProcedure.UserInterestDeleteById(user_id, interest_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
         #endregion
     }
     

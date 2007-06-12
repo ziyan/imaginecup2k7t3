@@ -144,5 +144,50 @@ namespace Omni.Data
             reader.Dispose();
             return "";
         }
+        public static Interest[] UserInterestListById(int user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_interest_list_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Interest> result = new List<Interest>();
+            while (reader.Read())
+            {
+                result.Add(new Interest(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["parent_id"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+        public static int UserInterestAddById(int user_id, int interest_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_interest_add_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@interest_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = interest_id;
+            return cmd.ExecuteNonQuery();
+        }
+        public static int UserInterestDeleteById(int user_id, int interest_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_interest_delete_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@interest_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = interest_id;
+            return cmd.ExecuteNonQuery();
+        }
     }
 }
