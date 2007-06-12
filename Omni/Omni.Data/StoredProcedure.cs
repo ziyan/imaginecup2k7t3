@@ -189,5 +189,20 @@ namespace Omni.Data
             cmd.Parameters[1].Value = interest_id;
             return cmd.ExecuteNonQuery();
         }
+        public static int RateTranslation(int user_id, int trans_id, int rating, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_rate_trans";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@trans_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@rating", System.Data.SqlDbType.TinyInt);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = trans_id;
+            cmd.Parameters[2].Value = rating;
+            return cmd.ExecuteNonQuery();
+        }
     }
 }
