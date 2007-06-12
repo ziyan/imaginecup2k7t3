@@ -56,8 +56,7 @@
     <asp:Button ID="registerAccountButton" runat="server" OnClick="registerAccountButton_Click" Text="Register Account" /><br />
     <br />
     <asp:Label ID="successLabel" runat="server" Text="User successfully added." Visible="false"></asp:Label>
-    <asp:Label ID="duplicateUserLabel" runat="server" Text="Error - This user already exists." Visible="false"></asp:Label>
-    <asp:Label ID="duplicateEmailLabel" runat="server" Text="Error - This email address is already registered." Visible="false"></asp:Label>
+    <asp:Label ID="duplicateLabel" runat="server" Text="Error - This user or email already exists." Visible="false"></asp:Label>
     <asp:Label ID="invalidCaptchaLabel" runat="server" Text="Error - Your text from the image is invalid." Visible="false"></asp:Label>
     <asp:Label ID="genericErrorLabel" runat="server" Text="Validation Error, fill out all fields." Visible="false"></asp:Label>
 </asp:Content>

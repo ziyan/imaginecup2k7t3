@@ -30,8 +30,7 @@ public partial class RegisterAccount : System.Web.UI.Page
 
         successLabel.Visible = false;
         invalidCaptchaLabel.Visible = false;
-        duplicateEmailLabel.Visible = false;
-        duplicateUserLabel.Visible = false;
+        duplicateLabel.Visible = false;
         genericErrorLabel.Visible = false;
 
         int result = 0;
@@ -52,10 +51,8 @@ public partial class RegisterAccount : System.Web.UI.Page
         }
         if (!error)
         {
-            if (result == -2)
-                duplicateEmailLabel.Visible = true;
-            else if (result == -1)
-                duplicateUserLabel.Visible = true;
+            if (result <= 0)
+                duplicateLabel.Visible = true;
             else successLabel.Visible = true;
         }
     }
