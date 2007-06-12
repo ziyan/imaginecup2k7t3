@@ -15,6 +15,8 @@ namespace Omni.Service
 
         public static string Lookup(int LanguageID, string SearchWord)
         {
+            if (LanguageID != 1)
+                throw new ArgumentException();
             return svc.Define(SearchWord).Definitions[0].WordDefinition;
         }
     }
