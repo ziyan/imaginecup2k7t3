@@ -41,6 +41,22 @@ namespace Omni.Data
             object result = cmd.ExecuteScalar();
             return result == null ? "" : result.ToString();
         }
+        public static User UserPostAuthorizeByUsername(string username, SqlConnection cn)
+        {
+            if (cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_post_authorize_by_username";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@username", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters[0].Value = username;
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                return new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"]));
+            }
+            return null;
+        }
         public static Language[] LangList(SqlConnection cn)
         {
             if (cn.cn == null) throw new ArgumentException("Database connection not open!");

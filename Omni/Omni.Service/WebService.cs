@@ -37,20 +37,40 @@ namespace Omni.Service
                 throw new ArgumentNullException();
             //if (!Common.ValidateEmail(email)) throw new ArgumentOutOfRangeException("Email is invalid.");
             if (HttpContext.Current.Session["Captcha"] == null || captcha.ToLower() != HttpContext.Current.Session["Captcha"].ToString().ToLower()) throw new ArgumentException("Invalid captcha.");
-            string randomText = Common.GetRandomString(Common.HexCharacterSet, 10).ToLower();
+            string randomText = Common.GetRandomString(Common.HexCharacterSet, Common.PasswordRandomTextLength).ToLower();
             return Data.StoredProcedure.UserRegister(username, randomText + Common.GetMD5Hash(md5password.ToLower() + randomText), email, name, description, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]
-        public bool UserLogin(string email, string md5password, string captcha)
+        public User UserAuthorizeByUsername(string username, string md5password)
         {
-            return false;
+            if (username == null || username == "" ||
+                md5password == null || md5password.Length != 32)
+                throw new ArgumentNullException();
+            string password = Data.StoredProcedure.UserAuthorizeByUsername(username, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            string randomText = password.Substring(0, Common.PasswordRandomTextLength).ToLower();
+            if (password == randomText + Common.GetMD5Hash(md5password.ToLower() + randomText))
+            {
+                User user = Data.StoredProcedure.UserPostAuthorizeByUsername(username, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+                HttpContext.Current.Session["User"] = user;
+                return user;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         [WebMethod(true)]
         public bool UserIsLoggedIn()
         {
-            return false;
+            return HttpContext.Current.Session["User"]!=null;
+        }
+
+        [WebMethod(true)]
+        public void UserLogout()
+        {
+            HttpContext.Current.Session["User"] = null;
         }
         #endregion
 

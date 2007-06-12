@@ -24,6 +24,7 @@ namespace Omni.Service
             new FontFamily("Comic Sans MS")
         };
         public static int CaptchaLength = 5;
+        public static int PasswordRandomTextLength = 10;
 
         public static string GetRandomString(string characters, int length)
         {
