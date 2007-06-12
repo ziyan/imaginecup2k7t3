@@ -9,7 +9,7 @@ public class CaptchaHandler : IHttpHandler, System.Web.SessionState.IRequiresSes
     {
         context.Response.ContentType = "image/gif";
         context.Response.Expires = -1;
-        if(HttpContext.Current.Session["ProtectedWebService"] == null) context.Response.End();
+        if(HttpContext.Current.Session["WebService"] == null) context.Response.End();
         
             context.Response.BinaryWrite(Omni.Web.Common.GetWebService().UserCaptcha(Int32.Parse(context.Request["w"]), Int32.Parse(context.Request["h"]), context.Request["bc"], context.Request["fc"]));
             context.Response.Flush();
