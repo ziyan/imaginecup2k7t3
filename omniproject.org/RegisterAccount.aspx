@@ -44,6 +44,8 @@
     <asp:Label ID="profileDescLabel" runat="server" Text="Profile Description" Width="140px" ></asp:Label><br />
     <asp:TextBox ID="profileDescTB" runat="server" TextMode="MultiLine" Rows="5" Columns="50" ></asp:TextBox><br />
     <br />
+    <uc1:InterestsPicker ID="InterestsPicker1" runat="server" />
+    <br />
     <asp:Label ID="acctVerifyLabel" runat="server" Text="Account Verification" ></asp:Label><br />
     <asp:Image ID="captchaImage" runat="server" ImageUrl="Handler/CaptchaHandler.ashx?w=250&h=75&bc=white&fc=black" /><br />
     <asp:Label ID="captchaInstrLabel" runat="server" Text="Enter the text from the above image." ></asp:Label><br />
