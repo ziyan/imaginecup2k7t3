@@ -186,8 +186,25 @@
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="parent_id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="lang_id" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="InterestLangList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="parent_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="lang_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InterestLangListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InterestLangListResult" type="tns:ArrayOfInterest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="InterestNameQueryById">
         <s:complexType>
           <s:sequence>
@@ -202,6 +219,54 @@
             <s:element minOccurs="0" maxOccurs="1" name="InterestNameQueryByIdResult" type="s:string" />
           </s:sequence>
         </s:complexType>
+      </s:element>
+      <s:element name="UserInterestList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserInterestListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserInterestListResult" type="tns:ArrayOfInterest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserInterestAddById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="interest_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserInterestAddByIdResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UserInterestDeleteById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="interest_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserInterestDeleteByIdResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RateTranslationById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="trans_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="rating" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RateTranslationByIdResponse">
+        <s:complexType />
       </s:element>
       <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
       <s:element name="int" type="s:int" />
@@ -284,11 +349,41 @@
   <wsdl:message name="InterestListSoapOut">
     <wsdl:part name="parameters" element="tns:InterestListResponse" />
   </wsdl:message>
+  <wsdl:message name="InterestLangListSoapIn">
+    <wsdl:part name="parameters" element="tns:InterestLangList" />
+  </wsdl:message>
+  <wsdl:message name="InterestLangListSoapOut">
+    <wsdl:part name="parameters" element="tns:InterestLangListResponse" />
+  </wsdl:message>
   <wsdl:message name="InterestNameQueryByIdSoapIn">
     <wsdl:part name="parameters" element="tns:InterestNameQueryById" />
   </wsdl:message>
   <wsdl:message name="InterestNameQueryByIdSoapOut">
     <wsdl:part name="parameters" element="tns:InterestNameQueryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestListSoapIn">
+    <wsdl:part name="parameters" element="tns:UserInterestList" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestListSoapOut">
+    <wsdl:part name="parameters" element="tns:UserInterestListResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestAddByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UserInterestAddById" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestAddByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UserInterestAddByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestDeleteByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UserInterestDeleteById" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestDeleteByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UserInterestDeleteByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="RateTranslationByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:RateTranslationById" />
+  </wsdl:message>
+  <wsdl:message name="RateTranslationByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:RateTranslationByIdResponse" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpGetIn" />
   <wsdl:message name="InitializeHttpGetOut" />
@@ -361,6 +456,13 @@
   <wsdl:message name="InterestListHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfInterest" />
   </wsdl:message>
+  <wsdl:message name="InterestLangListHttpGetIn">
+    <wsdl:part name="parent_id" type="s:string" />
+    <wsdl:part name="lang_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InterestLangListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfInterest" />
+  </wsdl:message>
   <wsdl:message name="InterestNameQueryByIdHttpGetIn">
     <wsdl:part name="interest_id" type="s:string" />
     <wsdl:part name="lang_id" type="s:string" />
@@ -368,6 +470,28 @@
   <wsdl:message name="InterestNameQueryByIdHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="UserInterestListHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfInterest" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestAddByIdHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="interest_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestAddByIdHttpGetOut" />
+  <wsdl:message name="UserInterestDeleteByIdHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="interest_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestDeleteByIdHttpGetOut" />
+  <wsdl:message name="RateTranslationByIdHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="trans_id" type="s:string" />
+    <wsdl:part name="rating" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RateTranslationByIdHttpGetOut" />
   <wsdl:message name="InitializeHttpPostIn" />
   <wsdl:message name="InitializeHttpPostOut" />
   <wsdl:message name="UserCaptchaHttpPostIn">
@@ -439,6 +563,13 @@
   <wsdl:message name="InterestListHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfInterest" />
   </wsdl:message>
+  <wsdl:message name="InterestLangListHttpPostIn">
+    <wsdl:part name="parent_id" type="s:string" />
+    <wsdl:part name="lang_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InterestLangListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfInterest" />
+  </wsdl:message>
   <wsdl:message name="InterestNameQueryByIdHttpPostIn">
     <wsdl:part name="interest_id" type="s:string" />
     <wsdl:part name="lang_id" type="s:string" />
@@ -446,6 +577,28 @@
   <wsdl:message name="InterestNameQueryByIdHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="UserInterestListHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfInterest" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestAddByIdHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="interest_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestAddByIdHttpPostOut" />
+  <wsdl:message name="UserInterestDeleteByIdHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="interest_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserInterestDeleteByIdHttpPostOut" />
+  <wsdl:message name="RateTranslationByIdHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="trans_id" type="s:string" />
+    <wsdl:part name="rating" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RateTranslationByIdHttpPostOut" />
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Initialize">
       <wsdl:input message="tns:InitializeSoapIn" />
@@ -495,9 +648,29 @@
       <wsdl:input message="tns:InterestListSoapIn" />
       <wsdl:output message="tns:InterestListSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="InterestLangList">
+      <wsdl:input message="tns:InterestLangListSoapIn" />
+      <wsdl:output message="tns:InterestLangListSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="InterestNameQueryById">
       <wsdl:input message="tns:InterestNameQueryByIdSoapIn" />
       <wsdl:output message="tns:InterestNameQueryByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestList">
+      <wsdl:input message="tns:UserInterestListSoapIn" />
+      <wsdl:output message="tns:UserInterestListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestAddById">
+      <wsdl:input message="tns:UserInterestAddByIdSoapIn" />
+      <wsdl:output message="tns:UserInterestAddByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestDeleteById">
+      <wsdl:input message="tns:UserInterestDeleteByIdSoapIn" />
+      <wsdl:output message="tns:UserInterestDeleteByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RateTranslationById">
+      <wsdl:input message="tns:RateTranslationByIdSoapIn" />
+      <wsdl:output message="tns:RateTranslationByIdSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
@@ -549,9 +722,29 @@
       <wsdl:input message="tns:InterestListHttpGetIn" />
       <wsdl:output message="tns:InterestListHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="InterestLangList">
+      <wsdl:input message="tns:InterestLangListHttpGetIn" />
+      <wsdl:output message="tns:InterestLangListHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="InterestNameQueryById">
       <wsdl:input message="tns:InterestNameQueryByIdHttpGetIn" />
       <wsdl:output message="tns:InterestNameQueryByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestList">
+      <wsdl:input message="tns:UserInterestListHttpGetIn" />
+      <wsdl:output message="tns:UserInterestListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestAddById">
+      <wsdl:input message="tns:UserInterestAddByIdHttpGetIn" />
+      <wsdl:output message="tns:UserInterestAddByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestDeleteById">
+      <wsdl:input message="tns:UserInterestDeleteByIdHttpGetIn" />
+      <wsdl:output message="tns:UserInterestDeleteByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RateTranslationById">
+      <wsdl:input message="tns:RateTranslationByIdHttpGetIn" />
+      <wsdl:output message="tns:RateTranslationByIdHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpPost">
@@ -603,9 +796,29 @@
       <wsdl:input message="tns:InterestListHttpPostIn" />
       <wsdl:output message="tns:InterestListHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="InterestLangList">
+      <wsdl:input message="tns:InterestLangListHttpPostIn" />
+      <wsdl:output message="tns:InterestLangListHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="InterestNameQueryById">
       <wsdl:input message="tns:InterestNameQueryByIdHttpPostIn" />
       <wsdl:output message="tns:InterestNameQueryByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestList">
+      <wsdl:input message="tns:UserInterestListHttpPostIn" />
+      <wsdl:output message="tns:UserInterestListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestAddById">
+      <wsdl:input message="tns:UserInterestAddByIdHttpPostIn" />
+      <wsdl:output message="tns:UserInterestAddByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestDeleteById">
+      <wsdl:input message="tns:UserInterestDeleteByIdHttpPostIn" />
+      <wsdl:output message="tns:UserInterestDeleteByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RateTranslationById">
+      <wsdl:input message="tns:RateTranslationByIdHttpPostIn" />
+      <wsdl:output message="tns:RateTranslationByIdHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -718,8 +931,53 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InterestLangList">
+      <soap:operation soapAction="http://omniproject.org/InterestLangList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InterestNameQueryById">
       <soap:operation soapAction="http://omniproject.org/InterestNameQueryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestList">
+      <soap:operation soapAction="http://omniproject.org/UserInterestList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestAddById">
+      <soap:operation soapAction="http://omniproject.org/UserInterestAddById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestDeleteById">
+      <soap:operation soapAction="http://omniproject.org/UserInterestDeleteById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RateTranslationById">
+      <soap:operation soapAction="http://omniproject.org/RateTranslationById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -838,8 +1096,53 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InterestLangList">
+      <soap12:operation soapAction="http://omniproject.org/InterestLangList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InterestNameQueryById">
       <soap12:operation soapAction="http://omniproject.org/InterestNameQueryById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestList">
+      <soap12:operation soapAction="http://omniproject.org/UserInterestList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestAddById">
+      <soap12:operation soapAction="http://omniproject.org/UserInterestAddById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestDeleteById">
+      <soap12:operation soapAction="http://omniproject.org/UserInterestDeleteById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RateTranslationById">
+      <soap12:operation soapAction="http://omniproject.org/RateTranslationById" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -954,6 +1257,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InterestLangList">
+      <http:operation location="/InterestLangList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InterestNameQueryById">
       <http:operation location="/InterestNameQueryById" />
       <wsdl:input>
@@ -962,6 +1274,36 @@
       <wsdl:output>
         <mime:mimeXml part="Body" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestList">
+      <http:operation location="/UserInterestList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestAddById">
+      <http:operation location="/UserInterestAddById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestDeleteById">
+      <http:operation location="/UserInterestDeleteById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RateTranslationById">
+      <http:operation location="/RateTranslationById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpPost" type="tns:WebServiceHttpPost">
@@ -1070,6 +1412,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InterestLangList">
+      <http:operation location="/InterestLangList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InterestNameQueryById">
       <http:operation location="/InterestNameQueryById" />
       <wsdl:input>
@@ -1078,6 +1429,36 @@
       <wsdl:output>
         <mime:mimeXml part="Body" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestList">
+      <http:operation location="/UserInterestList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestAddById">
+      <http:operation location="/UserInterestAddById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UserInterestDeleteById">
+      <http:operation location="/UserInterestDeleteById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RateTranslationById">
+      <http:operation location="/RateTranslationById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="WebService">

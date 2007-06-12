@@ -53,7 +53,17 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback InterestListOperationCompleted;
         
+        private System.Threading.SendOrPostCallback InterestLangListOperationCompleted;
+        
         private System.Threading.SendOrPostCallback InterestNameQueryByIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UserInterestListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UserInterestAddByIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UserInterestDeleteByIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RateTranslationByIdOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -130,7 +140,22 @@ namespace Omni.Web.org.omniproject {
         public event InterestListCompletedEventHandler InterestListCompleted;
         
         /// <remarks/>
+        public event InterestLangListCompletedEventHandler InterestLangListCompleted;
+        
+        /// <remarks/>
         public event InterestNameQueryByIdCompletedEventHandler InterestNameQueryByIdCompleted;
+        
+        /// <remarks/>
+        public event UserInterestListCompletedEventHandler UserInterestListCompleted;
+        
+        /// <remarks/>
+        public event UserInterestAddByIdCompletedEventHandler UserInterestAddByIdCompleted;
+        
+        /// <remarks/>
+        public event UserInterestDeleteByIdCompletedEventHandler UserInterestDeleteByIdCompleted;
+        
+        /// <remarks/>
+        public event RateTranslationByIdCompletedEventHandler RateTranslationByIdCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -496,6 +521,37 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/InterestLangList", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Interest[] InterestLangList(int parent_id, int lang_id) {
+            object[] results = this.Invoke("InterestLangList", new object[] {
+                        parent_id,
+                        lang_id});
+            return ((Interest[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InterestLangListAsync(int parent_id, int lang_id) {
+            this.InterestLangListAsync(parent_id, lang_id, null);
+        }
+        
+        /// <remarks/>
+        public void InterestLangListAsync(int parent_id, int lang_id, object userState) {
+            if ((this.InterestLangListOperationCompleted == null)) {
+                this.InterestLangListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInterestLangListOperationCompleted);
+            }
+            this.InvokeAsync("InterestLangList", new object[] {
+                        parent_id,
+                        lang_id}, this.InterestLangListOperationCompleted, userState);
+        }
+        
+        private void OnInterestLangListOperationCompleted(object arg) {
+            if ((this.InterestLangListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InterestLangListCompleted(this, new InterestLangListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/InterestNameQueryById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string InterestNameQueryById(int interest_id, int lang_id) {
             object[] results = this.Invoke("InterestNameQueryById", new object[] {
@@ -523,6 +579,127 @@ namespace Omni.Web.org.omniproject {
             if ((this.InterestNameQueryByIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.InterestNameQueryByIdCompleted(this, new InterestNameQueryByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserInterestList", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Interest[] UserInterestList(int user_id) {
+            object[] results = this.Invoke("UserInterestList", new object[] {
+                        user_id});
+            return ((Interest[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserInterestListAsync(int user_id) {
+            this.UserInterestListAsync(user_id, null);
+        }
+        
+        /// <remarks/>
+        public void UserInterestListAsync(int user_id, object userState) {
+            if ((this.UserInterestListOperationCompleted == null)) {
+                this.UserInterestListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserInterestListOperationCompleted);
+            }
+            this.InvokeAsync("UserInterestList", new object[] {
+                        user_id}, this.UserInterestListOperationCompleted, userState);
+        }
+        
+        private void OnUserInterestListOperationCompleted(object arg) {
+            if ((this.UserInterestListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserInterestListCompleted(this, new UserInterestListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserInterestAddById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UserInterestAddById(int user_id, int interest_id) {
+            this.Invoke("UserInterestAddById", new object[] {
+                        user_id,
+                        interest_id});
+        }
+        
+        /// <remarks/>
+        public void UserInterestAddByIdAsync(int user_id, int interest_id) {
+            this.UserInterestAddByIdAsync(user_id, interest_id, null);
+        }
+        
+        /// <remarks/>
+        public void UserInterestAddByIdAsync(int user_id, int interest_id, object userState) {
+            if ((this.UserInterestAddByIdOperationCompleted == null)) {
+                this.UserInterestAddByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserInterestAddByIdOperationCompleted);
+            }
+            this.InvokeAsync("UserInterestAddById", new object[] {
+                        user_id,
+                        interest_id}, this.UserInterestAddByIdOperationCompleted, userState);
+        }
+        
+        private void OnUserInterestAddByIdOperationCompleted(object arg) {
+            if ((this.UserInterestAddByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserInterestAddByIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserInterestDeleteById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UserInterestDeleteById(int user_id, int interest_id) {
+            this.Invoke("UserInterestDeleteById", new object[] {
+                        user_id,
+                        interest_id});
+        }
+        
+        /// <remarks/>
+        public void UserInterestDeleteByIdAsync(int user_id, int interest_id) {
+            this.UserInterestDeleteByIdAsync(user_id, interest_id, null);
+        }
+        
+        /// <remarks/>
+        public void UserInterestDeleteByIdAsync(int user_id, int interest_id, object userState) {
+            if ((this.UserInterestDeleteByIdOperationCompleted == null)) {
+                this.UserInterestDeleteByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserInterestDeleteByIdOperationCompleted);
+            }
+            this.InvokeAsync("UserInterestDeleteById", new object[] {
+                        user_id,
+                        interest_id}, this.UserInterestDeleteByIdOperationCompleted, userState);
+        }
+        
+        private void OnUserInterestDeleteByIdOperationCompleted(object arg) {
+            if ((this.UserInterestDeleteByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserInterestDeleteByIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/RateTranslationById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void RateTranslationById(int user_id, int trans_id, int rating) {
+            this.Invoke("RateTranslationById", new object[] {
+                        user_id,
+                        trans_id,
+                        rating});
+        }
+        
+        /// <remarks/>
+        public void RateTranslationByIdAsync(int user_id, int trans_id, int rating) {
+            this.RateTranslationByIdAsync(user_id, trans_id, rating, null);
+        }
+        
+        /// <remarks/>
+        public void RateTranslationByIdAsync(int user_id, int trans_id, int rating, object userState) {
+            if ((this.RateTranslationByIdOperationCompleted == null)) {
+                this.RateTranslationByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRateTranslationByIdOperationCompleted);
+            }
+            this.InvokeAsync("RateTranslationById", new object[] {
+                        user_id,
+                        trans_id,
+                        rating}, this.RateTranslationByIdOperationCompleted, userState);
+        }
+        
+        private void OnRateTranslationByIdOperationCompleted(object arg) {
+            if ((this.RateTranslationByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RateTranslationByIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -650,6 +827,10 @@ namespace Omni.Web.org.omniproject {
         
         private int parent_idField;
         
+        private string nameField;
+        
+        private int lang_idField;
+        
         /// <remarks/>
         public int id {
             get {
@@ -667,6 +848,26 @@ namespace Omni.Web.org.omniproject {
             }
             set {
                 this.parent_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int lang_id {
+            get {
+                return this.lang_idField;
+            }
+            set {
+                this.lang_idField = value;
             }
         }
     }
@@ -974,6 +1175,32 @@ namespace Omni.Web.org.omniproject {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void InterestLangListCompletedEventHandler(object sender, InterestLangListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InterestLangListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InterestLangListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Interest[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Interest[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
     public delegate void InterestNameQueryByIdCompletedEventHandler(object sender, InterestNameQueryByIdCompletedEventArgs e);
     
     /// <remarks/>
@@ -997,6 +1224,44 @@ namespace Omni.Web.org.omniproject {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserInterestListCompletedEventHandler(object sender, UserInterestListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserInterestListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserInterestListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Interest[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Interest[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserInterestAddByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserInterestDeleteByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void RateTranslationByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

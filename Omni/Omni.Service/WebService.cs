@@ -169,7 +169,7 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public Interest[] InterestList(int parent_id, int lang_id)
+        public Interest[] InterestLangList(int parent_id, int lang_id)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (parent_id < 0) throw new ArgumentOutOfRangeException();
