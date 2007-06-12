@@ -28,18 +28,35 @@ public partial class RegisterAccount : System.Web.UI.Page
         String captcha = captchaTB.Text;
         String md5password = Omni.Web.Common.GetMD5Hash(password);
 
-        int result = -1;
-        //try
+        successLabel.Visible = false;
+        invalidCaptchaLabel.Visible = false;
+        duplicateEmailLabel.Visible = false;
+        duplicateUserLabel.Visible = false;
+        genericErrorLabel.Visible = false;
+
+        int result = 0;
+        bool error = false;
+        try
         {
             result = Omni.Web.Common.GetWebService().UserRegister(username, md5password, email, name, description, captcha);
         }
-       // catch (Exception ex)
+        catch(ArgumentException) //Invalid Captcha
         {
-       //     Response.Write("Something went horribly wrong.");
+            invalidCaptchaLabel.Visible = true;
+            error = true;
         }
-        if (result > 0)
-            Response.Write("Added user w/ uid = " + result);
-        else Response.Write("No User Added");
-        
+        catch (Exception)
+        {
+            genericErrorLabel.Visible = true;
+            error = true;
+        }
+        if (!error)
+        {
+            if (result == -2)
+                duplicateEmailLabel.Visible = true;
+            else if (result == -1)
+                duplicateUserLabel.Visible = true;
+            else successLabel.Visible = true;
+        }
     }
 }

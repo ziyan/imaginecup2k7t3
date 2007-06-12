@@ -53,6 +53,12 @@
     <asp:Label ID="captchaInstrLabel" runat="server" Text="Enter the text from the above image." ></asp:Label><br />
     <asp:TextBox ID="captchaTB" runat="server" ></asp:TextBox><br />
     <br />
-    <asp:Button ID="registerAccountButton" runat="server" OnClick="registerAccountButton_Click" Text="Register Account" />
+    <asp:Button ID="registerAccountButton" runat="server" OnClick="registerAccountButton_Click" Text="Register Account" /><br />
+    <br />
+    <asp:Label ID="successLabel" runat="server" Text="User successfully added." Visible="false"></asp:Label>
+    <asp:Label ID="duplicateUserLabel" runat="server" Text="Error - This user already exists." Visible="false"></asp:Label>
+    <asp:Label ID="duplicateEmailLabel" runat="server" Text="Error - This email address is already registered." Visible="false"></asp:Label>
+    <asp:Label ID="invalidCaptchaLabel" runat="server" Text="Error - Your text from the image is invalid." Visible="false"></asp:Label>
+    <asp:Label ID="genericErrorLabel" runat="server" Text="Validation Error, fill out all fields." Visible="false"></asp:Label>
 </asp:Content>
 
