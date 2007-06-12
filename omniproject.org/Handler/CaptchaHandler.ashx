@@ -10,8 +10,14 @@ public class CaptchaHandler : IHttpHandler, System.Web.SessionState.IRequiresSes
         context.Response.ContentType = "image/gif";
         context.Response.Expires = -1;
         if(HttpContext.Current.Session["ProtectedWebService"] == null) context.Response.End();
-        context.Response.BinaryWrite(((Omni.Web.org.omniproject.secure.ProtectedWebService)HttpContext.Current.Session["ProtectedWebService"]).UserCaptcha(Int32.Parse(context.Request["w"]), Int32.Parse(context.Request["h"]), context.Request["bc"], context.Request["fc"]));
-        context.Response.Flush();
+        try
+        {
+            context.Response.BinaryWrite(((Omni.Web.org.omniproject.secure.ProtectedWebService)HttpContext.Current.Session["ProtectedWebService"]).UserCaptcha(Int32.Parse(context.Request["w"]), Int32.Parse(context.Request["h"]), context.Request["bc"], context.Request["fc"]));
+            context.Response.Flush();
+        }
+        catch
+        {
+        }
         context.Response.End();
     }
 
