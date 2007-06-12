@@ -7,6 +7,9 @@ namespace Omni
     [Serializable]
     public class User
     {
+        public User()
+        {
+        }
         public User(int id, string username, string name, string email, string description, DateTime reg_date, DateTime log_date)
         {
             this.id = id;

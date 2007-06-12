@@ -35,9 +35,11 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback UserRegisterOperationCompleted;
         
-        private System.Threading.SendOrPostCallback UserLoginOperationCompleted;
+        private System.Threading.SendOrPostCallback UserAuthorizeByUsernameOperationCompleted;
         
         private System.Threading.SendOrPostCallback UserIsLoggedInOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UserLogoutOperationCompleted;
         
         private System.Threading.SendOrPostCallback DictionaryLookupOperationCompleted;
         
@@ -95,10 +97,13 @@ namespace Omni.Web.org.omniproject {
         public event UserRegisterCompletedEventHandler UserRegisterCompleted;
         
         /// <remarks/>
-        public event UserLoginCompletedEventHandler UserLoginCompleted;
+        public event UserAuthorizeByUsernameCompletedEventHandler UserAuthorizeByUsernameCompleted;
         
         /// <remarks/>
         public event UserIsLoggedInCompletedEventHandler UserIsLoggedInCompleted;
+        
+        /// <remarks/>
+        public event UserLogoutCompletedEventHandler UserLogoutCompleted;
         
         /// <remarks/>
         public event DictionaryLookupCompletedEventHandler DictionaryLookupCompleted;
@@ -214,35 +219,33 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserLogin", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool UserLogin(string email, string md5password, string captcha) {
-            object[] results = this.Invoke("UserLogin", new object[] {
-                        email,
-                        md5password,
-                        captcha});
-            return ((bool)(results[0]));
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserAuthorizeByUsername", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public User UserAuthorizeByUsername(string username, string md5password) {
+            object[] results = this.Invoke("UserAuthorizeByUsername", new object[] {
+                        username,
+                        md5password});
+            return ((User)(results[0]));
         }
         
         /// <remarks/>
-        public void UserLoginAsync(string email, string md5password, string captcha) {
-            this.UserLoginAsync(email, md5password, captcha, null);
+        public void UserAuthorizeByUsernameAsync(string username, string md5password) {
+            this.UserAuthorizeByUsernameAsync(username, md5password, null);
         }
         
         /// <remarks/>
-        public void UserLoginAsync(string email, string md5password, string captcha, object userState) {
-            if ((this.UserLoginOperationCompleted == null)) {
-                this.UserLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserLoginOperationCompleted);
+        public void UserAuthorizeByUsernameAsync(string username, string md5password, object userState) {
+            if ((this.UserAuthorizeByUsernameOperationCompleted == null)) {
+                this.UserAuthorizeByUsernameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserAuthorizeByUsernameOperationCompleted);
             }
-            this.InvokeAsync("UserLogin", new object[] {
-                        email,
-                        md5password,
-                        captcha}, this.UserLoginOperationCompleted, userState);
+            this.InvokeAsync("UserAuthorizeByUsername", new object[] {
+                        username,
+                        md5password}, this.UserAuthorizeByUsernameOperationCompleted, userState);
         }
         
-        private void OnUserLoginOperationCompleted(object arg) {
-            if ((this.UserLoginCompleted != null)) {
+        private void OnUserAuthorizeByUsernameOperationCompleted(object arg) {
+            if ((this.UserAuthorizeByUsernameCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UserLoginCompleted(this, new UserLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.UserAuthorizeByUsernameCompleted(this, new UserAuthorizeByUsernameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -270,6 +273,32 @@ namespace Omni.Web.org.omniproject {
             if ((this.UserIsLoggedInCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserIsLoggedInCompleted(this, new UserIsLoggedInCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserLogout", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UserLogout() {
+            this.Invoke("UserLogout", new object[0]);
+        }
+        
+        /// <remarks/>
+        public void UserLogoutAsync() {
+            this.UserLogoutAsync(null);
+        }
+        
+        /// <remarks/>
+        public void UserLogoutAsync(object userState) {
+            if ((this.UserLogoutOperationCompleted == null)) {
+                this.UserLogoutOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserLogoutOperationCompleted);
+            }
+            this.InvokeAsync("UserLogout", new object[0], this.UserLogoutOperationCompleted, userState);
+        }
+        
+        private void OnUserLogoutOperationCompleted(object arg) {
+            if ((this.UserLogoutCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserLogoutCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -339,7 +368,6 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/LanguageList", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
         public Language[] LanguageList() {
             object[] results = this.Invoke("LanguageList", new object[0]);
             return ((Language[])(results[0]));
@@ -412,6 +440,99 @@ namespace Omni.Web.org.omniproject {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.312")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://omniproject.org/")]
+    public partial class User {
+        
+        private string nameField;
+        
+        private string usernameField;
+        
+        private string emailField;
+        
+        private int idField;
+        
+        private string descriptionField;
+        
+        private System.DateTime reg_dateField;
+        
+        private System.DateTime log_dateField;
+        
+        /// <remarks/>
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime reg_date {
+            get {
+                return this.reg_dateField;
+            }
+            set {
+                this.reg_dateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime log_date {
+            get {
+                return this.log_dateField;
+            }
+            set {
+                this.log_dateField = value;
+            }
         }
     }
     
@@ -506,26 +627,26 @@ namespace Omni.Web.org.omniproject {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
-    public delegate void UserLoginCompletedEventHandler(object sender, UserLoginCompletedEventArgs e);
+    public delegate void UserAuthorizeByUsernameCompletedEventHandler(object sender, UserAuthorizeByUsernameCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class UserLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class UserAuthorizeByUsernameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal UserLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal UserAuthorizeByUsernameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public bool Result {
+        public User Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((User)(this.results[0]));
             }
         }
     }
@@ -555,6 +676,10 @@ namespace Omni.Web.org.omniproject {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserLogoutCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]

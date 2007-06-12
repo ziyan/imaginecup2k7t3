@@ -4,8 +4,11 @@ using System.Text;
 
 namespace Omni
 {
-    public struct Language
+    public class Language
     {
+        public Language()
+        {
+        }
         public Language(int id, string code)
         {
             this.id = id;
