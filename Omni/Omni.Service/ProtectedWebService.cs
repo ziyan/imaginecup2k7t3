@@ -16,7 +16,7 @@ namespace Omni.Service
 
         public ProtectedWebService()
         {
-            //cn.Open();
+            cn.Open();
         }
         
         [WebMethod]

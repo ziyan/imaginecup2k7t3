@@ -24,7 +24,7 @@ namespace Omni.Data
         /// </summary>
         public void Open()
         {
-            cn = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings[0].ConnectionString);
+            cn = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SqlDb"].ConnectionString);
             cn.Open();
         }
 
