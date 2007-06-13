@@ -21,23 +21,10 @@ public partial class AutomaticTranslation : System.Web.UI.Page
                 (destinationDropDown.Items.Count == 0))
         {
             Language[] languages = Common.GetWebService().LanguageList();
-
-            // FIXME: get site language
-            int defaultLanguageId = -1;
-            foreach (Language language in languages)
-            {
-                if (language.code.Equals("ENG"))
-                {
-                    defaultLanguageId = language.id;
-                    break;
-                }
-            }
-            if (defaultLanguageId == -1) return; // can't do anything
-
             foreach (Language language in languages)
             {
                 string languageString = Common.GetWebService().LanguageNameQueryById(
-                        language.id, defaultLanguageId);
+                        language.id, Common.GetPreferredLanguage());
                 sourceDropDown.Items.Add(
                             new ListItem(languageString, language.id.ToString()));
                 destinationDropDown.Items.Add(
