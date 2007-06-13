@@ -22,10 +22,9 @@ public partial class SelectPreferredLanguage : System.Web.UI.Page
         foreach (Language lang in languages)
         {
             LinkButton lb = new LinkButton();
-            lb.SkinID = "lang";
             lb.Font.Underline = false;
             lb.Font.Size = 24;
-
+            lb.SkinID = "black";
             String id = "langButton" + lang.id.ToString();
             lb.ID = id;
             String languageString = Common.GetWebService().LanguageNameQueryById(

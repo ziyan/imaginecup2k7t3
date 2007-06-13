@@ -9,7 +9,7 @@ Title="Omni - Select a Language" Theme="Default" %>
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:Panel runat="server" ID="languagePanel" HorizontalAlign="Center">
+    <asp:Panel runat="server" ID="languagePanel" HorizontalAlign="Center" CssClass="langpanel">
         
     </asp:Panel>
     </form>
