@@ -348,7 +348,7 @@ namespace Omni.Data
             cmd.Parameters[2].Value = rating;
             return cmd.ExecuteNonQuery();
         }
-        public static int MessageSend(int user_id, int dst_id, int dst_type, string subject, string body, SqlConnection cn)
+        public static int MessageSend(int user_id, int dst_id, int dst_type, string subject, string body, bool pending_trans, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
@@ -360,11 +360,13 @@ namespace Omni.Data
             cmd.Parameters.Add("@dst_type", System.Data.SqlDbType.TinyInt);
             cmd.Parameters.Add("@subject", System.Data.SqlDbType.NVarChar);
             cmd.Parameters.Add("@body", System.Data.SqlDbType.NText);
+            cmd.Parameters.Add("@pending_trans", System.Data.SqlDbType.Bit);
             cmd.Parameters[0].Value = user_id;
             cmd.Parameters[1].Value = dst_id;
             cmd.Parameters[2].Value = dst_type;
             cmd.Parameters[3].Value = subject;
             cmd.Parameters[4].Value = body;
+            cmd.Parameters[5].Value = pending_trans;
             return cmd.ExecuteNonQuery();
         }
         public static Message[] MessageRecvByUser(int dst_id, MessageDestinationType dst_type, SqlConnection cn)
