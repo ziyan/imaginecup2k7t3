@@ -44,3 +44,4 @@ public partial class AutomaticTranslation : System.Web.UI.Page
         TranslatedMessageText.Text = translatedText;
     }
 }
+    
