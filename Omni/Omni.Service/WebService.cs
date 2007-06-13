@@ -287,22 +287,23 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public void MessageSend( int user_id, int dst_id, int dst_type, string subject, string body)
+        public void MessageSend( int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to send as this user");
-            if (user_id <= 0) throw new ArgumentOutOfRangeException();
-            Data.StoredProcedure.MessageSend(user_id, dst_id, dst_type, subject, body, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            if (subject == null || body == null || subject == "") throw new ArgumentNullException();
+            if (user_id <= 0 || dst_id <=0) throw new ArgumentOutOfRangeException();
+            Data.StoredProcedure.MessageSend(user_id, dst_id, Convert.ToInt32(dst_type), subject, body, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]
-        public Message[] MessageRecvByUser(int dst_id, int dst_type)
+        public Message[] MessageRecvByUser(int dst_id, MessageDestinationType dst_type)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (dst_id <= 0) throw new ArgumentOutOfRangeException();
-            return Data.StoredProcedure.MessageRecvByUser(dst_id, dst_type, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            return Data.StoredProcedure.MessageRecvByUser(dst_id, Convert.ToInt32(dst_type), (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
     }
     
