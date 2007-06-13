@@ -269,6 +269,15 @@ namespace Omni.Service
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.MessageSend(user_id, dst_id, dst_type, subject, body, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public Message[] MessageRecvByUser(int dst_id, int dst_type)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (dst_id <= 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.MessageRecvByUser(dst_id, dst_type, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
     }
     
 }
