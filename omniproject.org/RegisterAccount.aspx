@@ -1,10 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="RegisterAccount.aspx.cs" Inherits="RegisterAccount"
  Title="Register an Account" Theme="Default" Culture="auto" %>
 
-<%@ Register Src="LanguagePicker.ascx" TagName="LanguagePicker" TagPrefix="uc2" %>
-
-<%@ Register Src="InterestsPicker.ascx" TagName="InterestsPicker" TagPrefix="uc1" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
     <asp:Label ID="regTitleLabel" runat="server" Text="Register an Account" CssClass="title"></asp:Label><br />
     <asp:Table ID="registrationTable" runat="server" >
@@ -47,10 +43,6 @@
     </asp:Table>
     <asp:Label ID="profileDescLabel" runat="server" Text="Profile Description" Width="140px" ></asp:Label><br />
     <asp:TextBox ID="profileDescTB" runat="server" TextMode="MultiLine" Rows="5" Columns="50" ></asp:TextBox><br />
-    <br />
-    <uc2:LanguagePicker ID="LanguagePicker1" runat="server" />
-    <br />
-    <uc1:InterestsPicker ID="InterestsPicker1" runat="server" />
     <br />
     <asp:Label ID="acctVerifyLabel" runat="server" Text="Account Verification" ></asp:Label><br />
     <asp:Image ID="captchaImage" runat="server" ImageUrl="Handler/CaptchaHandler.ashx?w=250&h=75&bc=white&fc=black" /><br />

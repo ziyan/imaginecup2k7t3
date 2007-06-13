@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Configuration;
 using System.Collections;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -21,30 +22,96 @@ public partial class InterestsPicker : System.Web.UI.UserControl
 
         WebService service = Common.GetWebService();
 
-        // UserGetUserInterest
-        //Common.GetCurrentUser().id
-
-        Interest[] categories = service.InterestList(0);
+        Interest[] userInterests = new Interest[0];
+        if (Common.GetCurrentUser() != null)
+        {
+            userInterests = service.UserInterestList(Common.GetCurrentUser().id);
+        }
+        
+        Interest[] categories = service.InterestLangList(0, preferredLanguageId);
         foreach (Interest category in categories)
         {
-            string categoryString = 
-                    service.InterestNameQueryById(category.id, preferredLanguageId);
-            TreeNode categoryNode = new TreeNode(categoryString);
+            TreeNode categoryNode = new TreeNode(category.name, category.id.ToString());
             categoryNode.ShowCheckBox = true;
 
-            Interest[] interests = service.InterestList(category.id);
+            bool categoryCollapse = true;
+            Interest[] interests = 
+                    service.InterestLangList(category.id, preferredLanguageId);
             foreach (Interest interest in interests)
             {
-                string interestString = service.InterestNameQueryById(interest.id, 
-                        preferredLanguageId);
-
-                TreeNode interestNode = new TreeNode(interestString);
+                TreeNode interestNode = new TreeNode(interest.name, interest.id.ToString());
                 interestNode.ShowCheckBox = true;
+                
+                foreach (Interest userInterest in userInterests)
+                {
+                    if (userInterest.id == interest.id)
+                    {
+                        interestNode.Checked = true;
+                        categoryCollapse = false;
+                        break;
+                    }
+                }
+
                 categoryNode.ChildNodes.Add(interestNode);
             }
 
-            categoryNode.Collapse();
-            allTreeView.Nodes.Add(categoryNode);
+            if (categoryCollapse)
+            {
+                categoryNode.Collapse();
+            }
+            interestsTreeView.Nodes.Add(categoryNode);
+        }
+    }
+
+    public int[] GetSelectedInterests()
+    {
+        List<int> selectedInterests = new List<int>();
+
+        List<TreeNode> nodeQueue = new List<TreeNode>();
+        foreach (TreeNode node in interestsTreeView.Nodes)
+        {
+            nodeQueue.Add(node);
+        }
+        while (nodeQueue.Count != 0)
+        {
+            TreeNode currentNode = nodeQueue[0];
+            nodeQueue.RemoveAt(0);
+            foreach (TreeNode node in currentNode.ChildNodes)
+            {
+                nodeQueue.Add(node);
+            }
+            if (currentNode.Checked)
+            {
+                selectedInterests.Add(Convert.ToInt32(currentNode.Value));
+            }
+        }
+
+        return selectedInterests.ToArray();
+    }
+
+    public void SaveInterestsToUser(int userId)
+    {
+        int[] interestIds = GetSelectedInterests();
+        Interest[] userInterests = Common.GetWebService().UserInterestList(userId);
+        List<int> userInterestIds = new List<int>();
+        foreach (Interest userInterest in userInterests)
+        {
+            userInterestIds.Add(userInterest.id);
+        }
+
+        foreach (int interestId in interestIds)
+        {
+            if (userInterestIds.Contains(interestId)) // unchanged
+            {
+                userInterestIds.Remove(interestId);
+                continue;
+            }
+            // else we have to add it
+            Common.GetWebService().UserInterestAddById(userId, interestId);
+        }
+        foreach (int interestId in userInterestIds)
+        {
+            Common.GetWebService().UserInterestDeleteById(userId, interestId);
         }
     }
 }

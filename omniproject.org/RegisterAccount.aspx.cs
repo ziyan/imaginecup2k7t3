@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Configuration;
 using System.Collections;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -62,7 +63,8 @@ public partial class RegisterAccount : System.Web.UI.Page
         {
             if (result <= 0)
                 duplicateLabel.Visible = true;
-            else successLabel.Visible = true;
+            else
+                successLabel.Visible = true;
         }
     }
 }
