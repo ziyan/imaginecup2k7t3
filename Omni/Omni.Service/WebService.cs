@@ -152,6 +152,13 @@ namespace Omni.Service
                 return false;
             }
         }
+
+        [WebMethod(true)]
+        public int UserIdGetByUsername(string username)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            return Data.StoredProcedure.UserIdGetByUsername(username,(Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
         #endregion
 
         #region External Services
