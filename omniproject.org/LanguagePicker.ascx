@@ -70,11 +70,7 @@
             <asp:Label ID="KnownLabel" runat="server" Text="Known"></asp:Label>
         </asp:TableHeaderCell>
         <asp:TableHeaderCell>
-            <asp:Label ID="readingSkillLabel" runat="server" Text="Reading Skill">
-            </asp:Label>
-        </asp:TableHeaderCell>
-        <asp:TableHeaderCell>
-            <asp:Label ID="writingSkillLabel" runat="server" Text="Writing Skill">
+            <asp:Label ID="skillLabel" runat="server" Text="Skill">
             </asp:Label>
         </asp:TableHeaderCell>
     </asp:TableHeaderRow>

@@ -16,6 +16,7 @@ public partial class EditProfile : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (IsPostBack) return;
         WebSiteCommon.setLoginView(notAuthorizedControl, userPanel);
         if (usernameValueLabel.Text.Length == 0)
         {
@@ -43,6 +44,7 @@ public partial class EditProfile : System.Web.UI.Page
             Common.GetWebService().UserUpdateById(currentUser.id, newEmail,
                     newDisplayName, newDescription);
             interestsPicker.SaveInterestsToUser(currentUser.id);
+            languagePicker.SaveLanguagesToUser(currentUser.id);
 
             usernameValueLabel.Text = ""; // used to flag to see if loaded
 
