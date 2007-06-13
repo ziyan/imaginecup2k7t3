@@ -16,7 +16,7 @@ namespace Omni.Service
         #region Captcha
         public static Random Rand = new Random();
         public static string HexCharacterSet = "0123456789abcdef";
-        public static string HumanFriendlyCharacterSet = "23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
+        public static string HumanFriendlyCharacterSet = "2345789cefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
         private static FontFamily[] HumanFriendlyFontSet = {
             new FontFamily("Times New Roman"),
             new FontFamily("Georgia"),
