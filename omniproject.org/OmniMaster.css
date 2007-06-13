@@ -82,11 +82,18 @@ div.toprated
 {
 	text-decoration: none;
 	font-weight: bold;
+	font-size: 125%;
 }
 
 .title
 {
 	font-size: 24pt;
+	font-family: Sans-Serif;
+}
+
+.subtitle
+{
+	font-size: 16pt;
 	font-family: Sans-Serif;
 }
 
