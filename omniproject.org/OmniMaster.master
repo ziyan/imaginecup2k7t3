@@ -47,7 +47,7 @@
             </asp:HyperLink><br />
             <asp:Panel ID="userNavLinkPanel" runat="server" Visible="false">
             <hr />
-            <asp:HyperLink ID="myProfileLink" runat="server" NavigateUrl="~/MyProfile.aspx">
+            <asp:HyperLink ID="myProfileLink" runat="server" NavigateUrl="~/EditProfile.aspx">
             <asp:Label ID="myProfileLabel" runat="server" Text="Edit Profile"></asp:Label>
             </asp:HyperLink><br />
             <asp:HyperLink ID="myFriendsLink" runat="server" NavigateUrl="~/MyFriends.aspx">
