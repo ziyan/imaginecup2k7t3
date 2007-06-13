@@ -54,4 +54,9 @@ public partial class LanguageSelector : System.Web.UI.UserControl
                         new ListItem(languageString, language.id.ToString()));
         }
     }
+
+    public void enlarge()
+    {
+        langDropDown.Font.Size = 32;
+    }
 }

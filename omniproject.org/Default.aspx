@@ -4,7 +4,7 @@
 <%@ Register Src="NotAuthedControl.ascx" TagName="NotAuthedControl" TagPrefix="uc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
-    <asp:Label ID="titleLabel" runat="server" Text="Welcome to Omni."></asp:Label><br />
+    <asp:Label ID="titleLabel" runat="server" Text="Welcome to Omni." CssClass="title"></asp:Label><br />
 
     <asp:Panel runat="server" ID="userPanel">
     An authorized user sees this.
