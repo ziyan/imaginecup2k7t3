@@ -133,6 +133,25 @@ namespace Omni.Service
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             Data.StoredProcedure.UserUpdateById(user_id, email, name, description, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public bool UserPasswordUpdate(string oldmd5password, string newmd5password)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            string password = Data.StoredProcedure.UserPasswordGetById(UserCurrent().id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            string randomText = password.Substring(0, Common.PasswordRandomTextLength).ToLower();
+            if (password == randomText + Common.GetMD5Hash(oldmd5password.ToLower() + randomText))
+            {
+                randomText = Common.GetRandomString(Common.HexCharacterSet, Common.PasswordRandomTextLength).ToLower();
+                Data.StoredProcedure.UserPasswordUpdateById(UserCurrent().id, randomText + Common.GetMD5Hash(newmd5password.ToLower() + randomText), (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         #endregion
 
         #region External Services
