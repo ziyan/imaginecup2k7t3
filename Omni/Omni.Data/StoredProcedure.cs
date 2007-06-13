@@ -243,5 +243,24 @@ namespace Omni.Data
             cmd.Parameters[2].Value = rating;
             return cmd.ExecuteNonQuery();
         }
+        public static int SendMessage(int user_id, int dst_id, int dst_type, string subject, string body, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_send_message_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@src_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@dst_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@dst_type", System.Data.SqlDbType.TinyInt);
+            cmd.Parameters.Add("@subject", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters.Add("@body", System.Data.SqlDbType.NText);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = dst_id;
+            cmd.Parameters[2].Value = dst_type;
+            cmd.Parameters[3].Value = subject;
+            cmd.Parameters[4].Value = body;
+            return cmd.ExecuteNonQuery();
+        }
     }
 }
