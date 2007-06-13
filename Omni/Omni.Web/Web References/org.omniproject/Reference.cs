@@ -1231,6 +1231,8 @@ namespace Omni.Web.org.omniproject {
         
         private bool unreadField;
         
+        private bool unsentField;
+        
         private MessageDestinationType dst_typeField;
         
         /// <remarks/>
@@ -1300,6 +1302,16 @@ namespace Omni.Web.org.omniproject {
             }
             set {
                 this.unreadField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool unsent {
+            get {
+                return this.unsentField;
+            }
+            set {
+                this.unsentField = value;
             }
         }
         
