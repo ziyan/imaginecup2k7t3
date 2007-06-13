@@ -43,6 +43,7 @@ public partial class LanguagePicker : System.Web.UI.UserControl
 
             TableCell newSkillCell = new TableCell();
             RadioButtonList skillButtonList = new RadioButtonList();
+            skillButtonList.RepeatDirection = RepeatDirection.Horizontal;
             skillButtonList.ID = ratingIdPrefix + language.id.ToString();
             for (int i = 1; i <= 5; i++)
             {
