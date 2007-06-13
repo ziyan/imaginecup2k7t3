@@ -58,6 +58,18 @@ namespace Omni.Data
             object result = cmd.ExecuteScalar();
             return result == null ? "" : result.ToString();
         }
+        public static string UserPasswordGetById(int user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_password_get_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            object result = cmd.ExecuteScalar();
+            return result == null ? "" : result.ToString();
+        }
         public static User UserAuthorizeByUsername(string username, SqlConnection cn)
         {
             if (cn==null || cn.cn == null) throw new ArgumentException("Database connection not open!");
@@ -138,7 +150,6 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
-
         public static int UserLangSetById(int user_id, int lang_id, short self_rating, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
@@ -154,7 +165,6 @@ namespace Omni.Data
             cmd.Parameters[2].Value = self_rating;
             return cmd.ExecuteNonQuery();
         }
-
         public static int UserLangDeleteById(int user_id, int lang_id, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
@@ -166,6 +176,19 @@ namespace Omni.Data
             cmd.Parameters.Add("@lang_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = user_id;
             cmd.Parameters[1].Value = lang_id;
+            return cmd.ExecuteNonQuery();
+        }
+        public static int UserPasswordUpdateById(int user_id, string password, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_password_update_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@password", System.Data.SqlDbType.VarChar);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = password;
             return cmd.ExecuteNonQuery();
         }
         
