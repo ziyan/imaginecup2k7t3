@@ -132,7 +132,7 @@ namespace Omni.Data
             cmd.Parameters.Add("@parent_id", System.Data.SqlDbType.Int);
             cmd.Parameters.Add("@lang_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = parent_id;
-            cmd.Parameters[0].Value = lang_id;
+            cmd.Parameters[1].Value = lang_id;
             SqlDataReader reader = cmd.ExecuteReader();
             List<Interest> result = new List<Interest>();
             while (reader.Read())
