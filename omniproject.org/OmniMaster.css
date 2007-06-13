@@ -38,9 +38,10 @@ div.lower
 {
 	position: absolute;
 	width: 100%;
-	top: 32px;
+	top: 30px;
 	margin: 0px;
-	margin-top: 5px;
+	margin-top: 0px;
+	border-style: none;
 }
 
 div.lowerleft
@@ -52,12 +53,14 @@ div.lowerleft
 	border-width: 2px 2px 2px 0px;
 	min-height: 300px;
 	_height: 300px;
+	margin-top: 5px;
 }
 
 div.lowerright
 {
 	margin-left: 230px;
 	margin-right: 10px;
+	margin-top: 5px;
 	padding: 10px;
 	min-height:  500px;
 	_height: 500px;

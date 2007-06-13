@@ -4,14 +4,15 @@
 
 body 
 {
-	background-color: #3e7eb4;
+	background-color: #ccdeff;
+	/*background-color: #3e7eb4;*/
 }
 
 div.topbar
 {
 	background-color: #0b3558;
 	color: White;	
-	border-color: Black;
+	border-color: #0b3558;
 }
 
 div.topbarLeft
@@ -24,11 +25,13 @@ div.topbarRight
 
 div.lower
 {
+	background-image: url(grad1.jpg);
+	background-repeat: repeat-x;
 }
 
 div.lowerleft
 {
-	background-color: #a8c3d9;
+	background-color: #edf3ff;
 	border-color: Black;
 }
 
@@ -36,6 +39,11 @@ div.lowerright
 {
 	background-color: #f4faff;
 	border-color: Black;
+}
+
+.langpanel
+{
+	margin-top: 100px;
 }
 
 /* -----------------
