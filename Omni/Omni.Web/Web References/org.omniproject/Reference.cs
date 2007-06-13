@@ -45,6 +45,8 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback UserUpdateByIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserGetByIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UserPasswordUpdateOperationCompleted;
         
         private System.Threading.SendOrPostCallback UserIdGetByUsernameOperationCompleted;
@@ -146,6 +148,9 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event UserUpdateByIdCompletedEventHandler UserUpdateByIdCompleted;
+        
+        /// <remarks/>
+        public event UserGetByIdCompletedEventHandler UserGetByIdCompleted;
         
         /// <remarks/>
         public event UserPasswordUpdateCompletedEventHandler UserPasswordUpdateCompleted;
@@ -450,6 +455,35 @@ namespace Omni.Web.org.omniproject {
             if ((this.UserUpdateByIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserUpdateByIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserGetById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public User UserGetById(int user_id) {
+            object[] results = this.Invoke("UserGetById", new object[] {
+                        user_id});
+            return ((User)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserGetByIdAsync(int user_id) {
+            this.UserGetByIdAsync(user_id, null);
+        }
+        
+        /// <remarks/>
+        public void UserGetByIdAsync(int user_id, object userState) {
+            if ((this.UserGetByIdOperationCompleted == null)) {
+                this.UserGetByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserGetByIdOperationCompleted);
+            }
+            this.InvokeAsync("UserGetById", new object[] {
+                        user_id}, this.UserGetByIdOperationCompleted, userState);
+        }
+        
+        private void OnUserGetByIdOperationCompleted(object arg) {
+            if ((this.UserGetByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserGetByIdCompleted(this, new UserGetByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1557,6 +1591,32 @@ namespace Omni.Web.org.omniproject {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
     public delegate void UserUpdateByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserGetByIdCompletedEventHandler(object sender, UserGetByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserGetByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserGetByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public User Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((User)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]

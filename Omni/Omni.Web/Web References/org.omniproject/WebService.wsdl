@@ -109,6 +109,20 @@
       <s:element name="UserUpdateByIdResponse">
         <s:complexType />
       </s:element>
+      <s:element name="UserGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserGetByIdResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UserPasswordUpdate">
         <s:complexType>
           <s:sequence>
@@ -498,6 +512,12 @@
   <wsdl:message name="UserUpdateByIdSoapOut">
     <wsdl:part name="parameters" element="tns:UserUpdateByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="UserGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UserGetById" />
+  </wsdl:message>
+  <wsdl:message name="UserGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UserGetByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="UserPasswordUpdateSoapIn">
     <wsdl:part name="parameters" element="tns:UserPasswordUpdate" />
   </wsdl:message>
@@ -664,6 +684,12 @@
     <wsdl:part name="description" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UserUpdateByIdHttpGetOut" />
+  <wsdl:message name="UserGetByIdHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserGetByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:User" />
+  </wsdl:message>
   <wsdl:message name="UserPasswordUpdateHttpGetIn">
     <wsdl:part name="oldmd5password" type="s:string" />
     <wsdl:part name="newmd5password" type="s:string" />
@@ -835,6 +861,12 @@
     <wsdl:part name="description" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UserUpdateByIdHttpPostOut" />
+  <wsdl:message name="UserGetByIdHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserGetByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:User" />
+  </wsdl:message>
   <wsdl:message name="UserPasswordUpdateHttpPostIn">
     <wsdl:part name="oldmd5password" type="s:string" />
     <wsdl:part name="newmd5password" type="s:string" />
@@ -993,6 +1025,10 @@
       <wsdl:input message="tns:UserUpdateByIdSoapIn" />
       <wsdl:output message="tns:UserUpdateByIdSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserGetById">
+      <wsdl:input message="tns:UserGetByIdSoapIn" />
+      <wsdl:output message="tns:UserGetByIdSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="UserPasswordUpdate">
       <wsdl:input message="tns:UserPasswordUpdateSoapIn" />
       <wsdl:output message="tns:UserPasswordUpdateSoapOut" />
@@ -1107,6 +1143,10 @@
       <wsdl:input message="tns:UserUpdateByIdHttpGetIn" />
       <wsdl:output message="tns:UserUpdateByIdHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserGetById">
+      <wsdl:input message="tns:UserGetByIdHttpGetIn" />
+      <wsdl:output message="tns:UserGetByIdHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="UserPasswordUpdate">
       <wsdl:input message="tns:UserPasswordUpdateHttpGetIn" />
       <wsdl:output message="tns:UserPasswordUpdateHttpGetOut" />
@@ -1220,6 +1260,10 @@
     <wsdl:operation name="UserUpdateById">
       <wsdl:input message="tns:UserUpdateByIdHttpPostIn" />
       <wsdl:output message="tns:UserUpdateByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserGetById">
+      <wsdl:input message="tns:UserGetByIdHttpPostIn" />
+      <wsdl:output message="tns:UserGetByIdHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="UserPasswordUpdate">
       <wsdl:input message="tns:UserPasswordUpdateHttpPostIn" />
@@ -1369,6 +1413,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserUpdateById">
       <soap:operation soapAction="http://omniproject.org/UserUpdateById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserGetById">
+      <soap:operation soapAction="http://omniproject.org/UserGetById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1631,6 +1684,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserGetById">
+      <soap12:operation soapAction="http://omniproject.org/UserGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UserPasswordUpdate">
       <soap12:operation soapAction="http://omniproject.org/UserPasswordUpdate" style="document" />
       <wsdl:input>
@@ -1880,6 +1942,15 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="UserGetById">
+      <http:operation location="/UserGetById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UserPasswordUpdate">
       <http:operation location="/UserPasswordUpdate" />
       <wsdl:input>
@@ -2116,6 +2187,15 @@
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
       <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UserGetById">
+      <http:operation location="/UserGetById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="UserPasswordUpdate">
       <http:operation location="/UserPasswordUpdate" />
