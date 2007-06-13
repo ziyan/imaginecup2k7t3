@@ -81,6 +81,10 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback MessageRecvByUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback MessageSentByUserOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback MessageGetByIdOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -196,6 +200,12 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event MessageRecvByUserCompletedEventHandler MessageRecvByUserCompleted;
+        
+        /// <remarks/>
+        public event MessageSentByUserCompletedEventHandler MessageSentByUserCompleted;
+        
+        /// <remarks/>
+        public event MessageGetByIdCompletedEventHandler MessageGetByIdCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -992,6 +1002,64 @@ namespace Omni.Web.org.omniproject {
             if ((this.MessageRecvByUserCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MessageRecvByUserCompleted(this, new MessageRecvByUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/MessageSentByUser", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Message[] MessageSentByUser(int user_id) {
+            object[] results = this.Invoke("MessageSentByUser", new object[] {
+                        user_id});
+            return ((Message[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MessageSentByUserAsync(int user_id) {
+            this.MessageSentByUserAsync(user_id, null);
+        }
+        
+        /// <remarks/>
+        public void MessageSentByUserAsync(int user_id, object userState) {
+            if ((this.MessageSentByUserOperationCompleted == null)) {
+                this.MessageSentByUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMessageSentByUserOperationCompleted);
+            }
+            this.InvokeAsync("MessageSentByUser", new object[] {
+                        user_id}, this.MessageSentByUserOperationCompleted, userState);
+        }
+        
+        private void OnMessageSentByUserOperationCompleted(object arg) {
+            if ((this.MessageSentByUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MessageSentByUserCompleted(this, new MessageSentByUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/MessageGetById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Message MessageGetById(int msg_id) {
+            object[] results = this.Invoke("MessageGetById", new object[] {
+                        msg_id});
+            return ((Message)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MessageGetByIdAsync(int msg_id) {
+            this.MessageGetByIdAsync(msg_id, null);
+        }
+        
+        /// <remarks/>
+        public void MessageGetByIdAsync(int msg_id, object userState) {
+            if ((this.MessageGetByIdOperationCompleted == null)) {
+                this.MessageGetByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMessageGetByIdOperationCompleted);
+            }
+            this.InvokeAsync("MessageGetById", new object[] {
+                        msg_id}, this.MessageGetByIdOperationCompleted, userState);
+        }
+        
+        private void OnMessageGetByIdOperationCompleted(object arg) {
+            if ((this.MessageGetByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MessageGetByIdCompleted(this, new MessageGetByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1822,6 +1890,58 @@ namespace Omni.Web.org.omniproject {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Message[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void MessageSentByUserCompletedEventHandler(object sender, MessageSentByUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MessageSentByUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MessageSentByUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Message[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Message[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void MessageGetByIdCompletedEventHandler(object sender, MessageGetByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MessageGetByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MessageGetByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Message Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Message)(this.results[0]));
             }
         }
     }
