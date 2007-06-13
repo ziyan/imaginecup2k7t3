@@ -212,7 +212,7 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public void UserLanguageSetById(int user_id, short lang_id, short self_rating )
+        public void UserLanguageSetById(int user_id, int lang_id, short self_rating)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
@@ -223,7 +223,7 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public void UserLanguageDeleteById(int user_id, short lang_id)
+        public void UserLanguageDeleteById(int user_id, int lang_id)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
