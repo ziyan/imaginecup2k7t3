@@ -43,6 +43,8 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback UserCurrentOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserUpdateByIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback DictionaryLookupOperationCompleted;
         
         private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
@@ -123,6 +125,9 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event UserCurrentCompletedEventHandler UserCurrentCompleted;
+        
+        /// <remarks/>
+        public event UserUpdateByIdCompletedEventHandler UserUpdateByIdCompleted;
         
         /// <remarks/>
         public event DictionaryLookupCompletedEventHandler DictionaryLookupCompleted;
@@ -366,6 +371,40 @@ namespace Omni.Web.org.omniproject {
             if ((this.UserCurrentCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserCurrentCompleted(this, new UserCurrentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserUpdateById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UserUpdateById(int user_id, string email, string name, string description) {
+            this.Invoke("UserUpdateById", new object[] {
+                        user_id,
+                        email,
+                        name,
+                        description});
+        }
+        
+        /// <remarks/>
+        public void UserUpdateByIdAsync(int user_id, string email, string name, string description) {
+            this.UserUpdateByIdAsync(user_id, email, name, description, null);
+        }
+        
+        /// <remarks/>
+        public void UserUpdateByIdAsync(int user_id, string email, string name, string description, object userState) {
+            if ((this.UserUpdateByIdOperationCompleted == null)) {
+                this.UserUpdateByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserUpdateByIdOperationCompleted);
+            }
+            this.InvokeAsync("UserUpdateById", new object[] {
+                        user_id,
+                        email,
+                        name,
+                        description}, this.UserUpdateByIdOperationCompleted, userState);
+        }
+        
+        private void OnUserUpdateByIdOperationCompleted(object arg) {
+            if ((this.UserUpdateByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserUpdateByIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1042,6 +1081,10 @@ namespace Omni.Web.org.omniproject {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserUpdateByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]

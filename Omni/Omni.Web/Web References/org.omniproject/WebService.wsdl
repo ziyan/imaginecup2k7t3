@@ -96,6 +96,19 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UserUpdateById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserUpdateByIdResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="DictionaryLookup">
         <s:complexType>
           <s:sequence>
@@ -319,6 +332,12 @@
   <wsdl:message name="UserCurrentSoapOut">
     <wsdl:part name="parameters" element="tns:UserCurrentResponse" />
   </wsdl:message>
+  <wsdl:message name="UserUpdateByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UserUpdateById" />
+  </wsdl:message>
+  <wsdl:message name="UserUpdateByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UserUpdateByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="DictionaryLookupSoapIn">
     <wsdl:part name="parameters" element="tns:DictionaryLookup" />
   </wsdl:message>
@@ -424,6 +443,13 @@
   <wsdl:message name="UserCurrentHttpGetOut">
     <wsdl:part name="Body" element="tns:User" />
   </wsdl:message>
+  <wsdl:message name="UserUpdateByIdHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="description" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserUpdateByIdHttpGetOut" />
   <wsdl:message name="DictionaryLookupHttpGetIn">
     <wsdl:part name="LanguageID" type="s:string" />
     <wsdl:part name="SearchWord" type="s:string" />
@@ -531,6 +557,13 @@
   <wsdl:message name="UserCurrentHttpPostOut">
     <wsdl:part name="Body" element="tns:User" />
   </wsdl:message>
+  <wsdl:message name="UserUpdateByIdHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="description" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserUpdateByIdHttpPostOut" />
   <wsdl:message name="DictionaryLookupHttpPostIn">
     <wsdl:part name="LanguageID" type="s:string" />
     <wsdl:part name="SearchWord" type="s:string" />
@@ -628,6 +661,10 @@
       <wsdl:input message="tns:UserCurrentSoapIn" />
       <wsdl:output message="tns:UserCurrentSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserUpdateById">
+      <wsdl:input message="tns:UserUpdateByIdSoapIn" />
+      <wsdl:output message="tns:UserUpdateByIdSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="DictionaryLookup">
       <wsdl:input message="tns:DictionaryLookupSoapIn" />
       <wsdl:output message="tns:DictionaryLookupSoapOut" />
@@ -702,6 +739,10 @@
       <wsdl:input message="tns:UserCurrentHttpGetIn" />
       <wsdl:output message="tns:UserCurrentHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserUpdateById">
+      <wsdl:input message="tns:UserUpdateByIdHttpGetIn" />
+      <wsdl:output message="tns:UserUpdateByIdHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="DictionaryLookup">
       <wsdl:input message="tns:DictionaryLookupHttpGetIn" />
       <wsdl:output message="tns:DictionaryLookupHttpGetOut" />
@@ -775,6 +816,10 @@
     <wsdl:operation name="UserCurrent">
       <wsdl:input message="tns:UserCurrentHttpPostIn" />
       <wsdl:output message="tns:UserCurrentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdateById">
+      <wsdl:input message="tns:UserUpdateByIdHttpPostIn" />
+      <wsdl:output message="tns:UserUpdateByIdHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="DictionaryLookup">
       <wsdl:input message="tns:DictionaryLookupHttpPostIn" />
@@ -879,6 +924,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserCurrent">
       <soap:operation soapAction="http://omniproject.org/UserCurrent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdateById">
+      <soap:operation soapAction="http://omniproject.org/UserUpdateById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1051,6 +1105,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserUpdateById">
+      <soap12:operation soapAction="http://omniproject.org/UserUpdateById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DictionaryLookup">
       <soap12:operation soapAction="http://omniproject.org/DictionaryLookup" style="document" />
       <wsdl:input>
@@ -1212,6 +1275,13 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserUpdateById">
+      <http:operation location="/UserUpdateById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
     <wsdl:operation name="DictionaryLookup">
       <http:operation location="/DictionaryLookup" />
       <wsdl:input>
@@ -1366,6 +1436,13 @@
       <wsdl:output>
         <mime:mimeXml part="Body" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdateById">
+      <http:operation location="/UserUpdateById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
     </wsdl:operation>
     <wsdl:operation name="DictionaryLookup">
       <http:operation location="/DictionaryLookup" />
