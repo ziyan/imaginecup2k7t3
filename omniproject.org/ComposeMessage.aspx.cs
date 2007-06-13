@@ -45,7 +45,7 @@ public partial class ComposeMessage : System.Web.UI.Page
     {
         User user = Common.GetCurrentUser();
         int userid = Common.GetWebService().UserIdGetByUsername(toTB.Text);
-        Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text);
+        Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text,false,0);
         Server.Transfer("MyMessages.aspx");
     }
 }
