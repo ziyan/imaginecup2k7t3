@@ -30,7 +30,7 @@
             <asp:Label runat="server" ID="usernameLabel" Text="Username: "></asp:Label>
             <asp:Label runat="server" ID="usernameLabel2" Text=""></asp:Label>
              | 
-            <asp:Button ID="logoutButton" runat="server" Text="Logout" OnClick="logoutButton_Click" />
+            <asp:LinkButton ID="logoutButton" runat="server" Text="Logout" OnClick="logoutButton_Click" />
             </asp:View>
             </asp:MultiView> |  
             <uc1:LanguageSelector id="LanguageSelector1" runat="server">
@@ -46,9 +46,25 @@
             <asp:Label ID="browseGlobalTransLabel" runat="server" Text="Browse Global Translations"></asp:Label>
             </asp:HyperLink><br />
             <asp:Panel ID="userNavLinkPanel" runat="server" Visible="false">
+            <hr />
+            <asp:HyperLink ID="myProfileLink" runat="server" NavigateUrl="~/MyProfile.aspx">
+            <asp:Label ID="myProfileLabel" runat="server" Text="Edit Profile"></asp:Label>
+            </asp:HyperLink><br />
+            <asp:HyperLink ID="myFriendsLink" runat="server" NavigateUrl="~/MyFriends.aspx">
+            <asp:Label ID="myFriendsLabel" runat="server" Text="My Friends"></asp:Label>
+            </asp:HyperLink><br />
+            <asp:HyperLink ID="myMessagesLink" runat="server" NavigateUrl="~/MyMessages.aspx">
+            <asp:Label ID="myMessagesLabel" runat="server" Text="My Messages"></asp:Label>
+            </asp:HyperLink><br />            
+            <asp:HyperLink ID="myTranslationsLink" runat="server" NavigateUrl="~/MyTranslations.aspx">
+            <asp:Label ID="myTranslationsLabel" runat="server" Text="My Translations"></asp:Label>
+            </asp:HyperLink><br />
+            <asp:HyperLink ID="myGroupsLink" runat="server" NavigateUrl="~/MyGroups.aspx">
+            <asp:Label ID="myGroupsLabel" runat="server" Text="My Groups"></asp:Label>
+            </asp:HyperLink><br /><br />
             <asp:HyperLink ID="returnHomeLink" runat="server" NavigateUrl="~/Default.aspx">
             <asp:Label ID="returnHomeLabel" runat="server" Text="Return Home"></asp:Label>
-            </asp:HyperLink><br />
+            </asp:HyperLink>  
             </asp:Panel>
         
         </div>
