@@ -33,6 +33,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumeration.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Interest.cs" />
     <Compile Include="Language.cs" />

@@ -27,7 +27,7 @@ namespace Omni.Data
             cmd.Parameters[3].Value = name;
             cmd.Parameters[4].Value = description;
             object result = cmd.ExecuteScalar();
-            return result == null ? 0 : (int)result;
+            return result == null ? 0 : Convert.ToInt32(result);
         }
         public static string UserAuthorizeByUsername(string username, SqlConnection cn)
         {

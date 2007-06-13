@@ -69,7 +69,7 @@ namespace Omni.Service
             g.FillPath(sBrush, path);
 
             // Iterate over every pixel
-            double distort = Rand.Next(5, 20) * (Rand.Next(10) == 1 ? 1 : -1);
+            double distort = Rand.Next(5, 15) * (Rand.Next(10) == 1 ? 1 : -1);
 
             // Copy the image so that we're always using the original for source color
             using (Bitmap copy = (Bitmap)bitmap.Clone())
