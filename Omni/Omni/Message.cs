@@ -10,8 +10,9 @@ namespace Omni
         public Message()
         {
         }
-        public Message(int src_id, int dst_id, string subject, string body, DateTime date, bool unread)
+        public Message(int id, int src_id, int dst_id, string subject, string body, DateTime date, bool unread)
         {
+            this.id = id;
             this.src_id = src_id;
             this.dst_id = dst_id;
             this.subject = subject;
@@ -19,6 +20,7 @@ namespace Omni
             this.date = date;
             this.unread = unread;
         }
+        public int id;
         public int src_id;
         public int dst_id;
         public string subject;
