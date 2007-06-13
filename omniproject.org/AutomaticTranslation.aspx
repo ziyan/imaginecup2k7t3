@@ -23,7 +23,7 @@
     </asp:Table>
     <asp:Label ID="OriginalMessageLabel" runat="server" Text="Original Message" ></asp:Label>
     <asp:TextBox ID="OriginalMessageText" runat="server" TextMode="MultiLine" ></asp:TextBox><br />
-    &nbsp;<asp:Button ID="TranslationButton" runat="server" Text="Translate"  /><br />
+    &nbsp;<asp:Button ID="TranslationButton" runat="server" Text="Translate" OnClick="TranslationButton_Click"  /><br />
     <asp:Label ID="TranslatedMessageLabel" runat="server" Text="Translated Message" ></asp:Label>
     <asp:TextBox ID="TranslatedMessageText" runat="server" TextMode="MultiLine" ></asp:TextBox>
 </asp:Content>
