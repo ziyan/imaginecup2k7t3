@@ -367,13 +367,41 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
-        /*public static Message[] MessageSentByUser()
+        public static Message[] MessageSentByUser( int user_id, SqlConnection cn )
         {
-
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_message_sent_by_user";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Message> result = new List<Message>();
+            while (reader.Read())
+            {
+                result.Add(new Message(Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), Convert.ToString(reader["subject"]), Convert.ToString(reader["body"]), Convert.ToDateTime(reader["date"]), false ));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
         }
-        public static Message MessageGetById()
+        public static Message MessageGetById( int msg_id, SqlConnection cn )
         {
-
-        }*/
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_message_sent_by_user";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@msg_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = msg_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            Message result;
+            reader.Read();
+            result = new Message(Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), Convert.ToString(reader["subject"]), Convert.ToString(reader["body"]), Convert.ToDateTime(reader["date"]), false);
+            reader.Close();
+            reader.Dispose();
+            return result;
+        }
     }
 }

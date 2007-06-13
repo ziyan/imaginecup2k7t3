@@ -305,6 +305,25 @@ namespace Omni.Service
             if (dst_id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.MessageRecvByUser(dst_id, Convert.ToInt32(dst_type), (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public Message[] MessageSentByUser(int user_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            if (user_id <= 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.MessageSentByUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public Message MessageGetById(int msg_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (msg_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.MessageGetById(msg_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
     }
     
 }
