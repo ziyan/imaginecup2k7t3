@@ -20,6 +20,9 @@ public partial class InterestsPicker : System.Web.UI.UserControl
         int preferredLanguageId = Common.GetPreferredLanguage();
         if (preferredLanguageId <= 0) return; // should not happen
 
+        // don't overwrite when sending new data
+        if (interestsTreeView.Nodes.Count != 0) return; 
+
         WebService service = Common.GetWebService();
 
         Interest[] userInterests = new Interest[0];
@@ -33,6 +36,14 @@ public partial class InterestsPicker : System.Web.UI.UserControl
         {
             TreeNode categoryNode = new TreeNode(category.name, category.id.ToString());
             categoryNode.ShowCheckBox = true;
+            foreach (Interest userInterest in userInterests)
+            {
+                if (userInterest.id == category.id)
+                {
+                    categoryNode.Checked = true;
+                    break;
+                }
+            }
 
             bool categoryCollapse = true;
             Interest[] interests = 
@@ -113,5 +124,7 @@ public partial class InterestsPicker : System.Web.UI.UserControl
         {
             Common.GetWebService().UserInterestDeleteById(userId, interestId);
         }
+
+        interestsTreeView.Nodes.Clear(); // reload it
     }
 }
