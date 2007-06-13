@@ -384,7 +384,7 @@ namespace Omni.Data
             List<Message> result = new List<Message>();
             while (reader.Read())
             {
-                result.Add(new Message(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), dst_type, Convert.ToString(reader["subject"]), "", Convert.ToDateTime(reader["date"]), Convert.ToBoolean(reader["unread"]), Convert.ToBoolean(reader["pending_trans"])));
+                result.Add(new Message(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), dst_type, Convert.ToString(reader["subject"]), "", Convert.ToDateTime(reader["date"]), Convert.ToBoolean(reader["unread"]), Convert.ToBoolean(reader["pending_trans"]), 0));
             }
             reader.Close();
             reader.Dispose();
@@ -403,7 +403,7 @@ namespace Omni.Data
             List<Message> result = new List<Message>();
             while (reader.Read())
             {
-                result.Add(new Message(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), (MessageDestinationType)Convert.ToInt32(reader["dst_type"]), Convert.ToString(reader["subject"]), "", Convert.ToDateTime(reader["date"]), false, Convert.ToBoolean(reader["pending_trans"])));
+                result.Add(new Message(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), (MessageDestinationType)Convert.ToInt32(reader["dst_type"]), Convert.ToString(reader["subject"]), "", Convert.ToDateTime(reader["date"]), false, Convert.ToBoolean(reader["pending_trans"]), 0));
             }
             reader.Close();
             reader.Dispose();
@@ -422,7 +422,7 @@ namespace Omni.Data
             Message result;
             if (reader.Read())
             {
-                result = new Message(msg_id, Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), (MessageDestinationType)Convert.ToInt32(reader["dst_type"]), Convert.ToString(reader["subject"]), Convert.ToString(reader["body"]), Convert.ToDateTime(reader["date"]), false, Convert.ToBoolean(reader["pending_trans"]));
+                result = new Message(msg_id, Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), (MessageDestinationType)Convert.ToInt32(reader["dst_type"]), Convert.ToString(reader["subject"]), Convert.ToString(reader["body"]), Convert.ToDateTime(reader["date"]), false, Convert.ToBoolean(reader["pending_trans"]), Convert.ToInt32(reader["trans_req_id"]));
                 reader.Close();
                 reader.Dispose();
                 return result;

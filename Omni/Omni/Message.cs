@@ -10,7 +10,7 @@ namespace Omni
         public Message()
         {
         }
-        public Message(int id, int src_id, int dst_id, MessageDestinationType dst_type, string subject, string body, DateTime date, bool unread, bool pending_trans)
+        public Message(int id, int src_id, int dst_id, MessageDestinationType dst_type, string subject, string body, DateTime date, bool unread, bool pending_trans, int trans_req_id )
         {
             this.id = id;
             this.src_id = src_id;
@@ -31,5 +31,6 @@ namespace Omni
         public bool unread;
         public bool pending_trans;
         public MessageDestinationType dst_type;
+        public int trans_req_id;
     }
 }
