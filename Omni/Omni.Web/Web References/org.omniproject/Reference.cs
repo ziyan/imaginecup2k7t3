@@ -930,7 +930,7 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/MessageSend", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void MessageSend(int user_id, int dst_id, int dst_type, string subject, string body) {
+        public void MessageSend(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body) {
             this.Invoke("MessageSend", new object[] {
                         user_id,
                         dst_id,
@@ -940,12 +940,12 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
-        public void MessageSendAsync(int user_id, int dst_id, int dst_type, string subject, string body) {
+        public void MessageSendAsync(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body) {
             this.MessageSendAsync(user_id, dst_id, dst_type, subject, body, null);
         }
         
         /// <remarks/>
-        public void MessageSendAsync(int user_id, int dst_id, int dst_type, string subject, string body, object userState) {
+        public void MessageSendAsync(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, object userState) {
             if ((this.MessageSendOperationCompleted == null)) {
                 this.MessageSendOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMessageSendOperationCompleted);
             }
@@ -966,7 +966,7 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/MessageRecvByUser", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Message[] MessageRecvByUser(int dst_id, int dst_type) {
+        public Message[] MessageRecvByUser(int dst_id, MessageDestinationType dst_type) {
             object[] results = this.Invoke("MessageRecvByUser", new object[] {
                         dst_id,
                         dst_type});
@@ -974,12 +974,12 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
-        public void MessageRecvByUserAsync(int dst_id, int dst_type) {
+        public void MessageRecvByUserAsync(int dst_id, MessageDestinationType dst_type) {
             this.MessageRecvByUserAsync(dst_id, dst_type, null);
         }
         
         /// <remarks/>
-        public void MessageRecvByUserAsync(int dst_id, int dst_type, object userState) {
+        public void MessageRecvByUserAsync(int dst_id, MessageDestinationType dst_type, object userState) {
             if ((this.MessageRecvByUserOperationCompleted == null)) {
                 this.MessageRecvByUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMessageRecvByUserOperationCompleted);
             }
@@ -1333,6 +1333,19 @@ namespace Omni.Web.org.omniproject {
                 this.codeField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.312")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://omniproject.org/")]
+    public enum MessageDestinationType {
+        
+        /// <remarks/>
+        User,
+        
+        /// <remarks/>
+        Group,
     }
     
     /// <remarks/>
