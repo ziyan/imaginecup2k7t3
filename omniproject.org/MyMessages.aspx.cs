@@ -102,7 +102,7 @@ public partial class MyMessages : System.Web.UI.Page
         unread.HorizontalAlign = HorizontalAlign.Center;
         if (border)
         {
-            unread.BorderStyle = BorderStyle.Dotted;
+            unread.BorderStyle = BorderStyle.Solid;
         }
         tr.Cells.Add(unread);
         TableCell date = new TableCell();
@@ -111,7 +111,7 @@ public partial class MyMessages : System.Web.UI.Page
         date.Controls.Add(dl);
         if (border)
         {
-            date.BorderStyle = BorderStyle.Dotted;
+            date.BorderStyle = BorderStyle.Solid;
         }
         tr.Cells.Add(date);
         TableCell sender = new TableCell();
@@ -124,7 +124,7 @@ public partial class MyMessages : System.Web.UI.Page
         sender.Controls.Add(sl);
         if (border)
         {
-            sender.BorderStyle = BorderStyle.Dotted;
+            sender.BorderStyle = BorderStyle.Solid;
         }
         tr.Cells.Add(sender);
         TableCell recipient = new TableCell();
@@ -137,7 +137,7 @@ public partial class MyMessages : System.Web.UI.Page
         recipient.Controls.Add(rl);
         if (border)
         {
-            recipient.BorderStyle = BorderStyle.Dotted;
+            recipient.BorderStyle = BorderStyle.Solid;
         }
         tr.Cells.Add(recipient);
         TableCell subject = new TableCell();
@@ -152,7 +152,7 @@ public partial class MyMessages : System.Web.UI.Page
             lb.Click += LinkButton_Click;
             if (border)
             {
-                subject.BorderStyle = BorderStyle.Dotted;
+                subject.BorderStyle = BorderStyle.Solid;
             }
             subject.Controls.Add(lb);
         }
@@ -164,7 +164,7 @@ public partial class MyMessages : System.Web.UI.Page
             lb.Font.Italic = (selMsgId == m.id);
             if (border)
             {
-                subject.BorderStyle = BorderStyle.Dotted;
+                subject.BorderStyle = BorderStyle.Solid;
             }
             subject.Controls.Add(lb);
         }
