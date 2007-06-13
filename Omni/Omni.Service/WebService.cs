@@ -124,6 +124,16 @@ namespace Omni.Service
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             return HttpContext.Current.Session["User"] == null ? null : (User)HttpContext.Current.Session["User"];
         }
+
+        [WebMethod(true)]
+        public void UserUpdateById(int user_id, string email, string name, string description)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            Data.StoredProcedure.UserUpdateById(user_id, email, name, description, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            
+        }
         #endregion
 
         #region External Services
@@ -196,7 +206,8 @@ namespace Omni.Service
         public void UserInterestAddById(int user_id, int interest_id)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
-            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new ArgumentException("Not authorized to change this user");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.UserInterestAddById(user_id, interest_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -205,7 +216,8 @@ namespace Omni.Service
         public void UserInterestDeleteById(int user_id, int interest_id)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
-            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new ArgumentException("Not authorized to change this user");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.UserInterestDeleteById(user_id, interest_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -215,7 +227,8 @@ namespace Omni.Service
         public void TransAnsRateById(int user_id, int trans_ans_id, int rating)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
-            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new ArgumentException("Not authorized to rate as this user");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to rate as this user");
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.TransAnsRateById(user_id, trans_ans_id, rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }

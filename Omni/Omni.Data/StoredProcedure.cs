@@ -29,6 +29,23 @@ namespace Omni.Data
             object result = cmd.ExecuteScalar();
             return result == null ? 0 : Convert.ToInt32(result);
         }
+        public static int UserUpdateById(int user_id, string email, string name, string description, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_update_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@email", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters.Add("@name", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters.Add("@description", System.Data.SqlDbType.NText);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = email;
+            cmd.Parameters[2].Value = name;
+            cmd.Parameters[3].Value = description;
+            return cmd.ExecuteNonQuery();
+        }
         public static string UserPasswordGetByUsername(string username, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
