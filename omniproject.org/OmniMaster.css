@@ -50,7 +50,7 @@ div.lowerleft
 	width: 200px;
 	padding: 10px;
 	border-style: solid;
-	border-width: 2px 2px 2px 0px;
+	border-width: 1px 1px 1px 0px;
 	min-height: 300px;
 	_height: 300px;
 	margin-top: 5px;
@@ -65,7 +65,7 @@ div.lowerright
 	min-height:  500px;
 	_height: 500px;
 	border-style: solid;
-	border-width: 2px;
+	border-width: 1px;
 }
 
 div.toprated
