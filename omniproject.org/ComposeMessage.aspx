@@ -1,34 +1,34 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="ComposeMessage.aspx.cs" Inherits="ComposeMessage" 
-Title="Compose a Message" Theme="Default" %>
+Title="Compose a Message" Theme="Default" meta:resourcekey="PageResource1" %>
 
 <%@ Register Src="NotAuthedControl.ascx" TagName="NotAuthedControl" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
-    <asp:Panel ID="userPanel" runat="server" Width="100%">
-        <asp:Label ID="composeTitleLabel" runat="server" CssClass="title" Text="Compose Message"></asp:Label>
+    <asp:Panel ID="userPanel" runat="server" Width="100%" meta:resourcekey="userPanelResource1">
+        <asp:Label ID="composeTitleLabel" runat="server" CssClass="title" Text="Compose Message" meta:resourcekey="composeTitleLabelResource1"></asp:Label>
         <br />
-        <asp:Table ID="headerTable" runat="server">
-        <asp:TableRow>
-        <asp:TableCell>
-            <asp:Button ID="toButton" runat="server" Text="To: " />
+        <asp:Table ID="headerTable" runat="server" meta:resourcekey="headerTableResource1">
+        <asp:TableRow meta:resourcekey="TableRowResource1" runat="server">
+        <asp:TableCell meta:resourcekey="TableCellResource1" runat="server">
+            <asp:Button ID="toButton" runat="server" Text="To: " meta:resourcekey="toButtonResource1" />
         </asp:TableCell>
-        <asp:TableCell>
-            <asp:TextBox ID="toTB" runat="server" Columns="50" MaxLength="50"></asp:TextBox>
+        <asp:TableCell meta:resourcekey="TableCellResource2" runat="server">
+            <asp:TextBox ID="toTB" runat="server" Columns="50" MaxLength="50" meta:resourcekey="toTBResource1"></asp:TextBox>
         </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow>
-        <asp:TableCell>
-            <asp:Label ID="subjectLabel" runat="server" Text="Subject:"></asp:Label>
+        <asp:TableRow meta:resourcekey="TableRowResource2" runat="server">
+        <asp:TableCell meta:resourcekey="TableCellResource3" runat="server">
+            <asp:Label ID="subjectLabel" runat="server" Text="Subject:" meta:resourcekey="subjectLabelResource1"></asp:Label>
         </asp:TableCell>
-        <asp:TableCell>
-<asp:TextBox ID="subjectTB" runat="server" Columns="50" MaxLength="255"></asp:TextBox>        
+        <asp:TableCell meta:resourcekey="TableCellResource4" runat="server">
+<asp:TextBox ID="subjectTB" runat="server" Columns="50" MaxLength="255" meta:resourcekey="subjectTBResource1"></asp:TextBox>        
         </asp:TableCell>
         </asp:TableRow>
         </asp:Table>
         <br />
-        <asp:Label ID="messageTextLabel" runat="server" Text="Message:"></asp:Label><br />
-        <asp:TextBox ID="messageTB" runat="server" Rows="10" TextMode="MultiLine" Width="95%"></asp:TextBox><br />
+        <asp:Label ID="messageTextLabel" runat="server" Text="Message:" meta:resourcekey="messageTextLabelResource1"></asp:Label><br />
+        <asp:TextBox ID="messageTB" runat="server" Rows="10" TextMode="MultiLine" Width="95%" meta:resourcekey="messageTBResource1"></asp:TextBox><br />
         <br />
-        <asp:Button ID="sendButton" runat="server" OnClick="sendButton_Click" Text="Send Message" /></asp:Panel>
+        <asp:Button ID="sendButton" runat="server" OnClick="sendButton_Click" Text="Send Message" meta:resourcekey="sendButtonResource1" /></asp:Panel>
     <uc1:NotAuthedControl ID="NotAuthedControl1" runat="server" />
 
 </asp:Content>
