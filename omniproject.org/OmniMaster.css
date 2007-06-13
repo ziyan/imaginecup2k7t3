@@ -54,6 +54,8 @@ div.lowerleft
 	min-height: 300px;
 	_height: 300px;
 	margin-top: 5px;
+	filter: alpha(opacity=65);
+	opacity: 0.65;	
 }
 
 div.lowerright
@@ -66,6 +68,9 @@ div.lowerright
 	_height: 500px;
 	border-style: solid;
 	border-width: 1px;
+
+	filter: alpha(opacity=90);
+	opacity: 0.90;		
 }
 
 div.toprated
