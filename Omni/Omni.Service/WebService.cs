@@ -296,14 +296,14 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public void MessageSend( int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, bool pending_trans)
+        public void MessageSend(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, bool pending_trans, int trans_req_id)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to send as this user");
             if (subject == null || body == null || subject == "") throw new ArgumentNullException();
             if (user_id <= 0 || dst_id <=0) throw new ArgumentOutOfRangeException();
-            Data.StoredProcedure.MessageSend(user_id, dst_id, Convert.ToInt32(dst_type), subject, body, pending_trans, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            Data.StoredProcedure.MessageSend(user_id, dst_id, Convert.ToInt32(dst_type), subject, body, pending_trans, trans_req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]

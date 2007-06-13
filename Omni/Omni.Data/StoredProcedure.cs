@@ -348,7 +348,7 @@ namespace Omni.Data
             cmd.Parameters[2].Value = rating;
             return cmd.ExecuteNonQuery();
         }
-        public static int MessageSend(int user_id, int dst_id, int dst_type, string subject, string body, bool pending_trans, SqlConnection cn)
+        public static int MessageSend(int user_id, int dst_id, int dst_type, string subject, string body, bool pending_trans, int trans_req_id, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
@@ -361,12 +361,14 @@ namespace Omni.Data
             cmd.Parameters.Add("@subject", System.Data.SqlDbType.NVarChar);
             cmd.Parameters.Add("@body", System.Data.SqlDbType.NText);
             cmd.Parameters.Add("@pending_trans", System.Data.SqlDbType.Bit);
+            cmd.Parameters.Add("@trans_req_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = user_id;
             cmd.Parameters[1].Value = dst_id;
             cmd.Parameters[2].Value = dst_type;
             cmd.Parameters[3].Value = subject;
             cmd.Parameters[4].Value = body;
             cmd.Parameters[5].Value = pending_trans;
+            cmd.Parameters[6].Value = trans_req_id;
             return cmd.ExecuteNonQuery();
         }
         public static Message[] MessageRecvByUser(int dst_id, MessageDestinationType dst_type, SqlConnection cn)
@@ -384,7 +386,7 @@ namespace Omni.Data
             List<Message> result = new List<Message>();
             while (reader.Read())
             {
-                result.Add(new Message(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), dst_type, Convert.ToString(reader["subject"]), "", Convert.ToDateTime(reader["date"]), Convert.ToBoolean(reader["unread"]), Convert.ToBoolean(reader["pending_trans"]), 0));
+                result.Add(new Message(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), dst_type, Convert.ToString(reader["subject"]), "", Convert.ToDateTime(reader["date"]), Convert.ToBoolean(reader["unread"]), Convert.ToBoolean(reader["pending_trans"]), Convert.ToInt32(reader["trans_req_id"])));
             }
             reader.Close();
             reader.Dispose();
@@ -403,7 +405,7 @@ namespace Omni.Data
             List<Message> result = new List<Message>();
             while (reader.Read())
             {
-                result.Add(new Message(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), (MessageDestinationType)Convert.ToInt32(reader["dst_type"]), Convert.ToString(reader["subject"]), "", Convert.ToDateTime(reader["date"]), false, Convert.ToBoolean(reader["pending_trans"]), 0));
+                result.Add(new Message(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), (MessageDestinationType)Convert.ToInt32(reader["dst_type"]), Convert.ToString(reader["subject"]), "", Convert.ToDateTime(reader["date"]), false, Convert.ToBoolean(reader["pending_trans"]), Convert.ToInt32(reader["trans_req_id"])));
             }
             reader.Close();
             reader.Dispose();
