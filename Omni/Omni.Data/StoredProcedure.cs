@@ -119,6 +119,42 @@ namespace Omni.Data
             reader.Dispose();
             return "";
         }
+        public static UserLanguage[] UserLangListById(int user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_lang_list_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<UserLanguage> result = new List<UserLanguage>();
+            while (reader.Read())
+            {
+                result.Add(new UserLanguage(user_id, Convert.ToInt32(reader["lang_id"]), Convert.ToInt16(reader["self_rating"]), Convert.ToInt16(reader["net_rating"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+
+        public static int UserLangSetById(int user_id, int lang_id, short self_rating, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_lang_set_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@self_rating", System.Data.SqlDbType.TinyInt);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = lang_id;
+            cmd.Parameters[2].Value = self_rating;
+            return cmd.ExecuteNonQuery();
+        }
+        
         public static Interest[] InterestList(int parent_id, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
@@ -138,7 +174,6 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
-
         public static Interest[] InterestLangList(int parent_id, int lang_id, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
