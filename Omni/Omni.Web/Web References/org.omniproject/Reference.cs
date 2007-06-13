@@ -700,7 +700,7 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserLanguageSetById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UserLanguageSetById(int user_id, short lang_id, short self_rating) {
+        public void UserLanguageSetById(int user_id, int lang_id, short self_rating) {
             this.Invoke("UserLanguageSetById", new object[] {
                         user_id,
                         lang_id,
@@ -708,12 +708,12 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
-        public void UserLanguageSetByIdAsync(int user_id, short lang_id, short self_rating) {
+        public void UserLanguageSetByIdAsync(int user_id, int lang_id, short self_rating) {
             this.UserLanguageSetByIdAsync(user_id, lang_id, self_rating, null);
         }
         
         /// <remarks/>
-        public void UserLanguageSetByIdAsync(int user_id, short lang_id, short self_rating, object userState) {
+        public void UserLanguageSetByIdAsync(int user_id, int lang_id, short self_rating, object userState) {
             if ((this.UserLanguageSetByIdOperationCompleted == null)) {
                 this.UserLanguageSetByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserLanguageSetByIdOperationCompleted);
             }
@@ -732,19 +732,19 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserLanguageDeleteById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UserLanguageDeleteById(int user_id, short lang_id) {
+        public void UserLanguageDeleteById(int user_id, int lang_id) {
             this.Invoke("UserLanguageDeleteById", new object[] {
                         user_id,
                         lang_id});
         }
         
         /// <remarks/>
-        public void UserLanguageDeleteByIdAsync(int user_id, short lang_id) {
+        public void UserLanguageDeleteByIdAsync(int user_id, int lang_id) {
             this.UserLanguageDeleteByIdAsync(user_id, lang_id, null);
         }
         
         /// <remarks/>
-        public void UserLanguageDeleteByIdAsync(int user_id, short lang_id, object userState) {
+        public void UserLanguageDeleteByIdAsync(int user_id, int lang_id, object userState) {
             if ((this.UserLanguageDeleteByIdOperationCompleted == null)) {
                 this.UserLanguageDeleteByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserLanguageDeleteByIdOperationCompleted);
             }
