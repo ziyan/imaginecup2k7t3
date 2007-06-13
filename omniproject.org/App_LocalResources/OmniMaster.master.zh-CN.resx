@@ -145,7 +145,7 @@
     <value>我的消息</value>
   </data>
   <data name="myProfileLabelResource1.Text" xml:space="preserve">
-    <value>修改我的</value>
+    <value>修改我的信息</value>
   </data>
   <data name="myTranslationsLabelResource1.Text" xml:space="preserve">
     <value>我做的翻译</value>

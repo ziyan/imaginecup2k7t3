@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="notAuthedErrorLabelResource1.Text" xml:space="preserve">
-    <value>You must be logged in to use this page.</value>
+  <data name="interestsLabelResource1.Text" xml:space="preserve">
+    <value>兴趣爱好</value>
+  </data>
+  <data name="interestsTreeViewResource1.CollapseImageToolTip" xml:space="preserve">
+    <value>收起 {0}</value>
+  </data>
+  <data name="interestsTreeViewResource1.ExpandImageToolTip" xml:space="preserve">
+    <value>展开 {0}</value>
+  </data>
+  <data name="interestsTreeViewResource1.SkipLinkText" xml:space="preserve">
+    <value>Skip Navigation Links.</value>
   </data>
 </root>

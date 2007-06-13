@@ -117,7 +117,88 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="notAuthedErrorLabelResource1.Text" xml:space="preserve">
-    <value>You must be logged in to use this page.</value>
+  <data name="composeMsgLabelResource1.Text" xml:space="preserve">
+    <value>撰写新消息</value>
+  </data>
+  <data name="dateMsgLabelResource1.Text" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="ListItemResource1.Text" xml:space="preserve">
+    <value>已收到的消息</value>
+  </data>
+  <data name="ListItemResource1.Value" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="ListItemResource2.Text" xml:space="preserve">
+    <value>已发送的消息</value>
+  </data>
+  <data name="ListItemResource2.Value" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="ListItemResource3.Text" xml:space="preserve">
+    <value>所有</value>
+  </data>
+  <data name="ListItemResource3.Value" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ListItemResource4.Text" xml:space="preserve">
+    <value>未读</value>
+  </data>
+  <data name="ListItemResource4.Value" xml:space="preserve">
+    <value>Unread</value>
+  </data>
+  <data name="ListItemResource5.Text" xml:space="preserve">
+    <value>已读</value>
+  </data>
+  <data name="ListItemResource5.Value" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="ListItemResource6.Text" xml:space="preserve">
+    <value>所有</value>
+  </data>
+  <data name="ListItemResource6.Value" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="messageDetailsLabelResource1.Text" xml:space="preserve">
+    <value>详细消息: </value>
+  </data>
+  <data name="messageTypeLabelResource1.Text" xml:space="preserve">
+    <value>消息类别: </value>
+  </data>
+  <data name="myMessagesTitleLabelResource1.Text" xml:space="preserve">
+    <value>我的消息</value>
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>我的消息</value>
+  </data>
+  <data name="recipientMsgLabelResource1.Text" xml:space="preserve">
+    <value>收件人</value>
+  </data>
+  <data name="replyButtonResource1.Text" xml:space="preserve">
+    <value>回复</value>
+  </data>
+  <data name="requestTransButtonResource1.Text" xml:space="preserve">
+    <value>请求翻译</value>
+  </data>
+  <data name="searchButtonResource1.Text" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="searchLabelResource1.Text" xml:space="preserve">
+    <value>关键字: </value>
+  </data>
+  <data name="senderMsgLabelResource1.Text" xml:space="preserve">
+    <value>发送人</value>
+  </data>
+  <data name="subjectMsgLabelResource1.Text" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="unreadMsgLabelResource1.Text" xml:space="preserve">
+    <value>未读</value>
+  </data>
+  <data name="viewLabelResource1.Text" xml:space="preserve">
+    <value>察看消息: </value>
+  </data>
+  <data name="viewMsgsLabelResource1.Text" xml:space="preserve">
+    <value>察看消息</value>
   </data>
 </root>

@@ -117,7 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="notAuthedErrorLabelResource1.Text" xml:space="preserve">
-    <value>You must be logged in to use this page.</value>
+  <data name="cancelButtonResource1.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="descriptionLabelResource1.Text" xml:space="preserve">
+    <value>我的简介: </value>
+  </data>
+  <data name="displayNameLabelResource1.Text" xml:space="preserve">
+    <value>昵称: </value>
+  </data>
+  <data name="emailLabelResource1.Text" xml:space="preserve">
+    <value>电子邮件: </value>
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>修改我的信息</value>
+  </data>
+  <data name="profileLabelResource1.Text" xml:space="preserve">
+    <value>我的信息</value>
+  </data>
+  <data name="saveButtonResource1.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="usernameLabelResource1.Text" xml:space="preserve">
+    <value>用户名: </value>
   </data>
 </root>

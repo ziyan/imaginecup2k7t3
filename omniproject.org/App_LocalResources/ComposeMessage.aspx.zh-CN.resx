@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="notAuthedErrorLabelResource1.Text" xml:space="preserve">
-    <value>You must be logged in to use this page.</value>
+  <data name="composeTitleLabelResource1.Text" xml:space="preserve">
+    <value>撰写新消息</value>
+  </data>
+  <data name="messageTextLabelResource1.Text" xml:space="preserve">
+    <value>内容: </value>
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>撰写新消息</value>
+  </data>
+  <data name="sendButtonResource1.Text" xml:space="preserve">
+    <value>发送消息</value>
+  </data>
+  <data name="subjectLabelResource1.Text" xml:space="preserve">
+    <value>主题:</value>
+  </data>
+  <data name="toButtonResource1.Text" xml:space="preserve">
+    <value>收件人: </value>
   </data>
 </root>

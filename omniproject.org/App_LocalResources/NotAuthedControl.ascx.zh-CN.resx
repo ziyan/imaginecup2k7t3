@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="notAuthedErrorLabelResource1.Text" xml:space="preserve">
-    <value>You must be logged in to use this page.</value>
+    <value>您必须先登录才能察看本页</value>
   </data>
 </root>
