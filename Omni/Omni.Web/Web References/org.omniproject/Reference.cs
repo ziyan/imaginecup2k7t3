@@ -974,22 +974,23 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/MessageSend", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void MessageSend(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body) {
+        public void MessageSend(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, bool pending_trans) {
             this.Invoke("MessageSend", new object[] {
                         user_id,
                         dst_id,
                         dst_type,
                         subject,
-                        body});
+                        body,
+                        pending_trans});
         }
         
         /// <remarks/>
-        public void MessageSendAsync(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body) {
-            this.MessageSendAsync(user_id, dst_id, dst_type, subject, body, null);
+        public void MessageSendAsync(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, bool pending_trans) {
+            this.MessageSendAsync(user_id, dst_id, dst_type, subject, body, pending_trans, null);
         }
         
         /// <remarks/>
-        public void MessageSendAsync(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, object userState) {
+        public void MessageSendAsync(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, bool pending_trans, object userState) {
             if ((this.MessageSendOperationCompleted == null)) {
                 this.MessageSendOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMessageSendOperationCompleted);
             }
@@ -998,7 +999,8 @@ namespace Omni.Web.org.omniproject {
                         dst_id,
                         dst_type,
                         subject,
-                        body}, this.MessageSendOperationCompleted, userState);
+                        body,
+                        pending_trans}, this.MessageSendOperationCompleted, userState);
         }
         
         private void OnMessageSendOperationCompleted(object arg) {
@@ -1231,9 +1233,11 @@ namespace Omni.Web.org.omniproject {
         
         private bool unreadField;
         
-        private bool unsentField;
+        private bool pending_transField;
         
         private MessageDestinationType dst_typeField;
+        
+        private int trans_req_idField;
         
         /// <remarks/>
         public int id {
@@ -1306,12 +1310,12 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
-        public bool unsent {
+        public bool pending_trans {
             get {
-                return this.unsentField;
+                return this.pending_transField;
             }
             set {
-                this.unsentField = value;
+                this.pending_transField = value;
             }
         }
         
@@ -1322,6 +1326,16 @@ namespace Omni.Web.org.omniproject {
             }
             set {
                 this.dst_typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int trans_req_id {
+            get {
+                return this.trans_req_idField;
+            }
+            set {
+                this.trans_req_idField = value;
             }
         }
     }

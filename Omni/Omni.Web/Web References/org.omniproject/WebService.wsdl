@@ -382,6 +382,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="dst_type" type="tns:MessageDestinationType" />
             <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="body" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pending_trans" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -423,8 +424,9 @@
           <s:element minOccurs="0" maxOccurs="1" name="body" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="unread" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="unsent" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="pending_trans" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="dst_type" type="tns:MessageDestinationType" />
+          <s:element minOccurs="1" maxOccurs="1" name="trans_req_id" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="MessageSentByUser">
@@ -797,6 +799,7 @@
     <wsdl:part name="dst_type" type="s:string" />
     <wsdl:part name="subject" type="s:string" />
     <wsdl:part name="body" type="s:string" />
+    <wsdl:part name="pending_trans" type="s:string" />
   </wsdl:message>
   <wsdl:message name="MessageSendHttpGetOut" />
   <wsdl:message name="MessageRecvByUserHttpGetIn">
@@ -974,6 +977,7 @@
     <wsdl:part name="dst_type" type="s:string" />
     <wsdl:part name="subject" type="s:string" />
     <wsdl:part name="body" type="s:string" />
+    <wsdl:part name="pending_trans" type="s:string" />
   </wsdl:message>
   <wsdl:message name="MessageSendHttpPostOut" />
   <wsdl:message name="MessageRecvByUserHttpPostIn">
