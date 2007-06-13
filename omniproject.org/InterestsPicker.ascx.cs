@@ -62,7 +62,7 @@ public partial class InterestsPicker : System.Web.UI.UserControl
                         break;
                     }
                 }
-
+                interestNode.SelectAction = TreeNodeSelectAction.None;
                 categoryNode.ChildNodes.Add(interestNode);
             }
 
@@ -70,6 +70,7 @@ public partial class InterestsPicker : System.Web.UI.UserControl
             {
                 categoryNode.Collapse();
             }
+            categoryNode.SelectAction = TreeNodeSelectAction.None;
             interestsTreeView.Nodes.Add(categoryNode);
         }
     }
