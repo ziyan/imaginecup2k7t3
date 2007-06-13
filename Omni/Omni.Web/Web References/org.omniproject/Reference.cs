@@ -1217,6 +1217,8 @@ namespace Omni.Web.org.omniproject {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://omniproject.org/")]
     public partial class Message {
         
+        private int idField;
+        
         private int src_idField;
         
         private int dst_idField;
@@ -1228,6 +1230,16 @@ namespace Omni.Web.org.omniproject {
         private System.DateTime dateField;
         
         private bool unreadField;
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
         
         /// <remarks/>
         public int src_id {

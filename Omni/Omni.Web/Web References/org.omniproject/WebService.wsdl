@@ -416,6 +416,7 @@
       </s:complexType>
       <s:complexType name="Message">
         <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="src_id" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="dst_id" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
