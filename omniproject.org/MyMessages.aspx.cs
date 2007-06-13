@@ -30,11 +30,8 @@ public partial class MyMessages : System.Web.UI.Page
 
     private void populateMessages()
     {
-        int count = messageTable.Rows.Count;
-        for (int i = 1; i < count; i++)
-        {
-            messageTable.Rows.RemoveAt(1);
-        }
+        messageTable.Rows.Clear();
+        messageTable.Rows.Add(getMessageHeaderRow());
         
         User user = Common.GetCurrentUser();
         Message[] msgs;
@@ -175,6 +172,44 @@ public partial class MyMessages : System.Web.UI.Page
         return tr;
     }
 
+    private Label cloneLabel(Label l)
+    {
+        Label nl = new Label();
+        nl.Text = l.Text;
+        return nl;
+    }
+    private TableHeaderRow getMessageHeaderRow()
+    {
+        TableHeaderRow thr = new TableHeaderRow();
+        TableHeaderCell unread = new TableHeaderCell();
+        unread.BorderStyle = BorderStyle.Solid;
+        unread.BorderWidth = 1;
+        unread.Controls.Add(cloneLabel(unreadMsgLabel));
+        thr.Cells.Add(unread);
+        TableHeaderCell date = new TableHeaderCell();
+        date.BorderStyle = BorderStyle.Solid;
+        date.BorderWidth = 1;
+        date.Controls.Add(cloneLabel(dateMsgLabel));
+        thr.Cells.Add(date);
+        TableHeaderCell sender = new TableHeaderCell();
+        sender.BorderStyle = BorderStyle.Solid;
+        sender.BorderWidth = 1;
+        sender.Controls.Add(cloneLabel(senderMsgLabel));
+        thr.Cells.Add(sender);
+        TableHeaderCell recipient = new TableHeaderCell();
+        recipient.BorderStyle = BorderStyle.Solid;
+        recipient.BorderWidth = 1;
+        recipient.Controls.Add(cloneLabel(recipientMsgLabel));
+        thr.Cells.Add(recipient);
+        TableHeaderCell subject = new TableHeaderCell();
+        subject.BorderStyle = BorderStyle.Solid;
+        subject.BorderWidth = 1;
+        subject.Controls.Add(cloneLabel(subjectMsgLabel));
+        thr.Cells.Add(subject);
+
+        return thr;
+    }
+
     protected void composeMsgLabel_Click(object sender, EventArgs e)
     {
         Server.Transfer("ComposeMessage.aspx");
@@ -192,7 +227,8 @@ public partial class MyMessages : System.Web.UI.Page
             messageDetailPanel.Visible = true;
             messageTB.Text = msg.body;
             curMsgTable.Rows.Clear();
-            curMsgTable.Rows.Add(tableRowFromMessage(msg,false, true));
+            curMsgTable.Rows.Add(getMessageHeaderRow());
+            curMsgTable.Rows.Add(tableRowFromMessage(msg, false, false));
             populateMessages();
         }
     }
