@@ -212,12 +212,12 @@ namespace Omni.Service
         #endregion
 
         [WebMethod(true)]
-        public void RateTranslationById(int user_id, int trans_id, int rating)
+        public void TransAnsRateById(int user_id, int trans_ans_id, int rating)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new ArgumentException("Not authorized to rate as this user");
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
-            Data.StoredProcedure.RateTranslation(user_id, trans_id, rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            Data.StoredProcedure.TransAnsRateById(user_id, trans_ans_id, rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
     }
     
