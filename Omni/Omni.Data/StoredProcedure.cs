@@ -311,5 +311,34 @@ namespace Omni.Data
             cmd.Parameters[4].Value = body;
             return cmd.ExecuteNonQuery();
         }
+        public static Message[] MessageRecvByUser(int dst_id, int dst_type, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_message_recv_by_user";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@dst_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@dst_type", System.Data.SqlDbType.TinyInt);
+            cmd.Parameters[0].Value = dst_id;
+            cmd.Parameters[0].Value = dst_type;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Message> result = new List<Message>();
+            while (reader.Read())
+            {
+                result.Add(new Message(Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), Convert.ToString(reader["subject"]), Convert.ToString(reader["body"]), Convert.ToDateTime(reader["date"]), Convert.ToBoolean(reader["unread"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+        /*public static Message[] MessageSentByUser()
+        {
+
+        }
+        public static Message MessageGetById()
+        {
+
+        }*/
     }
 }
