@@ -13,6 +13,7 @@ public partial class OmniMaster : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         bool loggedIn = false;
         Omni.Web.org.omniproject.User user = Omni.Web.Common.GetWebService().UserCurrent();
         if (user != null)

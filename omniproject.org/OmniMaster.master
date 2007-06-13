@@ -19,18 +19,18 @@
             <asp:MultiView ID="loginViewTop" runat="server">
             <asp:View ID="guestView" runat="server">
                 <asp:HyperLink ID="loginLink" runat="server" NavigateUrl="~/UserLogin.aspx" SkinID="top">
-                <asp:Label runat="server" ID="loginLabel" Text="Login"></asp:Label>
+                <asp:Label runat="server" ID="loginLabel" Text="Login" meta:resourcekey="loginLabel"></asp:Label>
                 </asp:HyperLink>
                  | 
                 <asp:HyperLink ID="registerLink" runat="server" NavigateUrl="~/RegisterAccount.aspx" SkinID="top">
-                <asp:Label runat="server" ID="registerlabel" Text="Register"></asp:Label>
+                <asp:Label runat="server" ID="registerlabel" Text="Register" meta:resourcekey="registerLabel"></asp:Label>
                 </asp:HyperLink>
             </asp:View>
             <asp:View ID="userView" runat="server">
-            <asp:Label runat="server" ID="usernameLabel" Text="Username: "></asp:Label>
+            <asp:Label runat="server" ID="usernameLabel" Text="Username: " meta:resourcekey="usernameLabel"></asp:Label>
             <asp:Label runat="server" ID="usernameLabel2" Text=""></asp:Label>
              | 
-            <asp:LinkButton ID="logoutButton" runat="server" Text="Logout" OnClick="logoutButton_Click" />
+            <asp:LinkButton ID="logoutButton" runat="server" Text="Logout" OnClick="logoutButton_Click" meta:resourcekey="logoutLabel" />
             </asp:View>
             </asp:MultiView> |  
             <uc1:LanguageSelector id="LanguageSelector1" runat="server">
