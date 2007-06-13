@@ -15,6 +15,8 @@ using Omni.Web.org.omniproject;
 
 public partial class LanguagePicker : System.Web.UI.UserControl
 {
+    const String ratingIdPrefix = "skillButtonList";
+
     protected override void OnInit(EventArgs e)
     {
         Language[] languages = Common.GetWebService().LanguageList();
@@ -41,15 +43,18 @@ public partial class LanguagePicker : System.Web.UI.UserControl
 
             TableCell newSkillCell = new TableCell();
             RadioButtonList skillButtonList = new RadioButtonList();
+            skillButtonList.ID = ratingIdPrefix + language.id.ToString();
             for (int i = 1; i <= 5; i++)
             {
                 ListItem listItem = new ListItem();
                 listItem.Text = i.ToString();
-                listItem.Value = language.id.ToString();
                 skillButtonList.Items.Add(listItem);
             }
             newSkillCell.Controls.Add(skillButtonList);
-            skillButtonList.Items[0].Selected = true;
+            if (!IsPostBack)
+            {
+                skillButtonList.SelectedIndex = 0;
+            }
 
             TableRow newRow = new TableRow();
             tableId.Rows.Add(newRow);
@@ -74,10 +79,15 @@ public partial class LanguagePicker : System.Web.UI.UserControl
             TableRow row = tableId.Rows[i];
             TableCell radioCell = row.Cells[2];
             RadioButtonList radioButtonList = (RadioButtonList)radioCell.Controls[0];
-            ListItem listItem = radioButtonList.Items[0];
-            listItem.Selected = true; // default
-            int languageId = Convert.ToInt32(listItem.Value);
+            String languageIdString = radioButtonList.ID;
+            if (!languageIdString.StartsWith(ratingIdPrefix))
+            {
+                continue; // fail silently
+            }
+            languageIdString = languageIdString.Remove(0, ratingIdPrefix.Length);
+            int languageId = Convert.ToInt32(languageIdString);
 
+            // user doesn't have language
             if (!languageIdRatings.ContainsKey(languageId)) continue;
 
             TableCell knownCell = row.Cells[1];
@@ -85,11 +95,12 @@ public partial class LanguagePicker : System.Web.UI.UserControl
             knownCheck.Checked = true;
 
             int currentRating = languageIdRatings[languageId];
-            foreach (ListItem item in radioButtonList.Items)
+            for (int itemCounter = 0; itemCounter < radioButtonList.Items.Count; itemCounter++)
             {
+                ListItem item = radioButtonList.Items[itemCounter];
                 if (Convert.ToInt32(item.Text) == currentRating)
                 {
-                    item.Selected = true;
+                    radioButtonList.SelectedIndex = itemCounter;
                     break;
                 }
             }
@@ -104,14 +115,20 @@ public partial class LanguagePicker : System.Web.UI.UserControl
             TableRow row = tableId.Rows[i];
             TableCell radioCell = row.Cells[2];
             RadioButtonList radioButtonList = (RadioButtonList) radioCell.Controls[0];
-            ListItem listItem = radioButtonList.Items[0];
-            int languageId = Convert.ToInt32(listItem.Value);
+            String languageIdString = radioButtonList.ID;
+            if (!languageIdString.StartsWith(ratingIdPrefix))
+            {
+                continue; // fail silently
+            }
+            languageIdString = languageIdString.Remove(0, ratingIdPrefix.Length);
+            int languageId = Convert.ToInt32(languageIdString);
 
             TableCell knownCell = row.Cells[1];
             CheckBox knownCheck = (CheckBox)knownCell.Controls[0];
             if (knownCheck.Checked)
             {
-                short newRating = GetRating(radioButtonList);
+                ListItem selectedItem = radioButtonList.Items[radioButtonList.SelectedIndex];
+                short newRating = (short)Convert.ToInt32(selectedItem.Text);
                 if (languageIdRatings.ContainsKey(languageId))
                 {
                     // check for a changed rating
@@ -137,18 +154,6 @@ public partial class LanguagePicker : System.Web.UI.UserControl
                 }
             }
         }
-    }
-
-    private short GetRating(RadioButtonList radioButtonList)
-    {
-        foreach (ListItem item in radioButtonList.Items)
-        {
-            if (item.Selected)
-            {
-                return (short)Convert.ToInt32(item.Text);
-            }
-        }
-        return 0; // fail silently
     }
 
     private Dictionary<int, int> GetUserLanguages(int userId)
