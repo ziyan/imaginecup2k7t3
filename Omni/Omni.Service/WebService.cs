@@ -167,11 +167,32 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public UserLanguage[] UserLanguageListById(int user_id, int dst_lang_id)
+        public UserLanguage[] UserLanguageListById(int user_id)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.UserLangListById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public void UserLanguageSetById(int user_id, short lang_id, short self_rating )
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            if (lang_id <= 0) throw new ArgumentOutOfRangeException();
+            if (self_rating <= 0) throw new ArgumentOutOfRangeException();
+            Data.StoredProcedure.UserLangSetById(user_id, lang_id,self_rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public void UserLanguageDeleteById(int user_id, short lang_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            if (lang_id <= 0) throw new ArgumentOutOfRangeException();
+            Data.StoredProcedure.UserLangDeleteById(user_id, lang_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         #endregion
@@ -215,7 +236,6 @@ namespace Omni.Service
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
-            if (user_id <= 0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.UserInterestAddById(user_id, interest_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
@@ -225,18 +245,18 @@ namespace Omni.Service
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
-            if (user_id <= 0) throw new ArgumentOutOfRangeException();
+            if (interest_id <= 0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.UserInterestDeleteById(user_id, interest_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
         #endregion
 
         [WebMethod(true)]
-        public void TransAnsRateById(int user_id, int trans_ans_id, int rating)
+        public void TransAnsRateById(int user_id, int trans_ans_id, short rating)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to rate as this user");
-            if (user_id <= 0) throw new ArgumentOutOfRangeException();
+            if (trans_ans_id <= 0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.TransAnsRateById(user_id, trans_ans_id, rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 

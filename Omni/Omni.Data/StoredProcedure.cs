@@ -154,6 +154,20 @@ namespace Omni.Data
             cmd.Parameters[2].Value = self_rating;
             return cmd.ExecuteNonQuery();
         }
+
+        public static int UserLangDeleteById(int user_id, int lang_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_lang_delete_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = lang_id;
+            return cmd.ExecuteNonQuery();
+        }
         
         public static Interest[] InterestList(int parent_id, SqlConnection cn)
         {
@@ -263,7 +277,7 @@ namespace Omni.Data
             cmd.Parameters[1].Value = interest_id;
             return cmd.ExecuteNonQuery();
         }
-        public static int TransAnsRateById(int user_id, int trans_ans_id, int rating, SqlConnection cn)
+        public static int TransAnsRateById(int user_id, int trans_ans_id, short rating, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
