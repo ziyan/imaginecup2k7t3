@@ -420,7 +420,7 @@ namespace Omni.Data
             Message result;
             if (reader.Read())
             {
-                result = new Message(msg_id, Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), (MessageDestinationType)Convert.ToInt32(reader["dst_type"]), Convert.ToString(reader["subject"]), Convert.ToString(reader["body"]), Convert.ToDateTime(reader["date"]), false, Convert.ToBoolean(reader["unread"]));
+                result = new Message(msg_id, Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), (MessageDestinationType)Convert.ToInt32(reader["dst_type"]), Convert.ToString(reader["subject"]), Convert.ToString(reader["body"]), Convert.ToDateTime(reader["date"]), false, Convert.ToBoolean(reader["pending_trans"]));
                 reader.Close();
                 reader.Dispose();
                 return result;
