@@ -103,6 +103,27 @@ namespace Omni.Data
             reader.Dispose();
             return null;
         }
+        public static User UserGetById(int user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_get_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                User user = new User(user_id, reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"]));
+                reader.Close();
+                reader.Dispose();
+                return user;
+            }
+            reader.Close();
+            reader.Dispose();
+            return null;
+        }
         public static Language[] LangList(SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");

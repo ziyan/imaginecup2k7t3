@@ -132,6 +132,17 @@ namespace Omni.Service
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             Data.StoredProcedure.UserUpdateById(user_id, email, name, description, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            HttpContext.Current.Session["User"] = Data.StoredProcedure.UserGetById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public User UserGetById(int user_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            HttpContext.Current.Session["User"] = Data.StoredProcedure.UserGetById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            return (User)HttpContext.Current.Session["User"];
         }
 
         [WebMethod(true)]
