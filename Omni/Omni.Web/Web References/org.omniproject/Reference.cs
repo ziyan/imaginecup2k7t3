@@ -1231,6 +1231,8 @@ namespace Omni.Web.org.omniproject {
         
         private bool unreadField;
         
+        private MessageDestinationType dst_typeField;
+        
         /// <remarks/>
         public int id {
             get {
@@ -1300,6 +1302,29 @@ namespace Omni.Web.org.omniproject {
                 this.unreadField = value;
             }
         }
+        
+        /// <remarks/>
+        public MessageDestinationType dst_type {
+            get {
+                return this.dst_typeField;
+            }
+            set {
+                this.dst_typeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.312")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://omniproject.org/")]
+    public enum MessageDestinationType {
+        
+        /// <remarks/>
+        User,
+        
+        /// <remarks/>
+        Group,
     }
     
     /// <remarks/>
@@ -1447,19 +1472,6 @@ namespace Omni.Web.org.omniproject {
                 this.codeField = value;
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.312")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://omniproject.org/")]
-    public enum MessageDestinationType {
-        
-        /// <remarks/>
-        User,
-        
-        /// <remarks/>
-        Group,
     }
     
     /// <remarks/>

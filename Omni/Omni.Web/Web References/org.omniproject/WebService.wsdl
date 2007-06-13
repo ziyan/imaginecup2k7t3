@@ -423,6 +423,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="body" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="unread" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="dst_type" type="tns:MessageDestinationType" />
         </s:sequence>
       </s:complexType>
       <s:element name="MessageSentByUser">
