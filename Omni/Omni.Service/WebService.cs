@@ -314,7 +314,7 @@ namespace Omni.Service
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (dst_id <= 0) throw new ArgumentOutOfRangeException();
-            return Data.StoredProcedure.MessageRecvByUser(dst_id, Convert.ToInt32(dst_type), (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            return Data.StoredProcedure.MessageRecvByUser(dst_id, dst_type, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]
