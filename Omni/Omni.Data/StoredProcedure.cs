@@ -356,7 +356,7 @@ namespace Omni.Data
             cmd.Parameters.Add("@dst_id", System.Data.SqlDbType.Int);
             cmd.Parameters.Add("@dst_type", System.Data.SqlDbType.TinyInt);
             cmd.Parameters[0].Value = dst_id;
-            cmd.Parameters[0].Value = dst_type;
+            cmd.Parameters[1].Value = dst_type;
             SqlDataReader reader = cmd.ExecuteReader();
             List<Message> result = new List<Message>();
             while (reader.Read())
@@ -391,7 +391,7 @@ namespace Omni.Data
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "omni_message_sent_by_user";
+            cmd.CommandText = "omni_message_get_by_id";
             cmd.Connection = cn.cn;
             cmd.Parameters.Add("@msg_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = msg_id;
