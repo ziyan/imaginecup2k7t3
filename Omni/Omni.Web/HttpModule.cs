@@ -32,7 +32,18 @@ namespace Omni.Web
                     HttpContext.Current.Response.End();
                 }
             }
+            switch (Omni.Web.Common.GetPreferredLanguage())
+            {
+                case 2:
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("zh-CN");
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
 
+                    break;
+                default:
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+                    break;
+            }
         }
 
         public void Dispose()

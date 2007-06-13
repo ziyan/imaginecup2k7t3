@@ -45,6 +45,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\Website\omniproject.org\
 		VWDPort = "50452"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Pocket", "Omni.Pocket\Omni.Pocket.csproj", "{6C95FA45-C639-483F-AFB9-163FAC18FAE8}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -105,6 +111,20 @@ Global
 		{4721EEDF-9A1D-4644-83F3-B0C313E051B7}.Release|Any CPU.ActiveCfg = Debug|.NET
 		{4721EEDF-9A1D-4644-83F3-B0C313E051B7}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
 		{4721EEDF-9A1D-4644-83F3-B0C313E051B7}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Release|.NET.ActiveCfg = Release|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6C95FA45-C639-483F-AFB9-163FAC18FAE8}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
