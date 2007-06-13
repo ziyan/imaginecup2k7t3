@@ -256,16 +256,16 @@
       <s:element name="UserInterestDeleteByIdResponse">
         <s:complexType />
       </s:element>
-      <s:element name="RateTranslationById">
+      <s:element name="TransAnsRateById">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="trans_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="trans_ans_id" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="rating" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="RateTranslationByIdResponse">
+      <s:element name="TransAnsRateByIdResponse">
         <s:complexType />
       </s:element>
       <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
@@ -379,11 +379,11 @@
   <wsdl:message name="UserInterestDeleteByIdSoapOut">
     <wsdl:part name="parameters" element="tns:UserInterestDeleteByIdResponse" />
   </wsdl:message>
-  <wsdl:message name="RateTranslationByIdSoapIn">
-    <wsdl:part name="parameters" element="tns:RateTranslationById" />
+  <wsdl:message name="TransAnsRateByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:TransAnsRateById" />
   </wsdl:message>
-  <wsdl:message name="RateTranslationByIdSoapOut">
-    <wsdl:part name="parameters" element="tns:RateTranslationByIdResponse" />
+  <wsdl:message name="TransAnsRateByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:TransAnsRateByIdResponse" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpGetIn" />
   <wsdl:message name="InitializeHttpGetOut" />
@@ -486,12 +486,12 @@
     <wsdl:part name="interest_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UserInterestDeleteByIdHttpGetOut" />
-  <wsdl:message name="RateTranslationByIdHttpGetIn">
+  <wsdl:message name="TransAnsRateByIdHttpGetIn">
     <wsdl:part name="user_id" type="s:string" />
-    <wsdl:part name="trans_id" type="s:string" />
+    <wsdl:part name="trans_ans_id" type="s:string" />
     <wsdl:part name="rating" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="RateTranslationByIdHttpGetOut" />
+  <wsdl:message name="TransAnsRateByIdHttpGetOut" />
   <wsdl:message name="InitializeHttpPostIn" />
   <wsdl:message name="InitializeHttpPostOut" />
   <wsdl:message name="UserCaptchaHttpPostIn">
@@ -593,12 +593,12 @@
     <wsdl:part name="interest_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UserInterestDeleteByIdHttpPostOut" />
-  <wsdl:message name="RateTranslationByIdHttpPostIn">
+  <wsdl:message name="TransAnsRateByIdHttpPostIn">
     <wsdl:part name="user_id" type="s:string" />
-    <wsdl:part name="trans_id" type="s:string" />
+    <wsdl:part name="trans_ans_id" type="s:string" />
     <wsdl:part name="rating" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="RateTranslationByIdHttpPostOut" />
+  <wsdl:message name="TransAnsRateByIdHttpPostOut" />
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Initialize">
       <wsdl:input message="tns:InitializeSoapIn" />
@@ -668,9 +668,9 @@
       <wsdl:input message="tns:UserInterestDeleteByIdSoapIn" />
       <wsdl:output message="tns:UserInterestDeleteByIdSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="RateTranslationById">
-      <wsdl:input message="tns:RateTranslationByIdSoapIn" />
-      <wsdl:output message="tns:RateTranslationByIdSoapOut" />
+    <wsdl:operation name="TransAnsRateById">
+      <wsdl:input message="tns:TransAnsRateByIdSoapIn" />
+      <wsdl:output message="tns:TransAnsRateByIdSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
@@ -742,9 +742,9 @@
       <wsdl:input message="tns:UserInterestDeleteByIdHttpGetIn" />
       <wsdl:output message="tns:UserInterestDeleteByIdHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="RateTranslationById">
-      <wsdl:input message="tns:RateTranslationByIdHttpGetIn" />
-      <wsdl:output message="tns:RateTranslationByIdHttpGetOut" />
+    <wsdl:operation name="TransAnsRateById">
+      <wsdl:input message="tns:TransAnsRateByIdHttpGetIn" />
+      <wsdl:output message="tns:TransAnsRateByIdHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpPost">
@@ -816,9 +816,9 @@
       <wsdl:input message="tns:UserInterestDeleteByIdHttpPostIn" />
       <wsdl:output message="tns:UserInterestDeleteByIdHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="RateTranslationById">
-      <wsdl:input message="tns:RateTranslationByIdHttpPostIn" />
-      <wsdl:output message="tns:RateTranslationByIdHttpPostOut" />
+    <wsdl:operation name="TransAnsRateById">
+      <wsdl:input message="tns:TransAnsRateByIdHttpPostIn" />
+      <wsdl:output message="tns:TransAnsRateByIdHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -976,8 +976,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RateTranslationById">
-      <soap:operation soapAction="http://omniproject.org/RateTranslationById" style="document" />
+    <wsdl:operation name="TransAnsRateById">
+      <soap:operation soapAction="http://omniproject.org/TransAnsRateById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1141,8 +1141,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RateTranslationById">
-      <soap12:operation soapAction="http://omniproject.org/RateTranslationById" style="document" />
+    <wsdl:operation name="TransAnsRateById">
+      <soap12:operation soapAction="http://omniproject.org/TransAnsRateById" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1298,8 +1298,8 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
-    <wsdl:operation name="RateTranslationById">
-      <http:operation location="/RateTranslationById" />
+    <wsdl:operation name="TransAnsRateById">
+      <http:operation location="/TransAnsRateById" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1453,8 +1453,8 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
-    <wsdl:operation name="RateTranslationById">
-      <http:operation location="/RateTranslationById" />
+    <wsdl:operation name="TransAnsRateById">
+      <http:operation location="/TransAnsRateById" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

@@ -63,7 +63,7 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback UserInterestDeleteByIdOperationCompleted;
         
-        private System.Threading.SendOrPostCallback RateTranslationByIdOperationCompleted;
+        private System.Threading.SendOrPostCallback TransAnsRateByIdOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -155,7 +155,7 @@ namespace Omni.Web.org.omniproject {
         public event UserInterestDeleteByIdCompletedEventHandler UserInterestDeleteByIdCompleted;
         
         /// <remarks/>
-        public event RateTranslationByIdCompletedEventHandler RateTranslationByIdCompleted;
+        public event TransAnsRateByIdCompletedEventHandler TransAnsRateByIdCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -672,34 +672,34 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/RateTranslationById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void RateTranslationById(int user_id, int trans_id, int rating) {
-            this.Invoke("RateTranslationById", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransAnsRateById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void TransAnsRateById(int user_id, int trans_ans_id, int rating) {
+            this.Invoke("TransAnsRateById", new object[] {
                         user_id,
-                        trans_id,
+                        trans_ans_id,
                         rating});
         }
         
         /// <remarks/>
-        public void RateTranslationByIdAsync(int user_id, int trans_id, int rating) {
-            this.RateTranslationByIdAsync(user_id, trans_id, rating, null);
+        public void TransAnsRateByIdAsync(int user_id, int trans_ans_id, int rating) {
+            this.TransAnsRateByIdAsync(user_id, trans_ans_id, rating, null);
         }
         
         /// <remarks/>
-        public void RateTranslationByIdAsync(int user_id, int trans_id, int rating, object userState) {
-            if ((this.RateTranslationByIdOperationCompleted == null)) {
-                this.RateTranslationByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRateTranslationByIdOperationCompleted);
+        public void TransAnsRateByIdAsync(int user_id, int trans_ans_id, int rating, object userState) {
+            if ((this.TransAnsRateByIdOperationCompleted == null)) {
+                this.TransAnsRateByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransAnsRateByIdOperationCompleted);
             }
-            this.InvokeAsync("RateTranslationById", new object[] {
+            this.InvokeAsync("TransAnsRateById", new object[] {
                         user_id,
-                        trans_id,
-                        rating}, this.RateTranslationByIdOperationCompleted, userState);
+                        trans_ans_id,
+                        rating}, this.TransAnsRateByIdOperationCompleted, userState);
         }
         
-        private void OnRateTranslationByIdOperationCompleted(object arg) {
-            if ((this.RateTranslationByIdCompleted != null)) {
+        private void OnTransAnsRateByIdOperationCompleted(object arg) {
+            if ((this.TransAnsRateByIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.RateTranslationByIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.TransAnsRateByIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1261,7 +1261,7 @@ namespace Omni.Web.org.omniproject {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
-    public delegate void RateTranslationByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void TransAnsRateByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591
