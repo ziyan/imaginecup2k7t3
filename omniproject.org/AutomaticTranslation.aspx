@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="AutomaticTranslation.aspx.cs" Inherits="AutomaticTranslation" Title="Automatic Translation" Theme="Default" Culture="auto"  meta:resourcekey="PageResource1" UICulture="auto" %>
+<%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="AutomaticTranslation.aspx.cs" Inherits="AutomaticTranslation" Title="Automatic Translation" Theme="Default" meta:resourcekey="PageResource1" %>
 
 <asp:Content ID="placeHolderID" ContentPlaceHolderID="Main" Runat="Server">
     <asp:Label ID="titleLabel" runat="server" Text="Automatic Translations" CssClass="title" meta:resourcekey="titleLabelResource1" ></asp:Label>

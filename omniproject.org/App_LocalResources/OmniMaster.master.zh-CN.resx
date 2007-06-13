@@ -117,16 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="autoTransLabelResource1.Text" xml:space="preserve">
+    <value>自动翻译</value>
+  </data>
+  <data name="browseGlobalTransLabelResource1.Text" xml:space="preserve">
+    <value>浏览用户翻译</value>
+  </data>
   <data name="loginLabel.Text" xml:space="preserve">
     <value>登录</value>
+  </data>
+  <data name="loginLabel.Text1" xml:space="preserve">
+    <value>登陆</value>
   </data>
   <data name="logoutLabel.Text" xml:space="preserve">
     <value>注销</value>
   </data>
+  <data name="logoutLabel.Text1" xml:space="preserve">
+    <value>注销</value>
+  </data>
+  <data name="myFriendsLabelResource1.Text" xml:space="preserve">
+    <value>我的朋友</value>
+  </data>
+  <data name="myGroupsLabelResource1.Text" xml:space="preserve">
+    <value>我加入的组</value>
+  </data>
+  <data name="myMessagesLabelResource1.Text" xml:space="preserve">
+    <value>我的消息</value>
+  </data>
+  <data name="myProfileLabelResource1.Text" xml:space="preserve">
+    <value>修改我的</value>
+  </data>
+  <data name="myTranslationsLabelResource1.Text" xml:space="preserve">
+    <value>我做的翻译</value>
+  </data>
   <data name="registerLabel.Text" xml:space="preserve">
     <value>注册新帐号</value>
   </data>
+  <data name="registerLabel.Text1" xml:space="preserve">
+    <value>注册新帐号</value>
+  </data>
+  <data name="returnHomeLabelResource1.Text" xml:space="preserve">
+    <value>回到主页</value>
+  </data>
+  <data name="titleLabelResource1.Text" xml:space="preserve">
+    <value>Omni</value>
+  </data>
   <data name="usernameLabel.Text" xml:space="preserve">
     <value>欢迎您, </value>
+  </data>
+  <data name="usernameLabel.Text1" xml:space="preserve">
+    <value>欢迎您,</value>
   </data>
 </root>

@@ -13,22 +13,22 @@
     <div>
     <div class="topbar">
         <div class="topbarLeft">
-            <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="~/Default.aspx" Font-Underline="false">
-                <asp:Label ID="titleLabel" runat="server" Text="Omni" CssClass="titleLink"></asp:Label></asp:HyperLink></div>
+            <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="~/Default.aspx" Font-Underline="False" meta:resourcekey="homeLinkResource1">
+                <asp:Label ID="titleLabel" runat="server" Text="Omni" CssClass="titleLink" meta:resourcekey="titleLabelResource1"></asp:Label></asp:HyperLink></div>
         <div class="topbarRight">
             <asp:MultiView ID="loginViewTop" runat="server">
             <asp:View ID="guestView" runat="server">
-                <asp:HyperLink ID="loginLink" runat="server" NavigateUrl="~/UserLogin.aspx" SkinID="top">
+                <asp:HyperLink ID="loginLink" runat="server" NavigateUrl="~/UserLogin.aspx" SkinID="top" meta:resourcekey="loginLinkResource1">
                 <asp:Label runat="server" ID="loginLabel" Text="Login" meta:resourcekey="loginLabel"></asp:Label>
                 </asp:HyperLink>
                  | 
-                <asp:HyperLink ID="registerLink" runat="server" NavigateUrl="~/RegisterAccount.aspx" SkinID="top">
+                <asp:HyperLink ID="registerLink" runat="server" NavigateUrl="~/RegisterAccount.aspx" SkinID="top" meta:resourcekey="registerLinkResource1">
                 <asp:Label runat="server" ID="registerlabel" Text="Register" meta:resourcekey="registerLabel"></asp:Label>
                 </asp:HyperLink>
             </asp:View>
             <asp:View ID="userView" runat="server">
             <asp:Label runat="server" ID="usernameLabel" Text="Username: " meta:resourcekey="usernameLabel"></asp:Label>
-            <asp:Label runat="server" ID="usernameLabel2" Text=""></asp:Label>
+            <asp:Label runat="server" ID="usernameLabel2" meta:resourcekey="usernameLabel2Resource1"></asp:Label>
              | 
             <asp:LinkButton ID="logoutButton" runat="server" Text="Logout" OnClick="logoutButton_Click" meta:resourcekey="logoutLabel" />
             </asp:View>
@@ -39,31 +39,31 @@
     </div>
     <div class="lower" style="left: 0px; top: 32px">
         <div class="lowerleft">
-            <asp:HyperLink ID="autoTransLink" runat="server" NavigateUrl="~/AutomaticTranslation.aspx">
-            <asp:Label ID="autoTransLabel" runat="server" Text="Automatic Translations"></asp:Label>
+            <asp:HyperLink ID="autoTransLink" runat="server" NavigateUrl="~/AutomaticTranslation.aspx" meta:resourcekey="autoTransLinkResource1">
+            <asp:Label ID="autoTransLabel" runat="server" Text="Automatic Translations" meta:resourcekey="autoTransLabelResource1"></asp:Label>
             </asp:HyperLink><br />
-            <asp:HyperLink ID="browseGlobalTransLink" runat="server" NavigateUrl="~/BrowseGlobalTrans.aspx">
-            <asp:Label ID="browseGlobalTransLabel" runat="server" Text="Browse Global Translations"></asp:Label>
+            <asp:HyperLink ID="browseGlobalTransLink" runat="server" NavigateUrl="~/BrowseGlobalTrans.aspx" meta:resourcekey="browseGlobalTransLinkResource1">
+            <asp:Label ID="browseGlobalTransLabel" runat="server" Text="Browse Global Translations" meta:resourcekey="browseGlobalTransLabelResource1"></asp:Label>
             </asp:HyperLink><br />
-            <asp:Panel ID="userNavLinkPanel" runat="server" Visible="false">
+            <asp:Panel ID="userNavLinkPanel" runat="server" Visible="False" meta:resourcekey="userNavLinkPanelResource1">
             <hr />
-            <asp:HyperLink ID="myProfileLink" runat="server" NavigateUrl="~/EditProfile.aspx">
-            <asp:Label ID="myProfileLabel" runat="server" Text="Edit Profile"></asp:Label>
+            <asp:HyperLink ID="myProfileLink" runat="server" NavigateUrl="~/EditProfile.aspx" meta:resourcekey="myProfileLinkResource1">
+            <asp:Label ID="myProfileLabel" runat="server" Text="Edit Profile" meta:resourcekey="myProfileLabelResource1"></asp:Label>
             </asp:HyperLink><br />
-            <asp:HyperLink ID="myFriendsLink" runat="server" NavigateUrl="~/MyFriends.aspx">
-            <asp:Label ID="myFriendsLabel" runat="server" Text="My Friends"></asp:Label>
+            <asp:HyperLink ID="myFriendsLink" runat="server" NavigateUrl="~/MyFriends.aspx" meta:resourcekey="myFriendsLinkResource1">
+            <asp:Label ID="myFriendsLabel" runat="server" Text="My Friends" meta:resourcekey="myFriendsLabelResource1"></asp:Label>
             </asp:HyperLink><br />
-            <asp:HyperLink ID="myMessagesLink" runat="server" NavigateUrl="~/MyMessages.aspx">
-            <asp:Label ID="myMessagesLabel" runat="server" Text="My Messages"></asp:Label>
+            <asp:HyperLink ID="myMessagesLink" runat="server" NavigateUrl="~/MyMessages.aspx" meta:resourcekey="myMessagesLinkResource1">
+            <asp:Label ID="myMessagesLabel" runat="server" Text="My Messages" meta:resourcekey="myMessagesLabelResource1"></asp:Label>
             </asp:HyperLink><br />            
-            <asp:HyperLink ID="myTranslationsLink" runat="server" NavigateUrl="~/MyTranslations.aspx">
-            <asp:Label ID="myTranslationsLabel" runat="server" Text="My Translations"></asp:Label>
+            <asp:HyperLink ID="myTranslationsLink" runat="server" NavigateUrl="~/MyTranslations.aspx" meta:resourcekey="myTranslationsLinkResource1">
+            <asp:Label ID="myTranslationsLabel" runat="server" Text="My Translations" meta:resourcekey="myTranslationsLabelResource1"></asp:Label>
             </asp:HyperLink><br />
-            <asp:HyperLink ID="myGroupsLink" runat="server" NavigateUrl="~/MyGroups.aspx">
-            <asp:Label ID="myGroupsLabel" runat="server" Text="My Groups"></asp:Label>
+            <asp:HyperLink ID="myGroupsLink" runat="server" NavigateUrl="~/MyGroups.aspx" meta:resourcekey="myGroupsLinkResource1">
+            <asp:Label ID="myGroupsLabel" runat="server" Text="My Groups" meta:resourcekey="myGroupsLabelResource1"></asp:Label>
             </asp:HyperLink><br /><br />
-            <asp:HyperLink ID="returnHomeLink" runat="server" NavigateUrl="~/Default.aspx">
-            <asp:Label ID="returnHomeLabel" runat="server" Text="Return Home"></asp:Label>
+            <asp:HyperLink ID="returnHomeLink" runat="server" NavigateUrl="~/Default.aspx" meta:resourcekey="returnHomeLinkResource1">
+            <asp:Label ID="returnHomeLabel" runat="server" Text="Return Home" meta:resourcekey="returnHomeLabelResource1"></asp:Label>
             </asp:HyperLink>  
             </asp:Panel>
         

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,14 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="autoTransLabelResource1.Text" xml:space="preserve">
+    <value>Automatic Translations</value>
+  </data>
+  <data name="browseGlobalTransLabelResource1.Text" xml:space="preserve">
+    <value>Browse Global Translations</value>
+  </data>
   <data name="loginLabel.Text" xml:space="preserve">
     <value>Login</value>
   </data>
   <data name="logoutLabel.Text" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="myFriendsLabelResource1.Text" xml:space="preserve">
+    <value>My Friends</value>
+  </data>
+  <data name="myGroupsLabelResource1.Text" xml:space="preserve">
+    <value>My Groups</value>
+  </data>
+  <data name="myMessagesLabelResource1.Text" xml:space="preserve">
+    <value>My Messages</value>
+  </data>
+  <data name="myProfileLabelResource1.Text" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="myTranslationsLabelResource1.Text" xml:space="preserve">
+    <value>My Translations</value>
+  </data>
   <data name="registerLabel.Text" xml:space="preserve">
-    <value> Register</value>
+    <value>Register</value>
+  </data>
+  <data name="returnHomeLabelResource1.Text" xml:space="preserve">
+    <value>Return Home</value>
+  </data>
+  <data name="titleLabelResource1.Text" xml:space="preserve">
+    <value>Omni</value>
   </data>
   <data name="usernameLabel.Text" xml:space="preserve">
     <value>Welcome, </value>
