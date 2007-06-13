@@ -427,6 +427,8 @@ namespace Omni.Data
             }
             else
             {
+                reader.Close();
+                reader.Dispose();
                 return null;
             }
         }
