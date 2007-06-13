@@ -232,6 +232,16 @@ namespace Omni.Service
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.TransAnsRateById(user_id, trans_ans_id, rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public void SendMessage(int user_id, int dst_id, int dst_type, string subject, string body)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to send as this user");
+            if (user_id <= 0) throw new ArgumentOutOfRangeException();
+            Data.StoredProcedure.SendMessage(user_id, dst_id, dst_type, subject, body, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
     }
     
 }
