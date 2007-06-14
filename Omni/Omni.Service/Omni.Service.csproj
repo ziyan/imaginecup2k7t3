@@ -97,7 +97,7 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="Web References\app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
