@@ -31,12 +31,15 @@ namespace Omni.Pocket
         {
             this.mainMenu = new System.Windows.Forms.MainMenu();
             this.fileMenuItem = new System.Windows.Forms.MenuItem();
+            this.logoutMenuItem = new System.Windows.Forms.MenuItem();
             this.exitMenuItem = new System.Windows.Forms.MenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.loginTabPage = new System.Windows.Forms.TabPage();
+            this.langComboBox = new System.Windows.Forms.ComboBox();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
             this.passwordLabel = new System.Windows.Forms.Label();
+            this.langLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.autoTransTabPage = new System.Windows.Forms.TabPage();
@@ -63,8 +66,6 @@ namespace Omni.Pocket
             this.regConfirmPasswordLabel = new System.Windows.Forms.Label();
             this.regPasswordLabel = new System.Windows.Forms.Label();
             this.regUsernameLabel = new System.Windows.Forms.Label();
-            this.langLabel = new System.Windows.Forms.Label();
-            this.langComboBox = new System.Windows.Forms.ComboBox();
             this.profileTabPage = new System.Windows.Forms.TabPage();
             this.proReloadButton = new System.Windows.Forms.Button();
             this.proSaveButton = new System.Windows.Forms.Button();
@@ -97,7 +98,7 @@ namespace Omni.Pocket
             this.subjectLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.toComboBox = new System.Windows.Forms.ComboBox();
-            this.logoutMenuItem = new System.Windows.Forms.MenuItem();
+            this.webService = new Omni.Pocket.org.omniproject.WebService();
             this.tabControl.SuspendLayout();
             this.loginTabPage.SuspendLayout();
             this.autoTransTabPage.SuspendLayout();
@@ -119,6 +120,12 @@ namespace Omni.Pocket
             this.fileMenuItem.MenuItems.Add(this.logoutMenuItem);
             this.fileMenuItem.MenuItems.Add(this.exitMenuItem);
             this.fileMenuItem.Text = "&File";
+            // 
+            // logoutMenuItem
+            // 
+            this.logoutMenuItem.Enabled = false;
+            this.logoutMenuItem.Text = "&Logout";
+            this.logoutMenuItem.Click += new System.EventHandler(this.logoutMenuItem_Click);
             // 
             // exitMenuItem
             // 
@@ -153,6 +160,13 @@ namespace Omni.Pocket
             this.loginTabPage.Size = new System.Drawing.Size(240, 245);
             this.loginTabPage.Text = "Login";
             // 
+            // langComboBox
+            // 
+            this.langComboBox.Location = new System.Drawing.Point(83, 134);
+            this.langComboBox.Name = "langComboBox";
+            this.langComboBox.Size = new System.Drawing.Size(150, 22);
+            this.langComboBox.TabIndex = 18;
+            // 
             // usernameTextBox
             // 
             this.usernameTextBox.Location = new System.Drawing.Point(83, 162);
@@ -175,6 +189,13 @@ namespace Omni.Pocket
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(71, 20);
             this.passwordLabel.Text = "Password:";
+            // 
+            // langLabel
+            // 
+            this.langLabel.Location = new System.Drawing.Point(7, 136);
+            this.langLabel.Name = "langLabel";
+            this.langLabel.Size = new System.Drawing.Size(71, 20);
+            this.langLabel.Text = "Language:";
             // 
             // usernameLabel
             // 
@@ -201,7 +222,7 @@ namespace Omni.Pocket
             this.autoTransTabPage.Controls.Add(this.originalLabel);
             this.autoTransTabPage.Location = new System.Drawing.Point(0, 0);
             this.autoTransTabPage.Name = "autoTransTabPage";
-            this.autoTransTabPage.Size = new System.Drawing.Size(240, 245);
+            this.autoTransTabPage.Size = new System.Drawing.Size(232, 242);
             this.autoTransTabPage.Text = "Automatic Translation";
             // 
             // translateButton
@@ -274,7 +295,7 @@ namespace Omni.Pocket
             this.registerTabPage.Controls.Add(this.regUsernameLabel);
             this.registerTabPage.Location = new System.Drawing.Point(0, 0);
             this.registerTabPage.Name = "registerTabPage";
-            this.registerTabPage.Size = new System.Drawing.Size(240, 245);
+            this.registerTabPage.Size = new System.Drawing.Size(232, 242);
             this.registerTabPage.Text = "Register";
             // 
             // regButton
@@ -396,20 +417,6 @@ namespace Omni.Pocket
             this.regUsernameLabel.Size = new System.Drawing.Size(68, 20);
             this.regUsernameLabel.Text = "Username:";
             // 
-            // langLabel
-            // 
-            this.langLabel.Location = new System.Drawing.Point(7, 136);
-            this.langLabel.Name = "langLabel";
-            this.langLabel.Size = new System.Drawing.Size(71, 20);
-            this.langLabel.Text = "Language:";
-            // 
-            // langComboBox
-            // 
-            this.langComboBox.Location = new System.Drawing.Point(83, 134);
-            this.langComboBox.Name = "langComboBox";
-            this.langComboBox.Size = new System.Drawing.Size(150, 22);
-            this.langComboBox.TabIndex = 18;
-            // 
             // profileTabPage
             // 
             this.profileTabPage.Controls.Add(this.proReloadButton);
@@ -427,7 +434,7 @@ namespace Omni.Pocket
             this.profileTabPage.Controls.Add(this.proUsernameLabel);
             this.profileTabPage.Location = new System.Drawing.Point(0, 0);
             this.profileTabPage.Name = "profileTabPage";
-            this.profileTabPage.Size = new System.Drawing.Size(240, 245);
+            this.profileTabPage.Size = new System.Drawing.Size(232, 242);
             this.profileTabPage.Text = "Profile";
             // 
             // proReloadButton
@@ -537,7 +544,7 @@ namespace Omni.Pocket
             this.messagesTabPage.Controls.Add(this.messageTabControl);
             this.messagesTabPage.Location = new System.Drawing.Point(0, 0);
             this.messagesTabPage.Name = "messagesTabPage";
-            this.messagesTabPage.Size = new System.Drawing.Size(240, 245);
+            this.messagesTabPage.Size = new System.Drawing.Size(232, 242);
             this.messagesTabPage.Text = "Messages";
             // 
             // messageTabControl
@@ -549,7 +556,7 @@ namespace Omni.Pocket
             this.messageTabControl.Location = new System.Drawing.Point(0, 0);
             this.messageTabControl.Name = "messageTabControl";
             this.messageTabControl.SelectedIndex = 0;
-            this.messageTabControl.Size = new System.Drawing.Size(240, 245);
+            this.messageTabControl.Size = new System.Drawing.Size(232, 242);
             this.messageTabControl.TabIndex = 2;
             // 
             // inboxTabPage
@@ -559,7 +566,7 @@ namespace Omni.Pocket
             this.inboxTabPage.Controls.Add(this.inboxTextBox);
             this.inboxTabPage.Location = new System.Drawing.Point(0, 0);
             this.inboxTabPage.Name = "inboxTabPage";
-            this.inboxTabPage.Size = new System.Drawing.Size(240, 222);
+            this.inboxTabPage.Size = new System.Drawing.Size(232, 219);
             this.inboxTabPage.Text = "Inbox";
             // 
             // replyButton
@@ -596,7 +603,7 @@ namespace Omni.Pocket
             this.sentTabPage.Controls.Add(this.sentTextBox);
             this.sentTabPage.Location = new System.Drawing.Point(0, 0);
             this.sentTabPage.Name = "sentTabPage";
-            this.sentTabPage.Size = new System.Drawing.Size(232, 189);
+            this.sentTabPage.Size = new System.Drawing.Size(224, 216);
             this.sentTabPage.Text = "Sent";
             // 
             // sentListBox
@@ -630,7 +637,7 @@ namespace Omni.Pocket
             this.newMessageTabPage.Controls.Add(this.toComboBox);
             this.newMessageTabPage.Location = new System.Drawing.Point(0, 0);
             this.newMessageTabPage.Name = "newMessageTabPage";
-            this.newMessageTabPage.Size = new System.Drawing.Size(232, 189);
+            this.newMessageTabPage.Size = new System.Drawing.Size(224, 216);
             this.newMessageTabPage.Text = "New Message";
             // 
             // saveButton
@@ -694,17 +701,26 @@ namespace Omni.Pocket
             this.toComboBox.Size = new System.Drawing.Size(79, 22);
             this.toComboBox.TabIndex = 0;
             // 
-            // logoutMenuItem
+            // webService
             // 
-            this.logoutMenuItem.Enabled = false;
-            this.logoutMenuItem.Text = "&Logout";
-            this.logoutMenuItem.Click += new System.EventHandler(this.logoutMenuItem_Click);
+            this.webService.AllowAutoRedirect = false;
+            this.webService.ConnectionGroupName = "";
+            this.webService.Credentials = null;
+            this.webService.PreAuthenticate = false;
+            this.webService.Proxy = null;
+            this.webService.RequestEncoding = null;
+            this.webService.SoapVersion = System.Web.Services.Protocols.SoapProtocolVersion.Default;
+            this.webService.Timeout = 100000;
+            this.webService.Url = "http://24.19.97.171/Service/WebService.asmx";
+            this.webService.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; MS Web Services Client Protocol 2.0.50727.312)" +
+                "";
             // 
             // OmniForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.Controls.Add(this.tabControl);
             this.KeyPreview = true;
@@ -796,6 +812,7 @@ namespace Omni.Pocket
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox toComboBox;
         private System.Windows.Forms.MenuItem logoutMenuItem;
+        private Omni.Pocket.org.omniproject.WebService webService;
     }
 }
 

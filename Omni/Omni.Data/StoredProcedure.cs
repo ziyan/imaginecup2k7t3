@@ -251,7 +251,7 @@ namespace Omni.Data
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "omni_user_intro_by_id";
             cmd.Connection = cn.cn;
-            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@id", System.Data.SqlDbType.Int);
             cmd.Parameters.Add("@lang_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = user_id;
             cmd.Parameters[1].Value = lang_id;
