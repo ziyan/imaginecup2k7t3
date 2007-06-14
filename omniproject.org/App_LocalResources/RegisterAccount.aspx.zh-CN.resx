@@ -118,51 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="acctVerifyLabelResource1.Text" xml:space="preserve">
-    <value>Account Verification</value>
+    <value>验证码</value>
   </data>
   <data name="captchaInstrLabelResource1.Text" xml:space="preserve">
-    <value>Enter the text from the above image.</value>
+    <value>请输入图片上的文字</value>
   </data>
   <data name="comparePasswordValidatorResource1.Text" xml:space="preserve">
     <value>!</value>
   </data>
   <data name="confirmPasswordLabelResource1.Text" xml:space="preserve">
-    <value>Confirm Password: </value>
+    <value>确认密码: </value>
   </data>
   <data name="displayNameLabelResource1.Text" xml:space="preserve">
-    <value>Display Name: </value>
+    <value>昵称: </value>
   </data>
   <data name="duplicateLabelResource1.Text" xml:space="preserve">
-    <value>This user or email already exists.</value>
+    <value>用户名已经被使用</value>
   </data>
   <data name="emailLabelResource1.Text" xml:space="preserve">
-    <value>E-Mail Address: </value>
+    <value>电子邮件: </value>
   </data>
   <data name="genericErrorLabelResource1.Text" xml:space="preserve">
-    <value>Validation Error, fill out all fields.</value>
+    <value>请输入表格上所有信息</value>
   </data>
   <data name="invalidCaptchaLabelResource1.Text" xml:space="preserve">
-    <value>Your text from the image is invalid.</value>
+    <value>验证码不正确</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>Register an Account</value>
+    <value>注册新帐号</value>
   </data>
   <data name="passwordLabelResource1.Text" xml:space="preserve">
-    <value>Password: </value>
+    <value>密码: </value>
   </data>
   <data name="profileDescLabelResource1.Text" xml:space="preserve">
-    <value>Profile Description: </value>
+    <value>个人简介: </value>
   </data>
   <data name="registerAccountButtonResource1.Text" xml:space="preserve">
-    <value>Register Account</value>
+    <value>注册新帐号</value>
   </data>
   <data name="regTitleLabelResource1.Text" xml:space="preserve">
-    <value>Register an Account</value>
+    <value>注册新帐号</value>
   </data>
   <data name="successLabelResource1.Text" xml:space="preserve">
-    <value>User successfully added.</value>
+    <value>注册成功</value>
   </data>
   <data name="usernameLabelResource1.Text" xml:space="preserve">
-    <value>Username: </value>
+    <value>用户名: </value>
   </data>
 </root>
