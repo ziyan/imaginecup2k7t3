@@ -114,14 +114,8 @@ namespace Omni.Service
             client.Send(message);
         }
         #endregion
-
-        public static string EmailPattern = @"/^\w[-.\w]*\@[-a-b0-9]+(?:\.[-a-b0-9]+)*\.(?:com|edu|biz|org|gov|int|info|mil|net|name|museum|coop|aero|[a-z][a-z])\b/";
-        public static bool ValidateEmail(string email)
-        {
-            return email != null && email != "" && Regex.Replace(email.ToLower(), EmailPattern, "", RegexOptions.IgnoreCase) == "";
-        }
-
-        
+        public static string UsernamePattern = @"[0-9A-Za-z]{3,}";
+        public static string EmailPattern = @"([a-zA-Z0-9_\-\.])+@(([0-2]?[0-5]?[0-5]\.[0-2]?[0-5]?[0-5]\.[0-2]?[0-5]?[0-5]\.[0-2]?[0-5]?[0-5])|((([a-zA-Z0-9\-])+\.)+([a-zA-Z\-])+))";       
         public static string GetMD5Hash(string message)
         {
             System.Security.Cryptography.MD5 hash = new System.Security.Cryptography.MD5CryptoServiceProvider();

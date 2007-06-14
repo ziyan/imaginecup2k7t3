@@ -63,7 +63,8 @@ namespace Omni.Service
                 name == null || name == "" ||
                 captcha == null || captcha.Length != Common.CaptchaLength)
                 throw new ArgumentNullException();
-            //if (!Common.ValidateEmail(email)) throw new ArgumentOutOfRangeException("Email is invalid.");
+            if (System.Text.RegularExpressions.Regex.Replace(username, Common.UsernamePattern, "") != "") throw new ArgumentOutOfRangeException("Username can only be numbers and letters.");
+            if (System.Text.RegularExpressions.Regex.Replace(email, Common.EmailPattern, "") != "" ) throw new ArgumentOutOfRangeException("Email is invalid.");
             if (HttpContext.Current.Session["Captcha"] == null || captcha.ToLower() != HttpContext.Current.Session["Captcha"].ToString().ToLower()) throw new ArgumentException("Invalid captcha.");
             string randomText = Common.GetRandomString(Common.HexCharacterSet, Common.PasswordRandomTextLength).ToLower();
             return Data.StoredProcedure.UserRegister(username, randomText + Common.GetMD5Hash(md5password.ToLower() + randomText), email, name, description, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -136,6 +137,8 @@ namespace Omni.Service
             CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            if (email == null || email == "" || name == null || name == "" || description == null || description == "") throw new ArgumentNullException();
+            if (System.Text.RegularExpressions.Regex.Replace(email, Common.EmailPattern, "") != "") throw new ArgumentOutOfRangeException("Email is invalid.");
             Data.StoredProcedure.UserUpdateById(user_id, email, name, description, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
             HttpContext.Current.Session["User"] = Data.StoredProcedure.UserGetById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
