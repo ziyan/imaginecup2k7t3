@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="introduceButtonResource1.Text" xml:space="preserve">
-    <value>Introduce</value>
+    <value>提交</value>
   </data>
   <data name="introduceLanguageLabelResource1.Text" xml:space="preserve">
-    <value>Language for introduction:</value>
+    <value>选择语言: </value>
   </data>
   <data name="introduceNameLabel.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>名字</value>
   </data>
   <data name="introduceNoneMessageResource1.Text" xml:space="preserve">
-    <value>No users found.</value>
+    <value>没找到任何用户</value>
   </data>
   <data name="introduceSimilarityLabelResource1.Text" xml:space="preserve">
-    <value>Similarity</value>
+    <value>相近度</value>
   </data>
   <data name="introduceSystemRatingLabelResource1.Text" xml:space="preserve">
-    <value>System Rating</value>
+    <value>用户评价</value>
   </data>
   <data name="introduceUsernameLabelResource1.Text" xml:space="preserve">
-    <value>Username</value>
+    <value>用户名</value>
   </data>
   <data name="introduceUserRatingLabelResource1.Text" xml:space="preserve">
-    <value>User Rating</value>
+    <value>自我评价</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>Introduce</value>
+    <value>寻找与我亲近的朋友</value>
   </data>
   <data name="titleLabelResource1.Text" xml:space="preserve">
-    <value>Introduce</value>
+    <value>寻找与我亲近的朋友</value>
   </data>
 </root>

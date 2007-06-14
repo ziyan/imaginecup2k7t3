@@ -16,14 +16,6 @@
         </asp:DropDownList>
                 </asp:TableCell>
             </asp:TableRow>
-            <asp:TableRow meta:resourcekey="TableRowResource2" runat="server">
-                <asp:TableCell meta:resourcekey="TableCellResource3" runat="server">
-                    <asp:Label ID="introduceCountLabel" runat="server" Text="Maximum number of users in introduction:" meta:resourcekey="introduceCountLabelResource1"></asp:Label>
-                </asp:TableCell>
-                <asp:TableCell meta:resourcekey="TableCellResource4" runat="server">
-                    <asp:TextBox ID="introduceCountText" runat="server" meta:resourcekey="introduceCountTextResource1"></asp:TextBox>
-                </asp:TableCell>
-            </asp:TableRow>
             <asp:TableRow meta:resourcekey="TableRowResource3" runat="server">
                 <asp:TableCell ColumnSpan="2" meta:resourcekey="TableCellResource5" runat="server">
                     <asp:Button ID="introduceButton" runat="server" Text="Introduce" OnClick="introduceButton_Click" meta:resourcekey="introduceButtonResource1" />
@@ -35,6 +27,9 @@
             <asp:TableHeaderRow meta:resourcekey="TableHeaderRowResource1" runat="server">
                 <asp:TableHeaderCell meta:resourcekey="TableHeaderCellResource1" runat="server">
                     <asp:Label ID="introduceUsernameLabel" runat="server" Text="Username" meta:resourcekey="introduceUsernameLabelResource1"></asp:Label>
+                </asp:TableHeaderCell>
+                <asp:TableHeaderCell ID="TableHeaderCell1" meta:resourcekey="TableHeaderCellResource5" runat="server">
+                    <asp:Label ID="introduceNameLabel" runat="server" Text="Name" meta:resourcekey="introduceNameLabelResource1"></asp:Label>
                 </asp:TableHeaderCell>
                 <asp:TableHeaderCell meta:resourcekey="TableHeaderCellResource2" runat="server">
                     <asp:Label ID="introduceUserRatingLabel" runat="server" Text="User Rating" meta:resourcekey="introduceUserRatingLabelResource1"></asp:Label>
