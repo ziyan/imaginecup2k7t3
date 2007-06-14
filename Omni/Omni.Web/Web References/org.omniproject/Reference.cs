@@ -2115,6 +2115,8 @@ namespace Omni.Web.org.omniproject {
         
         private int self_ratingField;
         
+        private int net_ratingField;
+        
         private double similField;
         
         /// <remarks/>
@@ -2134,6 +2136,16 @@ namespace Omni.Web.org.omniproject {
             }
             set {
                 this.self_ratingField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int net_rating {
+            get {
+                return this.net_ratingField;
+            }
+            set {
+                this.net_ratingField = value;
             }
         }
         
