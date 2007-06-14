@@ -12,7 +12,7 @@ namespace Omni.Pocket
         [MTAThread]
         static void Main()
         {
-            Application.Run(new LoginForm());
+            Application.Run(new OmniForm());
         }
     }
 }

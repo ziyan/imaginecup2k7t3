@@ -77,6 +77,12 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback UserInterestDeleteByIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserFavorUserListByIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UserFavorUserAddByIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UserFavorUserDeleteByIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback TransAnsRateByIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback MessageSendOperationCompleted;
@@ -196,6 +202,15 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event UserInterestDeleteByIdCompletedEventHandler UserInterestDeleteByIdCompleted;
+        
+        /// <remarks/>
+        public event UserFavorUserListByIdCompletedEventHandler UserFavorUserListByIdCompleted;
+        
+        /// <remarks/>
+        public event UserFavorUserAddByIdCompletedEventHandler UserFavorUserAddByIdCompleted;
+        
+        /// <remarks/>
+        public event UserFavorUserDeleteByIdCompletedEventHandler UserFavorUserDeleteByIdCompleted;
         
         /// <remarks/>
         public event TransAnsRateByIdCompletedEventHandler TransAnsRateByIdCompleted;
@@ -937,6 +952,95 @@ namespace Omni.Web.org.omniproject {
             if ((this.UserInterestDeleteByIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserInterestDeleteByIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserFavorUserListById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public User[] UserFavorUserListById(int user_id) {
+            object[] results = this.Invoke("UserFavorUserListById", new object[] {
+                        user_id});
+            return ((User[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserFavorUserListByIdAsync(int user_id) {
+            this.UserFavorUserListByIdAsync(user_id, null);
+        }
+        
+        /// <remarks/>
+        public void UserFavorUserListByIdAsync(int user_id, object userState) {
+            if ((this.UserFavorUserListByIdOperationCompleted == null)) {
+                this.UserFavorUserListByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserFavorUserListByIdOperationCompleted);
+            }
+            this.InvokeAsync("UserFavorUserListById", new object[] {
+                        user_id}, this.UserFavorUserListByIdOperationCompleted, userState);
+        }
+        
+        private void OnUserFavorUserListByIdOperationCompleted(object arg) {
+            if ((this.UserFavorUserListByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserFavorUserListByIdCompleted(this, new UserFavorUserListByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserFavorUserAddById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UserFavorUserAddById(int user_id, int favor_user_id) {
+            this.Invoke("UserFavorUserAddById", new object[] {
+                        user_id,
+                        favor_user_id});
+        }
+        
+        /// <remarks/>
+        public void UserFavorUserAddByIdAsync(int user_id, int favor_user_id) {
+            this.UserFavorUserAddByIdAsync(user_id, favor_user_id, null);
+        }
+        
+        /// <remarks/>
+        public void UserFavorUserAddByIdAsync(int user_id, int favor_user_id, object userState) {
+            if ((this.UserFavorUserAddByIdOperationCompleted == null)) {
+                this.UserFavorUserAddByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserFavorUserAddByIdOperationCompleted);
+            }
+            this.InvokeAsync("UserFavorUserAddById", new object[] {
+                        user_id,
+                        favor_user_id}, this.UserFavorUserAddByIdOperationCompleted, userState);
+        }
+        
+        private void OnUserFavorUserAddByIdOperationCompleted(object arg) {
+            if ((this.UserFavorUserAddByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserFavorUserAddByIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserFavorUserDeleteById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UserFavorUserDeleteById(int user_id, int favor_user_id) {
+            this.Invoke("UserFavorUserDeleteById", new object[] {
+                        user_id,
+                        favor_user_id});
+        }
+        
+        /// <remarks/>
+        public void UserFavorUserDeleteByIdAsync(int user_id, int favor_user_id) {
+            this.UserFavorUserDeleteByIdAsync(user_id, favor_user_id, null);
+        }
+        
+        /// <remarks/>
+        public void UserFavorUserDeleteByIdAsync(int user_id, int favor_user_id, object userState) {
+            if ((this.UserFavorUserDeleteByIdOperationCompleted == null)) {
+                this.UserFavorUserDeleteByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserFavorUserDeleteByIdOperationCompleted);
+            }
+            this.InvokeAsync("UserFavorUserDeleteById", new object[] {
+                        user_id,
+                        favor_user_id}, this.UserFavorUserDeleteByIdOperationCompleted, userState);
+        }
+        
+        private void OnUserFavorUserDeleteByIdOperationCompleted(object arg) {
+            if ((this.UserFavorUserDeleteByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserFavorUserDeleteByIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1971,6 +2075,40 @@ namespace Omni.Web.org.omniproject {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
     public delegate void UserInterestDeleteByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserFavorUserListByIdCompletedEventHandler(object sender, UserFavorUserListByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserFavorUserListByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserFavorUserListByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public User[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((User[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserFavorUserAddByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserFavorUserDeleteByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
