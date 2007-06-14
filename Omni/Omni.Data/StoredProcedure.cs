@@ -224,7 +224,53 @@ namespace Omni.Data
             cmd.Parameters[1].Value = password;
             return cmd.ExecuteNonQuery();
         }
-        
+
+        public static User[] UserFavorUserListById(int user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_favor_user_list_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<User> users = new List<User>();
+            if (reader.Read())
+            {
+                users.Add(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return users.ToArray();
+        }
+        public static int UserFavorUserAddById(int user_id, int favor_user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_favor_user_add_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@favor_user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = favor_user_id;
+            return cmd.ExecuteNonQuery();
+        }
+        public static int UserFavorUserDeleteById(int user_id, int favor_user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_favor_user_delete_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@favor_user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = favor_user_id;
+            return cmd.ExecuteNonQuery();
+        }
+
         public static Interest[] InterestList(int parent_id, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
@@ -438,3 +484,4 @@ namespace Omni.Data
         }
     }
 }
+

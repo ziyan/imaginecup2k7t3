@@ -286,6 +286,34 @@ namespace Omni.Service
         #endregion
 
         [WebMethod(true)]
+        public User[] UserFavorUserListById(int user_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            return Data.StoredProcedure.UserFavorUserListById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public void UserFavorUserAddById(int user_id, int favor_user_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            Data.StoredProcedure.UserFavorUserAddById(user_id, favor_user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public void UserFavorUserDeleteById(int user_id, int favor_user_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            Data.StoredProcedure.UserFavorUserDeleteById(user_id, favor_user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+
+        [WebMethod(true)]
         public void TransAnsRateById(int user_id, int trans_ans_id, short rating)
         {
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
