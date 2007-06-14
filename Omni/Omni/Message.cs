@@ -21,6 +21,7 @@ namespace Omni
             this.unread = unread;
             this.pending_trans = pending_trans;
             this.dst_type = dst_type;
+            this.trans_req_id = trans_req_id;
         }
         public int id;
         public int src_id;

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Omni
 {
-    class Translation
+    [Serializable]
+    public class Translation
     {
         public Translation()
         {
@@ -18,7 +19,8 @@ namespace Omni
                             string orig_body,
                             DateTime date,
                             bool completed,
-                            int msg_id )
+                            int msg_id,
+                            int req_user)
         {
             type = TranslationDataType.Request;
 
@@ -43,10 +45,12 @@ namespace Omni
                             DateTime date,
                             bool completed,
                             int msg_id,
+                            int req_user,
                             int trans_id,
                             string trans_body,
                             int trans_rating,
-                            DateTime trans_date )
+                            DateTime trans_date,
+                            int trans_user)
         {
             type = TranslationDataType.Full;
 
@@ -80,11 +84,13 @@ namespace Omni
         public DateTime date;
         public bool completed;
         public int msg_id;
+        public int req_user;
 
         // Answer Stuff
         public int trans_id;
         public string trans_body;
         public int trans_rating;
         public DateTime trans_date;
+        public int trans_user;
     }
 }

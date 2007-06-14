@@ -482,6 +482,227 @@ namespace Omni.Data
                 return null;
             }
         }
+        public static int TransAnsAdd( int req_id, int user_id, string message, int rating, DateTime date, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_ans_add";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@req_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@message", System.Data.SqlDbType.NText);
+            cmd.Parameters.Add("@rating", System.Data.SqlDbType.TinyInt);
+            cmd.Parameters.Add("@date", System.Data.SqlDbType.DateTime);
+            cmd.Parameters[0].Value = req_id;
+            cmd.Parameters[1].Value = user_id;
+            cmd.Parameters[2].Value = message;
+            cmd.Parameters[3].Value = rating;
+            cmd.Parameters[4].Value = date;
+            return cmd.ExecuteNonQuery();
+        }
+        public static Translation[] TransGetApprByUser(int user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_get_app_by_user";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> result = new List<Translation>();
+            while (reader.Read())
+            {
+                result.Add ( new Translation(Convert.ToInt32(reader["req_id"]),
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TranslationDestinationType)Convert.ToInt32(reader["dst_type"]),
+                                        Convert.ToString(reader["subject"]),
+                                        "", Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["completed"]),
+                                        Convert.ToInt32(reader["msg_id"]),
+                                        user_id,
+                                        Convert.ToInt32(reader["ans_id"]), "", 0,
+                                        Convert.ToDateTime(reader["ans_date"]),
+                                        Convert.ToInt32(reader["ans_user_id"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+        public static Translation TransGetByReqId(int req_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_get_by_req_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@req_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = req_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            Translation result;
+            if (reader.Read())
+            {
+                result = new Translation(req_id,
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TranslationDestinationType)Convert.ToInt32(reader["dst_type"]),
+                                        Convert.ToString(reader["subject"]),
+                                        Convert.ToString(reader["message"]),
+                                        Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["completed"]),
+                                        Convert.ToInt32(reader["msg_id"]),
+                                        Convert.ToInt32(reader["ans_id"]),
+                                        Convert.ToInt32(reader["user_id"]),
+                                        Convert.ToString(reader["trans_message"]),
+                                        Convert.ToInt32(reader["rating"]),
+                                        Convert.ToDateTime(reader["ans_date"]),
+                                        Convert.ToInt32(reader["ans_user_id"]));
+                reader.Close();
+                reader.Dispose();
+                return result;
+            }
+            else
+            {
+                reader.Close();
+                reader.Dispose();
+                return null;
+            }
+        }
+        public static Translation[] TransGetPendingByUser(int user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_get_pending_by_user";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> result = new List<Translation>();
+            while (reader.Read())
+            {
+                result.Add(new Translation(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TranslationDestinationType)Convert.ToInt32(reader["dst_type"]),
+                                        Convert.ToString(reader["subject"]),
+                                        "", Convert.ToDateTime(reader["date"]), false,
+                                        Convert.ToInt32(reader["msg_id"]),
+                                        user_id ));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+        public static Translation[] TransGetUnApprByUser(int user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_get_unapp_by_user";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> result = new List<Translation>();
+            while (reader.Read())
+            {
+                result.Add(new Translation(Convert.ToInt32(reader["req_id"]),
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TranslationDestinationType)Convert.ToInt32(reader["dst_type"]),
+                                        Convert.ToString(reader["subject"]),
+                                        "", Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["completed"]),
+                                        Convert.ToInt32(reader["msg_id"]),
+                                        user_id,
+                                        Convert.ToInt32(reader["ans_id"]), "", 0,
+                                        Convert.ToDateTime(reader["ans_date"]),
+                                        Convert.ToInt32(reader["ans_user_id"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+        public static int TransReqAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, DateTime date, int msg_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_req_add";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@src_lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@dst_lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@subject", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters.Add("@message", System.Data.SqlDbType.NText);
+            cmd.Parameters.Add("@dst_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@dst_type", System.Data.SqlDbType.TinyInt);
+            cmd.Parameters.Add("@date", System.Data.SqlDbType.DateTime);
+            cmd.Parameters.Add("@msg_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = src_lang_id;
+            cmd.Parameters[2].Value = dst_lang_id;
+            cmd.Parameters[3].Value = subject;
+            cmd.Parameters[4].Value = message;
+            cmd.Parameters[5].Value = dst_id;
+            cmd.Parameters[6].Value = dst_type;
+            cmd.Parameters[7].Value = date;
+            cmd.Parameters[8].Value = msg_id;
+            return cmd.ExecuteNonQuery();
+        }
+        public static int TransReqClose(int req_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_req_close";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@req_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = req_id;
+            return cmd.ExecuteNonQuery();
+        }
+        public static Translation TransReqGetById(int req_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_req_get_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@req_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = req_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            Translation result;
+            if (reader.Read())
+            {
+                result = new Translation(req_id,
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TranslationDestinationType)Convert.ToInt32(reader["dst_type"]),
+                                        Convert.ToString(reader["subject"]),
+                                        Convert.ToString(reader["message"]),
+                                        Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["completed"]),
+                                        Convert.ToInt32(reader["msg_id"]),
+                                        Convert.ToInt32(reader["user_id"]));
+                reader.Close();
+                reader.Dispose();
+                return result;
+            }
+            else
+            {
+                reader.Close();
+                reader.Dispose();
+                return null;
+            }
+        }
     }
 }
 

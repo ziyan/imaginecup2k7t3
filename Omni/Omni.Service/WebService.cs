@@ -361,6 +361,77 @@ namespace Omni.Service
             if (msg_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.MessageGetById(msg_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public int TransAnsAdd( int req_id, int user_id, string message, int rating, DateTime date )
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (req_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransAnsAdd(req_id, user_id, message, rating, date, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public Translation[] TransGetApprByUser(int user_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (user_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransGetApprByUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public Translation TransGetByReqId(int req_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (req_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransGetByReqId(req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public Translation[] TransGetPendingByUser(int user_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (user_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransGetPendingByUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public Translation[] TransGetUnApprByUser(int user_id )
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (user_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransGetUnApprByUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public int TransReqAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, DateTime date, int msg_id )
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (user_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransReqAdd( user_id, src_lang_id, dst_lang_id, subject, message, dst_id, dst_type, date, msg_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public int TransReqClose(int req_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (req_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransReqClose(req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public Translation TransReqGetById(int req_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (req_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransReqGetById(req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
     }
-    
 }
