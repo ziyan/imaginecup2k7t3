@@ -755,6 +755,33 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
+        public static Translation[] TransReqFindGlobalForUser(int user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_req_find_global_for_user";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> result = new List<Translation>();
+            while (reader.Read())
+            {
+                result.Add(new Translation(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TranslationDestinationType)Convert.ToInt32(reader["dst_type"]),
+                                        Convert.ToString(reader["subject"]),
+                                        "", Convert.ToDateTime(reader["date"]), false,
+                                        Convert.ToInt32(reader["msg_id"]),
+                                        Convert.ToInt32(reader["user_id"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
     }
 }
 

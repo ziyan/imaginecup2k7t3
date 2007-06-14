@@ -450,5 +450,14 @@ namespace Omni.Service
             if (user_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransReqGetForUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public Translation[] TransReqFindGlobalForUser(int user_id)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (user_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransReqFindGlobalForUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
     }
 }
