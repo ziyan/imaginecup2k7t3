@@ -58,3 +58,18 @@ div.lowerright
 {
 	color: Black;
 }
+
+
+
+
+div.lowerleft li a {
+	border-left-color: #7cc0f3;
+	border-right-color: #7cc0f3;
+	background-color: #a8d6f7;
+}
+
+div.lowerleft li a:hover {
+	border-left-color: #c5e3fa;
+	border-right-color: #c5e3fa;
+	background-color: #d8edfc;
+}
