@@ -28,7 +28,9 @@ Title="Compose a Message" Theme="Default" meta:resourcekey="PageResource1" %>
         <asp:Label ID="messageTextLabel" runat="server" Text="Message:" meta:resourcekey="messageTextLabelResource1"></asp:Label><br />
         <asp:TextBox ID="messageTB" runat="server" Rows="10" TextMode="MultiLine" Width="95%" meta:resourcekey="messageTBResource1"></asp:TextBox><br />
         <br />
-        <asp:Button ID="sendButton" runat="server" OnClick="sendButton_Click" Text="Send Message" meta:resourcekey="sendButtonResource1" /></asp:Panel>
+        <asp:Button ID="sendButton" runat="server" OnClick="sendButton_Click" Text="Send Message" meta:resourcekey="sendButtonResource1" /><br />
+        <asp:Label ID="missingSubjectLabel" runat="server" Text="Error: Subject field is required." Visible="false" meta:resourcekey="missingSubjectLabelResource1"></asp:Label><br />
+        <asp:Label ID="invalidUsernameLabel" runat="server" Text="Error: Invalid username entered." Visible="false" meta:resourcekey="invalidUsernameLabelResource1"></asp:Label></asp:Panel>
     <uc1:NotAuthedControl ID="NotAuthedControl1" runat="server" />
 
 </asp:Content>

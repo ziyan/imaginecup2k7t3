@@ -120,8 +120,14 @@
   <data name="composeTitleLabelResource1.Text" xml:space="preserve">
     <value>Compose Message</value>
   </data>
+  <data name="invalidUsernameLabelResource1.Text" xml:space="preserve">
+    <value>Error: Invalid username entered.</value>
+  </data>
   <data name="messageTextLabelResource1.Text" xml:space="preserve">
     <value>Message:</value>
+  </data>
+  <data name="missingSubjectLabelResource1.Text" xml:space="preserve">
+    <value>Error: Subject field is required.</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Compose a Message</value>

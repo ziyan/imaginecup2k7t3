@@ -45,7 +45,32 @@ public partial class ComposeMessage : System.Web.UI.Page
     {
         User user = Common.GetCurrentUser();
         int userid = Common.GetWebService().UserIdGetByUsername(toTB.Text);
-        Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text,false,0);
-        Server.Transfer("MyMessages.aspx");
+
+        bool error = false;
+        try
+        {
+            Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text, false, 0);
+        }
+        catch (System.Web.Services.Protocols.SoapException ex)
+        {
+            Exception ie = ex.InnerException;
+            if (ie is ArgumentNullException || ex.Message.Contains("ArgumentNullException"))
+            {
+                missingSubjectLabel.Visible = true;
+                invalidUsernameLabel.Visible = false;
+            }
+            if (ie is ArgumentOutOfRangeException || ex.Message.Contains("ArgumentOutOfRangeException"))
+            {
+                invalidUsernameLabel.Visible = true;
+                missingSubjectLabel.Visible = false;
+            }
+            error = true;
+        }
+        if (!error)
+        {
+            missingSubjectLabel.Visible = false;
+            invalidUsernameLabel.Visible = false;
+            Server.Transfer("MyMessages.aspx");
+        }
     }
 }
