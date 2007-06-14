@@ -18,6 +18,8 @@ public partial class Introduce : System.Web.UI.Page
     {
         if (IsPostBack) return;
         WebSiteCommon.setLoginView(notAuthorizedControl, userPanel);
+        introduceTable.Visible = false; // we'll make visible if needed
+        introduceNoneMessage.Visible = false; // we'll make visible if needed
 
         User currentUser = Common.GetCurrentUser();
         if (currentUser == null) return;
@@ -25,12 +27,13 @@ public partial class Introduce : System.Web.UI.Page
         int preferredLanguageId = Common.GetPreferredLanguage();
         if (preferredLanguageId <= 0) return; // should not happen
 
-        Language[] languages = Common.GetWebService().LanguageList();
-        foreach (Language language in languages)
+        UserLanguage[] languages = 
+                Common.GetWebService().UserLanguageListById(currentUser.id);
+        foreach (UserLanguage language in languages)
         {
             string languageString = Common.GetWebService().LanguageNameQueryById(
-                    language.id, preferredLanguageId);
-            ListItem item = new ListItem(languageString, language.id.ToString());
+                    language.lang_id, preferredLanguageId);
+            ListItem item = new ListItem(languageString, language.lang_id.ToString());
             introduceLanguageDropDown.Items.Add(item);
         }
 
@@ -41,7 +44,11 @@ public partial class Introduce : System.Web.UI.Page
             introduceCount = Convert.ToInt32(introduceCountString);
         }
         introduceCountText.Text = introduceCount.ToString();
-        if (introduceCount == 0) return; // save a call to the webservice
+        if (introduceCount == 0)
+        {
+            introduceCountText.Text = "10";
+            return; // save a call to the webservice
+        }
 
         string introduceLanguageString = Request.QueryString["introduceLanguage"];
         if (introduceLanguageString == null) return; // save a call to the webservice
@@ -52,11 +59,9 @@ public partial class Introduce : System.Web.UI.Page
         if (introduceUsers.Length == 0)
         {
             introduceNoneMessage.Visible = true;
-            introduceTable.Visible = false;
         }
         else
         {
-            introduceNoneMessage.Visible = false;
             introduceTable.Visible = true;
         }
         foreach (UserSimil introduceUser in introduceUsers)
