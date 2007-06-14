@@ -39,6 +39,17 @@ public partial class ComposeMessage : System.Web.UI.Page
                 }
             }
 
+            String userIdStr = Request.QueryString["user_id"];
+            if (userIdStr != null && userIdStr.Length > 0)
+            {
+                int intId = Convert.ToInt32(userIdStr);
+                User u = Common.GetWebService().UserGetById(intId);
+                if (u != null)
+                {
+                    toTB.Text = u.username;
+                }
+            }
+
         }
     }
     protected void sendButton_Click(object sender, EventArgs e)
