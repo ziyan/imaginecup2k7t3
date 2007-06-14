@@ -147,6 +147,9 @@
   <data name="registerLabel.Text" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="requestTransLabelResource1.Text" xml:space="preserve">
+    <value>Request Translation</value>
+  </data>
   <data name="returnHomeLabelResource1.Text" xml:space="preserve">
     <value>Return Home</value>
   </data>

@@ -156,6 +156,9 @@
   <data name="registerLabel.Text1" xml:space="preserve">
     <value>注册新帐号</value>
   </data>
+  <data name="requestTransLabelResource1.Text" xml:space="preserve">
+    <value>TRANSLATEME</value>
+  </data>
   <data name="returnHomeLabelResource1.Text" xml:space="preserve">
     <value>回到主页</value>
   </data>
