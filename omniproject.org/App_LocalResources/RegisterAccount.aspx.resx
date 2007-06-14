@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="acctVerifyLabelResource1.Text" xml:space="preserve">
+    <value>Account Verification</value>
+  </data>
+  <data name="acctVerifyLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="captchaImageResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="captchaImageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="captchaInstrLabelResource1.Text" xml:space="preserve">
+    <value>Enter the text from the above image.</value>
+  </data>
+  <data name="captchaInstrLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="captchaTBResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="captchaTBResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comparePasswordValidatorResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comparePasswordValidatorResource1.Text" xml:space="preserve">
+    <value>Error: Passwords must match.</value>
+  </data>
+  <data name="comparePasswordValidatorResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="confirmPasswordLabelResource1.Text" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="confirmPasswordLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="confirmPasswordTBResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="confirmPasswordTBResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="displayNameLabelResource1.Text" xml:space="preserve">
+    <value>Display Name</value>
+  </data>
+  <data name="displayNameLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="displayNameTBResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="displayNameTBResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="duplicateLabelResource1.Text" xml:space="preserve">
+    <value>Error - This user or email already exists.</value>
+  </data>
+  <data name="duplicateLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="emailLabelResource1.Text" xml:space="preserve">
+    <value>E-Mail Address</value>
+  </data>
+  <data name="emailLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="emailTBResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="emailTBResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="genericErrorLabelResource1.Text" xml:space="preserve">
+    <value>Validation Error, fill out all fields.</value>
+  </data>
+  <data name="genericErrorLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="invalidCaptchaLabelResource1.Text" xml:space="preserve">
+    <value>Error - Your text from the image is invalid.</value>
+  </data>
+  <data name="invalidCaptchaLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>Register an Account</value>
+  </data>
+  <data name="passwordLabelResource1.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="passwordLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="passwordTBResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="passwordTBResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="profileDescLabelResource1.Text" xml:space="preserve">
+    <value>Profile Description</value>
+  </data>
+  <data name="profileDescLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="profileDescTBResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="profileDescTBResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="registerAccountButtonResource1.Text" xml:space="preserve">
+    <value>Register Account</value>
+  </data>
+  <data name="registerAccountButtonResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="registrationTableResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="registrationTableResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="regTitleLabelResource1.Text" xml:space="preserve">
+    <value>Register an Account</value>
+  </data>
+  <data name="regTitleLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="successLabelResource1.Text" xml:space="preserve">
+    <value>User successfully added.</value>
+  </data>
+  <data name="successLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource10.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource10.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource2.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource3.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource4.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource5.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource6.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource7.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource8.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource9.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource9.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="usernameLabelResource1.Text" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="usernameLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="usernameTBResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="usernameTBResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+</root>
