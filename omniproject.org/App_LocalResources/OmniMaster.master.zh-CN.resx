@@ -135,8 +135,8 @@
   <data name="logoutLabel.Text1" xml:space="preserve">
     <value>注销</value>
   </data>
-  <data name="myFriendsLabelResource1.Text" xml:space="preserve">
-    <value>我的朋友</value>
+  <data name="myFavoritesLabelResource1.Text" xml:space="preserve">
+    <value>我收藏的用户</value>
   </data>
   <data name="myGroupsLabelResource1.Text" xml:space="preserve">
     <value>我加入的组</value>

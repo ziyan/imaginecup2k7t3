@@ -129,8 +129,8 @@
   <data name="logoutLabel.Text" xml:space="preserve">
     <value>Logout</value>
   </data>
-  <data name="myFriendsLabelResource1.Text" xml:space="preserve">
-    <value>My Friends</value>
+  <data name="myFavoritesLabelResource1.Text" xml:space="preserve">
+    <value>My Favorites</value>
   </data>
   <data name="myGroupsLabelResource1.Text" xml:space="preserve">
     <value>My Groups</value>

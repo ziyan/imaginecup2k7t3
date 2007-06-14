@@ -51,8 +51,8 @@
             <asp:HyperLink ID="myProfileLink" runat="server" NavigateUrl="~/EditProfile.aspx" meta:resourcekey="myProfileLinkResource1">
             <asp:Label ID="myProfileLabel" runat="server" Text="Edit Profile" meta:resourcekey="myProfileLabelResource1"></asp:Label>
             </asp:HyperLink><br />
-            <asp:HyperLink ID="myFriendsLink" runat="server" NavigateUrl="~/MyFriends.aspx" meta:resourcekey="myFriendsLinkResource1">
-            <asp:Label ID="myFriendsLabel" runat="server" Text="My Friends" meta:resourcekey="myFriendsLabelResource1"></asp:Label>
+            <asp:HyperLink ID="myFavoritesLink" runat="server" NavigateUrl="~/MyFavorites.aspx" meta:resourcekey="myFavoritesLinkResource1">
+            <asp:Label ID="myFavoritesLabel" runat="server" Text="My Favorites" meta:resourcekey="myFavoritesLabelResource1"></asp:Label>
             </asp:HyperLink><br />
             <asp:HyperLink ID="myMessagesLink" runat="server" NavigateUrl="~/MyMessages.aspx" meta:resourcekey="myMessagesLinkResource1">
             <asp:Label ID="myMessagesLabel" runat="server" Text="My Messages" meta:resourcekey="myMessagesLabelResource1"></asp:Label>

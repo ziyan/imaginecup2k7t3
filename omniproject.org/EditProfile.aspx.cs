@@ -18,16 +18,14 @@ public partial class EditProfile : System.Web.UI.Page
     {
         if (IsPostBack) return;
         WebSiteCommon.setLoginView(notAuthorizedControl, userPanel);
-        if (usernameValueLabel.Text.Length == 0)
+        
+        User currentUser = Common.GetCurrentUser();
+        if (currentUser != null)
         {
-            User currentUser = Common.GetCurrentUser();
-            if (currentUser != null)
-            {
-                usernameValueLabel.Text = currentUser.username;
-                displayNameText.Text = currentUser.name;
-                emailText.Text = currentUser.email;
-                descriptionText.Text = currentUser.description;
-            }
+            usernameValueLabel.Text = currentUser.username;
+            displayNameText.Text = currentUser.name;
+            emailText.Text = currentUser.email;
+            descriptionText.Text = currentUser.description;
         }
     }
 
@@ -46,15 +44,12 @@ public partial class EditProfile : System.Web.UI.Page
             interestsPicker.SaveInterestsToUser(currentUser.id);
             languagePicker.SaveLanguagesToUser(currentUser.id);
 
-            usernameValueLabel.Text = ""; // used to flag to see if loaded
-
             Response.Redirect(Request.Url.ToString());
         }
     }
 
     protected void cancelButton_Click(object sender, EventArgs e)
     {
-        usernameValueLabel.Text = ""; // used to flag to see if loaded
         Response.Redirect(Request.Url.ToString());
     }
 }

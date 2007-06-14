@@ -5,9 +5,9 @@
 <%@ Register Src="LanguagePicker.ascx" TagName="LanguagePicker" TagPrefix="uc1" %>
 <%@ Register Src="InterestsPicker.ascx" TagName="InterestsPicker" TagPrefix="uc2" %>
 <asp:Content ID="mainId" ContentPlaceHolderID="Main" Runat="Server">
-    <asp:Label ID="profileLabel" runat="server" Text="My Profile" CssClass="title" meta:resourcekey="profileLabelResource1"></asp:Label>
-    <br />
     <asp:Panel runat="server" ID="userPanel" meta:resourcekey="userPanelResource1">
+        <asp:Label ID="profileLabel" runat="server" Text="My Profile" CssClass="title" meta:resourcekey="profileLabelResource1"></asp:Label>
+        <br />
         <asp:Table ID="Table1" runat="server" meta:resourcekey="Table1Resource1">
             <asp:TableRow meta:resourcekey="TableRowResource1" runat="server">
                 <asp:TableCell meta:resourcekey="TableCellResource1" runat="server">
