@@ -61,6 +61,11 @@
                         </asp:HyperLink>
 				    </li>
 				    <li>
+				        <asp:HyperLink ID="requestTransLink" runat="server" NavigateUrl="~/RequestTranslation.aspx" meta:resourcekey="requestTransLinkResource1">
+                            <asp:Label ID="requestTransLabel" runat="server" Text="Request Translation" meta:resourcekey="requestTransLabelResource1"></asp:Label>
+                        </asp:HyperLink>
+				    </li>
+				    <li>
 				        <asp:HyperLink ID="myFavoritesLink" runat="server" NavigateUrl="~/MyFavorites.aspx" meta:resourcekey="myFavoritesLinkResource1">
                             <asp:Label ID="myFavoritesLabel" runat="server" Text="My Favorites" meta:resourcekey="myFavoritesLabelResource1"></asp:Label>
                         </asp:HyperLink>
