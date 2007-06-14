@@ -236,9 +236,33 @@ namespace Omni.Data
             cmd.Parameters[0].Value = user_id;
             SqlDataReader reader = cmd.ExecuteReader();
             List<User> users = new List<User>();
-            if (reader.Read())
+            while (reader.Read())
             {
                 users.Add(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return users.ToArray();
+        }
+        public static UserSimil[] UserIntroById(int user_id, int lang_id, int limit, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_intro_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = lang_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<UserSimil> users = new List<UserSimil>();
+            int count = 0;
+            while (reader.Read())
+            {
+                users.Add(new UserSimil(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])), Convert.ToInt32(reader["self_rating"]), Convert.ToDouble(reader["simil"])));
+                count++;
+                if (count >= limit) break;
             }
             reader.Close();
             reader.Dispose();

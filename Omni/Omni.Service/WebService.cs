@@ -311,7 +311,14 @@ namespace Omni.Service
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             Data.StoredProcedure.UserFavorUserDeleteById(user_id, favor_user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
-
+        [WebMethod(true)]
+        public UserSimil[] UserIntroById(int user_id, int lang_id, int limit)
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            return Data.StoredProcedure.UserIntroById(user_id, lang_id, limit, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
 
         [WebMethod(true)]
         public void TransAnsRateById(int user_id, int trans_ans_id, short rating)
@@ -329,7 +336,8 @@ namespace Omni.Service
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to send as this user");
-            if (subject == null || body == null || subject == "") throw new ArgumentNullException();
+            if (subject == null || body == null || subject.Trim() == "") throw new ArgumentNullException();
+            subject = subject.Trim();
             if (user_id <= 0 || dst_id <=0) throw new ArgumentOutOfRangeException();
             Data.StoredProcedure.MessageSend(user_id, dst_id, Convert.ToInt32(dst_type), subject, body, pending_trans, trans_req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }

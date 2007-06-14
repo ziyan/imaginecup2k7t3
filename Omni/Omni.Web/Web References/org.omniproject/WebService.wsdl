@@ -403,6 +403,34 @@
       <s:element name="UserFavorUserDeleteByIdResponse">
         <s:complexType />
       </s:element>
+      <s:element name="UserIntroById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="lang_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="limit" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserIntroByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserIntroByIdResult" type="tns:ArrayOfUserSimil" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserSimil">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserSimil" nillable="true" type="tns:UserSimil" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserSimil">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          <s:element minOccurs="1" maxOccurs="1" name="self_rating" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="simil" type="s:double" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="TransAnsRateById">
         <s:complexType>
           <s:sequence>
@@ -662,6 +690,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="TransReqGetForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransReqGetForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransReqGetForUserResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
       <s:element name="int" type="s:int" />
       <s:element name="User" nillable="true" type="tns:User" />
@@ -671,6 +713,7 @@
       <s:element name="ArrayOfUserLanguage" nillable="true" type="tns:ArrayOfUserLanguage" />
       <s:element name="ArrayOfInterest" nillable="true" type="tns:ArrayOfInterest" />
       <s:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+      <s:element name="ArrayOfUserSimil" nillable="true" type="tns:ArrayOfUserSimil" />
       <s:element name="ArrayOfMessage" nillable="true" type="tns:ArrayOfMessage" />
       <s:element name="Message" nillable="true" type="tns:Message" />
       <s:element name="ArrayOfTranslation" nillable="true" type="tns:ArrayOfTranslation" />
@@ -839,6 +882,12 @@
   <wsdl:message name="UserFavorUserDeleteByIdSoapOut">
     <wsdl:part name="parameters" element="tns:UserFavorUserDeleteByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="UserIntroByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UserIntroById" />
+  </wsdl:message>
+  <wsdl:message name="UserIntroByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UserIntroByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="TransAnsRateByIdSoapIn">
     <wsdl:part name="parameters" element="tns:TransAnsRateById" />
   </wsdl:message>
@@ -916,6 +965,12 @@
   </wsdl:message>
   <wsdl:message name="TransReqGetByIdSoapOut">
     <wsdl:part name="parameters" element="tns:TransReqGetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TransReqGetForUser" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TransReqGetForUserResponse" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpGetIn" />
   <wsdl:message name="InitializeHttpGetOut" />
@@ -1077,6 +1132,14 @@
     <wsdl:part name="favor_user_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UserFavorUserDeleteByIdHttpGetOut" />
+  <wsdl:message name="UserIntroByIdHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="lang_id" type="s:string" />
+    <wsdl:part name="limit" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserIntroByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUserSimil" />
+  </wsdl:message>
   <wsdl:message name="TransAnsRateByIdHttpGetIn">
     <wsdl:part name="user_id" type="s:string" />
     <wsdl:part name="trans_ans_id" type="s:string" />
@@ -1171,6 +1234,12 @@
   </wsdl:message>
   <wsdl:message name="TransReqGetByIdHttpGetOut">
     <wsdl:part name="Body" element="tns:Translation" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetForUserHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetForUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpPostIn" />
   <wsdl:message name="InitializeHttpPostOut" />
@@ -1332,6 +1401,14 @@
     <wsdl:part name="favor_user_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UserFavorUserDeleteByIdHttpPostOut" />
+  <wsdl:message name="UserIntroByIdHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="lang_id" type="s:string" />
+    <wsdl:part name="limit" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserIntroByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUserSimil" />
+  </wsdl:message>
   <wsdl:message name="TransAnsRateByIdHttpPostIn">
     <wsdl:part name="user_id" type="s:string" />
     <wsdl:part name="trans_ans_id" type="s:string" />
@@ -1426,6 +1503,12 @@
   </wsdl:message>
   <wsdl:message name="TransReqGetByIdHttpPostOut">
     <wsdl:part name="Body" element="tns:Translation" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetForUserHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetForUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Initialize">
@@ -1536,6 +1619,10 @@
       <wsdl:input message="tns:UserFavorUserDeleteByIdSoapIn" />
       <wsdl:output message="tns:UserFavorUserDeleteByIdSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserIntroById">
+      <wsdl:input message="tns:UserIntroByIdSoapIn" />
+      <wsdl:output message="tns:UserIntroByIdSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <wsdl:input message="tns:TransAnsRateByIdSoapIn" />
       <wsdl:output message="tns:TransAnsRateByIdSoapOut" />
@@ -1587,6 +1674,10 @@
     <wsdl:operation name="TransReqGetById">
       <wsdl:input message="tns:TransReqGetByIdSoapIn" />
       <wsdl:output message="tns:TransReqGetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetForUser">
+      <wsdl:input message="tns:TransReqGetForUserSoapIn" />
+      <wsdl:output message="tns:TransReqGetForUserSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
@@ -1698,6 +1789,10 @@
       <wsdl:input message="tns:UserFavorUserDeleteByIdHttpGetIn" />
       <wsdl:output message="tns:UserFavorUserDeleteByIdHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserIntroById">
+      <wsdl:input message="tns:UserIntroByIdHttpGetIn" />
+      <wsdl:output message="tns:UserIntroByIdHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <wsdl:input message="tns:TransAnsRateByIdHttpGetIn" />
       <wsdl:output message="tns:TransAnsRateByIdHttpGetOut" />
@@ -1749,6 +1844,10 @@
     <wsdl:operation name="TransReqGetById">
       <wsdl:input message="tns:TransReqGetByIdHttpGetIn" />
       <wsdl:output message="tns:TransReqGetByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetForUser">
+      <wsdl:input message="tns:TransReqGetForUserHttpGetIn" />
+      <wsdl:output message="tns:TransReqGetForUserHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpPost">
@@ -1860,6 +1959,10 @@
       <wsdl:input message="tns:UserFavorUserDeleteByIdHttpPostIn" />
       <wsdl:output message="tns:UserFavorUserDeleteByIdHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserIntroById">
+      <wsdl:input message="tns:UserIntroByIdHttpPostIn" />
+      <wsdl:output message="tns:UserIntroByIdHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <wsdl:input message="tns:TransAnsRateByIdHttpPostIn" />
       <wsdl:output message="tns:TransAnsRateByIdHttpPostOut" />
@@ -1911,6 +2014,10 @@
     <wsdl:operation name="TransReqGetById">
       <wsdl:input message="tns:TransReqGetByIdHttpPostIn" />
       <wsdl:output message="tns:TransReqGetByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetForUser">
+      <wsdl:input message="tns:TransReqGetForUserHttpPostIn" />
+      <wsdl:output message="tns:TransReqGetForUserHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -2158,6 +2265,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserIntroById">
+      <soap:operation soapAction="http://omniproject.org/UserIntroById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <soap:operation soapAction="http://omniproject.org/TransAnsRateById" style="document" />
       <wsdl:input>
@@ -2268,6 +2384,15 @@
     </wsdl:operation>
     <wsdl:operation name="TransReqGetById">
       <soap:operation soapAction="http://omniproject.org/TransReqGetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetForUser">
+      <soap:operation soapAction="http://omniproject.org/TransReqGetForUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2521,6 +2646,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserIntroById">
+      <soap12:operation soapAction="http://omniproject.org/UserIntroById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <soap12:operation soapAction="http://omniproject.org/TransAnsRateById" style="document" />
       <wsdl:input>
@@ -2631,6 +2765,15 @@
     </wsdl:operation>
     <wsdl:operation name="TransReqGetById">
       <soap12:operation soapAction="http://omniproject.org/TransReqGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetForUser">
+      <soap12:operation soapAction="http://omniproject.org/TransReqGetForUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2866,6 +3009,15 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="UserIntroById">
+      <http:operation location="/UserIntroById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <http:operation location="/TransAnsRateById" />
       <wsdl:input>
@@ -2972,6 +3124,15 @@
     </wsdl:operation>
     <wsdl:operation name="TransReqGetById">
       <http:operation location="/TransReqGetById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetForUser">
+      <http:operation location="/TransReqGetForUser" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -3207,6 +3368,15 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="UserIntroById">
+      <http:operation location="/UserIntroById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <http:operation location="/TransAnsRateById" />
       <wsdl:input>
@@ -3313,6 +3483,15 @@
     </wsdl:operation>
     <wsdl:operation name="TransReqGetById">
       <http:operation location="/TransReqGetById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetForUser">
+      <http:operation location="/TransReqGetForUser" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

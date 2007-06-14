@@ -83,6 +83,8 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback UserFavorUserDeleteByIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserIntroByIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback TransAnsRateByIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback MessageSendOperationCompleted;
@@ -108,6 +110,8 @@ namespace Omni.Web.org.omniproject {
         private System.Threading.SendOrPostCallback TransReqCloseOperationCompleted;
         
         private System.Threading.SendOrPostCallback TransReqGetByIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TransReqGetForUserOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -229,6 +233,9 @@ namespace Omni.Web.org.omniproject {
         public event UserFavorUserDeleteByIdCompletedEventHandler UserFavorUserDeleteByIdCompleted;
         
         /// <remarks/>
+        public event UserIntroByIdCompletedEventHandler UserIntroByIdCompleted;
+        
+        /// <remarks/>
         public event TransAnsRateByIdCompletedEventHandler TransAnsRateByIdCompleted;
         
         /// <remarks/>
@@ -266,6 +273,9 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event TransReqGetByIdCompletedEventHandler TransReqGetByIdCompleted;
+        
+        /// <remarks/>
+        public event TransReqGetForUserCompletedEventHandler TransReqGetForUserCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1085,6 +1095,39 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserIntroById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserSimil[] UserIntroById(int user_id, int lang_id, int limit) {
+            object[] results = this.Invoke("UserIntroById", new object[] {
+                        user_id,
+                        lang_id,
+                        limit});
+            return ((UserSimil[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserIntroByIdAsync(int user_id, int lang_id, int limit) {
+            this.UserIntroByIdAsync(user_id, lang_id, limit, null);
+        }
+        
+        /// <remarks/>
+        public void UserIntroByIdAsync(int user_id, int lang_id, int limit, object userState) {
+            if ((this.UserIntroByIdOperationCompleted == null)) {
+                this.UserIntroByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserIntroByIdOperationCompleted);
+            }
+            this.InvokeAsync("UserIntroById", new object[] {
+                        user_id,
+                        lang_id,
+                        limit}, this.UserIntroByIdOperationCompleted, userState);
+        }
+        
+        private void OnUserIntroByIdOperationCompleted(object arg) {
+            if ((this.UserIntroByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserIntroByIdCompleted(this, new UserIntroByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransAnsRateById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void TransAnsRateById(int user_id, int trans_ans_id, short rating) {
             this.Invoke("TransAnsRateById", new object[] {
@@ -1498,6 +1541,35 @@ namespace Omni.Web.org.omniproject {
             if ((this.TransReqGetByIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.TransReqGetByIdCompleted(this, new TransReqGetByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransReqGetForUser", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation[] TransReqGetForUser(int user_id) {
+            object[] results = this.Invoke("TransReqGetForUser", new object[] {
+                        user_id});
+            return ((Translation[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TransReqGetForUserAsync(int user_id) {
+            this.TransReqGetForUserAsync(user_id, null);
+        }
+        
+        /// <remarks/>
+        public void TransReqGetForUserAsync(int user_id, object userState) {
+            if ((this.TransReqGetForUserOperationCompleted == null)) {
+                this.TransReqGetForUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransReqGetForUserOperationCompleted);
+            }
+            this.InvokeAsync("TransReqGetForUser", new object[] {
+                        user_id}, this.TransReqGetForUserOperationCompleted, userState);
+        }
+        
+        private void OnTransReqGetForUserOperationCompleted(object arg) {
+            if ((this.TransReqGetForUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TransReqGetForUserCompleted(this, new TransReqGetForUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1995,6 +2067,51 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         Group,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.312")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://omniproject.org/")]
+    public partial class UserSimil {
+        
+        private User userField;
+        
+        private int self_ratingField;
+        
+        private double similField;
+        
+        /// <remarks/>
+        public User user {
+            get {
+                return this.userField;
+            }
+            set {
+                this.userField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int self_rating {
+            get {
+                return this.self_ratingField;
+            }
+            set {
+                this.self_ratingField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double simil {
+            get {
+                return this.similField;
+            }
+            set {
+                this.similField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -2650,6 +2767,32 @@ namespace Omni.Web.org.omniproject {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserIntroByIdCompletedEventHandler(object sender, UserIntroByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserIntroByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserIntroByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserSimil[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserSimil[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
     public delegate void TransAnsRateByIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
@@ -2938,6 +3081,32 @@ namespace Omni.Web.org.omniproject {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Translation)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void TransReqGetForUserCompletedEventHandler(object sender, TransReqGetForUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TransReqGetForUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TransReqGetForUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation[])(this.results[0]));
             }
         }
     }

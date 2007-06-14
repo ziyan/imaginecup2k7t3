@@ -108,6 +108,9 @@
     <None Include="Web References\org.omniproject\UserLanguage.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\org.omniproject\UserSimil.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\org.omniproject\WebService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
