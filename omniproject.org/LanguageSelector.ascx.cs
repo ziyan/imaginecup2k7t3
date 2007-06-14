@@ -33,7 +33,7 @@ public partial class LanguageSelector : System.Web.UI.UserControl
 
         int prefLang = Common.GetPreferredLanguage();
         langDropDown.Items.Clear();
-        if(prefLang<=0) langDropDown.Items.Add(new ListItem("(Choose)","0"));
+        if(prefLang<=0) langDropDown.Items.Add(new ListItem("----","0"));
 
         foreach (Language language in languages)
         {
