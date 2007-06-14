@@ -13,7 +13,8 @@ namespace Omni.Pocket
         public OmniForm()
         {
             InitializeComponent();
-            webService.Initialize();
+            //webService.Initialize();
+
         }
 
         private void exitMenuItem_Click(object sender, EventArgs e)

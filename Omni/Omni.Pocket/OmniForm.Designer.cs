@@ -98,7 +98,6 @@ namespace Omni.Pocket
             this.subjectLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.toComboBox = new System.Windows.Forms.ComboBox();
-            this.webService = new Omni.Pocket.org.omniproject.WebService();
             this.tabControl.SuspendLayout();
             this.loginTabPage.SuspendLayout();
             this.autoTransTabPage.SuspendLayout();
@@ -701,20 +700,6 @@ namespace Omni.Pocket
             this.toComboBox.Size = new System.Drawing.Size(79, 22);
             this.toComboBox.TabIndex = 0;
             // 
-            // webService
-            // 
-            this.webService.AllowAutoRedirect = false;
-            this.webService.ConnectionGroupName = "";
-            this.webService.Credentials = null;
-            this.webService.PreAuthenticate = false;
-            this.webService.Proxy = null;
-            this.webService.RequestEncoding = null;
-            this.webService.SoapVersion = System.Web.Services.Protocols.SoapProtocolVersion.Default;
-            this.webService.Timeout = 100000;
-            this.webService.Url = "http://24.19.97.171/Service/WebService.asmx";
-            this.webService.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; MS Web Services Client Protocol 2.0.50727.312)" +
-                "";
-            // 
             // OmniForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -812,7 +797,6 @@ namespace Omni.Pocket
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox toComboBox;
         private System.Windows.Forms.MenuItem logoutMenuItem;
-        private Omni.Pocket.org.omniproject.WebService webService;
     }
 }
 
