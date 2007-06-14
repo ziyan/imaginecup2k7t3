@@ -113,6 +113,8 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback TransReqGetForUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TransReqFindGlobalForUserOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -276,6 +278,9 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event TransReqGetForUserCompletedEventHandler TransReqGetForUserCompleted;
+        
+        /// <remarks/>
+        public event TransReqFindGlobalForUserCompletedEventHandler TransReqFindGlobalForUserCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1570,6 +1575,35 @@ namespace Omni.Web.org.omniproject {
             if ((this.TransReqGetForUserCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.TransReqGetForUserCompleted(this, new TransReqGetForUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransReqFindGlobalForUser", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation[] TransReqFindGlobalForUser(int user_id) {
+            object[] results = this.Invoke("TransReqFindGlobalForUser", new object[] {
+                        user_id});
+            return ((Translation[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TransReqFindGlobalForUserAsync(int user_id) {
+            this.TransReqFindGlobalForUserAsync(user_id, null);
+        }
+        
+        /// <remarks/>
+        public void TransReqFindGlobalForUserAsync(int user_id, object userState) {
+            if ((this.TransReqFindGlobalForUserOperationCompleted == null)) {
+                this.TransReqFindGlobalForUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransReqFindGlobalForUserOperationCompleted);
+            }
+            this.InvokeAsync("TransReqFindGlobalForUser", new object[] {
+                        user_id}, this.TransReqFindGlobalForUserOperationCompleted, userState);
+        }
+        
+        private void OnTransReqFindGlobalForUserOperationCompleted(object arg) {
+            if ((this.TransReqFindGlobalForUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TransReqFindGlobalForUserCompleted(this, new TransReqFindGlobalForUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3098,6 +3132,32 @@ namespace Omni.Web.org.omniproject {
         private object[] results;
         
         internal TransReqGetForUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void TransReqFindGlobalForUserCompletedEventHandler(object sender, TransReqFindGlobalForUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TransReqFindGlobalForUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TransReqFindGlobalForUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -300,6 +300,7 @@ namespace Omni.Service
             if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            if (user_id == favor_user_id || favor_user_id <= 0) throw new ArgumentException("Invalid favor_user_id.");
             Data.StoredProcedure.UserFavorUserAddById(user_id, favor_user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 

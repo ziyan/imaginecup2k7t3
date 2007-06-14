@@ -704,6 +704,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="TransReqFindGlobalForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransReqFindGlobalForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransReqFindGlobalForUserResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
       <s:element name="int" type="s:int" />
       <s:element name="User" nillable="true" type="tns:User" />
@@ -972,6 +986,12 @@
   <wsdl:message name="TransReqGetForUserSoapOut">
     <wsdl:part name="parameters" element="tns:TransReqGetForUserResponse" />
   </wsdl:message>
+  <wsdl:message name="TransReqFindGlobalForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TransReqFindGlobalForUser" />
+  </wsdl:message>
+  <wsdl:message name="TransReqFindGlobalForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TransReqFindGlobalForUserResponse" />
+  </wsdl:message>
   <wsdl:message name="InitializeHttpGetIn" />
   <wsdl:message name="InitializeHttpGetOut" />
   <wsdl:message name="UserCaptchaHttpGetIn">
@@ -1239,6 +1259,12 @@
     <wsdl:part name="user_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransReqGetForUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
+  </wsdl:message>
+  <wsdl:message name="TransReqFindGlobalForUserHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransReqFindGlobalForUserHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpPostIn" />
@@ -1510,6 +1536,12 @@
   <wsdl:message name="TransReqGetForUserHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
+  <wsdl:message name="TransReqFindGlobalForUserHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransReqFindGlobalForUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Initialize">
       <wsdl:input message="tns:InitializeSoapIn" />
@@ -1678,6 +1710,10 @@
     <wsdl:operation name="TransReqGetForUser">
       <wsdl:input message="tns:TransReqGetForUserSoapIn" />
       <wsdl:output message="tns:TransReqGetForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqFindGlobalForUser">
+      <wsdl:input message="tns:TransReqFindGlobalForUserSoapIn" />
+      <wsdl:output message="tns:TransReqFindGlobalForUserSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
@@ -1849,6 +1885,10 @@
       <wsdl:input message="tns:TransReqGetForUserHttpGetIn" />
       <wsdl:output message="tns:TransReqGetForUserHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="TransReqFindGlobalForUser">
+      <wsdl:input message="tns:TransReqFindGlobalForUserHttpGetIn" />
+      <wsdl:output message="tns:TransReqFindGlobalForUserHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpPost">
     <wsdl:operation name="Initialize">
@@ -2018,6 +2058,10 @@
     <wsdl:operation name="TransReqGetForUser">
       <wsdl:input message="tns:TransReqGetForUserHttpPostIn" />
       <wsdl:output message="tns:TransReqGetForUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqFindGlobalForUser">
+      <wsdl:input message="tns:TransReqFindGlobalForUserHttpPostIn" />
+      <wsdl:output message="tns:TransReqFindGlobalForUserHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -2393,6 +2437,15 @@
     </wsdl:operation>
     <wsdl:operation name="TransReqGetForUser">
       <soap:operation soapAction="http://omniproject.org/TransReqGetForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqFindGlobalForUser">
+      <soap:operation soapAction="http://omniproject.org/TransReqFindGlobalForUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2781,6 +2834,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TransReqFindGlobalForUser">
+      <soap12:operation soapAction="http://omniproject.org/TransReqFindGlobalForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpGet" type="tns:WebServiceHttpGet">
     <http:binding verb="GET" />
@@ -3140,6 +3202,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TransReqFindGlobalForUser">
+      <http:operation location="/TransReqFindGlobalForUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpPost" type="tns:WebServiceHttpPost">
     <http:binding verb="POST" />
@@ -3492,6 +3563,15 @@
     </wsdl:operation>
     <wsdl:operation name="TransReqGetForUser">
       <http:operation location="/TransReqGetForUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqFindGlobalForUser">
+      <http:operation location="/TransReqFindGlobalForUser" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
