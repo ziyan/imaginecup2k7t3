@@ -21,6 +21,11 @@ namespace Omni.Service
             HttpContext.Current.Session["Initialized"] = true;
         }
 
+        private void CheckInit()
+        {
+            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+        }
+
         #region User Related Functions
         /// <summary>
         /// Get a random captcha. (Session Required)
@@ -33,7 +38,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public byte[] UserCaptcha(int width, int height, string bgColor, string frontColor)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             HttpContext.Current.Session["Captcha"] = Common.GetRandomString(Common.HumanFriendlyCharacterSet, Common.CaptchaLength);
             return Common.GetCaptchaImage(HttpContext.Current.Session["Captcha"].ToString(), width, height, System.Drawing.Color.FromName(bgColor), System.Drawing.Color.FromName(frontColor));
         }
@@ -51,7 +56,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public int UserRegister(string username, string md5password, string email, string name, string description, string captcha)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (username == null || username == "" ||
                 md5password == null || md5password.Length != 32 ||
                 email == null || email == "" ||
@@ -73,7 +78,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public User UserAuthorizeByUsername(string username, string md5password)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (username == null || username == "" ||
                 md5password == null || md5password.Length != 32)
                 throw new ArgumentNullException();
@@ -99,7 +104,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public bool UserIsLoggedIn()
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             return HttpContext.Current.Session["User"]!=null;
         }
 
@@ -109,7 +114,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void UserLogout()
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in yet.");
             HttpContext.Current.Session["User"] = null;
         }
@@ -121,14 +126,14 @@ namespace Omni.Service
         [WebMethod(true)]
         public User UserCurrent()
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             return HttpContext.Current.Session["User"] == null ? null : (User)HttpContext.Current.Session["User"];
         }
 
         [WebMethod(true)]
         public void UserUpdateById(int user_id, string email, string name, string description)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             Data.StoredProcedure.UserUpdateById(user_id, email, name, description, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -138,7 +143,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public User UserGetById(int user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             return Data.StoredProcedure.UserGetById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -146,7 +151,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public bool UserPasswordUpdate(string oldmd5password, string newmd5password)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             string password = Data.StoredProcedure.UserPasswordGetById(UserCurrent().id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
             string randomText = password.Substring(0, Common.PasswordRandomTextLength).ToLower();
@@ -165,7 +170,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public int UserIdGetByUsername(string username)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             return Data.StoredProcedure.UserIdGetByUsername(username,(Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
         #endregion
@@ -189,14 +194,14 @@ namespace Omni.Service
         [WebMethod(true)]
         public Language[] LanguageList()
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             return Data.StoredProcedure.LangList((Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]
         public string LanguageNameQueryById(int lang_id, int dst_lang_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (lang_id < 1 || dst_lang_id < 1) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.LangLangQueryById(lang_id,dst_lang_id,(Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -204,7 +209,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public UserLanguage[] UserLanguageListById(int user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.UserLangListById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -212,7 +217,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void UserLanguageSetById(int user_id, int lang_id, short self_rating)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             if (lang_id <= 0) throw new ArgumentOutOfRangeException();
@@ -223,7 +228,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void UserLanguageDeleteById(int user_id, int lang_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             if (lang_id <= 0) throw new ArgumentOutOfRangeException();
@@ -236,7 +241,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Interest[] InterestList(int parent_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (parent_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.InterestList(parent_id,(Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -244,7 +249,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Interest[] InterestLangList(int parent_id, int lang_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (parent_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.InterestLangList(parent_id, lang_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -252,7 +257,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public string InterestNameQueryById(int interest_id, int lang_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (interest_id < 1 || lang_id < 1) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.InterestLangQueryById(interest_id, lang_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -260,7 +265,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Interest[] UserInterestList(int user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.UserInterestListById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -268,7 +273,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void UserInterestAddById(int user_id, int interest_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             Data.StoredProcedure.UserInterestAddById(user_id, interest_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -277,7 +282,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void UserInterestDeleteById(int user_id, int interest_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             if (interest_id <= 0) throw new ArgumentOutOfRangeException();
@@ -288,7 +293,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public User[] UserFavorUserListById(int user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             return Data.StoredProcedure.UserFavorUserListById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -297,7 +302,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void UserFavorUserAddById(int user_id, int favor_user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             if (user_id == favor_user_id || favor_user_id <= 0) throw new ArgumentException("Invalid favor_user_id.");
@@ -307,7 +312,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void UserFavorUserDeleteById(int user_id, int favor_user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             Data.StoredProcedure.UserFavorUserDeleteById(user_id, favor_user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -315,7 +320,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public UserSimil[] UserIntroById(int user_id, int lang_id, int limit)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             return Data.StoredProcedure.UserIntroById(user_id, lang_id, limit, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -324,7 +329,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void TransAnsRateById(int user_id, int trans_ans_id, short rating)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to rate as this user");
             if (trans_ans_id <= 0) throw new ArgumentOutOfRangeException();
@@ -334,7 +339,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public void MessageSend(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, bool pending_trans, int trans_req_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized. Restart your fucking browser!!!");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to send as this user");
             if (subject == null || body == null || subject.Trim() == "") throw new ArgumentNullException();
@@ -346,7 +351,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Message[] MessageRecvByUser(int dst_id, MessageDestinationType dst_type)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (dst_id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.MessageRecvByUser(dst_id, dst_type, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -355,7 +360,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Message[] MessageSentByUser(int user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
             if (user_id <= 0) throw new ArgumentOutOfRangeException();
@@ -365,7 +370,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Message MessageGetById(int msg_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (msg_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.MessageGetById(msg_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -374,7 +379,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public int TransAnsAdd( int req_id, int user_id, string message, int rating, DateTime date )
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (req_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransAnsAdd(req_id, user_id, message, rating, date, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -383,7 +388,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Translation[] TransGetApprByUser(int user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (user_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransGetApprByUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -392,7 +397,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Translation TransGetByReqId(int req_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (req_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransGetByReqId(req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -401,7 +406,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Translation[] TransGetPendingByUser(int user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (user_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransGetPendingByUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -410,7 +415,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Translation[] TransGetUnApprByUser(int user_id )
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (user_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransGetUnApprByUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -419,7 +424,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public int TransReqAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, DateTime date, int msg_id )
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (user_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransReqAdd( user_id, src_lang_id, dst_lang_id, subject, message, dst_id, dst_type, date, msg_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -428,7 +433,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public int TransReqClose(int req_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (req_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransReqClose(req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -437,7 +442,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Translation TransReqGetById(int req_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (req_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransReqGetById(req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -446,7 +451,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Translation[] TransReqGetForUser(int user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (user_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransReqGetForUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
@@ -455,7 +460,7 @@ namespace Omni.Service
         [WebMethod(true)]
         public Translation[] TransReqFindGlobalForUser(int user_id)
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (user_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransReqFindGlobalForUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
