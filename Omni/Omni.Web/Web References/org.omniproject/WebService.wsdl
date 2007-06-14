@@ -499,6 +499,169 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="TransAnsAdd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="rating" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransAnsAddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransAnsAddResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransGetApprByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransGetApprByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransGetApprByUserResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTranslation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Translation" nillable="true" type="tns:Translation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Translation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:TranslationDataType" />
+          <s:element minOccurs="1" maxOccurs="1" name="request_id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="src_lang_id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="dst_lang_id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="dst_id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="dst_type" type="tns:TranslationDestinationType" />
+          <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="orig_body" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="completed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="msg_id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="req_user" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="trans_id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="trans_body" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="trans_rating" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="trans_date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="trans_user" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TranslationDataType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Request" />
+          <s:enumeration value="Full" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="TranslationDestinationType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Public" />
+          <s:enumeration value="User" />
+          <s:enumeration value="Group" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="TransGetByReqId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransGetByReqIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransGetByReqIdResult" type="tns:Translation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransGetPendingByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransGetPendingByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransGetPendingByUserResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransGetUnApprByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransGetUnApprByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransGetUnApprByUserResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransReqAdd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="src_lang_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dst_lang_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dst_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dst_type" type="tns:TranslationDestinationType" />
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="msg_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransReqAddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransReqAddResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransReqClose">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransReqCloseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransReqCloseResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransReqGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransReqGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransReqGetByIdResult" type="tns:Translation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
       <s:element name="int" type="s:int" />
       <s:element name="User" nillable="true" type="tns:User" />
@@ -510,6 +673,8 @@
       <s:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
       <s:element name="ArrayOfMessage" nillable="true" type="tns:ArrayOfMessage" />
       <s:element name="Message" nillable="true" type="tns:Message" />
+      <s:element name="ArrayOfTranslation" nillable="true" type="tns:ArrayOfTranslation" />
+      <s:element name="Translation" nillable="true" type="tns:Translation" />
     </s:schema>
   </wsdl:types>
   <wsdl:message name="InitializeSoapIn">
@@ -703,6 +868,54 @@
   </wsdl:message>
   <wsdl:message name="MessageGetByIdSoapOut">
     <wsdl:part name="parameters" element="tns:MessageGetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransAnsAddSoapIn">
+    <wsdl:part name="parameters" element="tns:TransAnsAdd" />
+  </wsdl:message>
+  <wsdl:message name="TransAnsAddSoapOut">
+    <wsdl:part name="parameters" element="tns:TransAnsAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransGetApprByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TransGetApprByUser" />
+  </wsdl:message>
+  <wsdl:message name="TransGetApprByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TransGetApprByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransGetByReqIdSoapIn">
+    <wsdl:part name="parameters" element="tns:TransGetByReqId" />
+  </wsdl:message>
+  <wsdl:message name="TransGetByReqIdSoapOut">
+    <wsdl:part name="parameters" element="tns:TransGetByReqIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransGetPendingByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TransGetPendingByUser" />
+  </wsdl:message>
+  <wsdl:message name="TransGetPendingByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TransGetPendingByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransGetUnApprByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TransGetUnApprByUser" />
+  </wsdl:message>
+  <wsdl:message name="TransGetUnApprByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TransGetUnApprByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransReqAddSoapIn">
+    <wsdl:part name="parameters" element="tns:TransReqAdd" />
+  </wsdl:message>
+  <wsdl:message name="TransReqAddSoapOut">
+    <wsdl:part name="parameters" element="tns:TransReqAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransReqCloseSoapIn">
+    <wsdl:part name="parameters" element="tns:TransReqClose" />
+  </wsdl:message>
+  <wsdl:message name="TransReqCloseSoapOut">
+    <wsdl:part name="parameters" element="tns:TransReqCloseResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:TransReqGetById" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:TransReqGetByIdResponse" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpGetIn" />
   <wsdl:message name="InitializeHttpGetOut" />
@@ -899,6 +1112,66 @@
   <wsdl:message name="MessageGetByIdHttpGetOut">
     <wsdl:part name="Body" element="tns:Message" />
   </wsdl:message>
+  <wsdl:message name="TransAnsAddHttpGetIn">
+    <wsdl:part name="req_id" type="s:string" />
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="message" type="s:string" />
+    <wsdl:part name="rating" type="s:string" />
+    <wsdl:part name="date" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransAnsAddHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="TransGetApprByUserHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransGetApprByUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
+  </wsdl:message>
+  <wsdl:message name="TransGetByReqIdHttpGetIn">
+    <wsdl:part name="req_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransGetByReqIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:Translation" />
+  </wsdl:message>
+  <wsdl:message name="TransGetPendingByUserHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransGetPendingByUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
+  </wsdl:message>
+  <wsdl:message name="TransGetUnApprByUserHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransGetUnApprByUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
+  </wsdl:message>
+  <wsdl:message name="TransReqAddHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="src_lang_id" type="s:string" />
+    <wsdl:part name="dst_lang_id" type="s:string" />
+    <wsdl:part name="subject" type="s:string" />
+    <wsdl:part name="message" type="s:string" />
+    <wsdl:part name="dst_id" type="s:string" />
+    <wsdl:part name="dst_type" type="s:string" />
+    <wsdl:part name="date" type="s:string" />
+    <wsdl:part name="msg_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransReqAddHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="TransReqCloseHttpGetIn">
+    <wsdl:part name="req_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransReqCloseHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetByIdHttpGetIn">
+    <wsdl:part name="req_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:Translation" />
+  </wsdl:message>
   <wsdl:message name="InitializeHttpPostIn" />
   <wsdl:message name="InitializeHttpPostOut" />
   <wsdl:message name="UserCaptchaHttpPostIn">
@@ -1094,6 +1367,66 @@
   <wsdl:message name="MessageGetByIdHttpPostOut">
     <wsdl:part name="Body" element="tns:Message" />
   </wsdl:message>
+  <wsdl:message name="TransAnsAddHttpPostIn">
+    <wsdl:part name="req_id" type="s:string" />
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="message" type="s:string" />
+    <wsdl:part name="rating" type="s:string" />
+    <wsdl:part name="date" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransAnsAddHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="TransGetApprByUserHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransGetApprByUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
+  </wsdl:message>
+  <wsdl:message name="TransGetByReqIdHttpPostIn">
+    <wsdl:part name="req_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransGetByReqIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:Translation" />
+  </wsdl:message>
+  <wsdl:message name="TransGetPendingByUserHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransGetPendingByUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
+  </wsdl:message>
+  <wsdl:message name="TransGetUnApprByUserHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransGetUnApprByUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
+  </wsdl:message>
+  <wsdl:message name="TransReqAddHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="src_lang_id" type="s:string" />
+    <wsdl:part name="dst_lang_id" type="s:string" />
+    <wsdl:part name="subject" type="s:string" />
+    <wsdl:part name="message" type="s:string" />
+    <wsdl:part name="dst_id" type="s:string" />
+    <wsdl:part name="dst_type" type="s:string" />
+    <wsdl:part name="date" type="s:string" />
+    <wsdl:part name="msg_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransReqAddHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="TransReqCloseHttpPostIn">
+    <wsdl:part name="req_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransReqCloseHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetByIdHttpPostIn">
+    <wsdl:part name="req_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransReqGetByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:Translation" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Initialize">
       <wsdl:input message="tns:InitializeSoapIn" />
@@ -1222,6 +1555,38 @@
     <wsdl:operation name="MessageGetById">
       <wsdl:input message="tns:MessageGetByIdSoapIn" />
       <wsdl:output message="tns:MessageGetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransAnsAdd">
+      <wsdl:input message="tns:TransAnsAddSoapIn" />
+      <wsdl:output message="tns:TransAnsAddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetApprByUser">
+      <wsdl:input message="tns:TransGetApprByUserSoapIn" />
+      <wsdl:output message="tns:TransGetApprByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetByReqId">
+      <wsdl:input message="tns:TransGetByReqIdSoapIn" />
+      <wsdl:output message="tns:TransGetByReqIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetPendingByUser">
+      <wsdl:input message="tns:TransGetPendingByUserSoapIn" />
+      <wsdl:output message="tns:TransGetPendingByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetUnApprByUser">
+      <wsdl:input message="tns:TransGetUnApprByUserSoapIn" />
+      <wsdl:output message="tns:TransGetUnApprByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqAdd">
+      <wsdl:input message="tns:TransReqAddSoapIn" />
+      <wsdl:output message="tns:TransReqAddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqClose">
+      <wsdl:input message="tns:TransReqCloseSoapIn" />
+      <wsdl:output message="tns:TransReqCloseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetById">
+      <wsdl:input message="tns:TransReqGetByIdSoapIn" />
+      <wsdl:output message="tns:TransReqGetByIdSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
@@ -1353,6 +1718,38 @@
       <wsdl:input message="tns:MessageGetByIdHttpGetIn" />
       <wsdl:output message="tns:MessageGetByIdHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="TransAnsAdd">
+      <wsdl:input message="tns:TransAnsAddHttpGetIn" />
+      <wsdl:output message="tns:TransAnsAddHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetApprByUser">
+      <wsdl:input message="tns:TransGetApprByUserHttpGetIn" />
+      <wsdl:output message="tns:TransGetApprByUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetByReqId">
+      <wsdl:input message="tns:TransGetByReqIdHttpGetIn" />
+      <wsdl:output message="tns:TransGetByReqIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetPendingByUser">
+      <wsdl:input message="tns:TransGetPendingByUserHttpGetIn" />
+      <wsdl:output message="tns:TransGetPendingByUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetUnApprByUser">
+      <wsdl:input message="tns:TransGetUnApprByUserHttpGetIn" />
+      <wsdl:output message="tns:TransGetUnApprByUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqAdd">
+      <wsdl:input message="tns:TransReqAddHttpGetIn" />
+      <wsdl:output message="tns:TransReqAddHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqClose">
+      <wsdl:input message="tns:TransReqCloseHttpGetIn" />
+      <wsdl:output message="tns:TransReqCloseHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetById">
+      <wsdl:input message="tns:TransReqGetByIdHttpGetIn" />
+      <wsdl:output message="tns:TransReqGetByIdHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpPost">
     <wsdl:operation name="Initialize">
@@ -1482,6 +1879,38 @@
     <wsdl:operation name="MessageGetById">
       <wsdl:input message="tns:MessageGetByIdHttpPostIn" />
       <wsdl:output message="tns:MessageGetByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransAnsAdd">
+      <wsdl:input message="tns:TransAnsAddHttpPostIn" />
+      <wsdl:output message="tns:TransAnsAddHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetApprByUser">
+      <wsdl:input message="tns:TransGetApprByUserHttpPostIn" />
+      <wsdl:output message="tns:TransGetApprByUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetByReqId">
+      <wsdl:input message="tns:TransGetByReqIdHttpPostIn" />
+      <wsdl:output message="tns:TransGetByReqIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetPendingByUser">
+      <wsdl:input message="tns:TransGetPendingByUserHttpPostIn" />
+      <wsdl:output message="tns:TransGetPendingByUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransGetUnApprByUser">
+      <wsdl:input message="tns:TransGetUnApprByUserHttpPostIn" />
+      <wsdl:output message="tns:TransGetUnApprByUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqAdd">
+      <wsdl:input message="tns:TransReqAddHttpPostIn" />
+      <wsdl:output message="tns:TransReqAddHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqClose">
+      <wsdl:input message="tns:TransReqCloseHttpPostIn" />
+      <wsdl:output message="tns:TransReqCloseHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetById">
+      <wsdl:input message="tns:TransReqGetByIdHttpPostIn" />
+      <wsdl:output message="tns:TransReqGetByIdHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -1767,6 +2196,78 @@
     </wsdl:operation>
     <wsdl:operation name="MessageGetById">
       <soap:operation soapAction="http://omniproject.org/MessageGetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransAnsAdd">
+      <soap:operation soapAction="http://omniproject.org/TransAnsAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetApprByUser">
+      <soap:operation soapAction="http://omniproject.org/TransGetApprByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetByReqId">
+      <soap:operation soapAction="http://omniproject.org/TransGetByReqId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetPendingByUser">
+      <soap:operation soapAction="http://omniproject.org/TransGetPendingByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetUnApprByUser">
+      <soap:operation soapAction="http://omniproject.org/TransGetUnApprByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqAdd">
+      <soap:operation soapAction="http://omniproject.org/TransReqAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqClose">
+      <soap:operation soapAction="http://omniproject.org/TransReqClose" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetById">
+      <soap:operation soapAction="http://omniproject.org/TransReqGetById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2065,6 +2566,78 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TransAnsAdd">
+      <soap12:operation soapAction="http://omniproject.org/TransAnsAdd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetApprByUser">
+      <soap12:operation soapAction="http://omniproject.org/TransGetApprByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetByReqId">
+      <soap12:operation soapAction="http://omniproject.org/TransGetByReqId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetPendingByUser">
+      <soap12:operation soapAction="http://omniproject.org/TransGetPendingByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetUnApprByUser">
+      <soap12:operation soapAction="http://omniproject.org/TransGetUnApprByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqAdd">
+      <soap12:operation soapAction="http://omniproject.org/TransReqAdd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqClose">
+      <soap12:operation soapAction="http://omniproject.org/TransReqClose" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetById">
+      <soap12:operation soapAction="http://omniproject.org/TransReqGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpGet" type="tns:WebServiceHttpGet">
     <http:binding verb="GET" />
@@ -2334,6 +2907,78 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TransAnsAdd">
+      <http:operation location="/TransAnsAdd" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetApprByUser">
+      <http:operation location="/TransGetApprByUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetByReqId">
+      <http:operation location="/TransGetByReqId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetPendingByUser">
+      <http:operation location="/TransGetPendingByUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetUnApprByUser">
+      <http:operation location="/TransGetUnApprByUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqAdd">
+      <http:operation location="/TransReqAdd" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqClose">
+      <http:operation location="/TransReqClose" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetById">
+      <http:operation location="/TransReqGetById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpPost" type="tns:WebServiceHttpPost">
     <http:binding verb="POST" />
@@ -2596,6 +3241,78 @@
     </wsdl:operation>
     <wsdl:operation name="MessageGetById">
       <http:operation location="/MessageGetById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransAnsAdd">
+      <http:operation location="/TransAnsAdd" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetApprByUser">
+      <http:operation location="/TransGetApprByUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetByReqId">
+      <http:operation location="/TransGetByReqId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetPendingByUser">
+      <http:operation location="/TransGetPendingByUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransGetUnApprByUser">
+      <http:operation location="/TransGetUnApprByUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqAdd">
+      <http:operation location="/TransReqAdd" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqClose">
+      <http:operation location="/TransReqClose" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransReqGetById">
+      <http:operation location="/TransReqGetById" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

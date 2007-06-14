@@ -99,6 +99,9 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Web References\org.omniproject\Translation.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\org.omniproject\User.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
