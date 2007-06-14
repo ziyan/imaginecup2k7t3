@@ -85,6 +85,11 @@
                             <asp:Label ID="myGroupsLabel" runat="server" Text="My Groups" meta:resourcekey="myGroupsLabelResource1"></asp:Label>
                         </asp:HyperLink>
 				    </li>
+				    <li>
+				        <asp:HyperLink ID="introduceLink" runat="server" NavigateUrl="~/Introduce.aspx" meta:resourcekey="introduceResource1">
+                            <asp:Label ID="introduceLabel" runat="server" Text="Introduce" meta:resourcekey="introduceLabelResource1"></asp:Label>
+                        </asp:HyperLink>
+				    </li>
 			    </ul>
 			    <br />
 			    <ul>

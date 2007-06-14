@@ -135,6 +135,9 @@
   <data name="myGroupsLabelResource1.Text" xml:space="preserve">
     <value>My Groups</value>
   </data>
+  <data name="introduceLabelResource1.Text" xml:space="preserve">
+    <value>Introduce</value>
+  </data>
   <data name="myMessagesLabelResource1.Text" xml:space="preserve">
     <value>My Messages</value>
   </data>

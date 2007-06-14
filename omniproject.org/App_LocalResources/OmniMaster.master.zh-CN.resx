@@ -141,6 +141,9 @@
   <data name="myGroupsLabelResource1.Text" xml:space="preserve">
     <value>我加入的组</value>
   </data>
+  <data name="introduceLabelResource1.Text" xml:space="preserve">
+    <value>寻找与我亲近的用户</value>
+  </data>
   <data name="myMessagesLabelResource1.Text" xml:space="preserve">
     <value>我的消息</value>
   </data>
