@@ -118,7 +118,12 @@ public partial class MyMessages : System.Web.UI.Page
         sl.Text = un;
         sl.Font.Bold = m.unread;
         sl.Font.Italic = (selMsgId == m.id);
-        sender.Controls.Add(sl);
+
+        HyperLink senderLink = new HyperLink();
+        senderLink.NavigateUrl = "~/ViewProfile.aspx?id=" + userid;
+        senderLink.Controls.Add(sl);
+
+        sender.Controls.Add(senderLink);
         if (border)
         {
             sender.BorderStyle = BorderStyle.Solid;
@@ -131,7 +136,12 @@ public partial class MyMessages : System.Web.UI.Page
         rl.Text = unR;
         rl.Font.Bold = m.unread;
         rl.Font.Italic = (selMsgId == m.id);
-        recipient.Controls.Add(rl);
+
+        HyperLink recipientLink = new HyperLink();
+        recipientLink.NavigateUrl = "~/ViewProfile.aspx?id=" + useridR;
+        recipientLink.Controls.Add(rl);
+
+        recipient.Controls.Add(recipientLink);
         if (border)
         {
             recipient.BorderStyle = BorderStyle.Solid;

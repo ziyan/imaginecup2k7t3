@@ -105,7 +105,12 @@ public partial class ViewProfile : System.Web.UI.Page
                 break;
             }
         }
-        if (found)
+        if (currentUser.id == userId)
+        {
+            removeFavorite.Visible = false;
+            addFavorite.Visible = false;
+        }
+        else if (found)
         {
             removeFavorite.Visible = true;
             addFavorite.Visible = false;
@@ -158,7 +163,19 @@ public partial class ViewProfile : System.Web.UI.Page
         User currentUser = Common.GetCurrentUser();
         if (currentUser != null)
         {
-            // FIXME: implement
+            string userIdString = Request.QueryString["id"];
+            if (userIdString != null)
+            {
+                try
+                {
+                    int userId = Convert.ToInt32(userIdString);
+                    Response.Redirect("~/ComposeMessage.aspx?user_id=" + 
+                            userId.ToString());
+                }
+                catch (Exception)
+                {
+                }
+            }
         }
         Response.Redirect(Request.Url.ToString());
     }

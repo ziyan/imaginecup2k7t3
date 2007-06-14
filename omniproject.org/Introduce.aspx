@@ -18,6 +18,24 @@
         <br />
         <br />
         <asp:Table ID="introduceTable" runat="server">
+            <asp:TableHeaderRow>
+                <asp:TableCell>
+                    <asp:Label ID="introduceUsernameLabel" runat="server" Text="Username">
+                    </asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Label ID="introduceUserRatingLabel" runat="server" Text="User Rating">
+                    </asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Label ID="introduceSystemRatingLabel" runat="server" Text="System Rating">
+                    </asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Label ID="introduceSimilarityLabel" runat="server" Text="Similarity">
+                    </asp:Label>
+                </asp:TableCell>
+            </asp:TableHeaderRow>
         </asp:Table>
         <asp:Label ID="introduceNoneMessage" runat="server" Text="No users found." Visible="False"></asp:Label>
     </asp:Panel>

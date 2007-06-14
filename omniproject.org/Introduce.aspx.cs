@@ -64,10 +64,30 @@ public partial class Introduce : System.Web.UI.Page
             HyperLink newLink = new HyperLink();
             newLink.Text = introduceUser.user.name;
             newLink.NavigateUrl = "~/ViewProfile.aspx?id=" + introduceUser.user.id;
-            TableCell newCell = new TableCell();
-            newCell.Controls.Add(newLink);
+            TableCell newUsernameCell = new TableCell();
+            newUsernameCell.Controls.Add(newLink);
+
+            Label newUserRatingLabel = new Label();
+            newUserRatingLabel.Text = introduceUser.self_rating.ToString();
+            TableCell newUserRatingCell = new TableCell();
+            newUserRatingCell.Controls.Add(newUserRatingLabel);
+
+            Label newSystemRatingLabel = new Label();
+            newSystemRatingLabel.Text = introduceUser.net_rating.ToString();
+            TableCell newSystemRatingCell = new TableCell();
+            newSystemRatingCell.Controls.Add(newSystemRatingLabel);
+
+            Label newSimilarityLabel = new Label();
+            double similarityRating = introduceUser.simil*100;
+            newSimilarityLabel.Text = similarityRating.ToString("0.00");
+            TableCell newSimilarityCell = new TableCell();
+            newSimilarityCell.Controls.Add(newSimilarityLabel);
+
             TableRow newRoll = new TableRow();
-            newRoll.Cells.Add(newCell);
+            newRoll.Cells.Add(newUsernameCell);
+            newRoll.Cells.Add(newUserRatingCell);
+            newRoll.Cells.Add(newSystemRatingCell);
+            newRoll.Cells.Add(newSimilarityCell);
             introduceTable.Rows.Add(newRoll);
         }
     }
@@ -86,8 +106,7 @@ public partial class Introduce : System.Web.UI.Page
         
         ListItem languageItem = 
                 introduceLanguageDropDown.Items[introduceLanguageDropDown.SelectedIndex];
-        // FIXME: this is bad!
-        Response.Redirect(Request.Url.ToString() + "?introduceCount=" + 
+        Response.Redirect("~/Introduce.aspx?introduceCount=" + 
                 introduceCountText.Text + "&introduceLanguage=" + 
                 Convert.ToInt32(languageItem.Value));
     }
