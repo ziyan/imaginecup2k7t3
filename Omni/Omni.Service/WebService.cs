@@ -498,5 +498,14 @@ namespace Omni.Service
             if (limit <= 0 || lang_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.UserRankByRating(lang_id,limit, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public Translation[] TransSearch(string keyword, int src_lang_id, int dst_lang_id)
+        {
+            CheckInit();
+            if (src_lang_id < 0 || dst_lang_id < 0) throw new ArgumentOutOfRangeException();
+            if (keyword == null) throw new NullReferenceException();
+            return Data.StoredProcedure.TransSearch( keyword, src_lang_id, dst_lang_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
     }
 }

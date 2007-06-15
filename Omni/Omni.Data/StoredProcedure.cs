@@ -841,6 +841,35 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
+        public static Translation[] TransSearch(string keyword, int src_lang_id, int dst_lang_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_search";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@keyword_id", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters.Add("@arc_lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@dst_lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = keyword;
+            cmd.Parameters[1].Value = src_lang_id;
+            cmd.Parameters[2].Value = dst_lang_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> result = new List<Translation>();
+            while (reader.Read())
+            {
+                result.Add(new Translation(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        0, 0,
+                                        Convert.ToString(reader["subject"]),
+                                        "", Convert.ToDateTime(reader["date"]), true,
+                                        0, 0));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
     }
 }
 
