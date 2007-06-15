@@ -784,6 +784,22 @@
           <s:element minOccurs="1" maxOccurs="1" name="net_rating" type="s:float" />
         </s:sequence>
       </s:complexType>
+      <s:element name="TransSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="keyword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="src_lang_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dst_lang_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransSearchResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
       <s:element name="int" type="s:int" />
       <s:element name="User" nillable="true" type="tns:User" />
@@ -1078,6 +1094,12 @@
   <wsdl:message name="UserRankByRatingSoapOut">
     <wsdl:part name="parameters" element="tns:UserRankByRatingResponse" />
   </wsdl:message>
+  <wsdl:message name="TransSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:TransSearch" />
+  </wsdl:message>
+  <wsdl:message name="TransSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:TransSearchResponse" />
+  </wsdl:message>
   <wsdl:message name="InitializeHttpGetIn" />
   <wsdl:message name="InitializeHttpGetOut" />
   <wsdl:message name="UserCaptchaHttpGetIn">
@@ -1370,6 +1392,14 @@
   </wsdl:message>
   <wsdl:message name="UserRankByRatingHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfUserRankRating" />
+  </wsdl:message>
+  <wsdl:message name="TransSearchHttpGetIn">
+    <wsdl:part name="keyword" type="s:string" />
+    <wsdl:part name="src_lang_id" type="s:string" />
+    <wsdl:part name="dst_lang_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransSearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpPostIn" />
   <wsdl:message name="InitializeHttpPostOut" />
@@ -1664,6 +1694,14 @@
   <wsdl:message name="UserRankByRatingHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfUserRankRating" />
   </wsdl:message>
+  <wsdl:message name="TransSearchHttpPostIn">
+    <wsdl:part name="keyword" type="s:string" />
+    <wsdl:part name="src_lang_id" type="s:string" />
+    <wsdl:part name="dst_lang_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransSearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Initialize">
       <wsdl:input message="tns:InitializeSoapIn" />
@@ -1848,6 +1886,10 @@
     <wsdl:operation name="UserRankByRating">
       <wsdl:input message="tns:UserRankByRatingSoapIn" />
       <wsdl:output message="tns:UserRankByRatingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransSearch">
+      <wsdl:input message="tns:TransSearchSoapIn" />
+      <wsdl:output message="tns:TransSearchSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
@@ -2035,6 +2077,10 @@
       <wsdl:input message="tns:UserRankByRatingHttpGetIn" />
       <wsdl:output message="tns:UserRankByRatingHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="TransSearch">
+      <wsdl:input message="tns:TransSearchHttpGetIn" />
+      <wsdl:output message="tns:TransSearchHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpPost">
     <wsdl:operation name="Initialize">
@@ -2220,6 +2266,10 @@
     <wsdl:operation name="UserRankByRating">
       <wsdl:input message="tns:UserRankByRatingHttpPostIn" />
       <wsdl:output message="tns:UserRankByRatingHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransSearch">
+      <wsdl:input message="tns:TransSearchHttpPostIn" />
+      <wsdl:output message="tns:TransSearchHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -2631,6 +2681,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserRankByRating">
       <soap:operation soapAction="http://omniproject.org/UserRankByRating" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransSearch">
+      <soap:operation soapAction="http://omniproject.org/TransSearch" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3055,6 +3114,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TransSearch">
+      <soap12:operation soapAction="http://omniproject.org/TransSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpGet" type="tns:WebServiceHttpGet">
     <http:binding verb="GET" />
@@ -3450,6 +3518,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TransSearch">
+      <http:operation location="/TransSearch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpPost" type="tns:WebServiceHttpPost">
     <http:binding verb="POST" />
@@ -3838,6 +3915,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserRankByRating">
       <http:operation location="/UserRankByRating" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransSearch">
+      <http:operation location="/TransSearch" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

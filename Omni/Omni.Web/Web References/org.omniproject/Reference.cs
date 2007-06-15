@@ -121,6 +121,8 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback UserRankByRatingOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TransSearchOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -296,6 +298,9 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event UserRankByRatingCompletedEventHandler UserRankByRatingCompleted;
+        
+        /// <remarks/>
+        public event TransSearchCompletedEventHandler TransSearchCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1706,6 +1711,39 @@ namespace Omni.Web.org.omniproject {
             if ((this.UserRankByRatingCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserRankByRatingCompleted(this, new UserRankByRatingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransSearch", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation[] TransSearch(string keyword, int src_lang_id, int dst_lang_id) {
+            object[] results = this.Invoke("TransSearch", new object[] {
+                        keyword,
+                        src_lang_id,
+                        dst_lang_id});
+            return ((Translation[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TransSearchAsync(string keyword, int src_lang_id, int dst_lang_id) {
+            this.TransSearchAsync(keyword, src_lang_id, dst_lang_id, null);
+        }
+        
+        /// <remarks/>
+        public void TransSearchAsync(string keyword, int src_lang_id, int dst_lang_id, object userState) {
+            if ((this.TransSearchOperationCompleted == null)) {
+                this.TransSearchOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransSearchOperationCompleted);
+            }
+            this.InvokeAsync("TransSearch", new object[] {
+                        keyword,
+                        src_lang_id,
+                        dst_lang_id}, this.TransSearchOperationCompleted, userState);
+        }
+        
+        private void OnTransSearchOperationCompleted(object arg) {
+            if ((this.TransSearchCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TransSearchCompleted(this, new TransSearchCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3437,6 +3475,32 @@ namespace Omni.Web.org.omniproject {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((UserRankRating[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void TransSearchCompletedEventHandler(object sender, TransSearchCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TransSearchCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TransSearchCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation[])(this.results[0]));
             }
         }
     }
