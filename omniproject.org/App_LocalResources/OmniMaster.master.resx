@@ -138,6 +138,12 @@
   <data name="introduceLabelResource1.Text" xml:space="preserve">
     <value>Introduce</value>
   </data>
+  <data name="searchUserLabelResource1.Text" xml:space="preserve">
+    <value>Search User</value>
+  </data>
+  <data name="hallOfFameLabelResource1.Text" xml:space="preserve">
+    <value>Hall Of Fame</value>
+  </data>
   <data name="myMessagesLabelResource1.Text" xml:space="preserve">
     <value>My Messages</value>
   </data>

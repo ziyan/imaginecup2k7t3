@@ -144,6 +144,12 @@
   <data name="introduceLabelResource1.Text" xml:space="preserve">
     <value>寻找与我亲近的用户</value>
   </data>
+  <data name="searchUserLabelResource1.Text" xml:space="preserve">
+    <value>搜索用户</value>
+  </data>
+  <data name="hallOfFameLabelResource1.Text" xml:space="preserve">
+    <value>排行榜</value>
+  </data>
   <data name="myMessagesLabelResource1.Text" xml:space="preserve">
     <value>我的消息</value>
   </data>
