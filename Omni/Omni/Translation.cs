@@ -65,6 +65,7 @@ namespace Omni
             this.date = date;
             this.completed = completed;
             this.msg_id = msg_id;
+            this.req_user = req_user;
 
             this.trans_id = trans_id;
             this.trans_body = trans_body;
