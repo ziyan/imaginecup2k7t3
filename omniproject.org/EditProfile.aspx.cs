@@ -44,7 +44,7 @@ public partial class EditProfile : System.Web.UI.Page
             interestsPicker.SaveInterestsToUser(currentUser.id);
             languagePicker.SaveLanguagesToUser(currentUser.id);
 
-            Response.Redirect(Request.Url.ToString());
+            Response.Redirect("~/Default.aspx");
         }
     }
 

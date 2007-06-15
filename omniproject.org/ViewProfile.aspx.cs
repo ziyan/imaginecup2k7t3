@@ -144,7 +144,7 @@ public partial class ViewProfile : System.Web.UI.Page
                 Common.GetWebService().UserFavorUserAddById(currentUser.id, userId);
             }
         }
-        Response.Redirect(Request.Url.ToString());
+        Response.Redirect("~/MyFavorites.aspx");
     }
 
     protected void removeFavorite_Click(object sender, EventArgs e)
@@ -161,7 +161,7 @@ public partial class ViewProfile : System.Web.UI.Page
                 Common.GetWebService().UserFavorUserDeleteById(currentUser.id, userId);
             }
         }
-        Response.Redirect(Request.Url.ToString());
+        Response.Redirect("~/MyFavorites.aspx");
     }
 
     protected void sendMessage_Click(object sender, EventArgs e)
