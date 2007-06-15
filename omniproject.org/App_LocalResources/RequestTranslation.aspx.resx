@@ -141,6 +141,9 @@
   <data name="ListItemResource2.Value" xml:space="preserve">
     <value>Global / Any</value>
   </data>
+  <data name="otherListItem.Text" xml:space="preserve">
+    <value>(Other)</value>
+  </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Request a Translation</value>
   </data>
