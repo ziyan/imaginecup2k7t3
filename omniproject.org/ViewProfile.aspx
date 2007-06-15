@@ -5,6 +5,7 @@
 <asp:Content ID="mainId" ContentPlaceHolderID="Main" Runat="Server">
     <asp:Panel runat="server" ID="userPanel">
         <asp:Label ID="profileLabel" runat="server" Text="User Profile" CssClass="title"></asp:Label>
+        <asp:Label ID="profileEndingLabel" runat="server" Text="'s Profile" CssClass="title" Visible="false"></asp:Label>
         <br />
         <asp:Table ID="basicInfoTable" runat="server">
             <asp:TableRow>

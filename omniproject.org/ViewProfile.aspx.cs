@@ -28,7 +28,8 @@ public partial class ViewProfile : System.Web.UI.Page
         int userId = Convert.ToInt32(idString);
         User user = Common.GetWebService().UserGetById(userId);
 
-        profileLabel.Text = user.username + "'s Profile";
+        profileLabel.Text = user.username;
+        profileEndingLabel.Visible = true;
         displayNameText.Text = user.name;
         emailText.Text = user.email;
         descriptionText.Text = user.description;
