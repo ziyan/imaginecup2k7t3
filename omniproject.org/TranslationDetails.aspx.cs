@@ -117,21 +117,7 @@ public partial class TranslationDetails : System.Web.UI.Page
             else if (!t.completed && /*t.type == TranslationDataType.Request && */ t.req_user != user.id)
                 transView.ActiveViewIndex = 2;
         }
-
-        if (t.trans_rating > 0 && t.trans_rating <= 5)
-        {
-            readRatingRBL.SelectedIndex = t.trans_rating - 1;
-            writeRatingRBL.Visible = false;
-            rateAnsLabel.Visible = false;
-
-            writePrevRatingRBL.Visible = false;
-            prevRateLabel.Visible = false;
-        }
-        if (t.type != TranslationDataType.Full)
-        {
-            writePrevRatingRBL.Visible = false;
-            prevRateLabel.Visible = false;
-        }
+        RatingUserControl1.Ans_Id = t.trans_id;
     }
     protected void submitTransButton_Click(object sender, EventArgs e)
     {
@@ -143,24 +129,10 @@ public partial class TranslationDetails : System.Web.UI.Page
 
         Server.Transfer("MyTranslations.aspx");
     }
-    protected void writeRatingRBL_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        Common.GetWebService().TransAnsRateById(Common.GetCurrentUser().id, Convert.ToInt32(transAnsId.Text), (short)(writeRatingRBL.SelectedIndex+1));
-        readRatingRBL.SelectedIndex = writeRatingRBL.SelectedIndex;
-        writeRatingRBL.Visible = false;
-        rateAnsLabel.Visible = false;
-    }
     protected void approveTransButton_Click(object sender, EventArgs e)
     {
         Common.GetWebService().TransReqClose(Convert.ToInt32(Request.QueryString["id"]), Convert.ToInt32(Request.QueryString["ans_id"]));
         Server.Transfer("MyTranslations.aspx");
-    }
-    protected void writePrevRatingRBL_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        Common.GetWebService().TransAnsRateById(Common.GetCurrentUser().id, Convert.ToInt32(transAnsId.Text), (short)(writePrevRatingRBL.SelectedIndex + 1));
-        readRatingRBL.SelectedIndex = writePrevRatingRBL.SelectedIndex;
-        prevRateLabel.Visible = false;
-        writePrevRatingRBL.Visible = false;
     }
     protected void composeFromTransButton_Click(object sender, EventArgs e)
     {

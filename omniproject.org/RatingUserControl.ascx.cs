@@ -16,7 +16,7 @@ public partial class RatingUserControl : System.Web.UI.UserControl
     public int Ans_Id
     {
         get { return ans_id; }
-        set { ans_id = value; refresh(); }
+        set { ans_id = value; }
     }
     public bool Rated
     {
@@ -24,7 +24,8 @@ public partial class RatingUserControl : System.Web.UI.UserControl
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        refresh();
+        if(!IsPostBack)
+            refresh();
     }
     private void refresh()
     {
@@ -43,23 +44,22 @@ public partial class RatingUserControl : System.Web.UI.UserControl
             contentRating.Enabled = true;
             rated = true;
         }
-
         if (rating <= 0) rating = 1;
         if (rating > 5) rating = 5;
-        data[rating - 1] = 1;
+        data[rating-1] = 1;
+        contentRating.DataSource = data;
+        contentRating.ItemId = Guid.NewGuid();
+        contentRating.DataBind();
+        
     }
     protected void contentRating_Rating(object sender, Spaanjaars.Toolkit.RateEventArgs e)
     {
-        if (rated) e.Cancel = true;
+        if (rated||e.HasRated) e.Cancel = true;
     }
     protected void contentRating_Rated(object sender, Spaanjaars.Toolkit.RateEventArgs e)
     {
-        if (rated)
-        {
-            e.Cancel = true;
-            return;
-        }
         rated = true;
         Omni.Web.Common.GetWebService().TransAnsRateById(Omni.Web.Common.GetCurrentUser() == null ? 0 : Omni.Web.Common.GetCurrentUser().id, ans_id, Convert.ToInt16(e.RateValue));
+        refresh();
     }
 }
