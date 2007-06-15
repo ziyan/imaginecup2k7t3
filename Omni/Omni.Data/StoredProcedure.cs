@@ -461,7 +461,7 @@ namespace Omni.Data
             object ret = cmd.ExecuteScalar();
             if (ret == null)
                 return 0;
-            return (int)ret;
+            return Convert.ToInt32(ret);
         }
         public static Message[] MessageRecvByUser(int dst_id, MessageDestinationType dst_type, SqlConnection cn)
         {
