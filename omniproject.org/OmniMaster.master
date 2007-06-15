@@ -78,8 +78,8 @@
                         </asp:HyperLink>
 				    </li>
 				    <li>
-				        <asp:HyperLink ID="requestTransLink" runat="server" NavigateUrl="~/RequestTranslation.aspx" meta:resourcekey="requestTransLinkResource1">
-                            <asp:Label ID="requestTransLabel" runat="server" Text="Request Translation" meta:resourcekey="requestTransLabelResource1"></asp:Label>
+				        <asp:HyperLink ID="introduceLink" runat="server" NavigateUrl="~/Introduce.aspx" meta:resourcekey="introduceResource1">
+                            <asp:Label ID="introduceLabel" runat="server" Text="Introduce" meta:resourcekey="introduceLabelResource1"></asp:Label>
                         </asp:HyperLink>
 				    </li>
 				    <li>
@@ -88,8 +88,18 @@
                         </asp:HyperLink>
 				    </li>
 				    <li>
+				        <asp:HyperLink ID="searchUserLink" runat="server" NavigateUrl="~/SearchUser.aspx" meta:resourcekey="searchUserResource1">
+                        <asp:Label ID="searchUserLabel" runat="server" Text="Search User" meta:resourcekey="searchUserLabelResource1"></asp:Label>
+                        </asp:HyperLink>
+				    </li>
+				    <li>
 				        <asp:HyperLink ID="myMessagesLink" runat="server" NavigateUrl="~/MyMessages.aspx" meta:resourcekey="myMessagesLinkResource1">
                             <asp:Label ID="myMessagesLabel" runat="server" Text="My Messages" meta:resourcekey="myMessagesLabelResource1"></asp:Label>
+                        </asp:HyperLink>
+				    </li>
+				    <li>
+				        <asp:HyperLink ID="requestTransLink" runat="server" NavigateUrl="~/RequestTranslation.aspx" meta:resourcekey="requestTransLinkResource1">
+                            <asp:Label ID="requestTransLabel" runat="server" Text="Request Translation" meta:resourcekey="requestTransLabelResource1"></asp:Label>
                         </asp:HyperLink>
 				    </li>
 				    <li>
@@ -102,16 +112,8 @@
                             <asp:Label ID="myGroupsLabel" runat="server" Text="My Groups" meta:resourcekey="myGroupsLabelResource1"></asp:Label>
                         </asp:HyperLink>
 				    </li>
-				    <li>
-				        <asp:HyperLink ID="introduceLink" runat="server" NavigateUrl="~/Introduce.aspx" meta:resourcekey="introduceResource1">
-                            <asp:Label ID="introduceLabel" runat="server" Text="Introduce" meta:resourcekey="introduceLabelResource1"></asp:Label>
-                        </asp:HyperLink>
-				    </li>
-				    <li>
-				        <asp:HyperLink ID="searchUserLink" runat="server" NavigateUrl="~/SearchUser.aspx" meta:resourcekey="searchUserResource1">
-                        <asp:Label ID="searchUserLabel" runat="server" Text="Search User" meta:resourcekey="searchUserLabelResource1"></asp:Label>
-                        </asp:HyperLink>
-				    </li>
+				    
+				    
 			    </ul>
             </asp:Panel>
         </div>
