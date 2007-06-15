@@ -34,6 +34,7 @@ namespace Omni
             this.date = date;
             this.completed = completed;
             this.msg_id = msg_id;
+            this.req_user = req_user;
         }
         public Translation(int request_id,
                             int src_lang_id,
