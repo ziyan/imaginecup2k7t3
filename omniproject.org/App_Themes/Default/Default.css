@@ -14,24 +14,24 @@ div.topbar
 	background-color: #0b3558;
 	color: White;	
 	border-color: #0b3558;
-	height: 50px;
+	height: 35px;
 }
 
 div.topbarLeft
 {
-	margin: 10px;
+	margin: 5px;
 }
 
 div.topbarRight
 {
-	margin: 12px;
+	margin: 8px;
 }
 
 div.lower
 {
 	background-image: url(grad1.jpg);
 	background-repeat: repeat-x;
-	margin-top: 20px;
+	margin-top: 5px;
 }
 
 div.lowerleft
@@ -57,7 +57,7 @@ div.lowerright
 .titleLink
 {
 	color: White;
-	font-size:18pt;
+	font-size:14pt;
 }
 
 .title
@@ -117,4 +117,9 @@ table.displayTable td
 input, textarea, select
 {
 	font-size: 9pt;
+}
+textarea
+{
+	width: 300px;
+	height: 100px;
 }
