@@ -10,10 +10,10 @@ Title="" Theme="Default" %>
 <body style="background-image: url(App_Themes/Default/grad1.jpg); background-repeat: repeat-x;">
     <form id="form1" runat="server">
     <center>
-    <asp:Image ID="logoImg" runat="server" ImageAlign="Middle" ImageUrl="~/App_Themes/Default/omnilogo_lg.gif" />
-    </center>
+    <asp:Image ID="logoImg" runat="server" ImageAlign="Middle" ImageUrl="~/App_Themes/Default/omnilogo_lg.gif" style="margin-top:200px"/>
     <asp:Panel runat="server" ID="languagePanel" HorizontalAlign="Center" CssClass="langpanel">
     </asp:Panel>
+    </center>
     </form>
 </body>
 </html>

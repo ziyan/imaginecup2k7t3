@@ -22,8 +22,6 @@ public partial class SelectPreferredLanguage : System.Web.UI.Page
         foreach (Language lang in languages)
         {
             LinkButton lb = new LinkButton();
-            lb.Font.Underline = false;
-            lb.Font.Size = 24;
             lb.SkinID = "black";
             String id = "langButton" + lang.id.ToString();
             lb.ID = id;
@@ -34,9 +32,10 @@ public partial class SelectPreferredLanguage : System.Web.UI.Page
             languagePanel.Controls.Add(lb);
             Label newln = new Label();
             newln.ID = "newlnLabel" + lang.id.ToString();
-            newln.Text = "<br>";
+            newln.Text = "   |   ";
             languagePanel.Controls.Add(newln);
         }
+        languagePanel.Controls.RemoveAt(languagePanel.Controls.Count - 1);
     }
     protected void LinkButton_Click(object sender, EventArgs e)
     {
