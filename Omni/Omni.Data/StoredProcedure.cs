@@ -544,7 +544,7 @@ namespace Omni.Data
                 return null;
             }
         }
-        public static int TransAnsAdd( int req_id, int user_id, string message, int rating, SqlConnection cn)
+        public static int TransAnsAdd( int req_id, int user_id, string message, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
@@ -554,11 +554,9 @@ namespace Omni.Data
             cmd.Parameters.Add("@req_id", System.Data.SqlDbType.Int);
             cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
             cmd.Parameters.Add("@message", System.Data.SqlDbType.NText);
-            cmd.Parameters.Add("@rating", System.Data.SqlDbType.TinyInt);
             cmd.Parameters[0].Value = req_id;
             cmd.Parameters[1].Value = user_id;
             cmd.Parameters[2].Value = message;
-            cmd.Parameters[3].Value = rating;
             return cmd.ExecuteNonQuery();
         }
         public static Translation[] TransGetApprByUser(int user_id, SqlConnection cn)

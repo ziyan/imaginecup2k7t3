@@ -528,6 +528,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="MessagePendingByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MessagePendingByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MessagePendingByUserResult" type="tns:ArrayOfMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="MessageGetById">
         <s:complexType>
           <s:sequence>
@@ -548,16 +562,11 @@
             <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="rating" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="TransAnsAddResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="TransAnsAddResult" type="s:int" />
-          </s:sequence>
-        </s:complexType>
+        <s:complexType />
       </s:element>
       <s:element name="TransGetApprByUser">
         <s:complexType>
@@ -679,6 +688,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ans_id" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1016,6 +1026,12 @@
   <wsdl:message name="MessageSentByUserSoapOut">
     <wsdl:part name="parameters" element="tns:MessageSentByUserResponse" />
   </wsdl:message>
+  <wsdl:message name="MessagePendingByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:MessagePendingByUser" />
+  </wsdl:message>
+  <wsdl:message name="MessagePendingByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:MessagePendingByUserResponse" />
+  </wsdl:message>
   <wsdl:message name="MessageGetByIdSoapIn">
     <wsdl:part name="parameters" element="tns:MessageGetById" />
   </wsdl:message>
@@ -1303,6 +1319,12 @@
   <wsdl:message name="MessageSentByUserHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfMessage" />
   </wsdl:message>
+  <wsdl:message name="MessagePendingByUserHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MessagePendingByUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMessage" />
+  </wsdl:message>
   <wsdl:message name="MessageGetByIdHttpGetIn">
     <wsdl:part name="msg_id" type="s:string" />
   </wsdl:message>
@@ -1313,11 +1335,8 @@
     <wsdl:part name="req_id" type="s:string" />
     <wsdl:part name="user_id" type="s:string" />
     <wsdl:part name="message" type="s:string" />
-    <wsdl:part name="rating" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="TransAnsAddHttpGetOut">
-    <wsdl:part name="Body" element="tns:int" />
-  </wsdl:message>
+  <wsdl:message name="TransAnsAddHttpGetOut" />
   <wsdl:message name="TransGetApprByUserHttpGetIn">
     <wsdl:part name="user_id" type="s:string" />
   </wsdl:message>
@@ -1357,6 +1376,7 @@
   </wsdl:message>
   <wsdl:message name="TransReqCloseHttpGetIn">
     <wsdl:part name="req_id" type="s:string" />
+    <wsdl:part name="ans_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransReqCloseHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
@@ -1604,6 +1624,12 @@
   <wsdl:message name="MessageSentByUserHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfMessage" />
   </wsdl:message>
+  <wsdl:message name="MessagePendingByUserHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MessagePendingByUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMessage" />
+  </wsdl:message>
   <wsdl:message name="MessageGetByIdHttpPostIn">
     <wsdl:part name="msg_id" type="s:string" />
   </wsdl:message>
@@ -1614,11 +1640,8 @@
     <wsdl:part name="req_id" type="s:string" />
     <wsdl:part name="user_id" type="s:string" />
     <wsdl:part name="message" type="s:string" />
-    <wsdl:part name="rating" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="TransAnsAddHttpPostOut">
-    <wsdl:part name="Body" element="tns:int" />
-  </wsdl:message>
+  <wsdl:message name="TransAnsAddHttpPostOut" />
   <wsdl:message name="TransGetApprByUserHttpPostIn">
     <wsdl:part name="user_id" type="s:string" />
   </wsdl:message>
@@ -1658,6 +1681,7 @@
   </wsdl:message>
   <wsdl:message name="TransReqCloseHttpPostIn">
     <wsdl:part name="req_id" type="s:string" />
+    <wsdl:part name="ans_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransReqCloseHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
@@ -1834,6 +1858,10 @@
     <wsdl:operation name="MessageSentByUser">
       <wsdl:input message="tns:MessageSentByUserSoapIn" />
       <wsdl:output message="tns:MessageSentByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MessagePendingByUser">
+      <wsdl:input message="tns:MessagePendingByUserSoapIn" />
+      <wsdl:output message="tns:MessagePendingByUserSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="MessageGetById">
       <wsdl:input message="tns:MessageGetByIdSoapIn" />
@@ -2025,6 +2053,10 @@
       <wsdl:input message="tns:MessageSentByUserHttpGetIn" />
       <wsdl:output message="tns:MessageSentByUserHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="MessagePendingByUser">
+      <wsdl:input message="tns:MessagePendingByUserHttpGetIn" />
+      <wsdl:output message="tns:MessagePendingByUserHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="MessageGetById">
       <wsdl:input message="tns:MessageGetByIdHttpGetIn" />
       <wsdl:output message="tns:MessageGetByIdHttpGetOut" />
@@ -2214,6 +2246,10 @@
     <wsdl:operation name="MessageSentByUser">
       <wsdl:input message="tns:MessageSentByUserHttpPostIn" />
       <wsdl:output message="tns:MessageSentByUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MessagePendingByUser">
+      <wsdl:input message="tns:MessagePendingByUserHttpPostIn" />
+      <wsdl:output message="tns:MessagePendingByUserHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="MessageGetById">
       <wsdl:input message="tns:MessageGetByIdHttpPostIn" />
@@ -2564,6 +2600,15 @@
     </wsdl:operation>
     <wsdl:operation name="MessageSentByUser">
       <soap:operation soapAction="http://omniproject.org/MessageSentByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessagePendingByUser">
+      <soap:operation soapAction="http://omniproject.org/MessagePendingByUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2997,6 +3042,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="MessagePendingByUser">
+      <soap12:operation soapAction="http://omniproject.org/MessagePendingByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="MessageGetById">
       <soap12:operation soapAction="http://omniproject.org/MessageGetById" style="document" />
       <wsdl:input>
@@ -3401,6 +3455,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="MessagePendingByUser">
+      <http:operation location="/MessagePendingByUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="MessageGetById">
       <http:operation location="/MessageGetById" />
       <wsdl:input>
@@ -3415,9 +3478,7 @@
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
+      <wsdl:output />
     </wsdl:operation>
     <wsdl:operation name="TransGetApprByUser">
       <http:operation location="/TransGetApprByUser" />
@@ -3805,6 +3866,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="MessagePendingByUser">
+      <http:operation location="/MessagePendingByUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="MessageGetById">
       <http:operation location="/MessageGetById" />
       <wsdl:input>
@@ -3819,9 +3889,7 @@
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
+      <wsdl:output />
     </wsdl:operation>
     <wsdl:operation name="TransGetApprByUser">
       <http:operation location="/TransGetApprByUser" />

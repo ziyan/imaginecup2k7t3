@@ -400,14 +400,14 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public int TransAnsAdd( int req_id, int user_id, string message, int rating )
+        public void TransAnsAdd( int req_id, int user_id, string message )
         {
             CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (req_id < 0) throw new ArgumentOutOfRangeException();
             if (message == null)
-                throw new NullReferenceException();
-            return Data.StoredProcedure.TransAnsAdd(req_id, user_id, message, rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+                throw new ArgumentNullException();
+            Data.StoredProcedure.TransAnsAdd(req_id, user_id, message, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]
