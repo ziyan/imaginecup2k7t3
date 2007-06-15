@@ -911,7 +911,7 @@ namespace Omni.Data
             cmd.CommandText = "omni_trans_search";
             cmd.Connection = cn.cn;
             cmd.Parameters.Add("@keyword", System.Data.SqlDbType.NVarChar);
-            cmd.Parameters.Add("@arc_lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@src_lang_id", System.Data.SqlDbType.Int);
             cmd.Parameters.Add("@dst_lang_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = keyword;
             cmd.Parameters[1].Value = src_lang_id;
