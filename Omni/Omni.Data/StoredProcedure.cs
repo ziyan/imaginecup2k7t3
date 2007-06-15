@@ -517,7 +517,6 @@ namespace Omni.Data
             cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
             cmd.Parameters.Add("@message", System.Data.SqlDbType.NText);
             cmd.Parameters.Add("@rating", System.Data.SqlDbType.TinyInt);
-            cmd.Parameters.Add("@date", System.Data.SqlDbType.DateTime);
             cmd.Parameters[0].Value = req_id;
             cmd.Parameters[1].Value = user_id;
             cmd.Parameters[2].Value = message;
@@ -667,7 +666,6 @@ namespace Omni.Data
             cmd.Parameters.Add("@message", System.Data.SqlDbType.NText);
             cmd.Parameters.Add("@dst_id", System.Data.SqlDbType.Int);
             cmd.Parameters.Add("@dst_type", System.Data.SqlDbType.TinyInt);
-            cmd.Parameters.Add("@date", System.Data.SqlDbType.DateTime);
             cmd.Parameters.Add("@msg_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = user_id;
             cmd.Parameters[1].Value = src_lang_id;
