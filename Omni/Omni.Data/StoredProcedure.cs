@@ -757,7 +757,7 @@ namespace Omni.Data
             object ret = cmd.ExecuteScalar();
             if (ret == null)
                 return 0;
-            return (int)ret;
+            return Convert.ToInt32(ret);
         }
         public static int TransReqClose(int req_id, int ans_id, SqlConnection cn)
         {
