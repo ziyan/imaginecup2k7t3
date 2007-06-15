@@ -696,7 +696,7 @@ namespace Omni.Data
             cmd.Parameters[7].Value = msg_id;
             return cmd.ExecuteNonQuery();
         }
-        public static int TransReqClose(int req_id, SqlConnection cn)
+        public static int TransReqClose(int req_id, int ans_id, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
@@ -704,7 +704,9 @@ namespace Omni.Data
             cmd.CommandText = "omni_trans_req_close";
             cmd.Connection = cn.cn;
             cmd.Parameters.Add("@req_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@ans_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = req_id;
+            cmd.Parameters[1].Value = ans_id;
             return cmd.ExecuteNonQuery();
         }
         public static Translation TransReqGetById(int req_id, SqlConnection cn)

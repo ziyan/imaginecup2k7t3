@@ -448,12 +448,12 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public int TransReqClose(int req_id)
+        public int TransReqClose(int req_id, int ans_id)
         {
             CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
-            if (req_id < 0) throw new ArgumentOutOfRangeException();
-            return Data.StoredProcedure.TransReqClose(req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            if (req_id < 0 || ans_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransReqClose(req_id, ans_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]
