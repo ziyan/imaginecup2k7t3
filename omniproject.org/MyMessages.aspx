@@ -44,9 +44,7 @@ Title="My Messages" Theme="Default" meta:resourcekey="PageResource1" %>
             <asp:Button ID="replyButton" runat="server" Text="Reply to Sender" OnClick="replyButton_Click" meta:resourcekey="replyButtonResource1" />
             <asp:Button ID="requestTransButton" runat="server" Text="Request Translation" meta:resourcekey="requestTransButtonResource1" />
             </asp:Panel>
-        <br />
-        <asp:TextBox ID="bodyTextBox" runat="server" Columns="40" ReadOnly="True" Rows="3"
-            TextMode="MultiLine" Visible="False"></asp:TextBox></asp:Panel>
+        </asp:Panel>
     <uc1:NotAuthedControl ID="NotAuthedControl1" runat="server" />
     <br />
     &nbsp;<br />

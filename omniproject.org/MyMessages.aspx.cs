@@ -239,9 +239,11 @@ public partial class MyMessages : System.Web.UI.Page
             tr = new TableRow();
             TableCell tc = new TableCell();
             tc.ColumnSpan = 4;
-            tc.Controls.Add(bodyTextBox);
-            bodyTextBox.Visible = true;
-            bodyTextBox.Text = msg.body;
+            TextBox tb = new TextBox();
+            tb.TextMode = TextBoxMode.MultiLine;
+            tb.ReadOnly = true;
+            tb.Text = msg.body;
+            tc.Controls.Add(tb);
             tr.Cells.Add(tc);
             tr.CssClass="row2";
             curMsgTable.Rows.Add(tr);
