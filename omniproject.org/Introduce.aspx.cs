@@ -87,7 +87,7 @@ public partial class Introduce : System.Web.UI.Page
             newRoll.Cells.Add(newUserRatingCell);
             newRoll.Cells.Add(newSystemRatingCell);
             newRoll.Cells.Add(newSimilarityCell);
-            newRoll.CssClass = ((count % 2) + 1).ToString();
+            newRoll.CssClass = "row" + ((count % 2) + 1).ToString();
             introduceTable.Rows.Add(newRoll);
 
             count++;

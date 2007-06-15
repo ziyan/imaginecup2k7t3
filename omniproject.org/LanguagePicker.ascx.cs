@@ -29,6 +29,7 @@ public partial class LanguagePicker : System.Web.UI.UserControl
         int preferredLanguageId = Common.GetPreferredLanguage();
         if (preferredLanguageId <= 0) return; // should not happen
 
+        int count = 0;
         foreach (Language language in languages)
         {
             TableCell newLanguageCell = new TableCell();
@@ -62,6 +63,9 @@ public partial class LanguagePicker : System.Web.UI.UserControl
             newRow.Cells.Add(newLanguageCell);
             newRow.Cells.Add(newKnownCell);
             newRow.Cells.Add(newSkillCell);
+            newRow.CssClass = "row" + ((count % 2) + 1).ToString();
+
+            count++;
         }
 
         base.OnInit(e);
