@@ -479,7 +479,7 @@ namespace Omni.Service
         {
             CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
-            if (user_id < 0) throw new ArgumentOutOfRangeException();
+            if (user_id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransReqFindGlobalForUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
