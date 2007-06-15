@@ -42,6 +42,13 @@ public partial class HallOfFame : System.Web.UI.Page
             preferredLanguage = 1; // default to english
         }
 
+       /* System.Resources.ResourceReader reader = new System.Resources.ResourceReader(
+                    "HallOfFame.resources");
+        IDictionaryEnumerator dictionary = reader.GetEnumerator();
+        dictionary.
+        string localizedString = reader.GetEnumerator().["highestRating"];
+        reader.Close();*/
+
         Language[] languages = Common.GetWebService().LanguageList();
         foreach (Language language in languages)
         {
