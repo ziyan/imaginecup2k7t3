@@ -54,7 +54,7 @@ public partial class ComposeMessage : System.Web.UI.Page
                 else
                 {
                     String idStr3 = Request.QueryString["req_id"];
-                    if (idStr3 != null && idStr.Length > 0)
+                    if (idStr3 != null && idStr3.Length > 0)
                     {
                         int intId = Convert.ToInt32(idStr3);
                         Translation t = Common.GetWebService().TransGetByReqId(intId);
