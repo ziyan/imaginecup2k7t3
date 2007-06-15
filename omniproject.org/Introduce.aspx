@@ -23,7 +23,7 @@
             </asp:TableRow>
         </asp:Table>
         <br />
-        <asp:Table ID="introduceTable" runat="server" meta:resourcekey="introduceTableResource1">
+        <asp:Table ID="introduceTable" runat="server" CssClass="displayTable" meta:resourcekey="introduceTableResource1">
             <asp:TableHeaderRow meta:resourcekey="TableHeaderRowResource1" runat="server">
                 <asp:TableHeaderCell meta:resourcekey="TableHeaderCellResource1" runat="server">
                     <asp:Label ID="introduceUsernameLabel" runat="server" Text="Username" meta:resourcekey="introduceUsernameLabelResource1"></asp:Label>

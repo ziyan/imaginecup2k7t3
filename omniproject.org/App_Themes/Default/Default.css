@@ -73,3 +73,35 @@ div.lowerleft li a:hover {
 	border-right-color: #c5e3fa;
 	background-color: #d8edfc;
 }
+
+table.displayTable
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #62d2ff;
+	border-collapse: collapse;
+}
+
+table.displayTable tr.row1
+{
+	background-color: #a8d6f7;
+}
+
+table.displayTable tr.row2
+{
+	background-color: #9cd0f3;
+}
+
+table.displayTable th 
+{
+	padding: 2px 10px 2px 10px;
+	background-color: #7cb0f3;
+}
+
+table.displayTable td 
+{
+	border-width: 0px 1px 0px 0px;
+	border-style: solid;
+	border-color: #62d2ff;
+	padding: 2px 10px 2px 10px;
+}
