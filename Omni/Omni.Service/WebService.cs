@@ -381,11 +381,13 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public int TransAnsAdd( int req_id, int user_id, string message, int rating, DateTime date )
+        public int TransAnsAdd( int req_id, int user_id, string message, int rating )
         {
             CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (req_id < 0) throw new ArgumentOutOfRangeException();
+            if (message == null)
+                throw NullReferenceException();
             return Data.StoredProcedure.TransAnsAdd(req_id, user_id, message, rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
@@ -431,6 +433,8 @@ namespace Omni.Service
             CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (user_id < 0) throw new ArgumentOutOfRangeException();
+            if ( subject == null || message == null )
+                throw new NullReferenceException();
             return Data.StoredProcedure.TransReqAdd( user_id, src_lang_id, dst_lang_id, subject, message, dst_id, dst_type, msg_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
