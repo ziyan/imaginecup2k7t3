@@ -42,7 +42,7 @@ Title="My Messages" Theme="Default" meta:resourcekey="PageResource1" %>
             </asp:Table>
             <asp:Label ID="msgIdLabel" runat="server" Visible="False" meta:resourcekey="msgIdLabelResource1"></asp:Label><br />
             <asp:Button ID="replyButton" runat="server" Text="Reply to Sender" OnClick="replyButton_Click" meta:resourcekey="replyButtonResource1" />
-            <asp:Button ID="requestTransButton" runat="server" Text="Request Translation" meta:resourcekey="requestTransButtonResource1" />
+            <asp:Button ID="requestTransButton" runat="server" Text="Request Translation" meta:resourcekey="requestTransButtonResource1" OnClick="requestTransButton_Click" />
             </asp:Panel>
         </asp:Panel>
     <uc1:NotAuthedControl ID="NotAuthedControl1" runat="server" />

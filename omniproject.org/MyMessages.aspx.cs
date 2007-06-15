@@ -257,4 +257,11 @@ public partial class MyMessages : System.Web.UI.Page
             intId = Convert.ToInt32(msgIdLabel.Text);
         Server.Transfer("ComposeMessage.aspx?id=" + intId);
     }
+    protected void requestTransButton_Click(object sender, EventArgs e)
+    {
+        int intId = -1;
+        if (msgIdLabel.Text != null && msgIdLabel.Text.Length > 0)
+            intId = Convert.ToInt32(msgIdLabel.Text);
+        Server.Transfer("RequestTrans.aspx?msg_id=" + intId);
+    }
 }
