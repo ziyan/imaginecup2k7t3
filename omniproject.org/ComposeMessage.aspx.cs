@@ -63,7 +63,7 @@ public partial class ComposeMessage : System.Web.UI.Page
             {
                 if (toDDL.SelectedIndex == 0)
                 {
-                    for (int i = 1; i < toDDL.Items.Count; i++)
+                    for (int i = toDDL.Items.Count -1 ; i>0; i--)
                         toDDL.Items.RemoveAt(i);
                     for (int i = 0; i < favorites.Length; i++)
                     {
