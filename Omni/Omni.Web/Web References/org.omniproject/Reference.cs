@@ -1448,7 +1448,7 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransReqAdd", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int TransReqAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, System.DateTime date, int msg_id) {
+        public int TransReqAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, int msg_id) {
             object[] results = this.Invoke("TransReqAdd", new object[] {
                         user_id,
                         src_lang_id,
@@ -1457,18 +1457,17 @@ namespace Omni.Web.org.omniproject {
                         message,
                         dst_id,
                         dst_type,
-                        date,
                         msg_id});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void TransReqAddAsync(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, System.DateTime date, int msg_id) {
-            this.TransReqAddAsync(user_id, src_lang_id, dst_lang_id, subject, message, dst_id, dst_type, date, msg_id, null);
+        public void TransReqAddAsync(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, int msg_id) {
+            this.TransReqAddAsync(user_id, src_lang_id, dst_lang_id, subject, message, dst_id, dst_type, msg_id, null);
         }
         
         /// <remarks/>
-        public void TransReqAddAsync(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, System.DateTime date, int msg_id, object userState) {
+        public void TransReqAddAsync(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, int msg_id, object userState) {
             if ((this.TransReqAddOperationCompleted == null)) {
                 this.TransReqAddOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransReqAddOperationCompleted);
             }
@@ -1480,7 +1479,6 @@ namespace Omni.Web.org.omniproject {
                         message,
                         dst_id,
                         dst_type,
-                        date,
                         msg_id}, this.TransReqAddOperationCompleted, userState);
         }
         

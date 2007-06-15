@@ -651,7 +651,6 @@
             <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="dst_id" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="dst_type" type="tns:TranslationDestinationType" />
-            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
             <s:element minOccurs="1" maxOccurs="1" name="msg_id" type="s:int" />
           </s:sequence>
         </s:complexType>
@@ -1238,7 +1237,6 @@
     <wsdl:part name="message" type="s:string" />
     <wsdl:part name="dst_id" type="s:string" />
     <wsdl:part name="dst_type" type="s:string" />
-    <wsdl:part name="date" type="s:string" />
     <wsdl:part name="msg_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransReqAddHttpGetOut">
@@ -1513,7 +1511,6 @@
     <wsdl:part name="message" type="s:string" />
     <wsdl:part name="dst_id" type="s:string" />
     <wsdl:part name="dst_type" type="s:string" />
-    <wsdl:part name="date" type="s:string" />
     <wsdl:part name="msg_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransReqAddHttpPostOut">
