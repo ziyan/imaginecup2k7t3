@@ -123,7 +123,7 @@
   <data name="introduceLanguageLabelResource1.Text" xml:space="preserve">
     <value>Language for introduction:</value>
   </data>
-  <data name="introduceNameLabel.Text" xml:space="preserve">
+  <data name="introduceNameLabelResource1.Text" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="introduceNoneMessageResource1.Text" xml:space="preserve">
