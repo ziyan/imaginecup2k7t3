@@ -23,7 +23,8 @@ namespace Omni.Service
 
         private void CheckInit()
         {
-            if (HttpContext.Current.Session["Initialized"] == null) throw new SystemException("Session not initialized.");
+            if (HttpContext.Current.Session["Initialized"] == null)
+                Initialize();
         }
 
         #region User Related Functions
