@@ -94,7 +94,16 @@ public partial class HallOfFame : System.Web.UI.Page
             newRatingTable.Rows.Add(hallOfFameRow);
 
             ratingPlaceHolder.Controls.Add(newRatingTable);
-            ratingPlaceHolder.Controls.Add(newLabel);
+
+            Label spacerLabel = new Label();
+            spacerLabel.Text = "&nbsp;";
+            TableCell spacerCell = new TableCell();
+            spacerCell.Controls.Add(spacerLabel);
+            TableRow spacerRow = new TableRow();
+            spacerRow.Cells.Add(spacerCell);
+            Table spacerTable = new Table();
+            spacerTable.Rows.Add(spacerRow);
+            ratingPlaceHolder.Controls.Add(spacerTable);
         }
     }
 
