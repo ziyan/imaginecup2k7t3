@@ -30,8 +30,8 @@ public partial class _Default : System.Web.UI.Page
         TableHeaderRow headerRow = translationHeader.getTranslationHeader();
         translationTable.Rows.Add(headerRow);
 
-        Translation[] translationRequests = 
-                Common.GetWebService().TransGetPendingByUser(currentUser.id);
+        Translation[] translationRequests =
+                Common.GetWebService().TransReqFindGlobalForUser(currentUser.id);
         int count = 0;
         foreach (Translation translationRequest in translationRequests)
         {
