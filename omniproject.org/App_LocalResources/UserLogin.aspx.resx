@@ -135,6 +135,9 @@
   <data name="passwordLabel.Text" xml:space="preserve">
     <value>Password:</value>
   </data>
+  <data name="registerButton.Text" xml:space="preserve">
+    <value>Register</value>
+  </data>
   <data name="usernameLabel.Text" xml:space="preserve">
     <value>Username:</value>
   </data>

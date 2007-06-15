@@ -129,6 +129,12 @@
   <data name="emailLabelResource1.Text" xml:space="preserve">
     <value>电子邮件: </value>
   </data>
+  <data name="interestsLabelResource1.Text" xml:space="preserve">
+    <value>兴趣爱好: </value>
+  </data>
+  <data name="languagesLabelResource1.Text" xml:space="preserve">
+    <value>正在使用/学习的语言: </value>
+  </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>修改我的信息</value>
   </data>

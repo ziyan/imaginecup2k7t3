@@ -117,55 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="descriptionLabelResource1.Text" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="introLabelResource1.Text" xml:space="preserve">
-    <value>Fill in the languages you know using the following rating system:</value>
-  </data>
   <data name="KnownLabelResource1.Text" xml:space="preserve">
     <value>Known</value>
-  </data>
-  <data name="Label1Resource1.Text" xml:space="preserve">
-    <value>3 - Intermediate</value>
-  </data>
-  <data name="Label2Resource1.Text" xml:space="preserve">
-    <value>Able to read and write about most topics when using language references.</value>
   </data>
   <data name="languageLabelResource1.Text" xml:space="preserve">
     <value>Language</value>
   </data>
-  <data name="rating1DescriptionResource1.Text" xml:space="preserve">
-    <value>Only able to read and write about basic personal information and social interaction.</value>
-  </data>
-  <data name="rating1LabelResource1.Text" xml:space="preserve">
-    <value>1 - Beginner </value>
-  </data>
-  <data name="rating2DescriptionResource1.Text" xml:space="preserve">
-    <value>Able to read and write about familiar topics while using language references.</value>
-  </data>
-  <data name="rating2LabelResource1.Text" xml:space="preserve">
-    <value>2 - Novice</value>
-  </data>
-  <data name="rating4DescriptionResource1.Text" xml:space="preserve">
-    <value>Able to read and write about most topics without language references.</value>
-  </data>
-  <data name="rating4LabelResource1.Text" xml:space="preserve">
-    <value>4 - Advanced</value>
-  </data>
-  <data name="rating5DescriptionResource1.Text" xml:space="preserve">
-    <value>Able to read and write about most any topic regardless of with familiarity with topic. Understands both meaning and cultural references.</value>
-  </data>
-  <data name="rating5LabelResource1.Text" xml:space="preserve">
-    <value>5 - Fluent</value>
-  </data>
-  <data name="ratingLabelResource1.Text" xml:space="preserve">
-    <value>Rating</value>
-  </data>
   <data name="skillLabelResource1.Text" xml:space="preserve">
     <value>Skill*</value>
-  </data>
-  <data name="titleIdResource1.Text" xml:space="preserve">
-    <value>Known Languages</value>
   </data>
 </root>

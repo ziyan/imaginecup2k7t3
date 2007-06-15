@@ -135,6 +135,9 @@
   <data name="passwordLabel.Text" xml:space="preserve">
     <value>密码: </value>
   </data>
+  <data name="registerButton.Text" xml:space="preserve">
+    <value>注册新帐号</value>
+  </data>
   <data name="usernameLabel.Text" xml:space="preserve">
     <value>用户名: </value>
   </data>

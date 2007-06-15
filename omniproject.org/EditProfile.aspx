@@ -23,7 +23,8 @@
                     <asp:Label ID="displayNameLabel" runat="server" Text="Display Name: " meta:resourcekey="displayNameLabelResource1"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell meta:resourcekey="TableCellResource4" runat="server">
-                    <asp:TextBox ID="displayNameText" runat="server" meta:resourcekey="displayNameTextResource1"></asp:TextBox>
+                    <asp:TextBox CausesValidation="true" ID="displayNameText" runat="server" meta:resourcekey="displayNameTextResource1"></asp:TextBox>
+                    <asp:RequiredFieldValidator Display="Dynamic" ID="displayRequiredFieldValidator" runat="server" ErrorMessage="*" ControlToValidate="displayNameText"></asp:RequiredFieldValidator>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow meta:resourcekey="TableRowResource3" runat="server">
@@ -31,7 +32,10 @@
                     <asp:Label ID="emailLabel" runat="server" Text="Email:" meta:resourcekey="emailLabelResource1"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell meta:resourcekey="TableCellResource6" runat="server">
-                    <asp:TextBox ID="emailText" runat="server" meta:resourcekey="emailTextResource1"></asp:TextBox>
+                    <asp:TextBox CausesValidation="True" ID="emailText" runat="server" meta:resourcekey="emailTextResource1"></asp:TextBox>
+                    <asp:RequiredFieldValidator Display="Dynamic" ID="emailRequiredFieldValidator" runat="server" ErrorMessage="*" ControlToValidate="emailText"></asp:RequiredFieldValidator>
+    <asp:RegularExpressionValidator Display="Dynamic" ID="emailRegularExpressionValidator" runat="server" ErrorMessage="!" ControlToValidate="emailText" ValidationExpression="[a-zA-Z0-9_\-\.]+\@([a-zA-Z0-9\-]+\.)+[a-zA-Z]+"></asp:RegularExpressionValidator>
+    
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow meta:resourcekey="TableRowResource4" runat="server">
