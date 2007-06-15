@@ -630,6 +630,46 @@ namespace Omni.Data
                 return null;
             }
         }
+        public static Translation TransGetByAnsId(int ans_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_get_by_ans_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@ans_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = ans_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            Translation result;
+            if (reader.Read())
+            {
+                result = new Translation(ans_id,
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TranslationDestinationType)Convert.ToInt32(reader["dst_type"]),
+                                        Convert.ToString(reader["subject"]),
+                                        Convert.ToString(reader["message"]),
+                                        Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["completed"]),
+                                        Convert.ToInt32(reader["msg_id"]),
+                                        Convert.ToInt32(reader["user_id"]),
+                                        Convert.ToInt32(reader["ans_id"]),
+                                        Convert.ToString(reader["trans_message"]),
+                                        Convert.ToInt32(reader["rating"]),
+                                        Convert.ToDateTime(reader["ans_date"]),
+                                        Convert.ToInt32(reader["ans_user_id"]));
+                reader.Close();
+                reader.Dispose();
+                return result;
+            }
+            else
+            {
+                reader.Close();
+                reader.Dispose();
+                return null;
+            }
+        }
         public static Translation[] TransGetPendingByUser(int user_id, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");

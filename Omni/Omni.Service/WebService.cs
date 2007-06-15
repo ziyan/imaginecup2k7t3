@@ -429,6 +429,15 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
+        public Translation TransGetByAnsId(int ans_id)
+        {
+            CheckInit();
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (ans_id < 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransGetByAnsId(ans_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
         public Translation[] TransGetPendingByUser(int user_id)
         {
             CheckInit();
