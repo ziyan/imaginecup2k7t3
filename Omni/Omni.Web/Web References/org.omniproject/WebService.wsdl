@@ -242,7 +242,7 @@
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="lang_id" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="net_rating" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="net_rating" type="s:float" />
           <s:element minOccurs="1" maxOccurs="1" name="self_rating" type="s:short" />
         </s:sequence>
       </s:complexType>
@@ -427,8 +427,8 @@
       <s:complexType name="UserSimil">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
-          <s:element minOccurs="1" maxOccurs="1" name="self_rating" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="net_rating" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="self_rating" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="net_rating" type="s:float" />
           <s:element minOccurs="1" maxOccurs="1" name="simil" type="s:double" />
         </s:sequence>
       </s:complexType>

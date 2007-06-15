@@ -2143,9 +2143,9 @@ namespace Omni.Web.org.omniproject {
         
         private User userField;
         
-        private int self_ratingField;
+        private short self_ratingField;
         
-        private int net_ratingField;
+        private float net_ratingField;
         
         private double similField;
         
@@ -2160,7 +2160,7 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
-        public int self_rating {
+        public short self_rating {
             get {
                 return this.self_ratingField;
             }
@@ -2170,7 +2170,7 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
-        public int net_rating {
+        public float net_rating {
             get {
                 return this.net_ratingField;
             }
@@ -2259,7 +2259,7 @@ namespace Omni.Web.org.omniproject {
         
         private int user_idField;
         
-        private short net_ratingField;
+        private float net_ratingField;
         
         private short self_ratingField;
         
@@ -2284,7 +2284,7 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
-        public short net_rating {
+        public float net_rating {
             get {
                 return this.net_ratingField;
             }
