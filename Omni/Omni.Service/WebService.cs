@@ -526,5 +526,15 @@ namespace Omni.Service
             if (keyword == null) throw new NullReferenceException();
             return Data.StoredProcedure.TransSearch( keyword, src_lang_id, dst_lang_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public int TransAnsRateGetById(int user_id, int ans_id)
+        {
+            CheckInit();
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to rate as this user");
+            if (ans_id <= 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.TransAnsRateGetById(user_id, ans_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
     }
 }

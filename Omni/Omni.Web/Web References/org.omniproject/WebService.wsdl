@@ -828,6 +828,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="TransAnsRateGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ans_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransAnsRateGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransAnsRateGetByIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
       <s:element name="int" type="s:int" />
       <s:element name="User" nillable="true" type="tns:User" />
@@ -1139,6 +1154,12 @@
   </wsdl:message>
   <wsdl:message name="TransSearchSoapOut">
     <wsdl:part name="parameters" element="tns:TransSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransAnsRateGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:TransAnsRateGetById" />
+  </wsdl:message>
+  <wsdl:message name="TransAnsRateGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:TransAnsRateGetByIdResponse" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpGetIn" />
   <wsdl:message name="InitializeHttpGetOut" />
@@ -1453,6 +1474,13 @@
   <wsdl:message name="TransSearchHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
+  <wsdl:message name="TransAnsRateGetByIdHttpGetIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="ans_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransAnsRateGetByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
   <wsdl:message name="InitializeHttpPostIn" />
   <wsdl:message name="InitializeHttpPostOut" />
   <wsdl:message name="UserCaptchaHttpPostIn">
@@ -1766,6 +1794,13 @@
   <wsdl:message name="TransSearchHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
+  <wsdl:message name="TransAnsRateGetByIdHttpPostIn">
+    <wsdl:part name="user_id" type="s:string" />
+    <wsdl:part name="ans_id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TransAnsRateGetByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Initialize">
       <wsdl:input message="tns:InitializeSoapIn" />
@@ -1962,6 +1997,10 @@
     <wsdl:operation name="TransSearch">
       <wsdl:input message="tns:TransSearchSoapIn" />
       <wsdl:output message="tns:TransSearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransAnsRateGetById">
+      <wsdl:input message="tns:TransAnsRateGetByIdSoapIn" />
+      <wsdl:output message="tns:TransAnsRateGetByIdSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
@@ -2161,6 +2200,10 @@
       <wsdl:input message="tns:TransSearchHttpGetIn" />
       <wsdl:output message="tns:TransSearchHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="TransAnsRateGetById">
+      <wsdl:input message="tns:TransAnsRateGetByIdHttpGetIn" />
+      <wsdl:output message="tns:TransAnsRateGetByIdHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpPost">
     <wsdl:operation name="Initialize">
@@ -2358,6 +2401,10 @@
     <wsdl:operation name="TransSearch">
       <wsdl:input message="tns:TransSearchHttpPostIn" />
       <wsdl:output message="tns:TransSearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransAnsRateGetById">
+      <wsdl:input message="tns:TransAnsRateGetByIdHttpPostIn" />
+      <wsdl:output message="tns:TransAnsRateGetByIdHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -2796,6 +2843,15 @@
     </wsdl:operation>
     <wsdl:operation name="TransSearch">
       <soap:operation soapAction="http://omniproject.org/TransSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransAnsRateGetById">
+      <soap:operation soapAction="http://omniproject.org/TransAnsRateGetById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3247,6 +3303,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TransAnsRateGetById">
+      <soap12:operation soapAction="http://omniproject.org/TransAnsRateGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpGet" type="tns:WebServiceHttpGet">
     <http:binding verb="GET" />
@@ -3669,6 +3734,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TransAnsRateGetById">
+      <http:operation location="/TransAnsRateGetById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpPost" type="tns:WebServiceHttpPost">
     <http:binding verb="POST" />
@@ -4084,6 +4158,15 @@
     </wsdl:operation>
     <wsdl:operation name="TransSearch">
       <http:operation location="/TransSearch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransAnsRateGetById">
+      <http:operation location="/TransAnsRateGetById" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

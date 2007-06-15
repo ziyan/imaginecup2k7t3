@@ -127,6 +127,8 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback TransSearchOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TransAnsRateGetByIdOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -311,6 +313,9 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event TransSearchCompletedEventHandler TransSearchCompleted;
+        
+        /// <remarks/>
+        public event TransAnsRateGetByIdCompletedEventHandler TransAnsRateGetByIdCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1812,6 +1817,37 @@ namespace Omni.Web.org.omniproject {
             if ((this.TransSearchCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.TransSearchCompleted(this, new TransSearchCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransAnsRateGetById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int TransAnsRateGetById(int user_id, int ans_id) {
+            object[] results = this.Invoke("TransAnsRateGetById", new object[] {
+                        user_id,
+                        ans_id});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TransAnsRateGetByIdAsync(int user_id, int ans_id) {
+            this.TransAnsRateGetByIdAsync(user_id, ans_id, null);
+        }
+        
+        /// <remarks/>
+        public void TransAnsRateGetByIdAsync(int user_id, int ans_id, object userState) {
+            if ((this.TransAnsRateGetByIdOperationCompleted == null)) {
+                this.TransAnsRateGetByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransAnsRateGetByIdOperationCompleted);
+            }
+            this.InvokeAsync("TransAnsRateGetById", new object[] {
+                        user_id,
+                        ans_id}, this.TransAnsRateGetByIdOperationCompleted, userState);
+        }
+        
+        private void OnTransAnsRateGetByIdOperationCompleted(object arg) {
+            if ((this.TransAnsRateGetByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TransAnsRateGetByIdCompleted(this, new TransAnsRateGetByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3621,6 +3657,32 @@ namespace Omni.Web.org.omniproject {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Translation[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void TransAnsRateGetByIdCompletedEventHandler(object sender, TransAnsRateGetByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TransAnsRateGetByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TransAnsRateGetByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
             }
         }
     }

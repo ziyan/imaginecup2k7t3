@@ -932,6 +932,31 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
+        public static int TransAnsRateGetById(int user_id, int ans_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_trans_ans_rate_get_by_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters.Add("@ans_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            cmd.Parameters[1].Value = ans_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                if(Convert.ToBoolean(reader["rated"]))
+                {
+                    return -Convert.ToInt16(reader["rating"]);
+                }
+                else
+                {
+                    return Convert.ToInt16(reader["rating"]);
+                }
+            }
+            return 0;
+        }
     }
 }
 
