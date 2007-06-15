@@ -674,7 +674,7 @@ namespace Omni.Data
             cmd.Parameters[4].Value = message;
             cmd.Parameters[5].Value = dst_id;
             cmd.Parameters[6].Value = dst_type;
-            cmd.Parameters[8].Value = msg_id;
+            cmd.Parameters[7].Value = msg_id;
             return cmd.ExecuteNonQuery();
         }
         public static int TransReqClose(int req_id, SqlConnection cn)
