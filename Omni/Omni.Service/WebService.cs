@@ -426,7 +426,7 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public int TransReqAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, DateTime date, int msg_id )
+        public int TransReqAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, int msg_id )
         {
             CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
