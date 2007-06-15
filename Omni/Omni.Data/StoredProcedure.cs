@@ -500,6 +500,25 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
+        public static Message[] MessagePendingByUser(int user_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_message_pending_by_user";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = user_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Message> result = new List<Message>();
+            while (reader.Read())
+            {
+                result.Add(new Message(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["src_id"]), Convert.ToInt32(reader["dst_id"]), (MessageDestinationType)Convert.ToInt32(reader["dst_type"]), Convert.ToString(reader["subject"]), "", Convert.ToDateTime(reader["date"]), false, Convert.ToBoolean(reader["pending_trans"]), Convert.ToInt32(reader["trans_req_id"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
         public static Message MessageGetById( int msg_id, SqlConnection cn )
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");

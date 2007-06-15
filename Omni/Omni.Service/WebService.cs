@@ -381,6 +381,16 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
+        public Message[] MessagePendingByUser(int user_id)
+        {
+            CheckInit();
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized.");
+            if (user_id <= 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.MessagePendingByUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
         public Message MessageGetById(int msg_id)
         {
             CheckInit();
