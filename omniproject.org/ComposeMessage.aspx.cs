@@ -113,9 +113,7 @@ public partial class ComposeMessage : System.Web.UI.Page
         int msgId = -1;
         try
         {
-            // FIXME: Don't know trans req id at this point
-            //msgId = Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text, pendingTrans, ????);
-            msgId = Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text, false, 0);
+            msgId = Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text, pendingTrans, 0);
         }
         catch (System.Web.Services.Protocols.SoapException ex)
         {
@@ -139,7 +137,7 @@ public partial class ComposeMessage : System.Web.UI.Page
 
             if (pendingTrans)
             {
-                // FIXME
+                Server.Transfer("RequestTranslation.aspx?msg_pending_id=" + msgId);
             }
             else
             {

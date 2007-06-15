@@ -103,6 +103,19 @@ public partial class RequestTranslation : System.Web.UI.Page
                 subjectTB.Text = msg.subject;
             }
         }
+
+        // Passed in messages, pending translation
+        String msgPendingIdStr = Request.QueryString["msg_pending_id"];
+        if (msgPendingIdStr != null && msgPendingIdStr.Length > 0)
+        {
+            int msgid = Convert.ToInt32(msgPendingIdStr);
+            if (msgid > 0)
+            {
+                Message msg = Common.GetWebService().MessageGetById(msgid);
+                transTextTB.Text = msg.body;
+                subjectTB.Text = msg.subject;
+            }
+        }
     }
     /*
     protected void userRB_CheckedChanged(object sender, EventArgs e)
@@ -166,7 +179,17 @@ public partial class RequestTranslation : System.Web.UI.Page
             dst_type = TranslationDestinationType.Public;
         }
 
-        svc.TransReqAdd(userId, srcLangId, dstLangId, subject, message, dstId, dst_type, 0);
+        int reqId = svc.TransReqAdd(userId, srcLangId, dstLangId, subject, message, dstId, dst_type, 0);
+        
+        String msgPendingIdStr = Request.QueryString["msg_pending_id"];
+        // If this is from a pending message, update the req_id for
+        // the linked message
+        if (msgPendingIdStr != null && msgPendingIdStr.Length > 0)
+        {
+            int msgId = Convert.ToInt32(msgPendingIdStr);
+            svc.MessageUpdTransReqId(msgId, reqId);
+        }
+
         Server.Transfer("MyTranslations.aspx");
     }
     protected void userTranslatorDDL_SelectedIndexChanged(object sender, EventArgs e)
