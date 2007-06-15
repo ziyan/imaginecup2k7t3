@@ -40,6 +40,7 @@ public partial class ViewProfile : System.Web.UI.Page
             languagesTable.Visible = false;
             languagesNoneMessage.Visible = true;
         }
+        int count = 0;
         foreach (UserLanguage language in languages)
         {
             string languageString = Common.GetWebService().LanguageNameQueryById(
@@ -63,8 +64,10 @@ public partial class ViewProfile : System.Web.UI.Page
             newRoll.Cells.Add(newLanguageCell);
             newRoll.Cells.Add(newUserRatingCell);
             newRoll.Cells.Add(newSystemRatingCell);
+            newRoll.CssClass = "row" + ((count % 2) + 1).ToString();
 
             languagesTable.Rows.Add(newRoll);
+            count++;
         }
 
         Interest[] interests = Common.GetWebService().UserInterestList(user.id);
@@ -73,6 +76,7 @@ public partial class ViewProfile : System.Web.UI.Page
             interestsTable.Visible = false;
             interestsNoneMessage.Visible = true;
         }
+        count = 0;
         foreach (Interest interest in interests)
         {
             string interestString = Common.GetWebService().InterestNameQueryById(
@@ -84,7 +88,10 @@ public partial class ViewProfile : System.Web.UI.Page
 
             TableRow newRoll = new TableRow();
             newRoll.Cells.Add(newInterestCell);
+            newRoll.CssClass = "row" + ((count % 2) + 1).ToString();
             interestsTable.Rows.Add(newRoll);
+
+            count++;
         }
 
         User currentUser = Common.GetCurrentUser();

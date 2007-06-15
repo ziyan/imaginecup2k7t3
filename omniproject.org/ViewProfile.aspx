@@ -7,7 +7,7 @@
         <asp:Label ID="profileLabel" runat="server" Text="User Profile" CssClass="title" meta:resourcekey="profileLabelResource1"></asp:Label>
         <asp:Label ID="profileEndingLabel" runat="server" Text="'s Profile" CssClass="title" Visible="False" meta:resourcekey="profileEndingLabelResource1"></asp:Label>
         <br />
-        <asp:Table ID="basicInfoTable" runat="server" meta:resourcekey="basicInfoTableResource1">
+        <asp:Table ID="layoutTable" runat="server" meta:resourcekey="basicInfoTableResource1">
             <asp:TableRow meta:resourcekey="TableRowResource1" runat="server">
                 <asp:TableCell meta:resourcekey="TableCellResource1" runat="server">
                     <asp:Label ID="displayNameLabel" runat="server" Text="Display Name: " meta:resourcekey="displayNameLabelResource1"></asp:Label>
@@ -32,22 +32,32 @@
                     <asp:Label ID="descriptionText" runat="server" meta:resourcekey="descriptionTextResource1"></asp:Label>
                 </asp:TableCell>
             </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Label ID="languagesLabel" runat="server" Text="Languages: " meta:resourcekey="languagesLabelResource1"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Table ID="languagesTable" runat="server" meta:resourcekey="languagesTableResource1" CssClass="displayTable">
+                        <asp:TableHeaderRow ID="TableHeaderRow1" meta:resourcekey="TableHeaderRowResource1" runat="server">
+                            <asp:TableHeaderCell ID="TableHeaderCell1" meta:resourcekey="TableHeaderCellResource1" runat="server">Language</asp:TableHeaderCell>
+                            <asp:TableHeaderCell ID="TableHeaderCell2" meta:resourcekey="TableHeaderCellResource2" runat="server">User Rating</asp:TableHeaderCell>
+                            <asp:TableHeaderCell ID="TableHeaderCell3" meta:resourcekey="TableHeaderCellResource3" runat="server">System Rating</asp:TableHeaderCell>
+                        </asp:TableHeaderRow>
+                    </asp:Table>
+                    <asp:Label ID="languagesNoneMessage" runat="server" Text="None" Visible="False" meta:resourcekey="languagesNoneMessageResource1"></asp:Label>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Label ID="interestsLabel" runat="server" Text="Interests:" meta:resourcekey="interestsLabelResource1"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Table ID="interestsTable" runat="server" meta:resourcekey="interestsTableResource1" CssClass="displayTable">
+                    </asp:Table>
+                    <asp:Label ID="interestsNoneMessage" runat="server" Text="None" Visible="False" meta:resourcekey="interestsNoneMessageResource1"></asp:Label>
+                </asp:TableCell>
+            </asp:TableRow>
         </asp:Table>
-        <br />
-        <asp:Label ID="languagesLabel" runat="server" Text="Languages: " meta:resourcekey="languagesLabelResource1"></asp:Label>
-        <asp:Table ID="languagesTable" runat="server" meta:resourcekey="languagesTableResource1">
-            <asp:TableHeaderRow meta:resourcekey="TableHeaderRowResource1" runat="server">
-                <asp:TableHeaderCell meta:resourcekey="TableHeaderCellResource1" runat="server">Language</asp:TableHeaderCell>
-                <asp:TableHeaderCell meta:resourcekey="TableHeaderCellResource2" runat="server">User Rating</asp:TableHeaderCell>
-                <asp:TableHeaderCell meta:resourcekey="TableHeaderCellResource3" runat="server">System Rating</asp:TableHeaderCell>
-            </asp:TableHeaderRow>
-        </asp:Table>
-        <asp:Label ID="languagesNoneMessage" runat="server" Text="None" Visible="False" meta:resourcekey="languagesNoneMessageResource1"></asp:Label>
-        <br />
-        <asp:Label ID="interestsLabel" runat="server" Text="Interests:" meta:resourcekey="interestsLabelResource1"></asp:Label>
-        <asp:Table ID="interestsTable" runat="server" meta:resourcekey="interestsTableResource1">
-        </asp:Table>
-        <asp:Label ID="interestsNoneMessage" runat="server" Text="None" Visible="False" meta:resourcekey="interestsNoneMessageResource1"></asp:Label>
         <br />
         <asp:Button ID="addFavorite" runat="server" OnClick="addFavorite_Click" Text="Add Favorite" meta:resourcekey="addFavoriteResource1" />
         <asp:Button ID="removeFavorite" runat="server" OnClick="removeFavorite_Click" Text="Remove Favorite" meta:resourcekey="removeFavoriteResource1" />
