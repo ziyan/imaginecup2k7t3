@@ -113,7 +113,9 @@ public partial class ComposeMessage : System.Web.UI.Page
         int msgId = -1;
         try
         {
-            msgId = Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text, pendingTrans, 0);
+            // FIXME: Don't know trans req id at this point
+            //msgId = Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text, pendingTrans, ????);
+            msgId = Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text, false, 0);
         }
         catch (System.Web.Services.Protocols.SoapException ex)
         {
@@ -134,7 +136,15 @@ public partial class ComposeMessage : System.Web.UI.Page
         {
             missingSubjectLabel.Visible = false;
             invalidUsernameLabel.Visible = false;
-            Server.Transfer("MyMessages.aspx");
+
+            if (pendingTrans)
+            {
+                // FIXME
+            }
+            else
+            {
+                Server.Transfer("MyMessages.aspx");
+            }
         }
     }
     protected void toDDL_SelectedIndexChanged(object sender, EventArgs e)
