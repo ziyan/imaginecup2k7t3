@@ -30,8 +30,7 @@ public partial class RequestTranslation : System.Web.UI.Page
         {
             if (userTranslatorDDL.SelectedIndex == 0)
             {
-                int count = userTranslatorDDL.Items.Count;
-                for (int i = count - 1; i >0; i--)
+                for (int i = userTranslatorDDL.Items.Count - 1; i > 0; i--)
                     userTranslatorDDL.Items.RemoveAt(i);
                 for (int i = 0; i < favorites.Length; i++)
                 {
