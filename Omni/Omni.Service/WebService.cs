@@ -387,7 +387,7 @@ namespace Omni.Service
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (req_id < 0) throw new ArgumentOutOfRangeException();
             if (message == null)
-                throw NullReferenceException();
+                throw new NullReferenceException();
             return Data.StoredProcedure.TransAnsAdd(req_id, user_id, message, rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
