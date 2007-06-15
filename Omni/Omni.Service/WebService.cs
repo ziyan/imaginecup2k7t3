@@ -536,5 +536,14 @@ namespace Omni.Service
             if (ans_id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransAnsRateGetById(user_id, ans_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public void MessageUpdTransReqId(int msg_id, int req_id )
+        {
+            CheckInit();
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (msg_id <= 0 || req_id <= 0) throw new ArgumentOutOfRangeException();
+            Data.StoredProcedure.MessageUpdTransReqId(msg_id, req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
     }
 }

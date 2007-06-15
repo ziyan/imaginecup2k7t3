@@ -754,7 +754,10 @@ namespace Omni.Data
             cmd.Parameters[5].Value = dst_id;
             cmd.Parameters[6].Value = dst_type;
             cmd.Parameters[7].Value = msg_id;
-            return cmd.ExecuteNonQuery();
+            object ret = cmd.ExecuteScalar();
+            if (ret == null)
+                return 0;
+            return (int)ret;
         }
         public static int TransReqClose(int req_id, int ans_id, SqlConnection cn)
         {
@@ -962,6 +965,19 @@ namespace Omni.Data
             reader.Close();
             reader.Dispose();
             return 0;
+        }
+        public static int MessageUpdTransReqId(int msg_id, int req_id, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_message_upd_trans_req_id";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@msg_id", System.Data.SqlDbType.Int);
+            cmd.Parameters.Add("@req_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = msg_id;
+            cmd.Parameters[1].Value = req_id;
+            return cmd.ExecuteNonQuery();
         }
     }
 }
