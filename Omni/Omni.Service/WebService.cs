@@ -148,7 +148,7 @@ namespace Omni.Service
         public User UserGetById(int user_id)
         {
             CheckInit();
-            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            //if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             return Data.StoredProcedure.UserGetById(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
@@ -423,7 +423,7 @@ namespace Omni.Service
         public Translation TransGetByReqId(int req_id)
         {
             CheckInit();
-            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            //if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (req_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransGetByReqId(req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -432,7 +432,7 @@ namespace Omni.Service
         public Translation TransGetByAnsId(int ans_id)
         {
             CheckInit();
-            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            //if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (ans_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransGetByAnsId(ans_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
