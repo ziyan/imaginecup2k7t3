@@ -58,7 +58,7 @@ public partial class MyTranslations : System.Web.UI.Page
         Translation[] transPending = svc.TransGetPendingByUser(user.id);
         for (int i = 0; i < transPending.Length; i++)
         {
-            pendingRequestsTable.Rows.Add(translationHeader.getTableRowForTranslation(transPending[i], TranslationRow_Click, "a"));
+            pendingRequestsTable.Rows.Add(translationHeader.getTableRowForTranslation(transPending[i], translationHeader.TranslationRow_Click, "a"));
         }
 
         // User: Received Translations
@@ -68,7 +68,7 @@ public partial class MyTranslations : System.Web.UI.Page
         Translation[] transReceived = svc.TransGetUnApprByUser(user.id);
         for (int i = 0; i < transReceived.Length; i++)
         {
-            receivedTranslationsTable.Rows.Add(translationHeader.getTableRowForTranslation(transReceived[i], TranslationRow_Click, "b"));
+            receivedTranslationsTable.Rows.Add(translationHeader.getTableRowForTranslation(transReceived[i], translationHeader.TranslationRow_Click, "b"));
         }
 
 
@@ -79,7 +79,7 @@ public partial class MyTranslations : System.Web.UI.Page
         Translation[] transApproved = svc.TransGetApprByUser(user.id);
         for (int i = 0; i < transApproved.Length; i++)
         {
-            completedTranslationsTable.Rows.Add(translationHeader.getTableRowForTranslation(transApproved[i], TranslationRow_Click, "c"));
+            completedTranslationsTable.Rows.Add(translationHeader.getTableRowForTranslation(transApproved[i], translationHeader.TranslationRow_Click, "c"));
         }
 
     }
@@ -96,7 +96,7 @@ public partial class MyTranslations : System.Web.UI.Page
         Translation[] personalTrans = svc.TransReqGetForUser(user.id);
         for (int i = 0; i < personalTrans.Length; i++)
         {
-            personalReqsTable.Rows.Add(translationHeader.getTableRowForTranslation(personalTrans[i], TranslationRow_Click, "d"));
+            personalReqsTable.Rows.Add(translationHeader.getTableRowForTranslation(personalTrans[i], translationHeader.TranslationRow_Click, "d"));
         }
 
         // Translator: Global Reqs
@@ -106,18 +106,7 @@ public partial class MyTranslations : System.Web.UI.Page
         Translation[] globalTrans = svc.TransReqFindGlobalForUser(user.id);
         for (int i = 0; i < globalTrans.Length; i++)
         {
-            globalReqsTable.Rows.Add(translationHeader.getTableRowForTranslation(globalTrans[i], TranslationRow_Click, "e"));
+            globalReqsTable.Rows.Add(translationHeader.getTableRowForTranslation(globalTrans[i], translationHeader.TranslationRow_Click, "e"));
         }
-    }
-
-    protected void TranslationRow_Click(object sender, EventArgs e)
-    {
-        LinkButton lb = (LinkButton)sender;
-        String id = lb.ID;
-        id = id.Replace(TranslationHeader.rowIdPrefix, "");
-        id = id.Substring(1);
-        id = id.Trim();
-        //int intId = Convert.ToInt32(id);
-        Server.Transfer("TranslationDetails.aspx?id=" + id);
     }
 }

@@ -137,4 +137,15 @@ public partial class TranslationHeader : System.Web.UI.UserControl
 
         return tr;
     }
+
+    public void TranslationRow_Click(object sender, EventArgs e)
+    {
+        LinkButton lb = (LinkButton)sender;
+        String id = lb.ID;
+        id = id.Replace(TranslationHeader.rowIdPrefix, "");
+        id = id.Substring(1);
+        id = id.Trim();
+        //int intId = Convert.ToInt32(id);
+        Server.Transfer("TranslationDetails.aspx?id=" + id);
+    }
 }
