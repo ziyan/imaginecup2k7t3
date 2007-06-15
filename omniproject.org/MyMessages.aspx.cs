@@ -15,7 +15,7 @@ using Omni.Web.org.omniproject;
 
 public partial class MyMessages : System.Web.UI.Page
 {
-    enum MsgFilterTypes { Received, Sent, /*Unsent,*/ All };
+    enum MsgFilterTypes { Received, Sent, Unsent, All };
     enum MsgViews { Unread, Read, All };
 
     protected void Page_Load(object sender, EventArgs e)
@@ -38,6 +38,10 @@ public partial class MyMessages : System.Web.UI.Page
         Message[] msgs2 = null;
         if((MsgFilterTypes)msgTypeDDL.SelectedIndex == MsgFilterTypes.Sent)
             msgs = Common.GetWebService().MessageSentByUser(user.id);
+        else if ((MsgFilterTypes)msgTypeDDL.SelectedIndex == MsgFilterTypes.Unsent)
+        {
+            msgs = Common.GetWebService().MessagePendingByUser(user.id);
+        }
         else
         {
             msgs = Common.GetWebService().MessageRecvByUser(user.id, MessageDestinationType.User);

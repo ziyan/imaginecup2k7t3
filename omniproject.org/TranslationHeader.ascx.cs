@@ -15,6 +15,8 @@ using Omni.Web.org.omniproject;
 public partial class TranslationHeader : System.Web.UI.UserControl
 {
     public const String rowIdPrefix = "transRow_";
+    public const String rowAnsIdPrefix = "transAnsRow_";
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -91,7 +93,7 @@ public partial class TranslationHeader : System.Web.UI.UserControl
 
         TableCell translator = new TableCell();
         Label translatorL = new Label();
-        if (t.dst_type == TranslationDestinationType.Public)
+        if (t.dst_type == TranslationDestinationType.Public && t.type == TranslationDataType.Request)
             translatorL.Text = globalTransLabel.Text;
         else
         {
@@ -107,7 +109,11 @@ public partial class TranslationHeader : System.Web.UI.UserControl
             LinkButton lb = new LinkButton();
             lb.Text = t.subject;
             lb.SkinID = "black";
-            lb.ID = prefix + rowIdPrefix + t.request_id;
+            if (t.type == TranslationDataType.Full)
+            {
+                lb.ID = prefix + rowAnsIdPrefix + t.trans_id;
+            }
+            else lb.ID = prefix + rowIdPrefix + t.request_id;
             lb.Click += eh;
             subject.Controls.Add(lb);
         }
@@ -142,10 +148,22 @@ public partial class TranslationHeader : System.Web.UI.UserControl
     {
         LinkButton lb = (LinkButton)sender;
         String id = lb.ID;
-        id = id.Replace(TranslationHeader.rowIdPrefix, "");
-        id = id.Substring(1);
-        id = id.Trim();
-        //int intId = Convert.ToInt32(id);
-        Server.Transfer("TranslationDetails.aspx?id=" + id);
+
+        if (id.Contains(rowAnsIdPrefix))
+        {
+            id = id.Replace(rowAnsIdPrefix, "");
+            id = id.Substring(1);
+            id = id.Trim();
+            //int intId = Convert.ToInt32(id);
+            Server.Transfer("TranslationDetails.aspx?ans_id=" + id);
+        }
+        else
+        {
+            id = id.Replace(rowIdPrefix, "");
+            id = id.Substring(1);
+            id = id.Trim();
+            //int intId = Convert.ToInt32(id);
+            Server.Transfer("TranslationDetails.aspx?id=" + id);
+        }
     }
 }

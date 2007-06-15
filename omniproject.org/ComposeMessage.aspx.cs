@@ -38,6 +38,34 @@ public partial class ComposeMessage : System.Web.UI.Page
                     subjectTB.Text = title;
                 }
             }
+            else
+            {
+                String idStr2 = Request.QueryString["ans_id"];
+                if (idStr2 != null && idStr2.Length > 0)
+                {
+                    int intId = Convert.ToInt32(idStr2);
+                    Translation t = Common.GetWebService().TransGetByAnsId(intId);
+                    //int userid = msg.src_id;
+                    //String un = Common.GetWebService().UserGetById(userid).username;
+                    //toTB.Text = un;
+                    subjectTB.Text = t.subject;
+                    messageTB.Text = t.trans_body;
+                }
+                else
+                {
+                    String idStr3 = Request.QueryString["req_id"];
+                    if (idStr3 != null && idStr.Length > 0)
+                    {
+                        int intId = Convert.ToInt32(idStr3);
+                        Translation t = Common.GetWebService().TransGetByReqId(intId);
+                        //int userid = msg.src_id;
+                        //String un = Common.GetWebService().UserGetById(userid).username;
+                        //toTB.Text = un;
+                        subjectTB.Text = t.subject;
+                        messageTB.Text = t.orig_body;
+                    }
+                }
+            }
 
             if (!IsPostBack)
             {
@@ -79,10 +107,13 @@ public partial class ComposeMessage : System.Web.UI.Page
         User user = Common.GetCurrentUser();
         int userid = Common.GetWebService().UserIdGetByUsername(toTB.Text);
 
+        bool pendingTrans = ((Button)sender).ID.Equals("requestTransButton");
+
         bool error = false;
+        int msgId = -1;
         try
         {
-            Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text, false, 0);
+            msgId = Common.GetWebService().MessageSend(user.id, userid, MessageDestinationType.User, subjectTB.Text, messageTB.Text, pendingTrans, 0);
         }
         catch (System.Web.Services.Protocols.SoapException ex)
         {

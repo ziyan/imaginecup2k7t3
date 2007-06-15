@@ -27,6 +27,7 @@ Title="Translation Details" Theme="Default" meta:resourcekey="PageResource1" %>
             <asp:ListItem meta:resourcekey="ListItemResource4">4</asp:ListItem>
             <asp:ListItem meta:resourcekey="ListItemResource5">5</asp:ListItem>
         </asp:RadioButtonList><br />
+        <asp:Button ID="composeFromTransButton" runat="server" Text="Compose Message From Translation" OnClick="composeFromTransButton_Click" /><br />
         <br />
     <asp:MultiView ID="transView" runat="server">
         <asp:View ID="prevTransView" runat="server">
@@ -57,6 +58,5 @@ Title="Translation Details" Theme="Default" meta:resourcekey="PageResource1" %>
     </asp:MultiView>
     </asp:Panel> 
     <asp:Label ID="invalidIdLabel" runat="server" Text="Error - Invalid Translation specified." Visible="False" meta:resourcekey="invalidIdLabelResource1"></asp:Label>
-    <uc2:NotAuthedControl ID="NotAuthedControl1" runat="server" />
 </asp:Content>
 

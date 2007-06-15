@@ -19,6 +19,7 @@ Title="My Messages" Theme="Default" meta:resourcekey="PageResource1" %>
         <asp:DropDownList ID="msgTypeDDL" runat="server" AutoPostBack="True" meta:resourcekey="msgTypeDDLResource1">
             <asp:ListItem Selected="True" meta:resourcekey="ListItemResource1">Received</asp:ListItem>
             <asp:ListItem meta:resourcekey="ListItemResource2">Sent</asp:ListItem>
+            <asp:ListItem meta:resourcekey="ListItemResource7">Unsent</asp:ListItem>
             <asp:ListItem meta:resourcekey="ListItemResource3">All</asp:ListItem>
         </asp:DropDownList><br />
         <asp:Label ID="viewLabel" runat="server" Text="View Messages: " Visible="False" meta:resourcekey="viewLabelResource1"></asp:Label>
