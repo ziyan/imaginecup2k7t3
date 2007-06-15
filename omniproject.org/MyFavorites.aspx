@@ -6,11 +6,21 @@
     <asp:Label ID="titleLabel" runat="server" CssClass="title" Text="My Favorites">
     </asp:Label>
     <br />
+    <br />
     <asp:Panel ID="userPanel" runat="server">
-        <asp:Table ID="favoritesTable" runat="server">
+        <asp:Table ID="favoritesTable" runat="server" CssClass="displayTable">
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell>
+                    <asp:Label ID="usernameLabel" runat="server" Text="Username">
+                    </asp:Label>
+                </asp:TableHeaderCell>
+                <asp:TableHeaderCell>
+                    <asp:Label ID="displayNameLabel" runat="server" Text="Display Name">
+                    </asp:Label>
+                </asp:TableHeaderCell>
+            </asp:TableHeaderRow>
         </asp:Table>
     </asp:Panel>
-    <br />
     <uc1:NotAuthedControl ID="notAuthorizedControl" runat="server" />
 </asp:Content>
 

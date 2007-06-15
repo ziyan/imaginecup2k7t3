@@ -56,6 +56,14 @@
                     </asp:HyperLink>
                 </li>
 	        </ul>
+		    <br />
+		    <ul>
+		        <li>
+		            <asp:HyperLink ID="hallOfFameLink" runat="server" NavigateUrl="~/HallOfFame.aspx" meta:resourcekey="hallOfFameLinkResource1">
+                        <asp:Label ID="hallOfFameLabel" runat="server" Text="Hall Of Fame" meta:resourcekey="hallOfFameLabelResource1"></asp:Label>
+                    </asp:HyperLink>  
+		        </li>
+		    </ul>
 	        <asp:Panel ID="userNavLinkPanel" runat="server" Visible="False" meta:resourcekey="userNavLinkPanelResource1">
 	            <hr />   
 	            <ul>
@@ -105,14 +113,6 @@
 			        <li>
 			            <asp:HyperLink ID="returnHomeLink" runat="server" NavigateUrl="~/Default.aspx" meta:resourcekey="returnHomeLinkResource1">
                             <asp:Label ID="returnHomeLabel" runat="server" Text="Return Home" meta:resourcekey="returnHomeLabelResource1"></asp:Label>
-                        </asp:HyperLink>  
-			        </li>
-			    </ul>
-			    <br />
-			    <ul>
-			        <li>
-			            <asp:HyperLink ID="hallOfFameLink" runat="server" NavigateUrl="~/HallOfFame.aspx" meta:resourcekey="hallOfFameLinkResource1">
-                            <asp:Label ID="hallOfFameLabel" runat="server" Text="Hall Of Fame" meta:resourcekey="hallOfFameLabelResource1"></asp:Label>
                         </asp:HyperLink>  
 			        </li>
 			    </ul>

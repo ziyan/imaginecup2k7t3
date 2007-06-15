@@ -23,17 +23,28 @@ public partial class MyFavorites : System.Web.UI.Page
         if (currentUser == null) return;
 
         User[] favorites = Common.GetWebService().UserFavorUserListById(currentUser.id);
+        int count = 0;
         foreach (User favorite in favorites)
         {
-            HyperLink newLink = new HyperLink();
-            newLink.Text = favorite.name;
-            newLink.NavigateUrl = "~/ViewProfile.aspx?id=" + favorite.id.ToString();
-            TableCell newCell = new TableCell();
-            newCell.Controls.Add(newLink);
+            HyperLink usernameLink = new HyperLink();
+            usernameLink.Text = favorite.username;
+            usernameLink.NavigateUrl = "~/ViewProfile.aspx?id=" + favorite.id.ToString();
+            TableCell usernameCell = new TableCell();
+            usernameCell.Controls.Add(usernameLink);
+
+            HyperLink nameLink = new HyperLink();
+            nameLink.Text = favorite.name;
+            nameLink.NavigateUrl = "~/ViewProfile.aspx?id=" + favorite.id.ToString();
+            TableCell nameCell = new TableCell();
+            nameCell.Controls.Add(nameLink);
+
             TableRow newRow = new TableRow();
-            newRow.Cells.Add(newCell);
+            newRow.Cells.Add(usernameCell);
+            newRow.Cells.Add(nameCell);
+            newRow.CssClass = "row" + ((count % 2) + 1).ToString();
             favoritesTable.Rows.Add(newRow);
-            // FIXME: add username and display name
+
+            count++;
         }
     }
 }
