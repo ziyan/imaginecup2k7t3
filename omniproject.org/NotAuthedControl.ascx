@@ -3,7 +3,8 @@
 <script runat="server">
     protected void Page_Load(object sender, EventArgs e)
     {
-        Server.Transfer("~/UserLogin.aspx");
+        if(this.Visible)
+            Server.Transfer("~/UserLogin.aspx");
     }
 </script>
 
