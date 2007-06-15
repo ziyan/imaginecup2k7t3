@@ -19,6 +19,10 @@
         <div class="topbarRight">
             <asp:MultiView ID="loginViewTop" runat="server">
             <asp:View ID="guestView" runat="server">
+                <asp:HyperLink ID="homeTextLink" runat="server" NavigateUrl="~/" SkinID="top" meta:resourcekey="homeLinkResource1">
+                <asp:Label runat="server" ID="Label1" Text="Home" meta:resourcekey="homeLabel"></asp:Label>
+                </asp:HyperLink>
+                 | 
                 <asp:HyperLink ID="loginLink" runat="server" NavigateUrl="~/UserLogin.aspx" SkinID="top" meta:resourcekey="loginLinkResource1">
                 <asp:Label runat="server" ID="loginLabel" Text="Login" meta:resourcekey="loginLabel"></asp:Label>
                 </asp:HyperLink>

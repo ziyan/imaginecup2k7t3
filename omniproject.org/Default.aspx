@@ -9,7 +9,8 @@
     <asp:Panel runat="server" ID="userPanel">
     An authorized user sees this.
     </asp:Panel>
-    <uc2:NotAuthedControl ID="NotAuthedControl1" runat="server" />
-    
+    <asp:Panel runat="server" ID="guestPanel">
+    Hello!
+    </asp:Panel>
     
 </asp:Content>

@@ -180,4 +180,7 @@
   <data name="usernameLabel.Text1" xml:space="preserve">
     <value>欢迎您,</value>
   </data>
+  <data name="homeLabel.Text" xml:space="preserve">
+    <value>首页</value>
+  </data>
 </root>

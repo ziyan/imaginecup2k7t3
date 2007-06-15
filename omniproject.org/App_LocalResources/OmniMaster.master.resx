@@ -168,4 +168,7 @@
   <data name="usernameLabel.Text" xml:space="preserve">
     <value>Welcome, </value>
   </data>
+  <data name="homeLabel.Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
 </root>
