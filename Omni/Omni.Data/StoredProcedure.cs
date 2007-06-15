@@ -506,7 +506,7 @@ namespace Omni.Data
                 return null;
             }
         }
-        public static int TransAnsAdd( int req_id, int user_id, string message, int rating, DateTime date, SqlConnection cn)
+        public static int TransAnsAdd( int req_id, int user_id, string message, int rating, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
@@ -522,7 +522,6 @@ namespace Omni.Data
             cmd.Parameters[1].Value = user_id;
             cmd.Parameters[2].Value = message;
             cmd.Parameters[3].Value = rating;
-            cmd.Parameters[4].Value = date;
             return cmd.ExecuteNonQuery();
         }
         public static Translation[] TransGetApprByUser(int user_id, SqlConnection cn)
@@ -654,7 +653,7 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
-        public static int TransReqAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, DateTime date, int msg_id, SqlConnection cn)
+        public static int TransReqAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TranslationDestinationType dst_type, int msg_id, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
@@ -677,7 +676,6 @@ namespace Omni.Data
             cmd.Parameters[4].Value = message;
             cmd.Parameters[5].Value = dst_id;
             cmd.Parameters[6].Value = dst_type;
-            cmd.Parameters[7].Value = date;
             cmd.Parameters[8].Value = msg_id;
             return cmd.ExecuteNonQuery();
         }

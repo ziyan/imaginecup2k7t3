@@ -385,7 +385,7 @@ namespace Omni.Service
             CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (req_id < 0) throw new ArgumentOutOfRangeException();
-            return Data.StoredProcedure.TransAnsAdd(req_id, user_id, message, rating, date, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            return Data.StoredProcedure.TransAnsAdd(req_id, user_id, message, rating, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]
@@ -430,7 +430,7 @@ namespace Omni.Service
             CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (user_id < 0) throw new ArgumentOutOfRangeException();
-            return Data.StoredProcedure.TransReqAdd( user_id, src_lang_id, dst_lang_id, subject, message, dst_id, dst_type, date, msg_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            return Data.StoredProcedure.TransReqAdd( user_id, src_lang_id, dst_lang_id, subject, message, dst_id, dst_type, msg_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]
