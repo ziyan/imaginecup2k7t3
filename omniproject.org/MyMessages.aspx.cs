@@ -81,6 +81,10 @@ public partial class MyMessages : System.Web.UI.Page
             /*if(((MsgViews)msgViewDDL.SelectedIndex == MsgViews.Read && !m.unread) ||
                ((MsgViews)msgViewDDL.SelectedIndex == MsgViews.Unread && m.unread) ||
                (MsgViews)msgViewDDL.SelectedIndex == MsgViews.All)*/
+            if (messageTable.Rows.Count % 2 == 0)
+                tr.CssClass = "row1";
+            else
+                tr.CssClass = "row2";
             messageTable.Rows.Add(tr);
 
         }
@@ -92,16 +96,18 @@ public partial class MyMessages : System.Web.UI.Page
             selMsgId = Convert.ToInt32(msgIdLabel.Text);
 
         TableRow tr = new TableRow();
-        TableCell unread = new TableCell();
-        Label ul = new Label();
-        if (m.unread) ul.Text = "X";
-        unread.Controls.Add(ul);
-        unread.HorizontalAlign = HorizontalAlign.Center;
-        if (border)
-        {
-            unread.BorderStyle = BorderStyle.Solid;
-        }
-        tr.Cells.Add(unread);
+        if (m.unread)
+            tr.Style.Add("font-weight", "bold");
+        //TableCell unread = new TableCell();
+        //Label ul = new Label();
+        //if (m.unread) ul.Text = "X";
+        //unread.Controls.Add(ul);
+        //unread.HorizontalAlign = HorizontalAlign.Center;
+        //if (border)
+        //{
+        //    unread.BorderStyle = BorderStyle.Solid;
+        //}
+        //tr.Cells.Add(unread);
         TableCell date = new TableCell();
         Label dl = new Label();
         dl.Text = m.date.ToString();
@@ -191,29 +197,19 @@ public partial class MyMessages : System.Web.UI.Page
     private TableHeaderRow getMessageHeaderRow()
     {
         TableHeaderRow thr = new TableHeaderRow();
-        TableHeaderCell unread = new TableHeaderCell();
-        unread.BorderStyle = BorderStyle.Solid;
-        unread.BorderWidth = 1;
-        unread.Controls.Add(cloneLabel(unreadMsgLabel));
-        thr.Cells.Add(unread);
+        //TableHeaderCell unread = new TableHeaderCell();
+        //unread.Controls.Add(cloneLabel(unreadMsgLabel));
+        //thr.Cells.Add(unread);
         TableHeaderCell date = new TableHeaderCell();
-        date.BorderStyle = BorderStyle.Solid;
-        date.BorderWidth = 1;
         date.Controls.Add(cloneLabel(dateMsgLabel));
         thr.Cells.Add(date);
         TableHeaderCell sender = new TableHeaderCell();
-        sender.BorderStyle = BorderStyle.Solid;
-        sender.BorderWidth = 1;
         sender.Controls.Add(cloneLabel(senderMsgLabel));
         thr.Cells.Add(sender);
         TableHeaderCell recipient = new TableHeaderCell();
-        recipient.BorderStyle = BorderStyle.Solid;
-        recipient.BorderWidth = 1;
         recipient.Controls.Add(cloneLabel(recipientMsgLabel));
         thr.Cells.Add(recipient);
         TableHeaderCell subject = new TableHeaderCell();
-        subject.BorderStyle = BorderStyle.Solid;
-        subject.BorderWidth = 1;
         subject.Controls.Add(cloneLabel(subjectMsgLabel));
         thr.Cells.Add(subject);
 
@@ -238,7 +234,9 @@ public partial class MyMessages : System.Web.UI.Page
             messageTB.Text = msg.body;
             curMsgTable.Rows.Clear();
             curMsgTable.Rows.Add(getMessageHeaderRow());
-            curMsgTable.Rows.Add(tableRowFromMessage(msg, false, false));
+            TableRow tr = tableRowFromMessage(msg, false, false);
+            tr.CssClass = "row1";
+            curMsgTable.Rows.Add(tr);
             populateMessages();
         }
     }
