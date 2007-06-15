@@ -350,7 +350,7 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public void MessageSend(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, bool pending_trans, int trans_req_id)
+        public int MessageSend(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, bool pending_trans, int trans_req_id)
         {
             CheckInit();
             if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
@@ -358,7 +358,7 @@ namespace Omni.Service
             if (subject == null || body == null || subject.Trim() == "") throw new ArgumentNullException();
             subject = subject.Trim();
             if (user_id <= 0 || dst_id <=0) throw new ArgumentOutOfRangeException();
-            Data.StoredProcedure.MessageSend(user_id, dst_id, Convert.ToInt32(dst_type), subject, body, pending_trans, trans_req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+            return Data.StoredProcedure.MessageSend(user_id, dst_id, Convert.ToInt32(dst_type), subject, body, pending_trans, trans_req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
 
         [WebMethod(true)]

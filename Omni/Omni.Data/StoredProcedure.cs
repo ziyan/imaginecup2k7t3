@@ -458,7 +458,10 @@ namespace Omni.Data
             cmd.Parameters[4].Value = body;
             cmd.Parameters[5].Value = pending_trans;
             cmd.Parameters[6].Value = trans_req_id;
-            return cmd.ExecuteNonQuery();
+            object ret = cmd.ExecuteScalar();
+            if (ret == null)
+                return 0;
+            return (int)ret;
         }
         public static Message[] MessageRecvByUser(int dst_id, MessageDestinationType dst_type, SqlConnection cn)
         {
@@ -907,7 +910,7 @@ namespace Omni.Data
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "omni_trans_search";
             cmd.Connection = cn.cn;
-            cmd.Parameters.Add("@keyword_id", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters.Add("@keyword", System.Data.SqlDbType.NVarChar);
             cmd.Parameters.Add("@arc_lang_id", System.Data.SqlDbType.Int);
             cmd.Parameters.Add("@dst_lang_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = keyword;
