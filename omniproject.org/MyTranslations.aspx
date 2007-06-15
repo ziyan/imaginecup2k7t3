@@ -9,7 +9,7 @@ Title="My Translations" Theme="Default" meta:resourcekey="PageResource1" %>
     <br />
     <asp:Panel ID="userPanel" runat="server" Width="100%" meta:resourcekey="userPanelResource1">
         <asp:Button ID="userFuncButton" runat="server" Text="User Functions" OnClick="userFuncButton_Click" meta:resourcekey="userFuncButtonResource1" /><asp:Button ID="translatorFuncButton" runat="server" Text="Translator Functions" OnClick="translatorFuncButton_Click" meta:resourcekey="translatorFuncButtonResource1" /><br />
-        <asp:Panel ID="functionPanel" runat="server" BorderStyle="Solid" BorderWidth="1px"
+        <asp:Panel ID="functionPanel" runat="server"
             Width="100%" meta:resourcekey="functionPanelResource1">
         <asp:MultiView ID="functionMultiView" runat="server" ActiveViewIndex="0">
             <asp:View ID="userFuncView" runat="server">
