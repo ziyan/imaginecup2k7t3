@@ -15,10 +15,10 @@ Title="Translation Details" Theme="Default" meta:resourcekey="PageResource1" %>
         </asp:Table>
         <br />
         <asp:Label ID="origMsgLabel" runat="server" Text="Original Text" meta:resourcekey="origMsgLabelResource1"></asp:Label><br />
-        <asp:TextBox ID="origMsgTB" runat="server" Columns="80" Rows="12" TextMode="MultiLine" Height="300px" ReadOnly="True" Width="600px" meta:resourcekey="origMsgTBResource1"></asp:TextBox><br /><br />
+        <asp:TextBox ID="origMsgTB" runat="server" Columns="80" Rows="8" TextMode="MultiLine" Height="150px" ReadOnly="True" Width="600px" meta:resourcekey="origMsgTBResource1"></asp:TextBox><br /><br />
         <asp:Label ID="transMsgLabel" runat="server" Text="Translated Text" meta:resourcekey="transMsgLabelResource1"></asp:Label>
         <asp:Label ID="transAnsId" runat="server" Visible="False" meta:resourcekey="transAnsIdResource1"></asp:Label><br />
-        <asp:TextBox ID="transMsgTB" runat="server" Columns="80" Rows="12" TextMode="MultiLine" Height="300px" ReadOnly="True" Width="600px" meta:resourcekey="transMsgTBResource1"></asp:TextBox><br />
+        <asp:TextBox ID="transMsgTB" runat="server" Columns="80" Rows="8" TextMode="MultiLine" Height="150px" ReadOnly="True" Width="600px" meta:resourcekey="transMsgTBResource1"></asp:TextBox><br />
         <asp:Button ID="composeFromTransButton" runat="server" Text="Compose Message From Translation" OnClick="composeFromTransButton_Click" /><br />
     <asp:MultiView ID="transView" runat="server">
         <asp:View ID="prevTransView" runat="server">
@@ -27,7 +27,7 @@ Title="Translation Details" Theme="Default" meta:resourcekey="PageResource1" %>
             <asp:Button ID="approveTransButton" runat="server" Text="Approve this Translation" OnClick="approveTransButton_Click" meta:resourcekey="approveTransButtonResource1" />
         </asp:View>
         <asp:View ID="transReqView" runat="server">
-            <asp:TextBox ID="translationTB" runat="server"  Columns="80" Rows="12" TextMode="MultiLine" Height="300px" Width="600px" meta:resourcekey="translationTBResource1"></asp:TextBox><br />
+            <asp:TextBox ID="translationTB" runat="server"  Columns="80" Rows="8" TextMode="MultiLine" Height="150px" Width="600px" meta:resourcekey="translationTBResource1"></asp:TextBox><br />
             <asp:Button ID="submitTransButton" runat="server" Text="Submit Translation" OnClick="submitTransButton_Click" meta:resourcekey="submitTransButtonResource1" />
         </asp:View>
     </asp:MultiView>

@@ -82,7 +82,9 @@ public partial class TranslationHeader : System.Web.UI.UserControl
             translatorL.Text = globalTransLabel.Text;
         else
         {
-            userid = t.trans_user;
+            if (t.type == TranslationDataType.Full)
+                userid = t.trans_user;
+            else userid = t.dst_id;
             tmpUser = svc.UserGetById(userid);
             translatorL.Text = (tmpUser == null) ? "" : tmpUser.username;
         }
