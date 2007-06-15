@@ -9,7 +9,7 @@ namespace Omni
         public UserSimil()
         {
         }
-        public UserSimil(User user, int self_rating, int net_rating, double simil)
+        public UserSimil(User user, short self_rating, float net_rating, double simil)
         {
             this.user = user;
             this.self_rating = self_rating;
@@ -17,8 +17,8 @@ namespace Omni
             this.net_rating = net_rating;
         }
         public User user;
-        public int self_rating;
-        public int net_rating;
+        public short self_rating;
+        public float net_rating;
         public double simil;
         
     }
