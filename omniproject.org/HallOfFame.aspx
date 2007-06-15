@@ -93,13 +93,10 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    <br />
     
     <asp:PlaceHolder ID="ratingPlaceHolder" runat="server">
     </asp:PlaceHolder>
     
-    <br />
-    <br />
     <asp:Table ID="outterTable" runat="server">
     </asp:Table>
 </asp:Content>
