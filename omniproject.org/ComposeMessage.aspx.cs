@@ -39,14 +39,17 @@ public partial class ComposeMessage : System.Web.UI.Page
                 }
             }
 
-            String userIdStr = Request.QueryString["user_id"];
-            if (userIdStr != null && userIdStr.Length > 0)
+            if (!IsPostBack)
             {
-                int intId = Convert.ToInt32(userIdStr);
-                User u = Common.GetWebService().UserGetById(intId);
-                if (u != null)
+                String userIdStr = Request.QueryString["user_id"];
+                if (userIdStr != null && userIdStr.Length > 0)
                 {
-                    toTB.Text = u.username;
+                    int intId = Convert.ToInt32(userIdStr);
+                    User u = Common.GetWebService().UserGetById(intId);
+                    if (u != null)
+                    {
+                        toTB.Text = u.username;
+                    }
                 }
             }
 
