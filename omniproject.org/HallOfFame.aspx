@@ -95,6 +95,8 @@
     </asp:Table>
     <br />
     
+    <asp:PlaceHolder ID="ratingPlaceHolder" runat="server">
+    </asp:PlaceHolder>
     
     <br />
     <br />
