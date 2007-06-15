@@ -33,12 +33,12 @@ Title="My Messages" Theme="Default" meta:resourcekey="PageResource1" %>
         <asp:Label ID="senderMsgLabel" runat="server" Text="Sender" Visible="False" meta:resourcekey="senderMsgLabelResource1"></asp:Label>
         <asp:Label ID="recipientMsgLabel" runat="server" Text="Recipient" Visible="False" meta:resourcekey="recipientMsgLabelResource1"></asp:Label> 
         <asp:Label ID="subjectMsgLabel" runat="server" Text="Subject" Visible="False" meta:resourcekey="subjectMsgLabelResource1"></asp:Label>         
-        <asp:Table ID="messageTable" runat="server" BorderStyle="Solid" BorderWidth="1px" meta:resourcekey="messageTableResource1">
+        <asp:Table CssClass="displayTable" ID="messageTable" runat="server" BorderStyle="Solid" BorderWidth="1px" meta:resourcekey="messageTableResource1">
         </asp:Table>
         <br />
         <asp:Panel ID="messageDetailPanel" runat="server" Visible="False" meta:resourcekey="messageDetailPanelResource1">
             <asp:Label ID="messageDetailsLabel" runat="server" Text="Message Details:" meta:resourcekey="messageDetailsLabelResource1"></asp:Label>
-            <asp:Table ID="curMsgTable" runat="server" meta:resourcekey="curMsgTableResource1">
+            <asp:Table CssClass="displayTable" ID="curMsgTable" runat="server" meta:resourcekey="curMsgTableResource1">
             </asp:Table>
             <asp:TextBox ID="messageTB" runat="server" TextMode="MultiLine" ReadOnly="True" Rows="10"
                 Columns="50" meta:resourcekey="messageTBResource1"></asp:TextBox>
