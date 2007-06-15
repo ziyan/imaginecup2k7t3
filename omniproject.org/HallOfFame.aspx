@@ -7,9 +7,97 @@
     </asp:Label>
     <br />
     <br />
-    <asp:Panel ID="userPanel" runat="server">
-        
-    </asp:Panel>
+    
+    <asp:Table ID="Table2" runat="server">
+        <asp:TableHeaderRow>
+            <asp:TableHeaderCell>
+                <asp:Label ID="Label3" runat="server" Text="Most Active (30 Days)"></asp:Label>
+            </asp:TableHeaderCell>
+        </asp:TableHeaderRow>
+        <asp:TableRow>
+            <asp:TableCell>
+                <asp:Table ID="allTimeTable" runat="server" CssClass="displayTable">
+                    <asp:TableHeaderRow>
+                        <asp:TableHeaderCell>
+                            <asp:Label ID="allTimeUsernameLabel" runat="server" Text="Username">
+                            </asp:Label>
+                        </asp:TableHeaderCell>
+                        <asp:TableHeaderCell>
+                            <asp:Label ID="allTimeDisplayNameLabel" runat="server" Text="Display Name">
+                            </asp:Label>
+                        </asp:TableHeaderCell>
+                        <asp:TableHeaderCell>
+                            <asp:Label ID="allTimeQuantityLabel" runat="server" Text="Number of Translations">
+                            </asp:Label>
+                        </asp:TableHeaderCell>
+                    </asp:TableHeaderRow>
+                </asp:Table>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
     <br />
-    <uc1:NotAuthedControl ID="notAuthorizedControl" runat="server" />
+    
+    <asp:Table ID="Table1" runat="server">
+        <asp:TableHeaderRow>
+            <asp:TableHeaderCell>
+                <asp:Label ID="Label2" runat="server" Text="Most Active (7 Days)"></asp:Label>
+            </asp:TableHeaderCell>
+        </asp:TableHeaderRow>
+        <asp:TableRow>
+            <asp:TableCell>
+                <asp:Table ID="sevenDayTable" runat="server" CssClass="displayTable">
+                    <asp:TableHeaderRow>
+                        <asp:TableHeaderCell>
+                            <asp:Label ID="sevenDayUsernameLabel" runat="server" Text="Username">
+                            </asp:Label>
+                        </asp:TableHeaderCell>
+                        <asp:TableHeaderCell>
+                            <asp:Label ID="sevenDayDisplayNameLabel" runat="server" Text="Display Name">
+                            </asp:Label>
+                        </asp:TableHeaderCell>
+                        <asp:TableHeaderCell>
+                            <asp:Label ID="sevenDayQuantityLabel" runat="server" Text="Number of Translations">
+                            </asp:Label>
+                        </asp:TableHeaderCell>
+                    </asp:TableHeaderRow>
+                </asp:Table>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
+    <br />
+    
+    <asp:Table ID="oneDayActive" runat="server">
+        <asp:TableHeaderRow>
+            <asp:TableHeaderCell>
+                <asp:Label ID="Label1" runat="server" Text="Most Active (24 Hours)"></asp:Label>
+            </asp:TableHeaderCell>
+        </asp:TableHeaderRow>
+        <asp:TableRow>
+            <asp:TableCell>
+                <asp:Table ID="oneDayTable" runat="server" CssClass="displayTable">
+                    <asp:TableHeaderRow>
+                        <asp:TableHeaderCell>
+                            <asp:Label ID="oneDayUsernameLabel" runat="server" Text="Username">
+                            </asp:Label>
+                        </asp:TableHeaderCell>
+                        <asp:TableHeaderCell>
+                            <asp:Label ID="oneDayDisplayNameLabel" runat="server" Text="Display Name">
+                            </asp:Label>
+                        </asp:TableHeaderCell>
+                        <asp:TableHeaderCell>
+                            <asp:Label ID="oneDayQuantityLabel" runat="server" Text="Number of Translations">
+                            </asp:Label>
+                        </asp:TableHeaderCell>
+                    </asp:TableHeaderRow>
+                </asp:Table>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
+    <br />
+    
+    
+    <br />
+    <br />
+    <asp:Table ID="outterTable" runat="server">
+    </asp:Table>
 </asp:Content>
