@@ -19,7 +19,7 @@ public partial class OmniMaster : System.Web.UI.MasterPage
         if (user != null)
         {
             Label username = (Label)userView.FindControl("usernameLabel2");
-            username.Text = user.username;
+            username.Text = user.name;
             loggedIn = true;
         }
 
