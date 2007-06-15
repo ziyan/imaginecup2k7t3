@@ -55,4 +55,8 @@ public partial class UserLogin : System.Web.UI.Page
         }
         else errorLabel.Visible = true;
     }
+    protected void registerButton_Click(object sender, EventArgs e)
+    {
+        Server.Transfer("~/RegisterAccount.aspx");
+    }
 }

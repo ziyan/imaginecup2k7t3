@@ -123,9 +123,6 @@
   <data name="captchaInstrLabelResource1.Text" xml:space="preserve">
     <value>请输入图片上的文字</value>
   </data>
-  <data name="comparePasswordValidatorResource1.Text" xml:space="preserve">
-    <value>!</value>
-  </data>
   <data name="confirmPasswordLabelResource1.Text" xml:space="preserve">
     <value>确认密码: </value>
   </data>

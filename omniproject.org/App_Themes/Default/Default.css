@@ -131,3 +131,8 @@ input, select, textarea
 {
 	font-size:9pt;
 }
+textarea
+{
+	height:100px;
+	width:300px;
+}

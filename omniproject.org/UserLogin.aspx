@@ -21,8 +21,8 @@
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
-        <asp:Button ID="loginButton" runat="server" Text="Login" OnClick="loginButton_Click"
-            Width="126px" meta:resourcekey="loginButton"/>
+        <asp:Button ID="loginButton" runat="server" Text="Login" OnClick="loginButton_Click" meta:resourcekey="loginButton"/>
+        <asp:Button ID="registerButton" runat="server" OnClick="registerButton_Click" Text="Register" />
         <asp:Label ID="errorLabel" runat="server" Text="Invalid credentials." Visible="False" meta:resourcekey="errorLabelResource1"></asp:Label>
     </asp:Panel>
     <asp:Label ID="alreadyLoggedInLabel" runat="server" Text="You are already logged in." Visible="False" meta:resourcekey="alreadyLoggedInLabelResource1"></asp:Label>

@@ -21,10 +21,12 @@
              </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    <asp:Label ID="OriginalMessageLabel" runat="server" Text="Original Message" meta:resourcekey="OriginalMessageLabelResource1" ></asp:Label>
+    <br />
+    <asp:Label ID="OriginalMessageLabel" runat="server" Text="Original Message" meta:resourcekey="OriginalMessageLabelResource1" ></asp:Label><br />
     <asp:TextBox ID="OriginalMessageText" runat="server" TextMode="MultiLine" meta:resourcekey="OriginalMessageTextResource1" ></asp:TextBox><br />
     &nbsp;<asp:Button ID="TranslationButton" runat="server" Text="Translate" OnClick="TranslationButton_Click" meta:resourcekey="TranslationButtonResource1"  /><br />
-    <asp:Label ID="TranslatedMessageLabel" runat="server" Text="Translated Message" meta:resourcekey="TranslatedMessageLabelResource1" ></asp:Label>
-    <asp:TextBox ID="TranslatedMessageText" runat="server" TextMode="MultiLine" meta:resourcekey="TranslatedMessageTextResource1" ></asp:TextBox>
+    <br />
+    <asp:Label ID="TranslatedMessageLabel" runat="server" Text="Translated Message" meta:resourcekey="TranslatedMessageLabelResource1" ></asp:Label><br />
+    <asp:TextBox ID="TranslatedMessageText" runat="server" TextMode="MultiLine" meta:resourcekey="TranslatedMessageTextResource1" ReadOnly="True" ></asp:TextBox>
 </asp:Content>
 

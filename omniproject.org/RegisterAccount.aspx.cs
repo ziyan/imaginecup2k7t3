@@ -29,10 +29,8 @@ public partial class RegisterAccount : System.Web.UI.Page
         String captcha = captchaTB.Text;
         String md5password = Omni.Web.Common.GetMD5Hash(password);
 
-        successLabel.Visible = false;
         invalidCaptchaLabel.Visible = false;
         duplicateLabel.Visible = false;
-        genericErrorLabel.Visible = false;
 
         int result = 0;
         bool error = false;
@@ -50,13 +48,11 @@ public partial class RegisterAccount : System.Web.UI.Page
             }
             else
             {
-                genericErrorLabel.Visible = true;
                 error = true;
             }
         }
         catch (Exception)
         {
-            genericErrorLabel.Visible = true;
             error = true;
         }
         if (!error)
@@ -64,7 +60,7 @@ public partial class RegisterAccount : System.Web.UI.Page
             if (result <= 0)
                 duplicateLabel.Visible = true;
             else
-                successLabel.Visible = true;
+                Server.Transfer("~/UserLogin.aspx");
         }
     }
 }
