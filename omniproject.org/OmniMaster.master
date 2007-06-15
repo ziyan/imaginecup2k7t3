@@ -81,7 +81,7 @@
                         </asp:HyperLink>
 				    </li>
 				    <li>
-				        <asp:HyperLink ID="myGroupsLink" runat="server" NavigateUrl="~/MyGroups.aspx" meta:resourcekey="myGroupsLinkResource1">
+				        <asp:HyperLink ID="myGroupsLink" runat="server" NavigateUrl="#" meta:resourcekey="myGroupsLinkResource1">
                             <asp:Label ID="myGroupsLabel" runat="server" Text="My Groups" meta:resourcekey="myGroupsLabelResource1"></asp:Label>
                         </asp:HyperLink>
 				    </li>
