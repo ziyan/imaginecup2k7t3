@@ -13,8 +13,8 @@
     <div>
     <div class="topbar">
         <div class="topbarLeft">
-            <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="~/Default.aspx" Font-Underline="False" meta:resourcekey="homeLinkResource1">
-                <asp:Label ID="titleLabel" runat="server" Text="Omni" CssClass="titleLink" meta:resourcekey="titleLabelResource1" Visible="true"></asp:Label>
+            <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="~/Default.aspx" Font-Underline="False" meta:resourcekey="homeLinkResource1" BorderWidth="0">
+                <asp:Image ID="homeImage" runat="server" ImageUrl="~/App_Themes/Default/omnilogo_sm.gif" />
             </asp:HyperLink></div>
         <div class="topbarRight">
             <asp:MultiView ID="loginViewTop" runat="server">
