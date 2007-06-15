@@ -503,7 +503,7 @@ namespace Omni.Service
         public Translation[] TransSearch(string keyword, int src_lang_id, int dst_lang_id)
         {
             CheckInit();
-            if (src_lang_id < 0 || dst_lang_id < 0) throw new ArgumentOutOfRangeException();
+            if (src_lang_id <= 0 || dst_lang_id <= 0) throw new ArgumentOutOfRangeException();
             if (keyword == null) throw new NullReferenceException();
             return Data.StoredProcedure.TransSearch( keyword, src_lang_id, dst_lang_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
