@@ -17,7 +17,7 @@ Default skin template. The following skins are provided as examples only.
 <asp:LinkButton runat="server" ForeColor="White" />
 <asp:LinkButton runat="server" SkinId="black" ForeColor="Black" />
 
-<asp:Button runat="server" BorderColor="Black" />
+<%-- <asp:Button runat="server" BorderColor="Black" /> --%>
 
 <asp:HyperLink runat="server" ForeColor="Black" />
 
