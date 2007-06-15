@@ -13,7 +13,7 @@ Title="Compose a Message" Theme="Default" meta:resourcekey="PageResource1" %>
         </asp:TableCell>
         <asp:TableCell meta:resourcekey="TableCellResource2" runat="server">
             <asp:DropDownList ID="toDDL" runat="server" OnSelectedIndexChanged="toDDL_SelectedIndexChanged" AutoPostBack="true">
-            <asp:ListItem Text="(Other)" Value="noFav"></asp:ListItem>
+            <asp:ListItem  meta:resourcekey="otherListItem"  Text="(Other)" Value="noFav"></asp:ListItem>
             </asp:DropDownList>
             <asp:TextBox ID="toTB" runat="server" Columns="25" MaxLength="50" meta:resourcekey="toTBResource1"></asp:TextBox>
         </asp:TableCell>

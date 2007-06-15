@@ -129,6 +129,9 @@
   <data name="missingSubjectLabelResource1.Text" xml:space="preserve">
     <value>Error: Subject field is required.</value>
   </data>
+  <data name="otherListItem.Text" xml:space="preserve">
+    <value>(Other)</value>
+  </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Compose a Message</value>
   </data>

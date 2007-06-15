@@ -129,6 +129,9 @@
   <data name="missingSubjectLabelResource1.Text" xml:space="preserve">
     <value>主题不能为空</value>
   </data>
+  <data name="otherListItem.Text" xml:space="preserve">
+    <value>(其他)</value>
+  </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>撰写新消息</value>
   </data>
