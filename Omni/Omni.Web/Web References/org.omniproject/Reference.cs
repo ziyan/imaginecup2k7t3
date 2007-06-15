@@ -1329,23 +1329,22 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransAnsAdd", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int TransAnsAdd(int req_id, int user_id, string message, int rating, System.DateTime date) {
+        public int TransAnsAdd(int req_id, int user_id, string message, int rating) {
             object[] results = this.Invoke("TransAnsAdd", new object[] {
                         req_id,
                         user_id,
                         message,
-                        rating,
-                        date});
+                        rating});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void TransAnsAddAsync(int req_id, int user_id, string message, int rating, System.DateTime date) {
-            this.TransAnsAddAsync(req_id, user_id, message, rating, date, null);
+        public void TransAnsAddAsync(int req_id, int user_id, string message, int rating) {
+            this.TransAnsAddAsync(req_id, user_id, message, rating, null);
         }
         
         /// <remarks/>
-        public void TransAnsAddAsync(int req_id, int user_id, string message, int rating, System.DateTime date, object userState) {
+        public void TransAnsAddAsync(int req_id, int user_id, string message, int rating, object userState) {
             if ((this.TransAnsAddOperationCompleted == null)) {
                 this.TransAnsAddOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransAnsAddOperationCompleted);
             }
@@ -1353,8 +1352,7 @@ namespace Omni.Web.org.omniproject {
                         req_id,
                         user_id,
                         message,
-                        rating,
-                        date}, this.TransAnsAddOperationCompleted, userState);
+                        rating}, this.TransAnsAddOperationCompleted, userState);
         }
         
         private void OnTransAnsAddOperationCompleted(object arg) {

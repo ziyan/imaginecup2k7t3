@@ -549,7 +549,6 @@
             <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="rating" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1226,7 +1225,6 @@
     <wsdl:part name="user_id" type="s:string" />
     <wsdl:part name="message" type="s:string" />
     <wsdl:part name="rating" type="s:string" />
-    <wsdl:part name="date" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransAnsAddHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
@@ -1506,7 +1504,6 @@
     <wsdl:part name="user_id" type="s:string" />
     <wsdl:part name="message" type="s:string" />
     <wsdl:part name="rating" type="s:string" />
-    <wsdl:part name="date" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransAnsAddHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
