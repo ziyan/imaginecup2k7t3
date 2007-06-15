@@ -50,6 +50,20 @@ public partial class ComposeMessage : System.Web.UI.Page
                 }
             }
 
+            User user = Common.GetCurrentUser();
+            User[] favorites = Common.GetWebService().UserFavorUserListById(user.id);
+            if (favorites.Length == 0)
+            {
+                toDDL.Visible = false;
+            }
+            else
+            {
+                for (int i = 0; i < favorites.Length; i++)
+                {
+                    String favUsername = favorites[i].username;
+                    toDDL.Items.Add(new ListItem(favUsername, favUsername));
+                }
+            }
         }
     }
     protected void sendButton_Click(object sender, EventArgs e)
@@ -83,5 +97,9 @@ public partial class ComposeMessage : System.Web.UI.Page
             invalidUsernameLabel.Visible = false;
             Server.Transfer("MyMessages.aspx");
         }
+    }
+    protected void toDDL_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        toTB.Text = toDDL.SelectedValue;
     }
 }
