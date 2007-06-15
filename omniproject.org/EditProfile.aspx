@@ -1,13 +1,14 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="EditProfile.aspx.cs" Inherits="EditProfile" Title="Edit Profile" Theme="Default" meta:resourcekey="PageResource1" %>
 
+<%@ Register Src="LanguagePickerFootNote.ascx" TagName="LanguagePickerFootNote" TagPrefix="uc4" %>
 <%@ Register Src="NotAuthedControl.ascx" TagName="NotAuthedControl" TagPrefix="uc3" %>
-
 <%@ Register Src="LanguagePicker.ascx" TagName="LanguagePicker" TagPrefix="uc1" %>
 <%@ Register Src="InterestsPicker.ascx" TagName="InterestsPicker" TagPrefix="uc2" %>
+
 <asp:Content ID="mainId" ContentPlaceHolderID="Main" Runat="Server">
+    <asp:Label ID="profileLabel" runat="server" Text="My Profile" CssClass="title" meta:resourcekey="profileLabelResource1"></asp:Label>
+    <br />
     <asp:Panel runat="server" ID="userPanel" meta:resourcekey="userPanelResource1">
-        <asp:Label ID="profileLabel" runat="server" Text="My Profile" CssClass="title" meta:resourcekey="profileLabelResource1"></asp:Label>
-        <br />
         <asp:Table ID="Table1" runat="server" meta:resourcekey="Table1Resource1">
             <asp:TableRow meta:resourcekey="TableRowResource1" runat="server">
                 <asp:TableCell meta:resourcekey="TableCellResource1" runat="server">
@@ -41,19 +42,39 @@
                     <asp:TextBox ID="descriptionText" runat="server" TextMode="MultiLine" meta:resourcekey="descriptionTextResource1"></asp:TextBox>
                 </asp:TableCell>
             </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <br />
+                    <asp:Label ID="languagesLabel" runat="server" Text="Known Languages: " meta:resourcekey="languagesLabelResource1"></asp:Label>
+                    <br />
+                </asp:TableCell>
+                <asp:TableCell>
+                    <br />
+                    <uc1:LanguagePicker ID="languagePicker" runat="server" />
+                    <br />
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <br />
+                    <asp:Label ID="interestLabel" runat="server" Text="Interests: " meta:resourcekey="interestsLabelResource1"></asp:Label>
+                    <br />
+                </asp:TableCell>
+                <asp:TableCell>
+                    <br />
+                    <uc2:InterestsPicker ID="interestsPicker" runat="server" />
+                    <br />
+                </asp:TableCell>
+            </asp:TableRow>
         </asp:Table>
-        <br />
-        <br />
-        <uc1:LanguagePicker ID="languagePicker" runat="server" />
-        <br />
-        <br />
-        <uc2:InterestsPicker ID="interestsPicker" runat="server" />
-        <br />
         <br />
         <asp:Button ID="saveButton" runat="server" OnClick="saveButton_Click" Text="Save" meta:resourcekey="saveButtonResource1" />
         <asp:Button ID="cancelButton" runat="server" OnClick="cancelButton_Click" Text="Cancel" meta:resourcekey="cancelButtonResource1" />
+        <br />
+        <br />
+        <br />
+        <uc4:LanguagePickerFootNote ID="LanguagePickerFootNote1" runat="server" />
     </asp:Panel>
-    <br />
     <uc3:NotAuthedControl ID="notAuthorizedControl" runat="server" />
 </asp:Content>
 

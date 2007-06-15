@@ -33,6 +33,7 @@ public partial class MyFavorites : System.Web.UI.Page
             TableRow newRow = new TableRow();
             newRow.Cells.Add(newCell);
             favoritesTable.Rows.Add(newRow);
+            // FIXME: add username and display name
         }
     }
 }

@@ -118,54 +118,177 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="descriptionLabelResource1.Text" xml:space="preserve">
-    <value>描述</value>
+    <value>Description</value>
+  </data>
+  <data name="descriptionLabelResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="introLabelResource1.Text" xml:space="preserve">
-    <value>请输入您使用或正在学习的语言</value>
+    <value>*Skill rating table:</value>
   </data>
-  <data name="KnownLabelResource1.Text" xml:space="preserve">
-    <value>常用/正在学习</value>
+  <data name="introLabelResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="Label1Resource1.Text" xml:space="preserve">
-    <value>3 - 中等水平</value>
+    <value>3 - Intermediate</value>
+  </data>
+  <data name="Label1Resource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="Label2Resource1.Text" xml:space="preserve">
-    <value>在帮助下，能读或写熟悉的文章</value>
+    <value>Able to read and write about most topics when using language references.</value>
   </data>
-  <data name="languageLabelResource1.Text" xml:space="preserve">
-    <value>语言</value>
+  <data name="Label2Resource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="rating1DescriptionResource1.Text" xml:space="preserve">
-    <value>只能读或写基本的个人信息或日常交际</value>
+    <value>Only able to read and write about basic personal information and social interaction.</value>
+  </data>
+  <data name="rating1DescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="rating1LabelResource1.Text" xml:space="preserve">
-    <value>1 - 初学者</value>
+    <value>1 - Beginner </value>
+  </data>
+  <data name="rating1LabelResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="rating2DescriptionResource1.Text" xml:space="preserve">
-    <value>在帮助下，能读或写熟悉的话题</value>
+    <value>Able to read and write about familiar topics while using language references.</value>
+  </data>
+  <data name="rating2DescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="rating2LabelResource1.Text" xml:space="preserve">
-    <value>2 - 初级水平</value>
+    <value>2 - Novice</value>
+  </data>
+  <data name="rating2LabelResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="rating4DescriptionResource1.Text" xml:space="preserve">
-    <value>能完全独立读或写大部分话题</value>
+    <value>Able to read and write about most topics without language references.</value>
+  </data>
+  <data name="rating4DescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="rating4LabelResource1.Text" xml:space="preserve">
-    <value>4 - 高级水平</value>
+    <value>4 - Advanced</value>
+  </data>
+  <data name="rating4LabelResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="rating5DescriptionResource1.Text" xml:space="preserve">
-    <value>能读或写所有话题并熟悉文化含义</value>
+    <value>Able to read and write about most any topic regardless of with familiarity with topic. Understands both meaning and cultural references.</value>
+  </data>
+  <data name="rating5DescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="rating5LabelResource1.Text" xml:space="preserve">
-    <value>5 - 流利</value>
+    <value>5 - Fluent</value>
+  </data>
+  <data name="rating5LabelResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="ratingLabelResource1.Text" xml:space="preserve">
-    <value>自我评价</value>
+    <value>Rating</value>
   </data>
-  <data name="skillLabelResource1.Text" xml:space="preserve">
-    <value>自我评价*</value>
+  <data name="ratingLabelResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="titleIdResource1.Text" xml:space="preserve">
-    <value>我使用/学习的语言</value>
+  <data name="ratingTableIdResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ratingTableIdResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource10.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource10.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource2.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource3.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource4.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource5.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource6.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource7.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource8.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource9.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource9.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderCellResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderCellResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderCellResource2.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderCellResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderRowResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource5.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>
