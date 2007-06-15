@@ -55,7 +55,7 @@ public partial class HallOfFame : System.Web.UI.Page
             string languageString = Common.GetWebService().LanguageNameQueryById(language.id, preferredLanguage);
             // outter table
             Label titleLabel = new Label();
-            titleLabel.Text = languageString; // FIXME: localize "Highest Rating"
+            titleLabel.Text = String.Format(highRatingLabel.Text,languageString); // FIXME: localize "Highest Rating"
 
             TableHeaderCell titleCell = new TableHeaderCell();
             titleCell.Controls.Add(titleLabel);
@@ -68,19 +68,19 @@ public partial class HallOfFame : System.Web.UI.Page
 
             // now for the actual table
             Label usernameLabel = new Label();
-            usernameLabel.Text = "Username";
+            usernameLabel.Text = sevenDayUsernameLabel.Text;
             TableHeaderCell usernameCell = new TableHeaderCell();
             usernameCell.Controls.Add(usernameLabel);
 
             Label displayNameLabel = new Label();
-            displayNameLabel.Text = "Display Name";
+            displayNameLabel.Text = sevenDayDisplayNameLabel.Text;
             TableHeaderCell displayNameCell = new TableHeaderCell();
             displayNameCell.Controls.Add(displayNameLabel);
 
-            Label ratingLabel = new Label();
-            ratingLabel.Text = "Rating";
+            Label ratingLabel1 = new Label();
+            ratingLabel1.Text = ratingLabel.Text;
             TableHeaderCell ratingCell = new TableHeaderCell();
-            ratingCell.Controls.Add(ratingLabel);
+            ratingCell.Controls.Add(ratingLabel1);
 
             TableHeaderRow hallOfFameHeaderRow = new TableHeaderRow();
             hallOfFameHeaderRow.Cells.Add(usernameCell);
@@ -170,7 +170,7 @@ public partial class HallOfFame : System.Web.UI.Page
 
                 HyperLink displayNameLink = new HyperLink();
                 displayNameLink.NavigateUrl = "~/ViewProfile.aspx?id=" + user.id;
-                usernameLink.Text = user.name;
+                displayNameLink.Text = user.name;
                 displayNameCell.Controls.Add(displayNameLink);
             }
 

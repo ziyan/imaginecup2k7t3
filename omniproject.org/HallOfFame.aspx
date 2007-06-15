@@ -83,7 +83,8 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    
+    <asp:Label ID="ratingLabel" Visible="false" runat="server" Text="Rating" meta:resourcekey="ratingLabel"></asp:Label>
+    <asp:Label ID="highRatingLabel" Visible="false" runat="server" Text="Highest Rating ({0})" meta:resourcekey="highRatingLabel"></asp:Label>
     <asp:PlaceHolder ID="ratingPlaceHolder" runat="server">
     </asp:PlaceHolder>
     

@@ -129,6 +129,9 @@
   <data name="highestRating" xml:space="preserve">
     <value>最高评价</value>
   </data>
+  <data name="highRatingLabel.Text" xml:space="preserve">
+    <value>最高评价用户 ({0})</value>
+  </data>
   <data name="Label1Resource1.Text" xml:space="preserve">
     <value>最活跃的用户 (今天)</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>排行榜</value>
+  </data>
+  <data name="ratingLabel.Text" xml:space="preserve">
+    <value>社区评价</value>
   </data>
   <data name="sevenDayDisplayNameLabelResource1.Text" xml:space="preserve">
     <value>名字</value>

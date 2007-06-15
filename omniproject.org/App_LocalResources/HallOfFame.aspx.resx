@@ -129,6 +129,9 @@
   <data name="highestRating" xml:space="preserve">
     <value>Highest Rating</value>
   </data>
+  <data name="highRatingLabel.Text" xml:space="preserve">
+    <value>Highest Rating ({0})</value>
+  </data>
   <data name="Label1Resource1.Text" xml:space="preserve">
     <value>Most Active (24 Hours)</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Hall Of Fame</value>
+  </data>
+  <data name="ratingLabel.Text" xml:space="preserve">
+    <value>Rating</value>
   </data>
   <data name="sevenDayDisplayNameLabelResource1.Text" xml:space="preserve">
     <value>Display Name</value>
