@@ -71,6 +71,7 @@ namespace Omni
             this.trans_body = trans_body;
             this.trans_rating = trans_rating;
             this.trans_date = trans_date;
+            this.trans_user = trans_user;
         }
        
         public TranslationDataType type;
