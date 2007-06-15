@@ -495,7 +495,7 @@ namespace Omni.Service
         public UserRankRating[] UserRankByRating(int lang_id, int limit)
         {
             CheckInit();
-            if (limit <= 0 || lang_id <= 0) throw new ArgumentOutOfRangeException();
+            if (limit <= 0 || lang_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.UserRankByRating(lang_id,limit, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
     }
