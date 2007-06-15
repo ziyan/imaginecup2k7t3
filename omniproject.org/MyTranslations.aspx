@@ -16,21 +16,21 @@ Title="My Translations" Theme="Default" meta:resourcekey="PageResource1" %>
                 <asp:Label ID="pendingRequestsLabel" runat="server" Text="Pending Requests" Font-Bold="True" meta:resourcekey="pendingRequestsLabelResource1"></asp:Label>
                 <br />
                 <asp:Panel ID="pendingRequestsPanel" runat="server" Width="100%" ScrollBars="Vertical" Height="200px" meta:resourcekey="pendingRequestsPanelResource1">
-                    <asp:Table ID="pendingRequestsTable" runat="server" meta:resourcekey="pendingRequestsTableResource1">
+                    <asp:Table ID="pendingRequestsTable" runat="server" meta:resourcekey="pendingRequestsTableResource1" CssClass="displayTable">
                     </asp:Table>
                 </asp:Panel>
                 <br />
                 <asp:Label ID="receivedTranslationsLabel" runat="server" Text="Received Translations" Font-Bold="True" meta:resourcekey="receivedTranslationsLabelResource1"></asp:Label>
                  <br />
                 <asp:Panel ID="receivedTranslationsPanel" runat="server" Width="100%" ScrollBars="Vertical" Height="200px" meta:resourcekey="receivedTranslationsPanelResource1">
-                    <asp:Table ID="receivedTranslationsTable" runat="server" meta:resourcekey="receivedTranslationsTableResource1">
+                    <asp:Table ID="receivedTranslationsTable" runat="server" meta:resourcekey="receivedTranslationsTableResource1" CssClass="displayTable">
                     </asp:Table>
                 </asp:Panel>
                 <br />
                 <asp:Label ID="completedTranslationsLabel" runat="server" Text="Completed Translations" Font-Bold="True" meta:resourcekey="completedTranslationsLabelResource1"></asp:Label>
                 <br />
                 <asp:Panel ID="completedTranslationsPanel" runat="server" Width="100%" ScrollBars="Vertical" Height="200px" meta:resourcekey="completedTranslationsPanelResource1">
-                    <asp:Table ID="completedTranslationsTable" runat="server" meta:resourcekey="completedTranslationsTableResource1">
+                    <asp:Table ID="completedTranslationsTable" runat="server" meta:resourcekey="completedTranslationsTableResource1" CssClass="displayTable">
                     </asp:Table>
                 </asp:Panel>
             </asp:View>
@@ -38,14 +38,14 @@ Title="My Translations" Theme="Default" meta:resourcekey="PageResource1" %>
                 <asp:Label ID="personalReqsLabel" runat="server" Font-Bold="True" Text="Personal Requests" meta:resourcekey="personalReqsLabelResource1"></asp:Label>
                 <br />
                 <asp:Panel ID="personalReqsPanel" runat="server" Width="100%" ScrollBars="Vertical" Height="200px" meta:resourcekey="personalReqsPanelResource1">
-                    <asp:Table ID="personalReqsTable" runat="server" meta:resourcekey="personalReqsTableResource1">
+                    <asp:Table ID="personalReqsTable" runat="server" meta:resourcekey="personalReqsTableResource1" CssClass="displayTable">
                     </asp:Table>
                 </asp:Panel>
                 <br />
                 <asp:Label ID="globalReqsLabel" runat="server" Font-Bold="True" Text="Global Requests" meta:resourcekey="globalReqsLabelResource1"></asp:Label>
                 <br />
                 <asp:Panel ID="globalReqsPanel" runat="server" Width="100%" ScrollBars="Vertical" Height="200px" meta:resourcekey="globalReqsPanelResource1">
-                    <asp:Table ID="globalReqsTable" runat="server" meta:resourcekey="globalReqsTableResource1">
+                    <asp:Table ID="globalReqsTable" runat="server" meta:resourcekey="globalReqsTableResource1" CssClass="displayTable">
                     </asp:Table>
                 </asp:Panel>
                 <br />

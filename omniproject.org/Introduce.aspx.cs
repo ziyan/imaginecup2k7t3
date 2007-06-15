@@ -81,14 +81,14 @@ public partial class Introduce : System.Web.UI.Page
             TableCell newSimilarityCell = new TableCell();
             newSimilarityCell.Controls.Add(newSimilarityLabel);
 
-            TableRow newRoll = new TableRow();
-            newRoll.Cells.Add(newUsernameCell);
-            newRoll.Cells.Add(newNameCell);
-            newRoll.Cells.Add(newUserRatingCell);
-            newRoll.Cells.Add(newSystemRatingCell);
-            newRoll.Cells.Add(newSimilarityCell);
-            newRoll.CssClass = "row" + ((count % 2) + 1).ToString();
-            introduceTable.Rows.Add(newRoll);
+            TableRow newRow = new TableRow();
+            newRow.Cells.Add(newUsernameCell);
+            newRow.Cells.Add(newNameCell);
+            newRow.Cells.Add(newUserRatingCell);
+            newRow.Cells.Add(newSystemRatingCell);
+            newRow.Cells.Add(newSimilarityCell);
+            newRow.CssClass = "row" + ((count % 2) + 1).ToString();
+            introduceTable.Rows.Add(newRow);
 
             count++;
         }

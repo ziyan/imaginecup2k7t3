@@ -60,13 +60,13 @@ public partial class ViewProfile : System.Web.UI.Page
             TableCell newSystemRatingCell = new TableCell();
             newSystemRatingCell.Controls.Add(newSystemRatingLabel);
 
-            TableRow newRoll = new TableRow();
-            newRoll.Cells.Add(newLanguageCell);
-            newRoll.Cells.Add(newUserRatingCell);
-            newRoll.Cells.Add(newSystemRatingCell);
-            newRoll.CssClass = "row" + ((count % 2) + 1).ToString();
+            TableRow newRow = new TableRow();
+            newRow.Cells.Add(newLanguageCell);
+            newRow.Cells.Add(newUserRatingCell);
+            newRow.Cells.Add(newSystemRatingCell);
+            newRow.CssClass = "row" + ((count % 2) + 1).ToString();
 
-            languagesTable.Rows.Add(newRoll);
+            languagesTable.Rows.Add(newRow);
             count++;
         }
 
@@ -86,10 +86,10 @@ public partial class ViewProfile : System.Web.UI.Page
             TableCell newInterestCell = new TableCell();
             newInterestCell.Controls.Add(newInterestLabel);
 
-            TableRow newRoll = new TableRow();
-            newRoll.Cells.Add(newInterestCell);
-            newRoll.CssClass = "row" + ((count % 2) + 1).ToString();
-            interestsTable.Rows.Add(newRoll);
+            TableRow newRow = new TableRow();
+            newRow.Cells.Add(newInterestCell);
+            newRow.CssClass = "row" + ((count % 2) + 1).ToString();
+            interestsTable.Rows.Add(newRow);
 
             count++;
         }

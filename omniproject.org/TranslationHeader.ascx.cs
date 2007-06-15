@@ -32,33 +32,18 @@ public partial class TranslationHeader : System.Web.UI.UserControl
 
     public TableHeaderRow getTranslationHeader()
     {
-        BorderStyle borderStyle = BorderStyle.Solid;
-        int borderWidth = 1;
-
         TableHeaderRow tr = new TableHeaderRow();
         TableHeaderCell date = new TableHeaderCell();
-        date.BorderStyle = borderStyle;
-        date.BorderWidth = borderWidth;
         date.Controls.Add(cloneLabel(transDateLabel));
         TableHeaderCell requestor = new TableHeaderCell();
-        requestor.BorderStyle = borderStyle;
-        requestor.BorderWidth = borderWidth;
         requestor.Controls.Add(cloneLabel(transRequestorLabel));
         TableHeaderCell translator = new TableHeaderCell();
-        translator.BorderStyle = borderStyle;
-        translator.BorderWidth = borderWidth;
         translator.Controls.Add(cloneLabel(transTranslatorLabel));
         TableHeaderCell subject = new TableHeaderCell();
-        subject.BorderStyle = borderStyle;
-        subject.BorderWidth = borderWidth;
         subject.Controls.Add(cloneLabel(transSubjectLabel));
         TableHeaderCell srcLang = new TableHeaderCell();
-        srcLang.BorderStyle = borderStyle;
-        srcLang.BorderWidth = borderWidth;
         srcLang.Controls.Add(cloneLabel(transSrcLangLabel));
         TableHeaderCell destLang = new TableHeaderCell();
-        destLang.BorderStyle = borderStyle;
-        destLang.BorderWidth = borderWidth;
         destLang.Controls.Add(cloneLabel(transDestLangLabel));
 
         tr.Cells.Add(date);

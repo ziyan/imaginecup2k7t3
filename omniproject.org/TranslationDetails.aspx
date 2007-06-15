@@ -12,7 +12,7 @@ Title="Translation Details" Theme="Default" meta:resourcekey="PageResource1" %>
     <asp:Panel ID="userPanel" runat="server" Width="100%" meta:resourcekey="userPanelResource1">
         <uc1:TranslationHeader ID="translationHeader" runat="server" Visible="False" />
         <br />
-        <asp:Table ID="translationDetailsTable" runat="server" meta:resourcekey="translationDetailsTableResource1">
+        <asp:Table ID="translationDetailsTable" runat="server" meta:resourcekey="translationDetailsTableResource1" CssClass="displayTable">
         </asp:Table>
         <br />
         <asp:Label ID="origMsgLabel" runat="server" Text="Original Text" meta:resourcekey="origMsgLabelResource1"></asp:Label><br />

@@ -35,10 +35,10 @@ public partial class _Default : System.Web.UI.Page
         int count = 0;
         foreach (Translation translationRequest in translationRequests)
         {
-            TableRow newRoll = translationHeader.getTableRowForTranslation(
+            TableRow newRow = translationHeader.getTableRowForTranslation(
                     translationRequest, translationHeader.TranslationRow_Click, "a");
-            newRoll.CssClass = "row" + ((count % 2) + 1).ToString();
-            translationTable.Rows.Add(newRoll);
+            newRow.CssClass = "row" + ((count % 2) + 1).ToString();
+            translationTable.Rows.Add(newRow);
             count++;
         }
     }

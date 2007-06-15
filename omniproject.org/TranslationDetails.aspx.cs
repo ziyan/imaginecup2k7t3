@@ -94,7 +94,9 @@ public partial class TranslationDetails : System.Web.UI.Page
 
         translationDetailsTable.Rows.Clear();
         translationDetailsTable.Rows.Add(translationHeader.getTranslationHeader());
-        translationDetailsTable.Rows.Add(translationHeader.getTableRowForTranslation(t, null, "a"));
+        TableRow newRow = translationHeader.getTableRowForTranslation(t, null, "a");
+        newRow.CssClass = "row1";
+        translationDetailsTable.Rows.Add(newRow);
 
         origMsgTB.Text = t.orig_body;
         if (t.type == TranslationDataType.Full)

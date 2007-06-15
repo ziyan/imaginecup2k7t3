@@ -61,12 +61,12 @@ public partial class SearchUser : System.Web.UI.Page
             TableCell nameCell = new TableCell();
             nameCell.Controls.Add(nameLink);
 
-            TableRow newRoll = new TableRow();
-            newRoll.Cells.Add(usernameCell);
-            newRoll.Cells.Add(nameCell);
-            newRoll.CssClass = "row" + ((count % 2) + 1).ToString();
+            TableRow newRow = new TableRow();
+            newRow.Cells.Add(usernameCell);
+            newRow.Cells.Add(nameCell);
+            newRow.CssClass = "row" + ((count % 2) + 1).ToString();
 
-            searchUserTable.Rows.Add(newRoll);
+            searchUserTable.Rows.Add(newRow);
 
             count++;
         }

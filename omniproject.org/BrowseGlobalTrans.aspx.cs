@@ -71,10 +71,10 @@ public partial class BrowseGlobalTrans : System.Web.UI.Page
         int count = 0;
         foreach (Translation translation in translations)
         {
-            TableRow newRoll = translationHeader.getTableRowForTranslation(
+            TableRow newRow = translationHeader.getTableRowForTranslation(
                     translation, translationHeader.TranslationRow_Click, "a");
-            newRoll.CssClass = "row" + ((count % 2) + 1).ToString();
-            translationTable.Rows.Add(newRoll);
+            newRow.CssClass = "row" + ((count % 2) + 1).ToString();
+            translationTable.Rows.Add(newRow);
             count++;
         }
 

@@ -179,12 +179,12 @@ public partial class HallOfFame : System.Web.UI.Page
             TableCell quantityCell = new TableCell();
             quantityCell.Controls.Add(quantityLabel);
 
-            TableRow newRoll = new TableRow();
-            newRoll.Cells.Add(usernameCell);
-            newRoll.Cells.Add(displayNameCell);
-            newRoll.Cells.Add(quantityCell);
-            newRoll.CssClass = "row" + ((count % 2) + 1).ToString();
-            table.Rows.Add(newRoll);
+            TableRow newRow = new TableRow();
+            newRow.Cells.Add(usernameCell);
+            newRow.Cells.Add(displayNameCell);
+            newRow.Cells.Add(quantityCell);
+            newRow.CssClass = "row" + ((count % 2) + 1).ToString();
+            table.Rows.Add(newRow);
 
             count++;
         }
