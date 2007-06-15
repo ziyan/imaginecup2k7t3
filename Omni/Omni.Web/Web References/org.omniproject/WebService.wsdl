@@ -432,6 +432,20 @@
           <s:element minOccurs="1" maxOccurs="1" name="simil" type="s:double" />
         </s:sequence>
       </s:complexType>
+      <s:element name="UserSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="keyword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserSearchResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="TransAnsRateById">
         <s:complexType>
           <s:sequence>
@@ -535,6 +549,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="rating" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -901,6 +916,12 @@
   <wsdl:message name="UserIntroByIdSoapOut">
     <wsdl:part name="parameters" element="tns:UserIntroByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="UserSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:UserSearch" />
+  </wsdl:message>
+  <wsdl:message name="UserSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:UserSearchResponse" />
+  </wsdl:message>
   <wsdl:message name="TransAnsRateByIdSoapIn">
     <wsdl:part name="parameters" element="tns:TransAnsRateById" />
   </wsdl:message>
@@ -1159,6 +1180,12 @@
   <wsdl:message name="UserIntroByIdHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfUserSimil" />
   </wsdl:message>
+  <wsdl:message name="UserSearchHttpGetIn">
+    <wsdl:part name="keyword" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserSearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUser" />
+  </wsdl:message>
   <wsdl:message name="TransAnsRateByIdHttpGetIn">
     <wsdl:part name="user_id" type="s:string" />
     <wsdl:part name="trans_ans_id" type="s:string" />
@@ -1199,6 +1226,7 @@
     <wsdl:part name="user_id" type="s:string" />
     <wsdl:part name="message" type="s:string" />
     <wsdl:part name="rating" type="s:string" />
+    <wsdl:part name="date" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransAnsAddHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
@@ -1432,6 +1460,12 @@
   <wsdl:message name="UserIntroByIdHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfUserSimil" />
   </wsdl:message>
+  <wsdl:message name="UserSearchHttpPostIn">
+    <wsdl:part name="keyword" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserSearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUser" />
+  </wsdl:message>
   <wsdl:message name="TransAnsRateByIdHttpPostIn">
     <wsdl:part name="user_id" type="s:string" />
     <wsdl:part name="trans_ans_id" type="s:string" />
@@ -1472,6 +1506,7 @@
     <wsdl:part name="user_id" type="s:string" />
     <wsdl:part name="message" type="s:string" />
     <wsdl:part name="rating" type="s:string" />
+    <wsdl:part name="date" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransAnsAddHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
@@ -1650,6 +1685,10 @@
       <wsdl:input message="tns:UserIntroByIdSoapIn" />
       <wsdl:output message="tns:UserIntroByIdSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserSearch">
+      <wsdl:input message="tns:UserSearchSoapIn" />
+      <wsdl:output message="tns:UserSearchSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <wsdl:input message="tns:TransAnsRateByIdSoapIn" />
       <wsdl:output message="tns:TransAnsRateByIdSoapOut" />
@@ -1824,6 +1863,10 @@
       <wsdl:input message="tns:UserIntroByIdHttpGetIn" />
       <wsdl:output message="tns:UserIntroByIdHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserSearch">
+      <wsdl:input message="tns:UserSearchHttpGetIn" />
+      <wsdl:output message="tns:UserSearchHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <wsdl:input message="tns:TransAnsRateByIdHttpGetIn" />
       <wsdl:output message="tns:TransAnsRateByIdHttpGetOut" />
@@ -1997,6 +2040,10 @@
     <wsdl:operation name="UserIntroById">
       <wsdl:input message="tns:UserIntroByIdHttpPostIn" />
       <wsdl:output message="tns:UserIntroByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserSearch">
+      <wsdl:input message="tns:UserSearchHttpPostIn" />
+      <wsdl:output message="tns:UserSearchHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <wsdl:input message="tns:TransAnsRateByIdHttpPostIn" />
@@ -2306,6 +2353,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserIntroById">
       <soap:operation soapAction="http://omniproject.org/UserIntroById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserSearch">
+      <soap:operation soapAction="http://omniproject.org/UserSearch" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2703,6 +2759,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserSearch">
+      <soap12:operation soapAction="http://omniproject.org/UserSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <soap12:operation soapAction="http://omniproject.org/TransAnsRateById" style="document" />
       <wsdl:input>
@@ -3075,6 +3140,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserSearch">
+      <http:operation location="/UserSearch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TransAnsRateById">
       <http:operation location="/TransAnsRateById" />
       <wsdl:input>
@@ -3436,6 +3510,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserIntroById">
       <http:operation location="/UserIntroById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserSearch">
+      <http:operation location="/UserSearch" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

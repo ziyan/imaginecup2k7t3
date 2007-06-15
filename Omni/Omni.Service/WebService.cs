@@ -331,6 +331,15 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
+        public User[] UserSearch(string keyword)
+        {
+            CheckInit();
+            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            if (keyword == null || keyword.Trim() == "") throw new ArgumentNullException();
+            return Data.StoredProcedure.UserSearch(keyword.Trim(), (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
         public void TransAnsRateById(int user_id, int trans_ans_id, short rating)
         {
             CheckInit();

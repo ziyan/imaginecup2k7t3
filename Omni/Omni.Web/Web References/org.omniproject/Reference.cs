@@ -85,6 +85,8 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback UserIntroByIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserSearchOperationCompleted;
+        
         private System.Threading.SendOrPostCallback TransAnsRateByIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback MessageSendOperationCompleted;
@@ -236,6 +238,9 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event UserIntroByIdCompletedEventHandler UserIntroByIdCompleted;
+        
+        /// <remarks/>
+        public event UserSearchCompletedEventHandler UserSearchCompleted;
         
         /// <remarks/>
         public event TransAnsRateByIdCompletedEventHandler TransAnsRateByIdCompleted;
@@ -1133,6 +1138,35 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserSearch", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public User[] UserSearch(string keyword) {
+            object[] results = this.Invoke("UserSearch", new object[] {
+                        keyword});
+            return ((User[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserSearchAsync(string keyword) {
+            this.UserSearchAsync(keyword, null);
+        }
+        
+        /// <remarks/>
+        public void UserSearchAsync(string keyword, object userState) {
+            if ((this.UserSearchOperationCompleted == null)) {
+                this.UserSearchOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserSearchOperationCompleted);
+            }
+            this.InvokeAsync("UserSearch", new object[] {
+                        keyword}, this.UserSearchOperationCompleted, userState);
+        }
+        
+        private void OnUserSearchOperationCompleted(object arg) {
+            if ((this.UserSearchCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserSearchCompleted(this, new UserSearchCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransAnsRateById", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void TransAnsRateById(int user_id, int trans_ans_id, short rating) {
             this.Invoke("TransAnsRateById", new object[] {
@@ -1295,22 +1329,23 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransAnsAdd", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int TransAnsAdd(int req_id, int user_id, string message, int rating) {
+        public int TransAnsAdd(int req_id, int user_id, string message, int rating, System.DateTime date) {
             object[] results = this.Invoke("TransAnsAdd", new object[] {
                         req_id,
                         user_id,
                         message,
-                        rating});
+                        rating,
+                        date});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void TransAnsAddAsync(int req_id, int user_id, string message, int rating) {
-            this.TransAnsAddAsync(req_id, user_id, message, rating, null);
+        public void TransAnsAddAsync(int req_id, int user_id, string message, int rating, System.DateTime date) {
+            this.TransAnsAddAsync(req_id, user_id, message, rating, date, null);
         }
         
         /// <remarks/>
-        public void TransAnsAddAsync(int req_id, int user_id, string message, int rating, object userState) {
+        public void TransAnsAddAsync(int req_id, int user_id, string message, int rating, System.DateTime date, object userState) {
             if ((this.TransAnsAddOperationCompleted == null)) {
                 this.TransAnsAddOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransAnsAddOperationCompleted);
             }
@@ -1318,7 +1353,8 @@ namespace Omni.Web.org.omniproject {
                         req_id,
                         user_id,
                         message,
-                        rating}, this.TransAnsAddOperationCompleted, userState);
+                        rating,
+                        date}, this.TransAnsAddOperationCompleted, userState);
         }
         
         private void OnTransAnsAddOperationCompleted(object arg) {
@@ -2829,6 +2865,32 @@ namespace Omni.Web.org.omniproject {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((UserSimil[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserSearchCompletedEventHandler(object sender, UserSearchCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserSearchCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserSearchCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public User[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((User[])(this.results[0]));
             }
         }
     }

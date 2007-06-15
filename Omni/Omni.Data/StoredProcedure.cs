@@ -183,6 +183,25 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
+        public static User[] UserSearch(string keyword, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_search";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@keyword", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters[0].Value = keyword;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<User> users = new List<User>();
+            while (reader.Read())
+            {
+                users.Add(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return users.ToArray();
+        }
         public static int UserLangSetById(int user_id, int lang_id, short self_rating, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
