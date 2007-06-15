@@ -37,6 +37,6 @@ public partial class OmniMaster : System.Web.UI.MasterPage
     protected void logoutButton_Click(object sender, EventArgs e)
     {
         Omni.Web.Common.GetWebService().UserLogout();
-        Server.Transfer("~/Default.aspx");
+        Response.Redirect("~/");
     }
 }

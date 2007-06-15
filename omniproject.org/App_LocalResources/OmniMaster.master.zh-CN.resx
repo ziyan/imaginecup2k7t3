@@ -160,7 +160,7 @@
     <value>注册新帐号</value>
   </data>
   <data name="requestTransLabelResource1.Text" xml:space="preserve">
-    <value>TRANSLATEME</value>
+    <value>提交翻译请求</value>
   </data>
   <data name="returnHomeLabelResource1.Text" xml:space="preserve">
     <value>回到主页</value>

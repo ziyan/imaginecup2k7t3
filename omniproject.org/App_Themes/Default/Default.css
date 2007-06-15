@@ -6,6 +6,7 @@ body
 {
 	background-color: #ccdeff;
 	/*background-color: #3e7eb4;*/
+	font-size:9pt;
 }
 
 div.topbar
@@ -52,11 +53,14 @@ div.lowerright
 .titleLink
 {
 	color: White;
+	font-size:18pt;
 }
 
 .title
 {
 	color: Black;
+	font-size: 16pt;
+	text-decoration:bold;
 }
 
 
