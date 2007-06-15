@@ -939,22 +939,28 @@ namespace Omni.Data
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "omni_trans_ans_rate_get_by_id";
             cmd.Connection = cn.cn;
-            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.NVarChar);
+            cmd.Parameters.Add("@user_id", System.Data.SqlDbType.Int);
             cmd.Parameters.Add("@ans_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = user_id;
             cmd.Parameters[1].Value = ans_id;
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-                if(Convert.ToBoolean(reader["rated"]))
+                int rating = Convert.ToInt16(reader["rating"]);
+                bool rated = Convert.ToBoolean(reader["rated"]);
+                reader.Close();
+                reader.Dispose();
+                if(rated)
                 {
-                    return -Convert.ToInt16(reader["rating"]);
+                    return -rating;
                 }
                 else
                 {
-                    return Convert.ToInt16(reader["rating"]);
+                    return rating;
                 }
             }
+            reader.Close();
+            reader.Dispose();
             return 0;
         }
     }
