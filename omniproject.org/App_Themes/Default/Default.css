@@ -14,20 +14,30 @@ div.topbar
 	background-color: #0b3558;
 	color: White;	
 	border-color: #0b3558;
+	height: 50px;
+	margin-bottom: 10px;
+
 }
 
 div.topbarLeft
 {
+	background-image: url(omnilogo_sm.gif);	
+	background-repeat: no-repeat;
+	width:81px;
+	height:30px;
+	margin: 8px;
 }
 
 div.topbarRight
 {
+	margin: 8px;
 }
 
 div.lower
 {
 	background-image: url(grad1.jpg);
 	background-repeat: repeat-x;
+	margin-top:10px;
 }
 
 div.lowerleft

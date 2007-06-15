@@ -163,7 +163,7 @@
     <value>Return Home</value>
   </data>
   <data name="titleLabelResource1.Text" xml:space="preserve">
-    <value>Omni</value>
+    <value />
   </data>
   <data name="usernameLabel.Text" xml:space="preserve">
     <value>Welcome, </value>
