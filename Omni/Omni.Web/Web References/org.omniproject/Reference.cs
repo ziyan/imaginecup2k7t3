@@ -105,6 +105,8 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback TransGetByReqIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TransGetByAnsIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback TransGetPendingByUserOperationCompleted;
         
         private System.Threading.SendOrPostCallback TransGetUnApprByUserOperationCompleted;
@@ -276,6 +278,9 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event TransGetByReqIdCompletedEventHandler TransGetByReqIdCompleted;
+        
+        /// <remarks/>
+        public event TransGetByAnsIdCompletedEventHandler TransGetByAnsIdCompleted;
         
         /// <remarks/>
         public event TransGetPendingByUserCompletedEventHandler TransGetPendingByUserCompleted;
@@ -1220,8 +1225,8 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/MessageSend", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void MessageSend(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, bool pending_trans, int trans_req_id) {
-            this.Invoke("MessageSend", new object[] {
+        public int MessageSend(int user_id, int dst_id, MessageDestinationType dst_type, string subject, string body, bool pending_trans, int trans_req_id) {
+            object[] results = this.Invoke("MessageSend", new object[] {
                         user_id,
                         dst_id,
                         dst_type,
@@ -1229,6 +1234,7 @@ namespace Omni.Web.org.omniproject {
                         body,
                         pending_trans,
                         trans_req_id});
+            return ((int)(results[0]));
         }
         
         /// <remarks/>
@@ -1254,7 +1260,7 @@ namespace Omni.Web.org.omniproject {
         private void OnMessageSendOperationCompleted(object arg) {
             if ((this.MessageSendCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.MessageSendCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.MessageSendCompleted(this, new MessageSendCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1463,6 +1469,35 @@ namespace Omni.Web.org.omniproject {
             if ((this.TransGetByReqIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.TransGetByReqIdCompleted(this, new TransGetByReqIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransGetByAnsId", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation TransGetByAnsId(int ans_id) {
+            object[] results = this.Invoke("TransGetByAnsId", new object[] {
+                        ans_id});
+            return ((Translation)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TransGetByAnsIdAsync(int ans_id) {
+            this.TransGetByAnsIdAsync(ans_id, null);
+        }
+        
+        /// <remarks/>
+        public void TransGetByAnsIdAsync(int ans_id, object userState) {
+            if ((this.TransGetByAnsIdOperationCompleted == null)) {
+                this.TransGetByAnsIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransGetByAnsIdOperationCompleted);
+            }
+            this.InvokeAsync("TransGetByAnsId", new object[] {
+                        ans_id}, this.TransGetByAnsIdOperationCompleted, userState);
+        }
+        
+        private void OnTransGetByAnsIdOperationCompleted(object arg) {
+            if ((this.TransGetByAnsIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TransGetByAnsIdCompleted(this, new TransGetByAnsIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3120,7 +3155,29 @@ namespace Omni.Web.org.omniproject {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
-    public delegate void MessageSendCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void MessageSendCompletedEventHandler(object sender, MessageSendCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MessageSendCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MessageSendCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
@@ -3269,6 +3326,32 @@ namespace Omni.Web.org.omniproject {
         private object[] results;
         
         internal TransGetByReqIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void TransGetByAnsIdCompletedEventHandler(object sender, TransGetByAnsIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TransGetByAnsIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TransGetByAnsIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
