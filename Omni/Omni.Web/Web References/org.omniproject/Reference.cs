@@ -117,6 +117,10 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback TransReqFindGlobalForUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserRankByQuantityOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UserRankByRatingOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -286,6 +290,12 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event TransReqFindGlobalForUserCompletedEventHandler TransReqFindGlobalForUserCompleted;
+        
+        /// <remarks/>
+        public event UserRankByQuantityCompletedEventHandler UserRankByQuantityCompleted;
+        
+        /// <remarks/>
+        public event UserRankByRatingCompletedEventHandler UserRankByRatingCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1638,6 +1648,68 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserRankByQuantity", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserRankQuantity[] UserRankByQuantity(float interval, int limit) {
+            object[] results = this.Invoke("UserRankByQuantity", new object[] {
+                        interval,
+                        limit});
+            return ((UserRankQuantity[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserRankByQuantityAsync(float interval, int limit) {
+            this.UserRankByQuantityAsync(interval, limit, null);
+        }
+        
+        /// <remarks/>
+        public void UserRankByQuantityAsync(float interval, int limit, object userState) {
+            if ((this.UserRankByQuantityOperationCompleted == null)) {
+                this.UserRankByQuantityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserRankByQuantityOperationCompleted);
+            }
+            this.InvokeAsync("UserRankByQuantity", new object[] {
+                        interval,
+                        limit}, this.UserRankByQuantityOperationCompleted, userState);
+        }
+        
+        private void OnUserRankByQuantityOperationCompleted(object arg) {
+            if ((this.UserRankByQuantityCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserRankByQuantityCompleted(this, new UserRankByQuantityCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/UserRankByRating", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserRankRating[] UserRankByRating(int lang_id, int limit) {
+            object[] results = this.Invoke("UserRankByRating", new object[] {
+                        lang_id,
+                        limit});
+            return ((UserRankRating[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserRankByRatingAsync(int lang_id, int limit) {
+            this.UserRankByRatingAsync(lang_id, limit, null);
+        }
+        
+        /// <remarks/>
+        public void UserRankByRatingAsync(int lang_id, int limit, object userState) {
+            if ((this.UserRankByRatingOperationCompleted == null)) {
+                this.UserRankByRatingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserRankByRatingOperationCompleted);
+            }
+            this.InvokeAsync("UserRankByRating", new object[] {
+                        lang_id,
+                        limit}, this.UserRankByRatingOperationCompleted, userState);
+        }
+        
+        private void OnUserRankByRatingOperationCompleted(object arg) {
+            if ((this.UserRankByRatingCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserRankByRatingCompleted(this, new UserRankByRatingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -1745,6 +1817,84 @@ namespace Omni.Web.org.omniproject {
             }
             set {
                 this.log_dateField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.312")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://omniproject.org/")]
+    public partial class UserRankRating {
+        
+        private User userField;
+        
+        private int lang_idField;
+        
+        private float net_ratingField;
+        
+        /// <remarks/>
+        public User user {
+            get {
+                return this.userField;
+            }
+            set {
+                this.userField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int lang_id {
+            get {
+                return this.lang_idField;
+            }
+            set {
+                this.lang_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float net_rating {
+            get {
+                return this.net_ratingField;
+            }
+            set {
+                this.net_ratingField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.312")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://omniproject.org/")]
+    public partial class UserRankQuantity {
+        
+        private User userField;
+        
+        private int quantityField;
+        
+        /// <remarks/>
+        public User user {
+            get {
+                return this.userField;
+            }
+            set {
+                this.userField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int quantity {
+            get {
+                return this.quantityField;
+            }
+            set {
+                this.quantityField = value;
             }
         }
     }
@@ -3235,6 +3385,58 @@ namespace Omni.Web.org.omniproject {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Translation[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserRankByQuantityCompletedEventHandler(object sender, UserRankByQuantityCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserRankByQuantityCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserRankByQuantityCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserRankQuantity[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserRankQuantity[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserRankByRatingCompletedEventHandler(object sender, UserRankByRatingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserRankByRatingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserRankByRatingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserRankRating[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserRankRating[])(this.results[0]));
             }
         }
     }

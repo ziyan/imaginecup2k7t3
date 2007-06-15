@@ -108,6 +108,12 @@
     <None Include="Web References\org.omniproject\UserLanguage.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\org.omniproject\UserRankQuantity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\org.omniproject\UserRankRating.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\org.omniproject\UserSimil.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>

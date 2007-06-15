@@ -731,6 +731,59 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UserRankByQuantity">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="interval" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="limit" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserRankByQuantityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserRankByQuantityResult" type="tns:ArrayOfUserRankQuantity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserRankQuantity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserRankQuantity" nillable="true" type="tns:UserRankQuantity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserRankQuantity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          <s:element minOccurs="1" maxOccurs="1" name="quantity" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UserRankByRating">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="lang_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="limit" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserRankByRatingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserRankByRatingResult" type="tns:ArrayOfUserRankRating" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserRankRating">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserRankRating" nillable="true" type="tns:UserRankRating" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserRankRating">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          <s:element minOccurs="1" maxOccurs="1" name="lang_id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="net_rating" type="s:float" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
       <s:element name="int" type="s:int" />
       <s:element name="User" nillable="true" type="tns:User" />
@@ -745,6 +798,8 @@
       <s:element name="Message" nillable="true" type="tns:Message" />
       <s:element name="ArrayOfTranslation" nillable="true" type="tns:ArrayOfTranslation" />
       <s:element name="Translation" nillable="true" type="tns:Translation" />
+      <s:element name="ArrayOfUserRankQuantity" nillable="true" type="tns:ArrayOfUserRankQuantity" />
+      <s:element name="ArrayOfUserRankRating" nillable="true" type="tns:ArrayOfUserRankRating" />
     </s:schema>
   </wsdl:types>
   <wsdl:message name="InitializeSoapIn">
@@ -1010,6 +1065,18 @@
   </wsdl:message>
   <wsdl:message name="TransReqFindGlobalForUserSoapOut">
     <wsdl:part name="parameters" element="tns:TransReqFindGlobalForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserRankByQuantitySoapIn">
+    <wsdl:part name="parameters" element="tns:UserRankByQuantity" />
+  </wsdl:message>
+  <wsdl:message name="UserRankByQuantitySoapOut">
+    <wsdl:part name="parameters" element="tns:UserRankByQuantityResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserRankByRatingSoapIn">
+    <wsdl:part name="parameters" element="tns:UserRankByRating" />
+  </wsdl:message>
+  <wsdl:message name="UserRankByRatingSoapOut">
+    <wsdl:part name="parameters" element="tns:UserRankByRatingResponse" />
   </wsdl:message>
   <wsdl:message name="InitializeHttpGetIn" />
   <wsdl:message name="InitializeHttpGetOut" />
@@ -1290,6 +1357,20 @@
   <wsdl:message name="TransReqFindGlobalForUserHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
+  <wsdl:message name="UserRankByQuantityHttpGetIn">
+    <wsdl:part name="interval" type="s:string" />
+    <wsdl:part name="limit" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserRankByQuantityHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUserRankQuantity" />
+  </wsdl:message>
+  <wsdl:message name="UserRankByRatingHttpGetIn">
+    <wsdl:part name="lang_id" type="s:string" />
+    <wsdl:part name="limit" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserRankByRatingHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUserRankRating" />
+  </wsdl:message>
   <wsdl:message name="InitializeHttpPostIn" />
   <wsdl:message name="InitializeHttpPostOut" />
   <wsdl:message name="UserCaptchaHttpPostIn">
@@ -1569,6 +1650,20 @@
   <wsdl:message name="TransReqFindGlobalForUserHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
+  <wsdl:message name="UserRankByQuantityHttpPostIn">
+    <wsdl:part name="interval" type="s:string" />
+    <wsdl:part name="limit" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserRankByQuantityHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUserRankQuantity" />
+  </wsdl:message>
+  <wsdl:message name="UserRankByRatingHttpPostIn">
+    <wsdl:part name="lang_id" type="s:string" />
+    <wsdl:part name="limit" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserRankByRatingHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUserRankRating" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="Initialize">
       <wsdl:input message="tns:InitializeSoapIn" />
@@ -1745,6 +1840,14 @@
     <wsdl:operation name="TransReqFindGlobalForUser">
       <wsdl:input message="tns:TransReqFindGlobalForUserSoapIn" />
       <wsdl:output message="tns:TransReqFindGlobalForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByQuantity">
+      <wsdl:input message="tns:UserRankByQuantitySoapIn" />
+      <wsdl:output message="tns:UserRankByQuantitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByRating">
+      <wsdl:input message="tns:UserRankByRatingSoapIn" />
+      <wsdl:output message="tns:UserRankByRatingSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
@@ -1924,6 +2027,14 @@
       <wsdl:input message="tns:TransReqFindGlobalForUserHttpGetIn" />
       <wsdl:output message="tns:TransReqFindGlobalForUserHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserRankByQuantity">
+      <wsdl:input message="tns:UserRankByQuantityHttpGetIn" />
+      <wsdl:output message="tns:UserRankByQuantityHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByRating">
+      <wsdl:input message="tns:UserRankByRatingHttpGetIn" />
+      <wsdl:output message="tns:UserRankByRatingHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpPost">
     <wsdl:operation name="Initialize">
@@ -2101,6 +2212,14 @@
     <wsdl:operation name="TransReqFindGlobalForUser">
       <wsdl:input message="tns:TransReqFindGlobalForUserHttpPostIn" />
       <wsdl:output message="tns:TransReqFindGlobalForUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByQuantity">
+      <wsdl:input message="tns:UserRankByQuantityHttpPostIn" />
+      <wsdl:output message="tns:UserRankByQuantityHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByRating">
+      <wsdl:input message="tns:UserRankByRatingHttpPostIn" />
+      <wsdl:output message="tns:UserRankByRatingHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -2494,6 +2613,24 @@
     </wsdl:operation>
     <wsdl:operation name="TransReqFindGlobalForUser">
       <soap:operation soapAction="http://omniproject.org/TransReqFindGlobalForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByQuantity">
+      <soap:operation soapAction="http://omniproject.org/UserRankByQuantity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByRating">
+      <soap:operation soapAction="http://omniproject.org/UserRankByRating" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2900,6 +3037,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserRankByQuantity">
+      <soap12:operation soapAction="http://omniproject.org/UserRankByQuantity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByRating">
+      <soap12:operation soapAction="http://omniproject.org/UserRankByRating" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpGet" type="tns:WebServiceHttpGet">
     <http:binding verb="GET" />
@@ -3277,6 +3432,24 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserRankByQuantity">
+      <http:operation location="/UserRankByQuantity" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByRating">
+      <http:operation location="/UserRankByRating" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceHttpPost" type="tns:WebServiceHttpPost">
     <http:binding verb="POST" />
@@ -3647,6 +3820,24 @@
     </wsdl:operation>
     <wsdl:operation name="TransReqFindGlobalForUser">
       <http:operation location="/TransReqFindGlobalForUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByQuantity">
+      <http:operation location="/UserRankByQuantity" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserRankByRating">
+      <http:operation location="/UserRankByRating" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

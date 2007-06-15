@@ -797,6 +797,50 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
+        public static UserRankQuantity[] UserRankByQuantity(float interval, int limit, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_rank_by_quantity";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@interval", System.Data.SqlDbType.Float);
+            cmd.Parameters[0].Value = interval;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<UserRankQuantity> result = new List<UserRankQuantity>();
+            int count = 0;
+            while (reader.Read())
+            {
+                result.Add(new UserRankQuantity(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])),Convert.ToInt32(reader["quantity"])));
+                count++;
+                if (count >= limit) break;
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+        public static UserRankRating[] UserRankByRating(int lang_id, int limit, SqlConnection cn)
+        {
+            if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "omni_user_rank_by_rating";
+            cmd.Connection = cn.cn;
+            cmd.Parameters.Add("@lang_id", System.Data.SqlDbType.Int);
+            cmd.Parameters[0].Value = lang_id;
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<UserRankRating> result = new List<UserRankRating>();
+            int count = 0;
+            while (reader.Read())
+            {
+                result.Add(new UserRankRating(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])), Convert.ToInt32(reader["lang_id"]), Convert.ToSingle(reader["net_rating"])));
+                count++;
+                if (count >= limit) break;
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
     }
 }
 

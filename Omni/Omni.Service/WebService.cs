@@ -482,5 +482,21 @@ namespace Omni.Service
             if (user_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransReqFindGlobalForUser(user_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
+
+        [WebMethod(true)]
+        public UserRankQuantity[] UserRankByQuantity(float interval, int limit)
+        {
+            CheckInit();
+            if (limit <= 0 || interval <= 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.UserRankByQuantity(interval,limit, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
+
+        [WebMethod(true)]
+        public UserRankRating[] UserRankByRating(int lang_id, int limit)
+        {
+            CheckInit();
+            if (limit <= 0 || lang_id <= 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.UserRankByRating(lang_id,limit, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
+        }
     }
 }
