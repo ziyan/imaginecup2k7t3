@@ -231,11 +231,19 @@ public partial class MyMessages : System.Web.UI.Page
         if (msg != null)
         {
             messageDetailPanel.Visible = true;
-            messageTB.Text = msg.body;
             curMsgTable.Rows.Clear();
             curMsgTable.Rows.Add(getMessageHeaderRow());
             TableRow tr = tableRowFromMessage(msg, false, false);
             tr.CssClass = "row1";
+            curMsgTable.Rows.Add(tr);
+            tr = new TableRow();
+            TableCell tc = new TableCell();
+            tc.ColumnSpan = 4;
+            tc.Controls.Add(bodyTextBox);
+            bodyTextBox.Visible = true;
+            bodyTextBox.Text = msg.body;
+            tr.Cells.Add(tc);
+            tr.CssClass="row2";
             curMsgTable.Rows.Add(tr);
             populateMessages();
         }

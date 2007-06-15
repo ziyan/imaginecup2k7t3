@@ -40,16 +40,13 @@ Title="My Messages" Theme="Default" meta:resourcekey="PageResource1" %>
             <asp:Label ID="messageDetailsLabel" runat="server" Text="Message Details:" meta:resourcekey="messageDetailsLabelResource1"></asp:Label>
             <asp:Table CssClass="displayTable" ID="curMsgTable" runat="server" meta:resourcekey="curMsgTableResource1">
             </asp:Table>
-            <br />
-            <asp:TextBox ID="messageTB" runat="server" TextMode="MultiLine" ReadOnly="True" Rows="10"
-                Columns="50" meta:resourcekey="messageTBResource1"></asp:TextBox>
             <asp:Label ID="msgIdLabel" runat="server" Visible="False" meta:resourcekey="msgIdLabelResource1"></asp:Label><br />
             <asp:Button ID="replyButton" runat="server" Text="Reply to Sender" OnClick="replyButton_Click" meta:resourcekey="replyButtonResource1" />
             <asp:Button ID="requestTransButton" runat="server" Text="Request Translation" meta:resourcekey="requestTransButtonResource1" />
             </asp:Panel>
         <br />
-        
-    </asp:Panel>
+        <asp:TextBox ID="bodyTextBox" runat="server" Columns="40" ReadOnly="True" Rows="3"
+            TextMode="MultiLine" Visible="False"></asp:TextBox></asp:Panel>
     <uc1:NotAuthedControl ID="NotAuthedControl1" runat="server" />
     <br />
     &nbsp;<br />
