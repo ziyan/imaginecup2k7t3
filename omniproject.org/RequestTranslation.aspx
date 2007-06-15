@@ -12,9 +12,10 @@ Title="Request a Translation" Theme="Default" meta:resourcekey="PageResource1" %
         <asp:ListItem Text="Global / Any" meta:resourcekey="ListItemResource2"></asp:ListItem>        
         </asp:DropDownList>
         <asp:Panel ID="userTranslatorPanel" runat="server" Width="100%" meta:resourcekey="userTranslatorPanelResource1">
-            <asp:TextBox ID="userTranslatorTB" runat="server" Columns="25" Width="200px" meta:resourcekey="userTranslatorTBResource1"></asp:TextBox>
-            <asp:DropDownList ID="userTranslatorDDL" runat="server" Width="190px" OnSelectedIndexChanged="userTranslatorDDL_SelectedIndexChanged" meta:resourcekey="userTranslatorDDLResource1">
+            <asp:DropDownList ID="userTranslatorDDL" runat="server" Width="140px" OnSelectedIndexChanged="userTranslatorDDL_SelectedIndexChanged" AutoPostBack="true" meta:resourcekey="userTranslatorDDLResource1">
+            <asp:ListItem Text="(Other)" Value="noFav"></asp:ListItem>            
             </asp:DropDownList>
+            <asp:TextBox ID="userTranslatorTB" runat="server" Columns="25" Width="200px" meta:resourcekey="userTranslatorTBResource1"></asp:TextBox>
        </asp:Panel>            
         <br />
         <asp:Table ID="headerTable" runat="server" meta:resourcekey="headerTableResource1">

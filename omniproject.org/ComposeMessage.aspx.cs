@@ -61,10 +61,15 @@ public partial class ComposeMessage : System.Web.UI.Page
             }
             else
             {
-                for (int i = 0; i < favorites.Length; i++)
+                if (toDDL.SelectedIndex == 0)
                 {
-                    String favUsername = favorites[i].username;
-                    toDDL.Items.Add(new ListItem(favUsername, favUsername));
+                    for (int i = 1; i < toDDL.Items.Count; i++)
+                        toDDL.Items.RemoveAt(i);
+                    for (int i = 0; i < favorites.Length; i++)
+                    {
+                        String favUsername = favorites[i].username;
+                        toDDL.Items.Add(new ListItem(favUsername, favUsername));
+                    }
                 }
             }
         }
@@ -103,6 +108,12 @@ public partial class ComposeMessage : System.Web.UI.Page
     }
     protected void toDDL_SelectedIndexChanged(object sender, EventArgs e)
     {
-        toTB.Text = toDDL.SelectedValue;
+        if (toDDL.SelectedIndex > 0)
+        {
+            toTB.Text = toDDL.SelectedValue;
+            toTB.Enabled = false;
+        }
+        else toTB.Enabled = true;
+
     }
 }

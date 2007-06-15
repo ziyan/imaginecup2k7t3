@@ -28,10 +28,15 @@ public partial class RequestTranslation : System.Web.UI.Page
         }
         else
         {
-            for (int i = 0; i < favorites.Length; i++)
+            if (userTranslatorDDL.SelectedIndex == 0)
             {
-                String favUsername = favorites[i].username;
-                userTranslatorDDL.Items.Add(new ListItem(favUsername, favUsername));
+                for (int i = 1; i < userTranslatorDDL.Items.Count; i++)
+                    userTranslatorDDL.Items.RemoveAt(i);
+                for (int i = 0; i < favorites.Length; i++)
+                {
+                    String favUsername = favorites[i].username;
+                    userTranslatorDDL.Items.Add(new ListItem(favUsername, favUsername));
+                }
             }
         }
 
@@ -149,6 +154,11 @@ public partial class RequestTranslation : System.Web.UI.Page
     }
     protected void userTranslatorDDL_SelectedIndexChanged(object sender, EventArgs e)
     {
-        userTranslatorTB.Text = userTranslatorDDL.SelectedValue;
+        if (userTranslatorDDL.SelectedIndex > 0)
+        {
+            userTranslatorTB.Text = userTranslatorDDL.SelectedValue;
+            userTranslatorTB.Enabled = false;
+        }
+        else userTranslatorTB.Enabled = true;
     }
 }
