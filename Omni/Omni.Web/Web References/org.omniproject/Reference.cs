@@ -129,6 +129,8 @@ namespace Omni.Web.org.omniproject {
         
         private System.Threading.SendOrPostCallback TransAnsRateGetByIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback MessageUpdTransReqIdOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -316,6 +318,9 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         public event TransAnsRateGetByIdCompletedEventHandler TransAnsRateGetByIdCompleted;
+        
+        /// <remarks/>
+        public event MessageUpdTransReqIdCompletedEventHandler MessageUpdTransReqIdCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/Initialize", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1848,6 +1853,36 @@ namespace Omni.Web.org.omniproject {
             if ((this.TransAnsRateGetByIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.TransAnsRateGetByIdCompleted(this, new TransAnsRateGetByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/MessageUpdTransReqId", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void MessageUpdTransReqId(int msg_id, int req_id) {
+            this.Invoke("MessageUpdTransReqId", new object[] {
+                        msg_id,
+                        req_id});
+        }
+        
+        /// <remarks/>
+        public void MessageUpdTransReqIdAsync(int msg_id, int req_id) {
+            this.MessageUpdTransReqIdAsync(msg_id, req_id, null);
+        }
+        
+        /// <remarks/>
+        public void MessageUpdTransReqIdAsync(int msg_id, int req_id, object userState) {
+            if ((this.MessageUpdTransReqIdOperationCompleted == null)) {
+                this.MessageUpdTransReqIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMessageUpdTransReqIdOperationCompleted);
+            }
+            this.InvokeAsync("MessageUpdTransReqId", new object[] {
+                        msg_id,
+                        req_id}, this.MessageUpdTransReqIdOperationCompleted, userState);
+        }
+        
+        private void OnMessageUpdTransReqIdOperationCompleted(object arg) {
+            if ((this.MessageUpdTransReqIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MessageUpdTransReqIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3686,6 +3721,10 @@ namespace Omni.Web.org.omniproject {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void MessageUpdTransReqIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591
