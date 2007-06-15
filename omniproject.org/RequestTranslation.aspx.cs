@@ -30,7 +30,8 @@ public partial class RequestTranslation : System.Web.UI.Page
         {
             if (userTranslatorDDL.SelectedIndex == 0)
             {
-                for (int i = 1; i < userTranslatorDDL.Items.Count; i++)
+                int count = userTranslatorDDL.Items.Count;
+                for (int i = count - 1; i >0; i--)
                     userTranslatorDDL.Items.RemoveAt(i);
                 for (int i = 0; i < favorites.Length; i++)
                 {
@@ -40,43 +41,46 @@ public partial class RequestTranslation : System.Web.UI.Page
             }
         }
 
-        Language[] languages = Common.GetWebService().LanguageList();
-
-        int prefLang = Common.GetPreferredLanguage();
-        srcLangDDL.Items.Clear();
-        destLangDDL.Items.Clear();
-        if (prefLang <= 0)
+        if (!IsPostBack)
         {
-            srcLangDDL.Items.Add(new ListItem("----", "0"));
-            destLangDDL.Items.Add(new ListItem("----", "0"));
-        }
+            Language[] languages = Common.GetWebService().LanguageList();
 
-        for(int i=0; i<languages.Length; i++)
-        {
-            Language language = languages[i];
-            string languageString;
-            if (prefLang > 0)
-                languageString = Common.GetWebService().LanguageNameQueryById(
-                    language.id, prefLang);
-            else languageString = Common.GetWebService().LanguageNameQueryById(
-                    language.id, language.id);
-        
-            if (language.id == prefLang)
+            int prefLang = Common.GetPreferredLanguage();
+            srcLangDDL.Items.Clear();
+            destLangDDL.Items.Clear();
+            if (prefLang <= 0)
             {
-                ListItem item = new ListItem(languageString, language.id.ToString());
-                item.Selected = true;
-                srcLangDDL.Items.Add(item);
-
-                item = new ListItem(languageString, language.id.ToString());
-                item.Selected = true;
-                destLangDDL.Items.Add(item);
+                srcLangDDL.Items.Add(new ListItem("----", "0"));
+                destLangDDL.Items.Add(new ListItem("----", "0"));
             }
-            else
+
+            for (int i = 0; i < languages.Length; i++)
             {
-                srcLangDDL.Items.Add(
-                        new ListItem(languageString, language.id.ToString()));
-                destLangDDL.Items.Add(
-                        new ListItem(languageString, language.id.ToString()));
+                Language language = languages[i];
+                string languageString;
+                if (prefLang > 0)
+                    languageString = Common.GetWebService().LanguageNameQueryById(
+                        language.id, prefLang);
+                else languageString = Common.GetWebService().LanguageNameQueryById(
+                        language.id, language.id);
+
+                if (language.id == prefLang)
+                {
+                    ListItem item = new ListItem(languageString, language.id.ToString());
+                    item.Selected = true;
+                    srcLangDDL.Items.Add(item);
+
+                    item = new ListItem(languageString, language.id.ToString());
+                    item.Selected = true;
+                    destLangDDL.Items.Add(item);
+                }
+                else
+                {
+                    srcLangDDL.Items.Add(
+                            new ListItem(languageString, language.id.ToString()));
+                    destLangDDL.Items.Add(
+                            new ListItem(languageString, language.id.ToString()));
+                }
             }
         }
 
@@ -86,6 +90,20 @@ public partial class RequestTranslation : System.Web.UI.Page
             userTranslatorPanel.Enabled = false;
         }
         else userTranslatorPanel.Enabled = true;
+
+
+        // Passed in messages
+        String msgIdStr = Request.QueryString["msg_id"];
+        if (msgIdStr != null && msgIdStr.Length > 0)
+        {
+            int msgid = Convert.ToInt32(msgIdStr);
+            if(msgid > 0)
+            {
+                Message msg = Common.GetWebService().MessageGetById(msgid);
+                transTextTB.Text = msg.body;
+                subjectTB.Text = msg.subject;
+            }
+        }
     }
     /*
     protected void userRB_CheckedChanged(object sender, EventArgs e)

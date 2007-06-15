@@ -262,6 +262,6 @@ public partial class MyMessages : System.Web.UI.Page
         int intId = -1;
         if (msgIdLabel.Text != null && msgIdLabel.Text.Length > 0)
             intId = Convert.ToInt32(msgIdLabel.Text);
-        Server.Transfer("RequestTrans.aspx?msg_id=" + intId);
+        Server.Transfer("RequestTranslation.aspx?msg_id=" + intId);
     }
 }
