@@ -29,6 +29,11 @@ public partial class RatingUserControl : System.Web.UI.UserControl
     }
     private void refresh()
     {
+        if (this.ans_id <= 0)
+        {
+            this.Visible = false;
+            return;
+        }
         int[] data = new int[] { 0, 0, 0, 0, 0 };
         contentRating.DataSource = data;
         //get rating
