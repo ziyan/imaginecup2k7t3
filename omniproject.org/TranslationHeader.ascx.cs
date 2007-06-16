@@ -100,10 +100,13 @@ public partial class TranslationHeader : System.Web.UI.UserControl
         if (hasRequester)
         {
             TableCell requestor = new TableCell();
+            HyperLink link = new HyperLink();
+            link.NavigateUrl = "ViewProfile.aspx?id=" +t.req_user.ToString();
             Label requestorL = new Label();
             tmpUser = svc.UserGetById(t.req_user);
             requestorL.Text = tmpUser.username;
-            requestor.Controls.Add(requestorL);
+            link.Controls.Add(requestorL);
+            requestor.Controls.Add(link);
             tr.Cells.Add(requestor);
         }
         if(hasTranslator)
@@ -114,11 +117,13 @@ public partial class TranslationHeader : System.Web.UI.UserControl
                 translatorL.Text = globalTransLabel.Text;
             else
             {
-                userid = t.trans_user;
-                tmpUser = svc.UserGetById(userid);
+                tmpUser = svc.UserGetById(t.trans_user);
                 translatorL.Text = (tmpUser == null) ? "" : tmpUser.username;
             }
-            translator.Controls.Add(translatorL);
+            HyperLink link = new HyperLink();
+            link.NavigateUrl = "ViewProfile.aspx?id=" + t.trans_user.ToString();
+            link.Controls.Add(translatorL);
+            translator.Controls.Add(link);
             tr.Cells.Add(translator);
         }
         if (hasLanguages)
