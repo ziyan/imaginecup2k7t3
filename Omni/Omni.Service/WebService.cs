@@ -420,7 +420,7 @@ namespace Omni.Service
         }
 
         [WebMethod(true)]
-        public Translation TransGetByReqId(int req_id)
+        public Translation[] TransGetByReqId(int req_id)
         {
             CheckInit();
             //if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");

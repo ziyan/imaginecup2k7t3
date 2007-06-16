@@ -635,7 +635,7 @@
       <s:element name="TransGetByReqIdResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="TransGetByReqIdResult" type="tns:Translation" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransGetByReqIdResult" type="tns:ArrayOfTranslation" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1411,7 +1411,7 @@
     <wsdl:part name="req_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransGetByReqIdHttpGetOut">
-    <wsdl:part name="Body" element="tns:Translation" />
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
   <wsdl:message name="TransGetByAnsIdHttpGetIn">
     <wsdl:part name="ans_id" type="s:string" />
@@ -1736,7 +1736,7 @@
     <wsdl:part name="req_id" type="s:string" />
   </wsdl:message>
   <wsdl:message name="TransGetByReqIdHttpPostOut">
-    <wsdl:part name="Body" element="tns:Translation" />
+    <wsdl:part name="Body" element="tns:ArrayOfTranslation" />
   </wsdl:message>
   <wsdl:message name="TransGetByAnsIdHttpPostIn">
     <wsdl:part name="ans_id" type="s:string" />

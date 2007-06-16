@@ -584,16 +584,13 @@ namespace Omni.Data
                                         "", Convert.ToDateTime(reader["date"]),
                                         Convert.ToBoolean(reader["completed"]),
                                         Convert.ToInt32(reader["msg_id"]),
-                                        user_id,
-                                        Convert.ToInt32(reader["ans_id"]), "", 0,
-                                        Convert.ToDateTime(reader["ans_date"]),
-                                        Convert.ToInt32(reader["ans_user_id"])));
+                                        user_id));
             }
             reader.Close();
             reader.Dispose();
             return result.ToArray();
         }
-        public static Translation TransGetByReqId(int req_id, SqlConnection cn)
+        public static Translation[] TransGetByReqId(int req_id, SqlConnection cn)
         {
             if (cn == null || cn.cn == null) throw new ArgumentException("Database connection not open!");
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
@@ -603,10 +600,10 @@ namespace Omni.Data
             cmd.Parameters.Add("@req_id", System.Data.SqlDbType.Int);
             cmd.Parameters[0].Value = req_id;
             SqlDataReader reader = cmd.ExecuteReader();
-            Translation result;
-            if (reader.Read())
+            List<Translation> trans = new List<Translation>();
+            while (reader.Read())
             {
-                result = new Translation(req_id,
+                trans.Add(new Translation(req_id,
                                         Convert.ToInt32(reader["src_lang_id"]),
                                         Convert.ToInt32(reader["dst_lang_id"]),
                                         Convert.ToInt32(reader["dst_id"]),
@@ -621,17 +618,12 @@ namespace Omni.Data
                                         Convert.ToString(reader["trans_message"]),
                                         Convert.ToInt32(reader["rating"]),
                                         Convert.ToDateTime(reader["ans_date"]),
-                                        Convert.ToInt32(reader["ans_user_id"]));
-                reader.Close();
-                reader.Dispose();
-                return result;
+                                        Convert.ToInt32(reader["ans_user_id"])));
             }
-            else
-            {
-                reader.Close();
-                reader.Dispose();
-                return null;
-            }
+            reader.Close();
+            reader.Dispose();
+            return trans.ToArray(); ;
+
         }
         public static Translation TransGetByAnsId(int ans_id, SqlConnection cn)
         {

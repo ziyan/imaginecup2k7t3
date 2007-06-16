@@ -1455,10 +1455,10 @@ namespace Omni.Web.org.omniproject {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://omniproject.org/TransGetByReqId", RequestNamespace="http://omniproject.org/", ResponseNamespace="http://omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Translation TransGetByReqId(int req_id) {
+        public Translation[] TransGetByReqId(int req_id) {
             object[] results = this.Invoke("TransGetByReqId", new object[] {
                         req_id});
-            return ((Translation)(results[0]));
+            return ((Translation[])(results[0]));
         }
         
         /// <remarks/>
@@ -3402,10 +3402,10 @@ namespace Omni.Web.org.omniproject {
         }
         
         /// <remarks/>
-        public Translation Result {
+        public Translation[] Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((Translation)(this.results[0]));
+                return ((Translation[])(this.results[0]));
             }
         }
     }
