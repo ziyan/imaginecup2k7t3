@@ -148,6 +148,6 @@ public partial class TranslationDetails : System.Web.UI.Page
     protected void composeFromTransButton_Click(object sender, EventArgs e)
     {
         if (!Common.GetWebService().UserIsLoggedIn()) return;
-        Response.Redirect(Request.Url.ToString());
+        Server.Transfer("ComposeMessage.aspx?ans_id=" + ((Button)sender).ID.Replace("useButton_",""));
     }
 }
