@@ -54,14 +54,14 @@ public partial class Introduce : System.Web.UI.Page
         foreach (UserSimil introduceUser in introduceUsers)
         {
             HyperLink newLink = new HyperLink();
-            newLink.Text = introduceUser.user.name;
+            newLink.Text = introduceUser.user.username;
             newLink.NavigateUrl = "~/ViewProfile.aspx?id=" + introduceUser.user.id;
             TableCell newUsernameCell = new TableCell();
             newUsernameCell.Controls.Add(newLink);
 
 
             Label newNameLabel = new Label();
-            newNameLabel.Text = introduceUser.user.name.ToString();
+            newNameLabel.Text = introduceUser.user.name;
             TableCell newNameCell = new TableCell();
             newNameCell.Controls.Add(newNameLabel);
 
