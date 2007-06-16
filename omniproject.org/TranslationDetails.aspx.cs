@@ -43,7 +43,7 @@ public partial class TranslationDetails : System.Web.UI.Page
         }
         else
         {
-            if (Omni.Web.Common.IsUserLoggedIn() && !t.completed)
+            if (Omni.Web.Common.IsUserLoggedIn() && !t.completed && (t.dst_type == TranslationDestinationType.Public || t.dst_id == Omni.Web.Common.GetCurrentUser().id ))
                 rePanel.Visible = true;
             else
                 rePanel.Visible = false;
