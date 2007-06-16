@@ -117,124 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="approveTransButtonResource1.Text" xml:space="preserve">
-    <value>Approve this Translation</value>
-  </data>
-  <data name="currentRatingLabelResource1.Text" xml:space="preserve">
-    <value>Current Rating:</value>
+  <data name="approveLabelResource1.Text" xml:space="preserve">
+    <value>Approve</value>
   </data>
   <data name="invalidIdLabelResource1.Text" xml:space="preserve">
     <value>Error - Invalid Translation specified.</value>
   </data>
-  <data name="ListItemResource1.Text" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ListItemResource1.Value" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ListItemResource10.Text" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ListItemResource10.Value" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ListItemResource11.Text" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ListItemResource11.Value" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ListItemResource12.Text" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ListItemResource12.Value" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ListItemResource13.Text" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ListItemResource13.Value" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ListItemResource14.Text" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ListItemResource14.Value" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ListItemResource15.Text" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ListItemResource15.Value" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ListItemResource2.Text" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ListItemResource2.Value" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ListItemResource3.Text" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ListItemResource3.Value" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ListItemResource4.Text" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ListItemResource4.Value" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ListItemResource5.Text" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ListItemResource5.Value" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ListItemResource6.Text" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ListItemResource6.Value" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ListItemResource7.Text" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ListItemResource7.Value" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ListItemResource8.Text" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ListItemResource8.Value" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ListItemResource9.Text" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ListItemResource9.Value" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="origMsgLabelResource1.Text" xml:space="preserve">
-    <value>Original Text</value>
-  </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Translation Details</value>
   </data>
-  <data name="prevRateLabelResource1.Text" xml:space="preserve">
-    <value>Rate this Answer</value>
+  <data name="reButtonResource1.Text" xml:space="preserve">
+    <value>Submit My Translation</value>
   </data>
-  <data name="rateAnsLabelResource1.Text" xml:space="preserve">
-    <value>Rate this Answer</value>
-  </data>
-  <data name="submitTransButtonResource1.Text" xml:space="preserve">
-    <value>Submit Translation</value>
+  <data name="reLabelResource1.Text" xml:space="preserve">
+    <value>Translate This Message</value>
   </data>
   <data name="translationDetailsTitleResource1.Text" xml:space="preserve">
     <value>Translation Details</value>
   </data>
-  <data name="transMsgLabelResource1.Text" xml:space="preserve">
-    <value>Translated Text</value>
+  <data name="useLabelResource1.Text" xml:space="preserve">
+    <value>Use In Message</value>
   </data>
 </root>
