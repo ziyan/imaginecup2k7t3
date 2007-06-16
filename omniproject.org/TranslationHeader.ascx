@@ -6,3 +6,6 @@
 <asp:Label ID="transSrcLangLabel" runat="server" Text="Source Language" Visible="False" meta:resourcekey="transSrcLangLabelResource1"></asp:Label><br />
 <asp:Label ID="transDestLangLabel" runat="server" Text="Destination Language" Visible="False" meta:resourcekey="transDestLangLabelResource1"></asp:Label>
 <asp:Label ID="globalTransLabel" runat="server" Visible="False" Text="Global" meta:resourcekey="globalTransLabelResource1"></asp:Label>
+<asp:Label ID="completeLabel" runat="server" Visible="False" Text="Completed" meta:resourcekey="globalTransLabelResource1"></asp:Label>
+<asp:Label ID="ratingLabel" runat="server" Visible="False" Text="Rating" meta:resourcekey="ratingTransLabelResource1"></asp:Label>
+

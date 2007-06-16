@@ -27,7 +27,7 @@ public partial class _Default : System.Web.UI.Page
         translationTable.CssClass = "displayTable";
         userPanel.Controls.Add(translationTable);
 
-        TableHeaderRow headerRow = translationHeader.getTranslationHeader();
+        TableHeaderRow headerRow = translationHeader.getTranslationHeader(true,false,true);
         translationTable.Rows.Add(headerRow);
 
         Translation[] translationRequests =
@@ -36,7 +36,7 @@ public partial class _Default : System.Web.UI.Page
         foreach (Translation translationRequest in translationRequests)
         {
             TableRow newRow = translationHeader.getTableRowForTranslation(
-                    translationRequest, translationHeader.TranslationRow_Click, "a");
+                    translationRequest, translationHeader.TranslationRow_Click, "a",true,false,true,false);
             newRow.CssClass = "row" + ((count % 2) + 1).ToString();
             translationTable.Rows.Add(newRow);
             count++;

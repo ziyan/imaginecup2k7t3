@@ -53,13 +53,13 @@ public partial class MyTranslations : System.Web.UI.Page
 
         // User: Pending Requests
         pendingRequestsTable.Rows.Clear();
-        pendingRequestsTable.Rows.Add(translationHeader.getTranslationHeader());
+        pendingRequestsTable.Rows.Add(translationHeader.getTranslationHeader(false,false,true));
 
         Translation[] transPending = svc.TransGetPendingByUser(user.id);
         int count = 0;
         for (int i = 0; i < transPending.Length; i++)
         {
-            TableRow newRow = translationHeader.getTableRowForTranslation(transPending[i], translationHeader.TranslationRow_Click, "a");
+            TableRow newRow = translationHeader.getTableRowForTranslation(transPending[i], translationHeader.TranslationRow_Click, "a",false,false,true,false);
             newRow.CssClass = "row" + ((count % 2) + 1).ToString();
             pendingRequestsTable.Rows.Add(newRow);
             count++;
@@ -67,12 +67,12 @@ public partial class MyTranslations : System.Web.UI.Page
 
         // User: Received Translations
         receivedTranslationsTable.Rows.Clear();
-        receivedTranslationsTable.Rows.Add(translationHeader.getTranslationHeader());
+        receivedTranslationsTable.Rows.Add(translationHeader.getTranslationHeader(false,true,true));
         count = 0;
         Translation[] transReceived = svc.TransGetUnApprByUser(user.id);
         for (int i = 0; i < transReceived.Length; i++)
         {
-            TableRow newRow = translationHeader.getTableRowForTranslation(transReceived[i], translationHeader.TranslationRow_Click, "b");
+            TableRow newRow = translationHeader.getTableRowForTranslation(transReceived[i], translationHeader.TranslationRow_Click, "b",false,true,true,true);
             newRow.CssClass = "row" + ((count % 2) + 1).ToString();
             receivedTranslationsTable.Rows.Add(newRow);
             count++;
@@ -81,13 +81,13 @@ public partial class MyTranslations : System.Web.UI.Page
 
         // User: Completed Translations
         completedTranslationsTable.Rows.Clear();
-        completedTranslationsTable.Rows.Add(translationHeader.getTranslationHeader());
+        completedTranslationsTable.Rows.Add(translationHeader.getTranslationHeader(false,false,true));
 
         count = 0;
         Translation[] transApproved = svc.TransGetApprByUser(user.id);
         for (int i = 0; i < transApproved.Length; i++)
         {
-            TableRow newRow = translationHeader.getTableRowForTranslation(transApproved[i], translationHeader.TranslationRow_Click, "c");
+            TableRow newRow = translationHeader.getTableRowForTranslation(transApproved[i], translationHeader.TranslationRow_Click, "c",false,false,true,false);
             newRow.CssClass = "row" + ((count % 2) + 1).ToString();
             completedTranslationsTable.Rows.Add(newRow);
             count++;
@@ -102,13 +102,13 @@ public partial class MyTranslations : System.Web.UI.Page
 
         // Translator: Personal Reqs
         personalReqsTable.Rows.Clear();
-        personalReqsTable.Rows.Add(translationHeader.getTranslationHeader());
+        personalReqsTable.Rows.Add(translationHeader.getTranslationHeader(true,false,true));
 
         int count = 0;
         Translation[] personalTrans = svc.TransReqGetForUser(user.id);
         for (int i = 0; i < personalTrans.Length; i++)
         {
-            TableRow newRow = translationHeader.getTableRowForTranslation(personalTrans[i], translationHeader.TranslationRow_Click, "d");
+            TableRow newRow = translationHeader.getTableRowForTranslation(personalTrans[i], translationHeader.TranslationRow_Click, "d",true,false,true,false);
             newRow.CssClass = "row" + ((count % 2) + 1).ToString();
             personalReqsTable.Rows.Add(newRow);
             count++;
@@ -116,13 +116,13 @@ public partial class MyTranslations : System.Web.UI.Page
 
         // Translator: Global Reqs
         globalReqsTable.Rows.Clear();
-        globalReqsTable.Rows.Add(translationHeader.getTranslationHeader());
+        globalReqsTable.Rows.Add(translationHeader.getTranslationHeader(true,false,true));
 
         count = 0;
         Translation[] globalTrans = svc.TransReqFindGlobalForUser(user.id);
         for (int i = 0; i < globalTrans.Length; i++)
         {
-            TableRow newRow = translationHeader.getTableRowForTranslation(globalTrans[i], translationHeader.TranslationRow_Click, "e");
+            TableRow newRow = translationHeader.getTableRowForTranslation(globalTrans[i], translationHeader.TranslationRow_Click, "e",true,false,true,false);
             newRow.CssClass = "row" + ((count % 2) + 1).ToString();
             globalReqsTable.Rows.Add(newRow);
             count++;

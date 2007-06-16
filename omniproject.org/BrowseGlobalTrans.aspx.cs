@@ -46,6 +46,7 @@ public partial class BrowseGlobalTrans : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        translationPlaceHolder.Controls.Clear();
         searchNoneMessageLabel.Visible = false;
 
         if (keywordSearchText.Text.Length == 0) return;
@@ -62,8 +63,8 @@ public partial class BrowseGlobalTrans : System.Web.UI.Page
             searchNoneMessageLabel.Visible = true;
             return;
         }
-
-        TableHeaderRow headerRow = translationHeader.getTranslationHeader();
+        
+        TableHeaderRow headerRow = translationHeader.getTranslationHeader(false,false,true);
         Table translationTable = new Table();
         translationTable.CssClass = "displayTable";
         translationTable.Rows.Add(headerRow);
@@ -72,12 +73,12 @@ public partial class BrowseGlobalTrans : System.Web.UI.Page
         foreach (Translation translation in translations)
         {
             TableRow newRow = translationHeader.getTableRowForTranslation(
-                    translation, translationHeader.TranslationRow_Click, "a");
+                    translation, translationHeader.TranslationRow_Click, "a",false,false,true,false);
             newRow.CssClass = "row" + ((count % 2) + 1).ToString();
             translationTable.Rows.Add(newRow);
             count++;
         }
-
+        
         translationPlaceHolder.Controls.Add(translationTable);
     }
 

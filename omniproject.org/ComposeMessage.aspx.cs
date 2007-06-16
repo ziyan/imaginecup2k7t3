@@ -57,12 +57,12 @@ public partial class ComposeMessage : System.Web.UI.Page
                     if (idStr3 != null && idStr3.Length > 0)
                     {
                         int intId = Convert.ToInt32(idStr3);
-                        Translation t = Common.GetWebService().TransGetByReqId(intId);
+                        //Translation t = Common.GetWebService().TransGetByReqId(intId);
                         //int userid = msg.src_id;
                         //String un = Common.GetWebService().UserGetById(userid).username;
                         //toTB.Text = un;
-                        subjectTB.Text = t.subject;
-                        messageTB.Text = t.orig_body;
+                        //subjectTB.Text = t.subject;
+                        //messageTB.Text = t.orig_body;
                     }
                 }
             }
