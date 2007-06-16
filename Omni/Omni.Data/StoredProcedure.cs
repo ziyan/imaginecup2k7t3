@@ -115,7 +115,7 @@ namespace Omni.Data
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-                User user = new User(user_id, reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"]));
+                User user = new User(user_id, reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["log_date"]));
                 reader.Close();
                 reader.Dispose();
                 return user;
@@ -196,7 +196,7 @@ namespace Omni.Data
             List<User> users = new List<User>();
             while (reader.Read())
             {
-                users.Add(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])));
+                users.Add(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["log_date"])));
             }
             reader.Close();
             reader.Dispose();
@@ -257,7 +257,7 @@ namespace Omni.Data
             List<User> users = new List<User>();
             while (reader.Read())
             {
-                users.Add(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])));
+                users.Add(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["log_date"])));
             }
             reader.Close();
             reader.Dispose();
@@ -279,7 +279,7 @@ namespace Omni.Data
             int count = 0;
             while (reader.Read())
             {
-                users.Add(new UserSimil(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])), Convert.ToInt16(reader["self_rating"]), Convert.ToSingle(reader["net_rating"]), Convert.ToDouble(reader["simil"])));
+                users.Add(new UserSimil(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["log_date"])), Convert.ToInt16(reader["self_rating"]), Convert.ToSingle(reader["net_rating"]), Convert.ToDouble(reader["simil"])));
                 count++;
                 if (count >= limit) break;
             }
@@ -868,7 +868,7 @@ namespace Omni.Data
             int count = 0;
             while (reader.Read())
             {
-                result.Add(new UserRankQuantity(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])),Convert.ToInt32(reader["quantity"])));
+                result.Add(new UserRankQuantity(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["log_date"])), Convert.ToInt32(reader["quantity"])));
                 count++;
                 if (count >= limit) break;
             }
@@ -890,7 +890,7 @@ namespace Omni.Data
             int count = 0;
             while (reader.Read())
             {
-                result.Add(new UserRankRating(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == null ? DateTime.Now : Convert.ToDateTime(reader["log_date"])), Convert.ToInt32(reader["lang_id"]), Convert.ToSingle(reader["net_rating"])));
+                result.Add(new UserRankRating(new User(Convert.ToInt32(reader["id"]), reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["log_date"])), Convert.ToInt32(reader["lang_id"]), Convert.ToSingle(reader["net_rating"])));
                 count++;
                 if (count >= limit) break;
             }
