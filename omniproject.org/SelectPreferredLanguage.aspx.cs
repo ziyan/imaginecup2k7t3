@@ -45,7 +45,7 @@ public partial class SelectPreferredLanguage : System.Web.UI.Page
         int langId = Convert.ToInt32(id);
 
         Common.SetPreferredLanguage(langId);
-        Server.Transfer("Default.aspx");
+        Response.Redirect("Default.aspx");
 
     }
 }

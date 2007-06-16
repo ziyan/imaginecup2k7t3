@@ -21,5 +21,12 @@
         <br />
         <asp:Label ID="omniDescription" runat="server" Text="Hello! (Add description here)">
         </asp:Label>
+        
+        <br /> <br />
+        <br /> <br />
+        <br /> <br />
+        <center>
+            <asp:Image ID="guestLogo" runat="server" ImageUrl="~/App_Themes/Default/omnilogo_lg.gif" />
+        </center>
     </asp:Panel>
 </asp:Content>
