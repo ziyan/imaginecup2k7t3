@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="MyTranslations.aspx.cs" Inherits="MyTranslations" 
-Title="My Translations" Theme="Default" meta:resourcekey="PageResource1" %>
+Title="My Translations" Theme="Default" meta:resourcekey="PageResource1"%>
 
 <%@ Register Src="TranslationHeader.ascx" TagName="TranslationHeader" TagPrefix="uc2" %>
 
@@ -8,7 +8,7 @@ Title="My Translations" Theme="Default" meta:resourcekey="PageResource1" %>
     <asp:Label ID="myTranslationsTitle" runat="server" CssClass="title" Text="My Translations" meta:resourcekey="myTranslationsTitleResource1"></asp:Label><br />
     <br />
     <asp:Panel ID="userPanel" runat="server" Width="100%" meta:resourcekey="userPanelResource1">
-        <asp:Button ID="userFuncButton" runat="server" Text="User Functions" OnClick="userFuncButton_Click" meta:resourcekey="userFuncButtonResource1" /><asp:Button ID="translatorFuncButton" runat="server" Text="Translator Functions" OnClick="translatorFuncButton_Click" meta:resourcekey="translatorFuncButtonResource1" /><br />
+        <asp:Button ID="userFuncButton" Enabled="False" runat="server" Text="User Functions" OnClick="userFuncButton_Click" meta:resourcekey="userFuncButtonResource1" /><asp:Button ID="translatorFuncButton" runat="server" Text="Translator Functions" OnClick="translatorFuncButton_Click" meta:resourcekey="translatorFuncButtonResource1" /><br />
         <asp:Panel ID="functionPanel" runat="server"
             Width="100%" meta:resourcekey="functionPanelResource1">
         <asp:MultiView ID="functionMultiView" runat="server" ActiveViewIndex="0">

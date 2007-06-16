@@ -21,7 +21,7 @@ public partial class MyTranslations : System.Web.UI.Page
         if (userPanel.Visible)
         {
             //if(functionMultiView.ActiveViewIndex == 1)
-                populateTranslationsT();
+            populateTranslationsT();
             //else 
             populateTranslations();
         }
@@ -29,10 +29,14 @@ public partial class MyTranslations : System.Web.UI.Page
     protected void userFuncButton_Click(object sender, EventArgs e)
     {
         functionMultiView.ActiveViewIndex = 0;
+        userFuncButton.Enabled = false;
+        translatorFuncButton.Enabled = true;
     }
     protected void translatorFuncButton_Click(object sender, EventArgs e)
     {
         functionMultiView.ActiveViewIndex = 1;
+        userFuncButton.Enabled = true;
+        translatorFuncButton.Enabled = false;
     }
     protected void pendingRequestsLB_Click(object sender, EventArgs e)
     {

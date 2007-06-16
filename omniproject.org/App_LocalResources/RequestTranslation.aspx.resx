@@ -121,7 +121,7 @@
     <value>Desired Translator:</value>
   </data>
   <data name="destLangLabelResource1.Text" xml:space="preserve">
-    <value>Destination Language</value>
+    <value>Destination Language: </value>
   </data>
   <data name="emptyFieldsLabelResource1.Text" xml:space="preserve">
     <value>Error: Fill out all fields.</value>
@@ -144,6 +144,9 @@
   <data name="otherListItem.Text" xml:space="preserve">
     <value>(Other)</value>
   </data>
+  <data name="otherListItem.Value" xml:space="preserve">
+    <value>noFav</value>
+  </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Request a Translation</value>
   </data>
@@ -151,15 +154,15 @@
     <value>Request a Translation</value>
   </data>
   <data name="srcLangLabelResource1.Text" xml:space="preserve">
-    <value>Source Language</value>
+    <value>Source Language: </value>
   </data>
   <data name="subjectLabelResource1.Text" xml:space="preserve">
-    <value>Subject</value>
+    <value>Subject: </value>
   </data>
   <data name="submitButtonResource1.Text" xml:space="preserve">
     <value>Submit Request</value>
   </data>
   <data name="transTextLabelResource1.Text" xml:space="preserve">
-    <value>Text to Translate</value>
+    <value>Text to Translate: </value>
   </data>
 </root>

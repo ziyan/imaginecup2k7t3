@@ -117,28 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="globalTransLabelResource1.Text" xml:space="preserve">
-    <value>Completed</value>
+  <data name="approveLabelResource1.Text" xml:space="preserve">
+    <value>使用此最佳翻译</value>
   </data>
-  <data name="ratingTransLabelResource1.Text" xml:space="preserve">
-    <value>Rating</value>
+  <data name="invalidIdLabelResource1.Text" xml:space="preserve">
+    <value>错误的翻译请求代码</value>
   </data>
-  <data name="transDateLabelResource1.Text" xml:space="preserve">
-    <value>Date</value>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>详细翻译信息</value>
   </data>
-  <data name="transDestLangLabelResource1.Text" xml:space="preserve">
-    <value>Destination Language</value>
+  <data name="reButtonResource1.Text" xml:space="preserve">
+    <value>发送我的翻译</value>
   </data>
-  <data name="transRequestorLabelResource1.Text" xml:space="preserve">
-    <value>Requestor</value>
+  <data name="reLabelResource1.Text" xml:space="preserve">
+    <value>翻译此信息</value>
   </data>
-  <data name="transSrcLangLabelResource1.Text" xml:space="preserve">
-    <value>Source Language</value>
+  <data name="translationDetailsTitleResource1.Text" xml:space="preserve">
+    <value>详细翻译信息</value>
   </data>
-  <data name="transSubjectLabelResource1.Text" xml:space="preserve">
-    <value>Subject</value>
-  </data>
-  <data name="transTranslatorLabelResource1.Text" xml:space="preserve">
-    <value>Translator</value>
+  <data name="useLabelResource1.Text" xml:space="preserve">
+    <value>使用此翻译撰写新消息</value>
   </data>
 </root>

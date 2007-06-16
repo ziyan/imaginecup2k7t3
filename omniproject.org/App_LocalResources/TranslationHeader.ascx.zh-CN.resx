@@ -118,27 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="globalTransLabelResource1.Text" xml:space="preserve">
-    <value>Completed</value>
+    <value>完成</value>
   </data>
   <data name="ratingTransLabelResource1.Text" xml:space="preserve">
-    <value>Rating</value>
+    <value>评分</value>
   </data>
   <data name="transDateLabelResource1.Text" xml:space="preserve">
-    <value>Date</value>
+    <value>日期</value>
   </data>
   <data name="transDestLangLabelResource1.Text" xml:space="preserve">
-    <value>Destination Language</value>
+    <value>译文语言</value>
   </data>
   <data name="transRequestorLabelResource1.Text" xml:space="preserve">
-    <value>Requestor</value>
+    <value>请求提交者</value>
   </data>
   <data name="transSrcLangLabelResource1.Text" xml:space="preserve">
-    <value>Source Language</value>
+    <value>原文语言</value>
   </data>
   <data name="transSubjectLabelResource1.Text" xml:space="preserve">
-    <value>Subject</value>
+    <value>主题</value>
   </data>
   <data name="transTranslatorLabelResource1.Text" xml:space="preserve">
-    <value>Translator</value>
+    <value>翻译者</value>
   </data>
 </root>

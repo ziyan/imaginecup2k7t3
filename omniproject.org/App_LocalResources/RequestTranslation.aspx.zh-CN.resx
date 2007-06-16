@@ -117,28 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="globalTransLabelResource1.Text" xml:space="preserve">
-    <value>Completed</value>
+  <data name="desiredTranslatorLabelResource1.Text" xml:space="preserve">
+    <value>指定翻译者: </value>
   </data>
-  <data name="ratingTransLabelResource1.Text" xml:space="preserve">
-    <value>Rating</value>
+  <data name="destLangLabelResource1.Text" xml:space="preserve">
+    <value>译文语言: </value>
   </data>
-  <data name="transDateLabelResource1.Text" xml:space="preserve">
-    <value>Date</value>
+  <data name="emptyFieldsLabelResource1.Text" xml:space="preserve">
+    <value>请填写所有信息</value>
   </data>
-  <data name="transDestLangLabelResource1.Text" xml:space="preserve">
-    <value>Destination Language</value>
+  <data name="invalidUserLabelResource1.Text" xml:space="preserve">
+    <value>用户名错误</value>
   </data>
-  <data name="transRequestorLabelResource1.Text" xml:space="preserve">
-    <value>Requestor</value>
+  <data name="ListItemResource1.Text" xml:space="preserve">
+    <value>指定用户</value>
   </data>
-  <data name="transSrcLangLabelResource1.Text" xml:space="preserve">
-    <value>Source Language</value>
+  <data name="ListItemResource1.Value" xml:space="preserve">
+    <value>Specific User</value>
   </data>
-  <data name="transSubjectLabelResource1.Text" xml:space="preserve">
-    <value>Subject</value>
+  <data name="ListItemResource2.Text" xml:space="preserve">
+    <value>所有用户</value>
   </data>
-  <data name="transTranslatorLabelResource1.Text" xml:space="preserve">
-    <value>Translator</value>
+  <data name="ListItemResource2.Value" xml:space="preserve">
+    <value>Global / Any</value>
+  </data>
+  <data name="otherListItem.Text" xml:space="preserve">
+    <value>(其他)</value>
+  </data>
+  <data name="otherListItem.Value" xml:space="preserve">
+    <value>noFav</value>
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>请求翻译</value>
+  </data>
+  <data name="requestTransTitleLabelResource1.Text" xml:space="preserve">
+    <value>请求翻译</value>
+  </data>
+  <data name="srcLangLabelResource1.Text" xml:space="preserve">
+    <value>原文语言: </value>
+  </data>
+  <data name="subjectLabelResource1.Text" xml:space="preserve">
+    <value>标题: </value>
+  </data>
+  <data name="submitButtonResource1.Text" xml:space="preserve">
+    <value>发送请求</value>
+  </data>
+  <data name="transTextLabelResource1.Text" xml:space="preserve">
+    <value>原文: </value>
   </data>
 </root>
