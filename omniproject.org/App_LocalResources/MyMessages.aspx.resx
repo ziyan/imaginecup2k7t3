@@ -159,6 +159,12 @@
   <data name="ListItemResource6.Value" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="ListItemResource7.Text" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="ListItemResource7.Value" xml:space="preserve">
+    <value>Unsent</value>
+  </data>
   <data name="messageDetailsLabelResource1.Text" xml:space="preserve">
     <value>Message Details:</value>
   </data>

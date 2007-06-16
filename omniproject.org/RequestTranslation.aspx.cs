@@ -179,16 +179,21 @@ public partial class RequestTranslation : System.Web.UI.Page
             dst_type = TranslationDestinationType.Public;
         }
 
-        int reqId = svc.TransReqAdd(userId, srcLangId, dstLangId, subject, message, dstId, dst_type, 0);
-        
+
+        int msgId = 0;
         String msgPendingIdStr = Request.QueryString["msg_pending_id"];
         // If this is from a pending message, update the req_id for
         // the linked message
         if (msgPendingIdStr != null && msgPendingIdStr.Length > 0)
         {
-            int msgId = Convert.ToInt32(msgPendingIdStr);
-            svc.MessageUpdTransReqId(msgId, reqId);
+           msgId  = Convert.ToInt32(msgPendingIdStr);
+            //svc.MessageUpdTransReqId(msgId, reqId);
         }
+
+
+        int reqId = svc.TransReqAdd(userId, srcLangId, dstLangId, subject, message, dstId, dst_type, msgId);
+        
+        
 
         Server.Transfer("MyTranslations.aspx");
     }
