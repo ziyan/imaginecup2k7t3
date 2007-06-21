@@ -19,7 +19,7 @@
         <asp:Label ID="guestTitleLabel" runat="server" Text="Welcome to Omni." CssClass="title">
         </asp:Label>
         <br />
-        <asp:Label ID="omniDescription" runat="server" Text="Hello! (Add description here)">
+        <asp:Label ID="omniDescription" runat="server" Text="Hello! (Add description here)" Visible="false">
         </asp:Label>
         
         <br /> <br />
