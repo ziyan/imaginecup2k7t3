@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Configuration;
 using System.Collections;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -49,7 +50,7 @@ public partial class BrowseGlobalTrans : System.Web.UI.Page
         translationPlaceHolder.Controls.Clear();
         searchNoneMessageLabel.Visible = false;
 
-        if (keywordSearchText.Text.Length == 0) return;
+        if (keywordSearchText.Text.Length == 0 && !IsPostBack) return;
 
         ListItem searchItem = searchLanguageDropDown.Items[searchLanguageDropDown.SelectedIndex];
         int searchId = Convert.ToInt32(searchItem.Value);
@@ -73,7 +74,7 @@ public partial class BrowseGlobalTrans : System.Web.UI.Page
         foreach (Translation translation in translations)
         {
             TableRow newRow = translationHeader.getTableRowForTranslation(
-                    translation, translationHeader.TranslationRow_Click, "a",false,false,true,false);
+                    translation, translationHeader.TranslationRow_Click, "a", false, false, true, false);
             newRow.CssClass = "row" + ((count % 2) + 1).ToString();
             translationTable.Rows.Add(newRow);
             count++;

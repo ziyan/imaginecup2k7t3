@@ -34,6 +34,8 @@ public partial class TranslationHeader : System.Web.UI.UserControl
 
     public TableHeaderRow getTranslationHeader(bool hasRequester, bool hasTranslator, bool hasLanguages)
     {
+        bool isLoggedIn = Common.IsUserLoggedIn();
+
         TableHeaderRow tr = new TableHeaderRow();
         TableHeaderCell date = new TableHeaderCell();
         date.Controls.Add(cloneLabel(transDateLabel));
@@ -45,7 +47,7 @@ public partial class TranslationHeader : System.Web.UI.UserControl
             requestor.Controls.Add(cloneLabel(transRequestorLabel));
             tr.Cells.Add(requestor);
         }
-        if(hasTranslator)
+        if (hasTranslator)
         {
             TableHeaderCell translator = new TableHeaderCell();
             translator.Controls.Add(cloneLabel(transTranslatorLabel));
@@ -83,6 +85,8 @@ public partial class TranslationHeader : System.Web.UI.UserControl
         int prefLangId = Common.GetPreferredLanguage();
         User tmpUser;
 
+        bool isLoggedIn = Common.IsUserLoggedIn();
+
         TableRow tr = new TableRow();
         TableCell date = new TableCell();
         Label dateL = new Label();
@@ -106,10 +110,12 @@ public partial class TranslationHeader : System.Web.UI.UserControl
             tmpUser = svc.UserGetById(t.req_user);
             requestorL.Text = tmpUser.username;
             link.Controls.Add(requestorL);
-            requestor.Controls.Add(link);
+            // Show profile link if logged in
+            if (isLoggedIn) requestor.Controls.Add(link);
+            else requestor.Controls.Add(requestorL); // don't otherwise
             tr.Cells.Add(requestor);
         }
-        if(hasTranslator)
+        if (hasTranslator)
         {
             TableCell translator = new TableCell();
             Label translatorL = new Label();
@@ -123,7 +129,8 @@ public partial class TranslationHeader : System.Web.UI.UserControl
             HyperLink link = new HyperLink();
             link.NavigateUrl = "ViewProfile.aspx?id=" + t.trans_user.ToString();
             link.Controls.Add(translatorL);
-            translator.Controls.Add(link);
+            if (isLoggedIn) translator.Controls.Add(link);
+            else translator.Controls.Add(translatorL);
             tr.Cells.Add(translator);
         }
         if (hasLanguages)
@@ -199,7 +206,7 @@ public partial class TranslationHeader : System.Web.UI.UserControl
         }
         else
         {
-            rater.Enabled = true;
+            rater.Enabled = Common.IsUserLoggedIn();
         }
         if (rating <= 0) rating = 1;
         if (rating > 5) rating = 5;
@@ -225,7 +232,7 @@ public partial class TranslationHeader : System.Web.UI.UserControl
         }
         else
         {
-            rater.Enabled = true;
+            rater.Enabled = Common.IsUserLoggedIn();
         }
         if (rating <= 0) rating = 1;
         if (rating > 5) rating = 5;
