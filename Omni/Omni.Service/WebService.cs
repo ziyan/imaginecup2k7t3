@@ -479,7 +479,7 @@ namespace Omni.Service
         public Translation TransReqGetById(int req_id)
         {
             CheckInit();
-            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            //if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
             if (req_id < 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransReqGetById(req_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
@@ -531,8 +531,8 @@ namespace Omni.Service
         public int TransAnsRateGetById(int user_id, int ans_id)
         {
             CheckInit();
-            if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
-            if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to rate as this user");
+            //if (HttpContext.Current.Session["User"] == null) throw new InvalidOperationException("User not logged in.");
+            //if (((User)HttpContext.Current.Session["User"]).id != user_id) throw new InvalidOperationException("Not authorized to rate as this user");
             if (ans_id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.TransAnsRateGetById(user_id, ans_id, (Data.SqlConnection)HttpContext.Current.Session["SqlConnection"]);
         }
