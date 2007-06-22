@@ -2,41 +2,24 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni", "Omni\Omni.csproj", "{369CB646-E412-44A6-B17B-FCCF588742C6}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Data", "Omni.Data\Omni.Data.csproj", "{04934CFC-4DDC-4C4D-B16C-0A773A2B32DA}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Web", "Omni.Web\Omni.Web.csproj", "{C502CF20-D4D3-42C2-A13D-C2402C768670}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Service", "Omni.Service\Omni.Service.csproj", "{25682B1E-4F49-4FDD-AFF8-50DACEAB10AC}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\Website\omniproject.org\", "..\..\..\..\..\..\..\..\..\Website\omniproject.org\", "{4721EEDF-9A1D-4644-83F3-B0C313E051B7}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\Website\omniproject.org\", "C:\Website\omniproject.org", "{4721EEDF-9A1D-4644-83F3-B0C313E051B7}"
 	ProjectSection(WebsiteProperties) = preProject
-		ProjectReferences = "{369CB646-E412-44A6-B17B-FCCF588742C6}|Omni.dll;{04934CFC-4DDC-4C4D-B16C-0A773A2B32DA}|Omni.Data.dll;{25682B1E-4F49-4FDD-AFF8-50DACEAB10AC}|Omni.Service.dll;{C502CF20-D4D3-42C2-A13D-C2402C768670}|Omni.Web.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/omniproject.org"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\..\..\..\Website\omniproject.org\"
+		Debug.AspNetCompiler.PhysicalPath = "C:\Website\omniproject.org\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\omniproject.org\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/omniproject.org"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\..\..\..\Website\omniproject.org\"
+		Release.AspNetCompiler.PhysicalPath = "C:\Website\omniproject.org\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\omniproject.org\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
@@ -46,10 +29,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\Website\omniproject.org\
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Pocket", "Omni.Pocket\Omni.Pocket.csproj", "{6C95FA45-C639-483F-AFB9-163FAC18FAE8}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
