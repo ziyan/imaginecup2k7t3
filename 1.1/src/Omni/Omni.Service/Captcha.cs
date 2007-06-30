@@ -19,7 +19,7 @@ namespace Omni.Service
             new FontFamily("Arial"),
             new FontFamily("Comic Sans MS")
         };
-        private static int DistortRangeLower = 5;
+        private static int DistortRangeLower = 8;
         private static int DistortRangeHiger = 15;
         public static string GetCaptchaText()
         {
@@ -80,7 +80,7 @@ namespace Omni.Service
             sBrush.Dispose();
             g.Dispose();
             MemoryStream ms = new MemoryStream();
-            bitmap.Save(ms, ImageFormat.Gif);
+            bitmap.Save(ms, ImageFormat.Jpeg);
             byte[] image = ms.GetBuffer();
             ms.Dispose();
             return image;

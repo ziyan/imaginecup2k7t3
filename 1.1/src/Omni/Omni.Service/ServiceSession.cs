@@ -8,6 +8,7 @@ namespace Omni.Service
 {
     class ServiceSession : Hashtable
     {
+        #region Session Class
         private Guid id;
         private Data.Connection cn = null;
         private DateTime activeDate = DateTime.Now;
@@ -38,9 +39,9 @@ namespace Omni.Service
             : base()
         {
         }
+        #endregion
 
-
-
+        #region Static Methods
         private static Dictionary<Guid, ServiceSession> sessions = new Dictionary<Guid, ServiceSession>();
         public static ServiceSession Create()
         {
@@ -73,6 +74,10 @@ namespace Omni.Service
         {
             return sessions.ContainsKey(id);
         }
+        public static void Abandon(Guid id)
+        {
+            sessions.Remove(id);
+        }
         public static void Clean()
         {
             List<Guid> subjectToRemove = new List<Guid>();
@@ -88,27 +93,23 @@ namespace Omni.Service
                 sessions.Remove(subjectToRemove[i]);
             }
         }
-        private static SessionManager manager = new SessionManager();
-        class SessionManager
+
+        private static Timer timer = new Timer();
+        static ServiceSession()
         {
-            private Timer timer = new Timer();
-            public SessionManager()
-            {
-                //TODO: read from config
-                timer.Interval = 10000;
-                timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
-                timer.AutoReset = true;
-            }
-
-            void timer_Elapsed(object sender, ElapsedEventArgs e)
-            {
-                timer.Stop();
-                timer.Enabled = false;
-                ServiceSession.Clean();
-                timer.Enabled = true;
-                timer.Start();
-            }
-
+            //TODO: read from config
+            timer.Interval = 10000;
+            timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+            timer.AutoReset = true;
         }
+        private static void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            timer.Stop();
+            timer.Enabled = false;
+            ServiceSession.Clean();
+            timer.Enabled = true;
+            timer.Start();
+        }
+        #endregion
     }
 }

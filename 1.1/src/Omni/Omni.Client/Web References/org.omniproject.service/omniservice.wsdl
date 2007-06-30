@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://service.omniproject.org/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://service.omniproject.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://service.omniproject.org/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="SessionNew">
+        <s:complexType />
+      </s:element>
+      <s:element name="SessionNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SessionNewResult" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SessionExists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SessionExistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SessionExistsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SessionAbandon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SessionAbandonResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UserGetCaptcha">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="bgcolor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="frontcolor" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserGetCaptchaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserGetCaptchaResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserIsLoggedIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserIsLoggedInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserIsLoggedInResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SessionNewSoapIn">
+    <wsdl:part name="parameters" element="tns:SessionNew" />
+  </wsdl:message>
+  <wsdl:message name="SessionNewSoapOut">
+    <wsdl:part name="parameters" element="tns:SessionNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="SessionExistsSoapIn">
+    <wsdl:part name="parameters" element="tns:SessionExists" />
+  </wsdl:message>
+  <wsdl:message name="SessionExistsSoapOut">
+    <wsdl:part name="parameters" element="tns:SessionExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SessionAbandonSoapIn">
+    <wsdl:part name="parameters" element="tns:SessionAbandon" />
+  </wsdl:message>
+  <wsdl:message name="SessionAbandonSoapOut">
+    <wsdl:part name="parameters" element="tns:SessionAbandonResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserGetCaptchaSoapIn">
+    <wsdl:part name="parameters" element="tns:UserGetCaptcha" />
+  </wsdl:message>
+  <wsdl:message name="UserGetCaptchaSoapOut">
+    <wsdl:part name="parameters" element="tns:UserGetCaptchaResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserIsLoggedInSoapIn">
+    <wsdl:part name="parameters" element="tns:UserIsLoggedIn" />
+  </wsdl:message>
+  <wsdl:message name="UserIsLoggedInSoapOut">
+    <wsdl:part name="parameters" element="tns:UserIsLoggedInResponse" />
+  </wsdl:message>
+  <wsdl:portType name="OmniServiceSoap">
+    <wsdl:operation name="SessionNew">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new session, returns a session id.</wsdl:documentation>
+      <wsdl:input message="tns:SessionNewSoapIn" />
+      <wsdl:output message="tns:SessionNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SessionExists">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check if the session exists.</wsdl:documentation>
+      <wsdl:input message="tns:SessionExistsSoapIn" />
+      <wsdl:output message="tns:SessionExistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SessionAbandon">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Abandon session.</wsdl:documentation>
+      <wsdl:input message="tns:SessionAbandonSoapIn" />
+      <wsdl:output message="tns:SessionAbandonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserGetCaptcha">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a captcha image.</wsdl:documentation>
+      <wsdl:input message="tns:UserGetCaptchaSoapIn" />
+      <wsdl:output message="tns:UserGetCaptchaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserIsLoggedIn">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check if user has logged in.</wsdl:documentation>
+      <wsdl:input message="tns:UserIsLoggedInSoapIn" />
+      <wsdl:output message="tns:UserIsLoggedInSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OmniServiceSoap" type="tns:OmniServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SessionNew">
+      <soap:operation soapAction="http://service.omniproject.org/SessionNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SessionExists">
+      <soap:operation soapAction="http://service.omniproject.org/SessionExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SessionAbandon">
+      <soap:operation soapAction="http://service.omniproject.org/SessionAbandon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserGetCaptcha">
+      <soap:operation soapAction="http://service.omniproject.org/UserGetCaptcha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserIsLoggedIn">
+      <soap:operation soapAction="http://service.omniproject.org/UserIsLoggedIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="OmniServiceSoap12" type="tns:OmniServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SessionNew">
+      <soap12:operation soapAction="http://service.omniproject.org/SessionNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SessionExists">
+      <soap12:operation soapAction="http://service.omniproject.org/SessionExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SessionAbandon">
+      <soap12:operation soapAction="http://service.omniproject.org/SessionAbandon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserGetCaptcha">
+      <soap12:operation soapAction="http://service.omniproject.org/UserGetCaptcha" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserIsLoggedIn">
+      <soap12:operation soapAction="http://service.omniproject.org/UserIsLoggedIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OmniService">
+    <wsdl:port name="OmniServiceSoap" binding="tns:OmniServiceSoap">
+      <soap:address location="http://service.omniproject.org/service/omniservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="OmniServiceSoap12" binding="tns:OmniServiceSoap12">
+      <soap12:address location="http://service.omniproject.org/service/omniservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

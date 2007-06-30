@@ -6,6 +6,8 @@ namespace Omni.Service
 {
     class UserContext
     {
+        private string captcha = "";
+        
         public bool IsLoggedIn
         {
             get { return false; }
@@ -13,6 +15,19 @@ namespace Omni.Service
 
         public UserContext()
         {
+        }
+
+        public byte[] GetCaptcha(int width, int height, System.Drawing.Color bgcolor, System.Drawing.Color frontcolor)
+        {
+            captcha = Captcha.GetCaptchaText();
+            return Captcha.GetCaptchaImage(captcha, width, height, bgcolor, frontcolor);
+        }
+
+        public void CheckCaptcha(string text)
+        {
+            if (text.Length != Captcha.CaptchaLength || captcha.ToLower() != text.ToLower())
+                throw new ArgumentException("Captcha mismatch.");
+            captcha = "";
         }
 
         public bool Login(string username, string md5password)
