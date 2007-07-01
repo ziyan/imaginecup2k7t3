@@ -25,7 +25,7 @@ namespace Omni.Service
 
         public void CheckCaptcha(string text)
         {
-            if (text.Length != Captcha.CaptchaLength || captcha.ToLower() != text.ToLower())
+            if (text.Length <= 0 || captcha.ToLower() != text.ToLower())
                 throw new InvalidCaptchaException();
             captcha = "";
         }

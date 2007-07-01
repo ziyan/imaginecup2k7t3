@@ -13,11 +13,11 @@ namespace Omni.Service.External
             svc = new com.aonaware.services.DictService();
         }
 
-        public static string Lookup(int LanguageID, string SearchWord)
+        public static string Lookup(string lang, string word)
         {
-            if (LanguageID != 1)
+            if (!lang.ToLower().StartsWith("en"))
                 throw new ArgumentException();
-            return svc.Define(SearchWord).Definitions[0].WordDefinition;
+            return svc.Define(word).Definitions[0].WordDefinition;
         }
     }
 }

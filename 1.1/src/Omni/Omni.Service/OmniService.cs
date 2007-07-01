@@ -85,9 +85,9 @@ namespace Omni.Service
         /// <param name="word">Word</param>
         /// <returns>Definition for word</returns>
         [WebMethod(Description = "Dictionary definition lookup service.")]
-        public string DefinitionLookup(int lang_id, string word)
+        public string DefinitionLookup(string lang, string word)
         {
-            return External.DictionaryService.Lookup(lang_id, word);
+            return External.DictionaryService.Lookup(lang, word);
         }
 
         /// <summary>
@@ -98,9 +98,9 @@ namespace Omni.Service
         /// <param name="message">Message</param>
         /// <returns>Translated message</returns>
         [WebMethod(Description = "Translate a message.")]
-        public string TranslationLookup(int src_lang_id, int dst_lang_id, string message)
+        public string TranslationLookup(string src_lang, string dst_lang, string message)
         {
-            return External.TranslationService.Lookup(src_lang_id, dst_lang_id, message);
+            return External.TranslationService.Lookup(src_lang, dst_lang, message);
         }
 
 

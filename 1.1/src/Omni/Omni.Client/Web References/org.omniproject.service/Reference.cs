@@ -288,25 +288,25 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/DefinitionLookup", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string DefinitionLookup(int lang_id, string word) {
+        public string DefinitionLookup(string lang, string word) {
             object[] results = this.Invoke("DefinitionLookup", new object[] {
-                        lang_id,
+                        lang,
                         word});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void DefinitionLookupAsync(int lang_id, string word) {
-            this.DefinitionLookupAsync(lang_id, word, null);
+        public void DefinitionLookupAsync(string lang, string word) {
+            this.DefinitionLookupAsync(lang, word, null);
         }
         
         /// <remarks/>
-        public void DefinitionLookupAsync(int lang_id, string word, object userState) {
+        public void DefinitionLookupAsync(string lang, string word, object userState) {
             if ((this.DefinitionLookupOperationCompleted == null)) {
                 this.DefinitionLookupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDefinitionLookupOperationCompleted);
             }
             this.InvokeAsync("DefinitionLookup", new object[] {
-                        lang_id,
+                        lang,
                         word}, this.DefinitionLookupOperationCompleted, userState);
         }
         
@@ -319,27 +319,27 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationLookup", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string TranslationLookup(int src_lang_id, int dst_lang_id, string message) {
+        public string TranslationLookup(string src_lang, string dst_lang, string message) {
             object[] results = this.Invoke("TranslationLookup", new object[] {
-                        src_lang_id,
-                        dst_lang_id,
+                        src_lang,
+                        dst_lang,
                         message});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void TranslationLookupAsync(int src_lang_id, int dst_lang_id, string message) {
-            this.TranslationLookupAsync(src_lang_id, dst_lang_id, message, null);
+        public void TranslationLookupAsync(string src_lang, string dst_lang, string message) {
+            this.TranslationLookupAsync(src_lang, dst_lang, message, null);
         }
         
         /// <remarks/>
-        public void TranslationLookupAsync(int src_lang_id, int dst_lang_id, string message, object userState) {
+        public void TranslationLookupAsync(string src_lang, string dst_lang, string message, object userState) {
             if ((this.TranslationLookupOperationCompleted == null)) {
                 this.TranslationLookupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationLookupOperationCompleted);
             }
             this.InvokeAsync("TranslationLookup", new object[] {
-                        src_lang_id,
-                        dst_lang_id,
+                        src_lang,
+                        dst_lang,
                         message}, this.TranslationLookupOperationCompleted, userState);
         }
         

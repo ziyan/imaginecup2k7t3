@@ -23,10 +23,9 @@ namespace Omni.Util
             }
             return s;
         }
-        public static string UsernamePattern = @"[0-9a-zA-Z\.\-\_]{3,}";
         public static bool IsValidUsername(string username)
         {
-            return username != null && username != "" && System.Text.RegularExpressions.Regex.Replace(username, UsernamePattern, "") == "";
+            return username != null && username != "" && System.Text.RegularExpressions.Regex.Replace(username, Util.Configuration.LocalSettings["Omni.Util.Common.UsernamePattern"], "") == "";
         }
     }
 }
