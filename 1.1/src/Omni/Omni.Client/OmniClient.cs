@@ -24,9 +24,20 @@ namespace Omni.Client
         {
             service.SessionAbandon(session);
         }
+        public void KeepAlive()
+        {
+            CheckSession();
+            service.SessionKeepAlive(session);
+        }
         public byte[] UserGetCaptcha(int width, int height, string bgcolor, string frontcolor)
         {
+            CheckSession();
             return service.UserGetCaptcha(session, width, height, bgcolor, frontcolor);
+        }
+        private void CheckSession()
+        {
+            if (!service.SessionExists(session))
+                session = service.SessionNew();
         }
     }
 }

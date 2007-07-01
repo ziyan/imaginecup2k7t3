@@ -39,6 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Web", "Omni.Web\Omni.W
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\Project\omniproject.org\", "..\..\..\..\omniproject.org\", "{EE4C0B1F-EDF5-4618-903C-1D713D2B0238}"
 	ProjectSection(WebsiteProperties) = preProject
+		ProjectReferences = "{8EC7D0A8-3633-4524-8B32-50FD3629177D}|Omni.Web.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/omniproject.org"
 		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\omniproject.org\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\omniproject.org\"
@@ -79,6 +80,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\Project\service.omniproj
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Service.External", "Omni.Service.External\Omni.Service.External.csproj", "{C69D8F52-16BA-406C-9424-3123127410A8}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONSharp", "JSONSharp\JSONSharp.csproj", "{264DAE81-F3E0-45D4-9815-3F3FF730881F}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
@@ -184,6 +191,16 @@ Global
 		{C69D8F52-16BA-406C-9424-3123127410A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C69D8F52-16BA-406C-9424-3123127410A8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C69D8F52-16BA-406C-9424-3123127410A8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{264DAE81-F3E0-45D4-9815-3F3FF730881F}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{264DAE81-F3E0-45D4-9815-3F3FF730881F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{264DAE81-F3E0-45D4-9815-3F3FF730881F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{264DAE81-F3E0-45D4-9815-3F3FF730881F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{264DAE81-F3E0-45D4-9815-3F3FF730881F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{264DAE81-F3E0-45D4-9815-3F3FF730881F}.Release|.NET.ActiveCfg = Release|Any CPU
+		{264DAE81-F3E0-45D4-9815-3F3FF730881F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264DAE81-F3E0-45D4-9815-3F3FF730881F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{264DAE81-F3E0-45D4-9815-3F3FF730881F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{264DAE81-F3E0-45D4-9815-3F3FF730881F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

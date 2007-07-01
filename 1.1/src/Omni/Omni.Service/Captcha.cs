@@ -20,10 +20,10 @@ namespace Omni.Service
             new FontFamily("Comic Sans MS")
         };
         private static int DistortRangeLower = 8;
-        private static int DistortRangeHiger = 15;
+        private static int DistortRangeHiger = 12;
         public static string GetCaptchaText()
         {
-            return Common.GetRandomString(CaptchaCharacterSet,CaptchaLength);
+            return Util.Common.GetRandomString(CaptchaCharacterSet,CaptchaLength);
         }
         public static byte[] GetCaptchaImage(string text, int width, int height, Color bgColor, Color frontColor)
         {
@@ -36,7 +36,7 @@ namespace Omni.Service
                 g.FillRectangle(b, rect);
             }
             int emSize = (int)(width * 2 / text.Length);
-            FontFamily family = HumanFriendlyFontSet[Common.Rand.Next(HumanFriendlyFontSet.Length - 1)];
+            FontFamily family = HumanFriendlyFontSet[Util.Common.Rand.Next(HumanFriendlyFontSet.Length - 1)];
             Font font = new Font(family, emSize);
             SizeF measured = new SizeF(0, 0);
             SizeF workingSize = new SizeF(width, height);
@@ -56,7 +56,7 @@ namespace Omni.Service
             g.FillPath(sBrush, path);
 
             // Iterate over every pixel
-            double distort = Common.Rand.Next(DistortRangeLower, DistortRangeHiger) * (Common.Rand.Next(10) == 1 ? 1 : -1);
+            double distort = Util.Common.Rand.Next(DistortRangeLower, DistortRangeHiger) * (Util.Common.Rand.Next(10) == 1 ? 1 : -1);
 
             // Copy the image so that we're always using the original for source color
             using (Bitmap copy = (Bitmap)bitmap.Clone())

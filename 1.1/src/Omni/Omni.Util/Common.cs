@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Omni.Service
+namespace Omni.Util
 {
     public static class Common
     {
+        public static bool IsInteger(string integer)
+        {
+            int temp;
+            return integer != null && Int32.TryParse(integer, out temp);
+        }
         public static Random Rand = new Random();
-        public static string HexCharacterSet = "0123456789abcdef";
-        public static int PasswordRandomTextLength = 10;
         public static string GetRandomString(string characters, int length)
         {
             if (length <= 0 || characters == null || characters.Length <= 0)
@@ -20,6 +23,10 @@ namespace Omni.Service
             }
             return s;
         }
-
+        public static string UsernamePattern = @"[0-9a-zA-Z\.\-\_]{3,}";
+        public static bool IsValidUsername(string username)
+        {
+            return username != null && username != "" && System.Text.RegularExpressions.Regex.Replace(username, UsernamePattern, "") == "";
+        }
     }
 }

@@ -34,9 +34,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="Session\KeepAliveHandler.cs" />
+    <Compile Include="User\CaptchaHandler.cs" />
     <Compile Include="HttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JSONSharp\JSONSharp.csproj">
+      <Project>{264DAE81-F3E0-45D4-9815-3F3FF730881F}</Project>
+      <Name>JSONSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Omni.Client\Omni.Client.csproj">
+      <Project>{58409C5A-C95D-4C3C-852F-4C7E9005966C}</Project>
+      <Name>Omni.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Omni.Util\Omni.Util.csproj">
+      <Project>{4F7CBAC3-9590-48E9-9920-B7F691C631B7}</Project>
+      <Name>Omni.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

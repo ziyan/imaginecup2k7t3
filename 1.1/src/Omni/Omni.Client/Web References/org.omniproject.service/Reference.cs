@@ -35,9 +35,15 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback SessionAbandonOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SessionKeepAliveOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UserGetCaptchaOperationCompleted;
         
         private System.Threading.SendOrPostCallback UserIsLoggedInOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DefinitionLookupOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -87,10 +93,19 @@ namespace Omni.Client.org.omniproject.service {
         public event SessionAbandonCompletedEventHandler SessionAbandonCompleted;
         
         /// <remarks/>
+        public event SessionKeepAliveCompletedEventHandler SessionKeepAliveCompleted;
+        
+        /// <remarks/>
         public event UserGetCaptchaCompletedEventHandler UserGetCaptchaCompleted;
         
         /// <remarks/>
         public event UserIsLoggedInCompletedEventHandler UserIsLoggedInCompleted;
+        
+        /// <remarks/>
+        public event DefinitionLookupCompletedEventHandler DefinitionLookupCompleted;
+        
+        /// <remarks/>
+        public event TranslationLookupCompletedEventHandler TranslationLookupCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/SessionNew", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -177,6 +192,34 @@ namespace Omni.Client.org.omniproject.service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/SessionKeepAlive", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void SessionKeepAlive(System.Guid session) {
+            this.Invoke("SessionKeepAlive", new object[] {
+                        session});
+        }
+        
+        /// <remarks/>
+        public void SessionKeepAliveAsync(System.Guid session) {
+            this.SessionKeepAliveAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void SessionKeepAliveAsync(System.Guid session, object userState) {
+            if ((this.SessionKeepAliveOperationCompleted == null)) {
+                this.SessionKeepAliveOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSessionKeepAliveOperationCompleted);
+            }
+            this.InvokeAsync("SessionKeepAlive", new object[] {
+                        session}, this.SessionKeepAliveOperationCompleted, userState);
+        }
+        
+        private void OnSessionKeepAliveOperationCompleted(object arg) {
+            if ((this.SessionKeepAliveCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SessionKeepAliveCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/UserGetCaptcha", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
         public byte[] UserGetCaptcha(System.Guid session, int width, int height, string bgcolor, string frontcolor) {
@@ -240,6 +283,70 @@ namespace Omni.Client.org.omniproject.service {
             if ((this.UserIsLoggedInCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserIsLoggedInCompleted(this, new UserIsLoggedInCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/DefinitionLookup", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string DefinitionLookup(int lang_id, string word) {
+            object[] results = this.Invoke("DefinitionLookup", new object[] {
+                        lang_id,
+                        word});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DefinitionLookupAsync(int lang_id, string word) {
+            this.DefinitionLookupAsync(lang_id, word, null);
+        }
+        
+        /// <remarks/>
+        public void DefinitionLookupAsync(int lang_id, string word, object userState) {
+            if ((this.DefinitionLookupOperationCompleted == null)) {
+                this.DefinitionLookupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDefinitionLookupOperationCompleted);
+            }
+            this.InvokeAsync("DefinitionLookup", new object[] {
+                        lang_id,
+                        word}, this.DefinitionLookupOperationCompleted, userState);
+        }
+        
+        private void OnDefinitionLookupOperationCompleted(object arg) {
+            if ((this.DefinitionLookupCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DefinitionLookupCompleted(this, new DefinitionLookupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationLookup", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string TranslationLookup(int src_lang_id, int dst_lang_id, string message) {
+            object[] results = this.Invoke("TranslationLookup", new object[] {
+                        src_lang_id,
+                        dst_lang_id,
+                        message});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationLookupAsync(int src_lang_id, int dst_lang_id, string message) {
+            this.TranslationLookupAsync(src_lang_id, dst_lang_id, message, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationLookupAsync(int src_lang_id, int dst_lang_id, string message, object userState) {
+            if ((this.TranslationLookupOperationCompleted == null)) {
+                this.TranslationLookupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationLookupOperationCompleted);
+            }
+            this.InvokeAsync("TranslationLookup", new object[] {
+                        src_lang_id,
+                        dst_lang_id,
+                        message}, this.TranslationLookupOperationCompleted, userState);
+        }
+        
+        private void OnTranslationLookupOperationCompleted(object arg) {
+            if ((this.TranslationLookupCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationLookupCompleted(this, new TranslationLookupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -320,6 +427,10 @@ namespace Omni.Client.org.omniproject.service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void SessionKeepAliveCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
     public delegate void UserGetCaptchaCompletedEventHandler(object sender, UserGetCaptchaCompletedEventArgs e);
     
     /// <remarks/>
@@ -366,6 +477,58 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void DefinitionLookupCompletedEventHandler(object sender, DefinitionLookupCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DefinitionLookupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DefinitionLookupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void TranslationLookupCompletedEventHandler(object sender, TranslationLookupCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationLookupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationLookupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }

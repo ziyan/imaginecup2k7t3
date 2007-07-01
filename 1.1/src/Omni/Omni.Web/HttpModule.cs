@@ -14,6 +14,18 @@ namespace Omni.Web
 
         void context_PostAcquireRequestState(object sender, EventArgs e)
         {
+            //filter out web service requests
+            if (HttpContext.Current.Request.FilePath.ToLower().EndsWith(".asmx"))
+                return;
+            //filter out non-session requests
+            if (HttpContext.Current.Session == null) return;
+            //initialize client
+            if (HttpContext.Current.Session["Client"] == null)
+            {
+                Omni.Client.OmniClient client = new Omni.Client.OmniClient();
+                HttpContext.Current.Session["Client"] = client;
+            }
+
             /*
             if (HttpContext.Current.Request.Path.ToLower().StartsWith("/service/")) return;
             if (HttpContext.Current.Session == null) return;

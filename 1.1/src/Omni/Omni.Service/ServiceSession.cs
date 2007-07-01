@@ -67,7 +67,7 @@ namespace Omni.Service
             }
             else
             {
-                throw new ArgumentOutOfRangeException("Cannot find session with id = " + id.ToString());
+                throw new InvalidSessionException();
             }
         }
         public static bool Exists(Guid id)

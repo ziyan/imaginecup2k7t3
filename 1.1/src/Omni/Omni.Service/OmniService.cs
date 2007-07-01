@@ -43,6 +43,16 @@ namespace Omni.Service
             ServiceSession.Abandon(session);
         }
 
+        /// <summary>
+        /// Keep session alive
+        /// </summary>
+        /// <param name="session">session id</param>
+        [WebMethod(Description = "Keep session alive.")]
+        public void SessionKeepAlive(Guid session)
+        {
+            ServiceSession.Get(session);
+        }
+
 
         /// <summary>
         /// Get a captcha image
