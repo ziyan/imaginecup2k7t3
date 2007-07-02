@@ -1,0 +1,8 @@
+bin\Debug\OmniLocalize.exe
+bin\Debug\OmniLocalize.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\OmniLocalize.OmniLocalize.resources
+obj\Debug\OmniLocalize.Properties.Resources.resources
+obj\Debug\OmniLocalize.csproj.GenerateResource.Cache
+obj\Debug\OmniLocalize.exe
+obj\Debug\OmniLocalize.pdb
