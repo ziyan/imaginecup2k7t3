@@ -71,7 +71,7 @@ namespace Omni.Service
                 throw new ArgumentNullException();
             if (!Util.Common.IsValidUsername(username))
                 throw new InvalidUsernameException();
-            if (!Util.Email.IsValidEmail(email))
+            if (!Util.Common.IsValidEmail(email))
                 throw new InvalidEmailException();
             if (name.Length > 100) throw new ArgumentOutOfRangeException();
             string password = encryptPassword(generatePasswordPrefix(), md5password);
@@ -91,7 +91,7 @@ namespace Omni.Service
         {
             if (md5password.Length != 32) throw new ArgumentOutOfRangeException();
             if (prefix.Length != passwordPrefixLength) throw new ArgumentOutOfRangeException();
-            return prefix.ToLower() + Util.MD5.HashString(md5password.ToLower() + prefix.ToLower());
+            return prefix.ToLower() + MD5.HashString(md5password.ToLower() + prefix.ToLower());
         }
         private string generatePasswordPrefix()
         {

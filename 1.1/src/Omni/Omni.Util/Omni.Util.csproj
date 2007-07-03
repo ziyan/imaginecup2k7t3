@@ -4,7 +4,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4F7CBAC3-9590-48E9-9920-B7F691C631B7}</ProjectGuid>
+    <ProjectGuid>{BBED3775-5826-4C85-A6EC-254ABCDF0211}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Omni.Util</RootNamespace>
@@ -37,8 +37,13 @@
     <Compile Include="Common.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Email.cs" />
-    <Compile Include="MD5.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Omni\Omni.csproj">
+      <Project>{03DBCB2C-D83C-487F-BB31-FAA3538F7B01}</Project>
+      <Name>Omni</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

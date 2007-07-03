@@ -40,12 +40,8 @@
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Omni.Util\Omni.Util.csproj">
-      <Project>{4F7CBAC3-9590-48E9-9920-B7F691C631B7}</Project>
-      <Name>Omni.Util</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Omni\Omni.csproj">
-      <Project>{F1743B5F-0181-48BC-B3FA-E5B3B8EF7D44}</Project>
+      <Project>{03DBCB2C-D83C-487F-BB31-FAA3538F7B01}</Project>
       <Name>Omni</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Net;
 using System.Net.Mail;
 
 namespace Omni.Util
@@ -16,10 +15,6 @@ namespace Omni.Util
             message.Body = body;
             SmtpClient client = new SmtpClient(Util.Configuration.LocalSettings["Omni.Util.Email.ServerHost"], Convert.ToInt32(Util.Configuration.LocalSettings["Omni.Util.Email.ServerPort"]));
             client.Send(message);
-        }
-        public static bool IsValidEmail(string email)
-        {
-            return email != null && email != "" && System.Text.RegularExpressions.Regex.Replace(email, Util.Configuration.LocalSettings["Omni.Util.Email.Pattern"], "") == "";
         }
     }
 }
