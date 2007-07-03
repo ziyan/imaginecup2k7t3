@@ -12,6 +12,7 @@ namespace Omni.Service
         {
         }
 
+        #region Session
         /// <summary>
         /// Creates a new session
         /// </summary>
@@ -52,8 +53,9 @@ namespace Omni.Service
         {
             ServiceSession.Get(session);
         }
+        #endregion
 
-
+        #region User
         /// <summary>
         /// Get a captcha image
         /// </summary>
@@ -79,6 +81,65 @@ namespace Omni.Service
         }
 
         /// <summary>
+        /// User login
+        /// </summary>
+        /// <param name="username">username</param>
+        /// <param name="md5password">md5 once password</param>
+        /// <param name="captcha">captcha text</param>
+        /// <param name="session">session id</param>
+        /// <returns>true for success, false otherwise</returns>
+        [WebMethod(Description = "User login.")]
+        public bool UserLogin(string username, string md5password, string captcha, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            Session.UserContext.CheckCaptcha(captcha);
+            return Session.UserContext.Login(username, md5password);
+        }
+
+        /// <summary>
+        /// User logout
+        /// </summary>
+        /// <param name="session">session id</param>
+        [WebMethod(Description = "User logout.")]
+        public void UserLogout(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            Session.UserContext.Logout();
+        }
+
+        /// <summary>
+        /// Register a new user account.
+        /// </summary>
+        /// <param name="username">username</param>
+        /// <param name="md5password">md5 once password</param>
+        /// <param name="name">name</param>
+        /// <param name="email">email address</param>
+        /// <param name="captcha">captcha text</param>
+        /// <param name="session">session id</param>
+        /// <returns>the id of the new user</returns>
+        [WebMethod(Description = "Register a new user account.")]
+        public int UserRegister(string username, string md5password, string name, string email, string captcha, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            Session.UserContext.CheckCaptcha(captcha);
+            return Session.UserContext.Register(username, md5password, name, email);
+        }
+
+        /// <summary>
+        /// Get current user information.
+        /// </summary>
+        /// <param name="session">session id</param>
+        /// <returns>current user information, null for not logged in</returns>
+        [WebMethod(Description = "Get current user information.")]
+        public Data.User UserCurrent(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            return Session.UserContext.User;
+        }
+        #endregion
+
+        #region Lookup service
+        /// <summary>
         /// Dictionary definition lookup service.
         /// </summary>
         /// <param name="lang_id">Language id</param>
@@ -102,6 +163,7 @@ namespace Omni.Service
         {
             return External.TranslationService.Lookup(src_lang, dst_lang, message);
         }
+        #endregion
 
 
     }

@@ -41,6 +41,14 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback UserIsLoggedInOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserLoginOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UserLogoutOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UserRegisterOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UserCurrentOperationCompleted;
+        
         private System.Threading.SendOrPostCallback DefinitionLookupOperationCompleted;
         
         private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
@@ -100,6 +108,18 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event UserIsLoggedInCompletedEventHandler UserIsLoggedInCompleted;
+        
+        /// <remarks/>
+        public event UserLoginCompletedEventHandler UserLoginCompleted;
+        
+        /// <remarks/>
+        public event UserLogoutCompletedEventHandler UserLogoutCompleted;
+        
+        /// <remarks/>
+        public event UserRegisterCompletedEventHandler UserRegisterCompleted;
+        
+        /// <remarks/>
+        public event UserCurrentCompletedEventHandler UserCurrentCompleted;
         
         /// <remarks/>
         public event DefinitionLookupCompletedEventHandler DefinitionLookupCompleted;
@@ -287,6 +307,137 @@ namespace Omni.Client.org.omniproject.service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/UserLogin", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UserLogin(string username, string md5password, string captcha, System.Guid session) {
+            object[] results = this.Invoke("UserLogin", new object[] {
+                        username,
+                        md5password,
+                        captcha,
+                        session});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserLoginAsync(string username, string md5password, string captcha, System.Guid session) {
+            this.UserLoginAsync(username, md5password, captcha, session, null);
+        }
+        
+        /// <remarks/>
+        public void UserLoginAsync(string username, string md5password, string captcha, System.Guid session, object userState) {
+            if ((this.UserLoginOperationCompleted == null)) {
+                this.UserLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserLoginOperationCompleted);
+            }
+            this.InvokeAsync("UserLogin", new object[] {
+                        username,
+                        md5password,
+                        captcha,
+                        session}, this.UserLoginOperationCompleted, userState);
+        }
+        
+        private void OnUserLoginOperationCompleted(object arg) {
+            if ((this.UserLoginCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserLoginCompleted(this, new UserLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/UserLogout", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UserLogout(System.Guid session) {
+            this.Invoke("UserLogout", new object[] {
+                        session});
+        }
+        
+        /// <remarks/>
+        public void UserLogoutAsync(System.Guid session) {
+            this.UserLogoutAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void UserLogoutAsync(System.Guid session, object userState) {
+            if ((this.UserLogoutOperationCompleted == null)) {
+                this.UserLogoutOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserLogoutOperationCompleted);
+            }
+            this.InvokeAsync("UserLogout", new object[] {
+                        session}, this.UserLogoutOperationCompleted, userState);
+        }
+        
+        private void OnUserLogoutOperationCompleted(object arg) {
+            if ((this.UserLogoutCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserLogoutCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/UserRegister", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int UserRegister(string username, string md5password, string name, string email, string captcha, System.Guid session) {
+            object[] results = this.Invoke("UserRegister", new object[] {
+                        username,
+                        md5password,
+                        name,
+                        email,
+                        captcha,
+                        session});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserRegisterAsync(string username, string md5password, string name, string email, string captcha, System.Guid session) {
+            this.UserRegisterAsync(username, md5password, name, email, captcha, session, null);
+        }
+        
+        /// <remarks/>
+        public void UserRegisterAsync(string username, string md5password, string name, string email, string captcha, System.Guid session, object userState) {
+            if ((this.UserRegisterOperationCompleted == null)) {
+                this.UserRegisterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserRegisterOperationCompleted);
+            }
+            this.InvokeAsync("UserRegister", new object[] {
+                        username,
+                        md5password,
+                        name,
+                        email,
+                        captcha,
+                        session}, this.UserRegisterOperationCompleted, userState);
+        }
+        
+        private void OnUserRegisterOperationCompleted(object arg) {
+            if ((this.UserRegisterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserRegisterCompleted(this, new UserRegisterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/UserCurrent", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public User UserCurrent(System.Guid session) {
+            object[] results = this.Invoke("UserCurrent", new object[] {
+                        session});
+            return ((User)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserCurrentAsync(System.Guid session) {
+            this.UserCurrentAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void UserCurrentAsync(System.Guid session, object userState) {
+            if ((this.UserCurrentOperationCompleted == null)) {
+                this.UserCurrentOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserCurrentOperationCompleted);
+            }
+            this.InvokeAsync("UserCurrent", new object[] {
+                        session}, this.UserCurrentOperationCompleted, userState);
+        }
+        
+        private void OnUserCurrentOperationCompleted(object arg) {
+            if ((this.UserCurrentCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserCurrentCompleted(this, new UserCurrentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/DefinitionLookup", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string DefinitionLookup(string lang, string word) {
             object[] results = this.Invoke("DefinitionLookup", new object[] {
@@ -366,6 +517,99 @@ namespace Omni.Client.org.omniproject.service {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.312")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
+    public partial class User {
+        
+        private string nameField;
+        
+        private string usernameField;
+        
+        private string emailField;
+        
+        private int idField;
+        
+        private string descriptionField;
+        
+        private System.DateTime reg_dateField;
+        
+        private System.DateTime log_dateField;
+        
+        /// <remarks/>
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime reg_date {
+            get {
+                return this.reg_dateField;
+            }
+            set {
+                this.reg_dateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime log_date {
+            get {
+                return this.log_dateField;
+            }
+            set {
+                this.log_dateField = value;
+            }
         }
     }
     
@@ -477,6 +721,88 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserLoginCompletedEventHandler(object sender, UserLoginCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserLogoutCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserRegisterCompletedEventHandler(object sender, UserRegisterCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserRegisterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserRegisterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    public delegate void UserCurrentCompletedEventHandler(object sender, UserCurrentCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.312")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserCurrentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserCurrentCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public User Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((User)(this.results[0]));
             }
         }
     }

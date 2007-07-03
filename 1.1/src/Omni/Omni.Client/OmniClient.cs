@@ -74,11 +74,64 @@ namespace Omni.Client
         /// <summary>
         /// Check see if user has logged in
         /// </summary>
-        /// <returns>true for logged in, false otherwise</returns>
-        public bool UserIsLoggedIn()
+        public bool UserIsLoggedIn
+        {
+            get
+            {
+                CheckSession();
+                return service.UserIsLoggedIn(session);
+            }
+        }
+
+        /// <summary>
+        /// User login.
+        /// </summary>
+        /// <param name="username">username</param>
+        /// <param name="md5password">md5 once password</param>
+        /// <param name="captcha">captcha text</param>
+        /// <returns>true for success, false otherwise</returns>
+        public bool UserLogin(string username, string md5password,string captcha)
         {
             CheckSession();
-            return service.UserIsLoggedIn(session);
+            return service.UserLogin(username, md5password, captcha, session);
+        }
+
+        /// <summary>
+        /// User logout.
+        /// </summary>
+        public void UserLogout()
+        {
+            CheckSession();
+            service.UserLogout(session);
+        }
+
+        /// <summary>
+        /// Register a new user account.
+        /// </summary>
+        /// <param name="username">username</param>
+        /// <param name="md5password">md5 once password</param>
+        /// <param name="name">name</param>
+        /// <param name="email">email</param>
+        /// <param name="captcha">captcha text</param>
+        /// <returns>id of the new user</returns>
+        public int UserRegister(string username, string md5password, string name, string email, string captcha)
+        {
+            CheckSession();
+            return service.UserRegister(username, md5password, name, email, captcha, session);
+        }
+
+        /// <summary>
+        /// Currently logged in user.
+        /// </summary>
+        public User UserCurrent
+        {
+            get
+            {
+                CheckSession();
+                org.omniproject.service.User user = service.UserCurrent(session);
+                if (user == null) return null;
+                return new User(user);
+            }
         }
         #endregion
 

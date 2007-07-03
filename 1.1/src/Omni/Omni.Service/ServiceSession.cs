@@ -30,7 +30,7 @@ namespace Omni.Service
         {
             get
             {
-                if (userContext == null) userContext = new UserContext();
+                if (userContext == null) userContext = new UserContext(this);
                 return userContext;
             }
         }

@@ -20,5 +20,14 @@ namespace Omni.Data
             sqlcn.Dispose();
             sqlcn = null;
         }
+
+        public string GetConfiguration(string name, int lang_id)
+        {
+            return StoredProcedure.ConfigGetByName(name, lang_id, this);
+        }
+        public string GetConfiguration(string name)
+        {
+            return GetConfiguration(name, 0);
+        }
     }
 }
