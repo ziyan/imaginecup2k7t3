@@ -85,7 +85,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni", "Omni\Omni.csproj", 
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Util", "Omni.Util\Omni.Util.csproj", "{BBED3775-5826-4C85-A6EC-254ABCDF0211}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Util", "Omni.Util\Omni.Util.csproj", "{02966CC6-8993-4376-BE54-48F956F944D8}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
@@ -191,16 +191,16 @@ Global
 		{03DBCB2C-D83C-487F-BB31-FAA3538F7B01}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03DBCB2C-D83C-487F-BB31-FAA3538F7B01}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{03DBCB2C-D83C-487F-BB31-FAA3538F7B01}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{BBED3775-5826-4C85-A6EC-254ABCDF0211}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{BBED3775-5826-4C85-A6EC-254ABCDF0211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BBED3775-5826-4C85-A6EC-254ABCDF0211}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BBED3775-5826-4C85-A6EC-254ABCDF0211}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BBED3775-5826-4C85-A6EC-254ABCDF0211}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BBED3775-5826-4C85-A6EC-254ABCDF0211}.Release|.NET.ActiveCfg = Release|Any CPU
-		{BBED3775-5826-4C85-A6EC-254ABCDF0211}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BBED3775-5826-4C85-A6EC-254ABCDF0211}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BBED3775-5826-4C85-A6EC-254ABCDF0211}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{BBED3775-5826-4C85-A6EC-254ABCDF0211}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{02966CC6-8993-4376-BE54-48F956F944D8}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{02966CC6-8993-4376-BE54-48F956F944D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02966CC6-8993-4376-BE54-48F956F944D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02966CC6-8993-4376-BE54-48F956F944D8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{02966CC6-8993-4376-BE54-48F956F944D8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{02966CC6-8993-4376-BE54-48F956F944D8}.Release|.NET.ActiveCfg = Release|Any CPU
+		{02966CC6-8993-4376-BE54-48F956F944D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02966CC6-8993-4376-BE54-48F956F944D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02966CC6-8993-4376-BE54-48F956F944D8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{02966CC6-8993-4376-BE54-48F956F944D8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -42,7 +42,7 @@ namespace Omni.Service
         public bool Login(string username, string md5password)
         {
             if (this.user != null) throw new UserAlreadyLoggedInException();
-            if (!Util.Common.IsValidUsername(username))
+            if (!Util.Validator.IsUsername(username))
                 throw new InvalidUsernameException();
             string password = Data.StoredProcedure.UserPasswordGetByUsername(username.ToLower(), session.Connection).ToLower();
             if (encryptPassword(getPasswordPrefix(password), md5password) == password)
@@ -69,9 +69,9 @@ namespace Omni.Service
             if (username == null || md5password == null || name == null || email == null ||
                 username == "" || md5password.Length != 32 || name == "" || email == "")
                 throw new ArgumentNullException();
-            if (!Util.Common.IsValidUsername(username))
+            if (!Util.Validator.IsUsername(username))
                 throw new InvalidUsernameException();
-            if (!Util.Common.IsValidEmail(email))
+            if (!Util.Validator.IsEmail(email))
                 throw new InvalidEmailException();
             if (name.Length > 100) throw new ArgumentOutOfRangeException();
             string password = encryptPassword(generatePasswordPrefix(), md5password);

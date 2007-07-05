@@ -13,8 +13,8 @@ namespace Omni.Service
     {
         public static string GetCaptchaText()
         {
-            return Util.Common.GetRandomString(Util.Configuration.LocalSettings["Omni.Service.Captcha.CharacterSet"],
-                Convert.ToInt32(Util.Configuration.LocalSettings["Omni.Service.Captcha.Length"]));
+            return Util.Common.GetRandomString(Data.Configuration.LocalSettings["Omni.Service.Captcha.CharacterSet"],
+                Convert.ToInt32(Data.Configuration.LocalSettings["Omni.Service.Captcha.Length"]));
         }
         public static byte[] GetCaptchaImage(string text, int width, int height, Color bgColor, Color frontColor)
         {
@@ -27,7 +27,7 @@ namespace Omni.Service
                 g.FillRectangle(b, rect);
             }
             int emSize = (int)(width * 2 / text.Length);
-            string[] fonts = Util.Configuration.LocalSettings["Omni.Service.Captcha.FontSet"].Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            string[] fonts = Data.Configuration.LocalSettings["Omni.Service.Captcha.FontSet"].Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             FontFamily family = new FontFamily(fonts[Util.Common.Rand.Next(fonts.Length - 1)].Trim());
             Font font = new Font(family, emSize);
             SizeF measured = new SizeF(0, 0);
@@ -48,7 +48,7 @@ namespace Omni.Service
             g.FillPath(sBrush, path);
 
             // Iterate over every pixel
-            double distort = Util.Common.Rand.Next(Convert.ToInt32(Util.Configuration.LocalSettings["Omni.Service.Captcha.DistortRangeLower"]), Convert.ToInt32(Util.Configuration.LocalSettings["Omni.Service.Captcha.DistortRangeHigher"])) * (Util.Common.Rand.Next(Convert.ToInt32(Util.Configuration.LocalSettings["Omni.Service.Captcha.DistortRange"])) == 1 ? 1 : -1);
+            double distort = Util.Common.Rand.Next(Convert.ToInt32(Data.Configuration.LocalSettings["Omni.Service.Captcha.DistortRangeLower"]), Convert.ToInt32(Data.Configuration.LocalSettings["Omni.Service.Captcha.DistortRangeHigher"])) * (Util.Common.Rand.Next(Convert.ToInt32(Data.Configuration.LocalSettings["Omni.Service.Captcha.DistortRange"])) == 1 ? 1 : -1);
 
             // Copy the image so that we're always using the original for source color
             using (Bitmap copy = (Bitmap)bitmap.Clone())

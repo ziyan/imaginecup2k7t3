@@ -84,7 +84,7 @@ namespace Omni.Service
             foreach (Guid id in sessions.Keys)
             {
                 TimeSpan ts = DateTime.Now - ((ServiceSession)sessions[id]).activeDate;
-                if (Math.Abs(ts.TotalMinutes) > Convert.ToInt32(Util.Configuration.LocalSettings["Omni.Service.ServiceSession.Expires"]))
+                if (Math.Abs(ts.TotalMinutes) > Convert.ToInt32(Data.Configuration.LocalSettings["Omni.Service.ServiceSession.Expires"]))
                     subjectToRemove.Add(id);
             }
             for (int i = 0; i < subjectToRemove.Count; i++)
@@ -96,7 +96,7 @@ namespace Omni.Service
         private static Timer timer = new Timer();
         static ServiceSession()
         {
-            timer.Interval = Convert.ToInt32(Util.Configuration.LocalSettings["Omni.Service.ServiceSession.CleanInterval"]);
+            timer.Interval = Convert.ToInt32(Data.Configuration.LocalSettings["Omni.Service.ServiceSession.CleanInterval"]);
             timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
             timer.AutoReset = true;
             timer.Enabled = true;

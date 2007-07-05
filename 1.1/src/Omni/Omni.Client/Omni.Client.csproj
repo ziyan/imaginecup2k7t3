@@ -91,6 +91,12 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Omni.Util\Omni.Util.csproj">
+      <Project>{02966CC6-8993-4376-BE54-48F956F944D8}</Project>
+      <Name>Omni.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
   <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

@@ -51,7 +51,7 @@
       <Name>Omni.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\Omni.Util\Omni.Util.csproj">
-      <Project>{BBED3775-5826-4C85-A6EC-254ABCDF0211}</Project>
+      <Project>{02966CC6-8993-4376-BE54-48F956F944D8}</Project>
       <Name>Omni.Util</Name>
     </ProjectReference>
     <ProjectReference Include="..\Omni\Omni.csproj">
