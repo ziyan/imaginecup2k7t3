@@ -106,6 +106,8 @@ else
     window.onunload = AniScript.Unloader.unload;
 
 
+
+
 /*
  * AniScript.Web v.1.0.2
  * 
@@ -654,5 +656,6 @@ AniScript.Utility.Uri=function(uriString)
 		return false;
 	}
 }
+
 //uncomment this to see if there is grammer error
 //alert("Testing");

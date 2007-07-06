@@ -1,0 +1,4 @@
+﻿{
+	"OmniDefaultTitle": "奥姆尼",
+	"HelloToTheWorld":"你好"
+}

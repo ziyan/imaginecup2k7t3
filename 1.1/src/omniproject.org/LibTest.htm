@@ -1,11 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <title>Untitled Page</title>
     <script type="text/javascript" src="Script/md5.js"></script>
     <script type="text/javascript" src="Script/JSON.js"></script>
     <script type="text/javascript" src="Script/AniScript.js"></script>
+    <script type="text/javascript" src="Script/lang.js"></script>
     <script type="text/javascript">
 var ajax = new AniScript.Web.Ajax();
 function request()
@@ -18,16 +19,29 @@ function callback()
     $("session").innerHTML = ajax.getJSON().session;
     setTimeout("request()",1000);
 }
+
 AniScript.Loader.add(request);
 //AniScript.Unloader.add(function(){alert("hello");});
-
 </script>
 </head>
 <body>
 <div id="session"></div>
 <div id="md5"></div>
+<div id="a">
+<span id="Omni_Localized_HelloToTheWorld_1">Hello To the World</span><br /><span id="Omni_Localized_HelloToTheWorld_2">Hello To the World</span>
+</div>
 <script type="text/javascript">
 $("md5").innerHTML = hex_md5("anikjim");
 </script>
+<a href="#" onclick="lang_set('zh-CN')">a</a>
+<a href="#" onclick="lang_set('en-US')">b</a>
+<button id="Omni_Localized_HelloToTheWorld_7"></button>
+<input id="Omni_Localized_HelloToTheWorld_8" value="" type="button"/>
+<textarea cols="10" rows="3" id="Omni_Localized_HelloToTheWorld_99"></textarea>
+<select>
+    <optgroup id="Omni_Localized_HelloToTheWorld_99ad" label="d">
+    <option id="Omni_Localized_HelloToTheWorld_99a">fdsf</option>
+    </optgroup>
+</select>
 </body>
 </html>
