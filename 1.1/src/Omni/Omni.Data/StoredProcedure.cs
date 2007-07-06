@@ -49,7 +49,7 @@ namespace Omni.Data
             SqlCommand cmd = GetStoredProcedure("omni_user_password_get_by_username", connection);
             SetStoredProcedureParameter(cmd, "@username", SqlDbType.VarChar, username);
             object result = cmd.ExecuteScalar();
-            return result == null ? "" : result.ToString();
+            return result == null ? "000000000000000000000000000000000000000000" : result.ToString();
         }
         public static User UserAuthorizeByUsername(string username, Connection connection)
         {

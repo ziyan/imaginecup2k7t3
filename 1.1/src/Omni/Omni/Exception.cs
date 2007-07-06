@@ -12,4 +12,5 @@ namespace Omni
     public class InvalidSessionException : Exception { }
     public class UserAlreadyLoggedInException : Exception { }
     public class UserNotLoggedInException : Exception { }
+    public class TryLoginTooManyTimesException : Exception { }
 }

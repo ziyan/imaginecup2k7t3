@@ -156,21 +156,19 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/UserLogin", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool UserLogin(string username, string md5password, string captcha, System.Guid session) {
+        public bool UserLogin(string username, string md5password, System.Guid session) {
             object[] results = this.Invoke("UserLogin", new object[] {
                         username,
                         md5password,
-                        captcha,
                         session});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BeginUserLogin(string username, string md5password, string captcha, System.Guid session, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BeginUserLogin(string username, string md5password, System.Guid session, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("UserLogin", new object[] {
                         username,
                         md5password,
-                        captcha,
                         session}, callback, asyncState);
         }
         

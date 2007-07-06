@@ -28,7 +28,6 @@ namespace Omni.Web.User
 
             }
             context.Response.Write(collection.ToString());
-            context.Response.Flush();
         }
 
         public bool IsReusable

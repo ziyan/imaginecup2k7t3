@@ -89,10 +89,9 @@ namespace Omni.Service
         /// <param name="session">session id</param>
         /// <returns>true for success, false otherwise</returns>
         [WebMethod(Description = "User login.")]
-        public bool UserLogin(string username, string md5password, string captcha, Guid session)
+        public bool UserLogin(string username, string md5password, Guid session)
         {
             ServiceSession Session = ServiceSession.Get(session);
-            Session.UserContext.CheckCaptcha(captcha);
             return Session.UserContext.Login(username, md5password);
         }
 

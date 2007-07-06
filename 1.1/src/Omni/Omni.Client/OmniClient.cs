@@ -90,10 +90,10 @@ namespace Omni.Client
         /// <param name="md5password">md5 once password</param>
         /// <param name="captcha">captcha text</param>
         /// <returns>true for success, false otherwise</returns>
-        public bool UserLogin(string username, string md5password,string captcha)
+        public bool UserLogin(string username, string md5password)
         {
             CheckSession();
-            return service.UserLogin(username, md5password, captcha, session);
+            return service.UserLogin(username, md5password, session);
         }
 
         /// <summary>

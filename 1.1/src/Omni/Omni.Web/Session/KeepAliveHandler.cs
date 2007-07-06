@@ -1,5 +1,8 @@
 using System;
 using System.Web;
+using JSONSharp;
+using JSONSharp.Collections;
+using JSONSharp.Values;
 
 namespace Omni.Web.Session
 {
@@ -10,8 +13,9 @@ namespace Omni.Web.Session
             context.Response.ContentType = "text/plain";
             context.Response.Expires = -1;
             Common.Client.KeepAlive();
-            context.Response.Write(Common.Client.Session.ToString());
-            context.Response.Flush();
+            JSONObjectCollection collection = new JSONObjectCollection();
+            collection.Add(new JSONStringValue("session"), new JSONStringValue(Common.Client.Session.ToString()));
+            context.Response.Write(collection.ToString());
         }
 
         public bool IsReusable

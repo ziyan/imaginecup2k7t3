@@ -14,7 +14,6 @@ namespace Omni.Web.User
             string bgcolor = context.Request["bgcolor"] == null ? "white" : context.Request["bgcolor"];
             string frontcolor = context.Request["frontcolor"] == null ? "black" : context.Request["frontcolor"];
             context.Response.BinaryWrite(Common.Client.UserGetCaptcha(width, height, bgcolor, frontcolor));
-            context.Response.Flush();
         }
 
         public bool IsReusable

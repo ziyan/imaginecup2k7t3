@@ -9,6 +9,8 @@ namespace Omni.Service
         private string captcha = "";
         private Data.User user = null;
         private ServiceSession session = null;
+        private int trial = 0;
+        private DateTime last_trial = DateTime.Now;
         
         public bool IsLoggedIn
         {
@@ -44,10 +46,33 @@ namespace Omni.Service
             if (this.user != null) throw new UserAlreadyLoggedInException();
             if (!Util.Validator.IsUsername(username))
                 throw new InvalidUsernameException();
+            if (trial >= Convert.ToInt32(Data.Configuration.LocalSettings["Omni.Service.UserContext.MaxTrial"]))
+            {
+                TimeSpan lock_interval = DateTime.Now - last_trial;
+                if (lock_interval.TotalMinutes >= Convert.ToInt32(Data.Configuration.LocalSettings["Omni.Service.UserContext.TrialLockInterval"]))
+                {
+                    trial = 0;
+                }
+                else
+                {
+                    last_trial = DateTime.Now;
+                    throw new TryLoginTooManyTimesException();
+                }
+            }
+            
             string password = Data.StoredProcedure.UserPasswordGetByUsername(username.ToLower(), session.Connection).ToLower();
             if (encryptPassword(getPasswordPrefix(password), md5password) == password)
             {
                 this.user = Data.StoredProcedure.UserAuthorizeByUsername(username, session.Connection);
+                if (!IsLoggedIn)
+                {
+                    trial++;
+                    last_trial = DateTime.Now;
+                }
+                else
+                {
+                    trial = 0;
+                }
                 return IsLoggedIn;
             }
             else
