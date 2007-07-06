@@ -12,7 +12,7 @@ namespace Omni.Util
         }        
         public static bool IsUsername(string username)
         {
-            return username != null && username != "" && System.Text.RegularExpressions.Regex.Replace(username, @"[0-9a-zA-Z\.\-\_]{3,100}", "") == "";
+            return username != null && username != "" && System.Text.RegularExpressions.Regex.Replace(username, @"[0-9a-zA-Z\.\-_]{3,100}", "") == "";
         }
         public static bool IsEmail(string email)
         {

@@ -96,6 +96,10 @@
       <Project>{02966CC6-8993-4376-BE54-48F956F944D8}</Project>
       <Name>Omni.Util</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Omni\Omni.csproj">
+      <Project>{03DBCB2C-D83C-487F-BB31-FAA3538F7B01}</Project>
+      <Name>Omni</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
   <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

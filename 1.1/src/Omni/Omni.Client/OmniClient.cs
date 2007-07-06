@@ -15,6 +15,8 @@ namespace Omni.Client
             get { return service; }
         }
 
+       
+
         #region Session related
         private Guid session = Guid.Empty;
         /// <summary>
@@ -93,7 +95,15 @@ namespace Omni.Client
         public bool UserLogin(string username, string md5password)
         {
             CheckSession();
-            return service.UserLogin(username, md5password, session);
+            try
+            {
+                return service.UserLogin(username, md5password, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return false;
         }
 
         /// <summary>
@@ -117,7 +127,15 @@ namespace Omni.Client
         public int UserRegister(string username, string md5password, string name, string email, string captcha)
         {
             CheckSession();
-            return service.UserRegister(username, md5password, name, email, captcha, session);
+            try
+            {
+                return service.UserRegister(username, md5password, name, email, captcha, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return 0;
         }
 
         /// <summary>

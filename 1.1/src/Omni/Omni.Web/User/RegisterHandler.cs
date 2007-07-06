@@ -6,7 +6,7 @@ using JSONSharp.Values;
 
 namespace Omni.Web.User
 {
-    public class LoginHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState
+    public class RegisterHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState
     {
         public void ProcessRequest(HttpContext context)
         {
@@ -14,27 +14,49 @@ namespace Omni.Web.User
             context.Response.Expires = -1;
             string username = context.Request["username"];
             string md5password = context.Request["md5password"];
+            string email = context.Request["email"];
+            string name = context.Request["name"];
+            string captcha = context.Request["captcha"];
+            int user_id = 0;
             string status = "Unknown";
-            if (username != null && md5password != null && username != "" && md5password.Length == 32)
+            if (username != null && md5password != null && email != null && name != null && captcha != null &&
+                username != "" && md5password.Length == 32 && email != "" && name != "" && captcha != "")
             {
                 try
                 {
-                    if (!Common.Client.UserLogin(username, md5password))
-                        status = "Mismatch";
+                    user_id = Common.Client.UserRegister(username, md5password, name, email, captcha);
+                    if (user_id <= 0)
+                    {
+                        status = "Failure";
+                    }
                     else
-                        status = "LoggedIn";
+                    {
+                        status = "Registered";
+                    }
                 }
                 catch (Omni.InvalidUsernameException)
                 {
                     status = "InvalidUsername";
                 }
+                catch (Omni.InvalidEmailException)
+                {
+                    status = "InvalidEmail";
+                }
+                catch (Omni.InvalidCaptchaException)
+                {
+                    status = "InvalidCaptcha";
+                }
                 catch (Omni.UserAlreadyLoggedInException)
                 {
                     status = "AlreadyLoggedIn";
                 }
-                catch (Omni.TryLoginTooManyTimesException)
+                catch (Omni.DuplicateUsernameException)
                 {
-                    status = "TooManyTrial";
+                    status = "DuplicateUsername";
+                }
+                catch (Omni.DuplicateEmailException)
+                {
+                    status = "DuplicateEmail";
                 }
             }
             else
