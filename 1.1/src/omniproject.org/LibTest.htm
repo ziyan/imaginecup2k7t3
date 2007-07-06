@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <title>Untitled Page</title>
+    <script type="text/javascript" src="Script/md5.js"></script>
+    <script type="text/javascript" src="Script/JSON.js"></script>
+    <script type="text/javascript" src="Script/AniScript.js"></script>
+    <script type="text/javascript">
+var ajax = new AniScript.Web.Ajax();
+function request()
+{
+    ajax.setHandler(callback);
+    ajax.request("/handler/session/keepalivehandler.ashx");
+}
+function callback()
+{
+    $("session").innerHTML = ajax.getJSON().session;
+    setTimeout("request()",1000);
+}
+AniScript.Loader.add(request);
+//AniScript.Unloader.add(function(){alert("hello");});
+
+</script>
+</head>
+<body>
+<div id="session"></div>
+<div id="md5"></div>
+<script type="text/javascript">
+$("md5").innerHTML = hex_md5("anikjim");
+</script>
+</body>
+</html>
