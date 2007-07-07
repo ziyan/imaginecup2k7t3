@@ -1,4 +1,20 @@
 ﻿{
 	"OmniDefaultTitle": "奥姆尼",
-	"HelloToTheWorld":"你好"
+	"HelloToTheWorld":"你好",
+	
+	
+	"UserLoginTitle":"用户登录",
+	"UserLoginUsername":"用户名: ",
+	"UserLoginPassword":"密　码: ",
+	"UserLoginSubmitButton":"登陆",
+	"UserLoginRegisterButton":"注册新帐号",
+	"UserLoginStatusInfoIncomplete":"请填写所有信息",
+	"UserLoginStatusUsernameInvalid":"用户名格式不正确",
+	"UserLoginStatusEncryptingPassword":"正在加密您的密码 ...",
+	"UserLoginStatusSigningIn":"正在登陆 ...",
+	"UserLoginStatusError":"系统错误, 请稍候再试",
+	"UserLoginStatusLoggedIn":"成功登陆",
+	"UserLoginStatusMismatch":"用户名与密码不匹配",
+	"UserLoginStatusTooManyTrial":"您尝试登陆次数太多"
+	
 }

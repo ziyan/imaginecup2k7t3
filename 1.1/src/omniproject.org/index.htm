@@ -3,15 +3,83 @@
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <title>Omni</title>
+    <script type="text/javascript" src="Script/global.js"></script>
     <script type="text/javascript" src="Script/md5.js"></script>
     <script type="text/javascript" src="Script/JSON.js"></script>
     <script type="text/javascript" src="Script/AniScript.js"></script>
     <script type="text/javascript" src="Script/lang.js"></script>
     <script type="text/javascript" src="Script/user.js"></script>
+    <link rel="stylesheet" href="Style/Default.css"/>
 </head>
 <body>
-<script type="text/javascript">
-
-</script>
+<center>
+<!--begin of top-->
+<div id="top" class="top">
+    <table class="top_table">
+    <tr>
+    <td class="top_logo_td" rowspan="2">[Logo]</td>
+    <td class="top_user_menu_td">Welcome, Guest | Register | <select>
+        <option>U.S. English</option>
+        <option>Simplified Chinese</option>
+    </select></td>
+    </tr>
+    <tr>
+    <td class="top_menu_td"><span class="end">&nbsp;</span><a href="#"><span id="Omni_Localized_HelloToTheWorld"></span></a><a href="#" class="select">Hello</a><a href="#">Hello</a>
+    </td>
+    </tr>
+    </table>
+</div>
+<!--end of top-->
+<!--begin of header-->
+<div id="header" class="header_orange_120">
+</div>
+<!--end of header-->
+<!--begin of content-->
+<div id="content" class="content">
+    <div id="content_left" class="content_left">
+    
+    </div>
+    <div id="content_center" class="content_center">
+    
+    </div>
+    <div id="content_right" class="content_right">
+        <!--begin of userpanel-->
+        <div id="userpanel_not_logged_in" class="boxpanel" style="display:none">
+            <div class="title_orange"><span id="Omni_Localized_UserLoginTitle">User Login</span></div>
+            <div class="content">
+                <form action="" id="form_user_login" onsubmit="user_login(); return false" style="margin:0px">
+                <table>
+                    <tr>
+                        <td style="text-align:right;width:50px"><span id="Omni_Localized_UserLoginUsername">Username: </span></td>
+                        <td><input id="form_user_login_username" type="text" style="width:130px" maxlength="100" /></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;width:50px"><span id="Omni_Localized_UserLoginPassword">Password: </span></td>
+                        <td><input id="form_user_login_password" type="password" style="width:130px" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center"><input id="Omni_Localized_UserLoginSubmitButton" type="submit" value="Login" /> <input id="Omni_Localized_UserLoginRegisterButton" type="button" value="Register" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center" id="userpanel_status"></td>
+                    </tr>
+                </table>
+                </form>
+            </div>
+            <div class="content_gray"><a href="#">Register now for free in four steps.</a></div>
+        </div>
+        <!--end of userpanel-->
+    </div>
+</div>
+<!--end of content-->
+<!--begin of footer-->
+<div id="footer" class="footer">
+under development
+</div>
+<!--end of footer-->
+<!--begin of shader-->
+<div id="shader" class="shader"></div>
+<!--end of shader-->
+</center>
 </body>
 </html>

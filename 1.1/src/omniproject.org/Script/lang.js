@@ -33,7 +33,10 @@ function lang_callback()
 //get a localized string in code (NOT RECOMMENDED)
 function lang_getText(key)
 {
-    return eval("lang_db."+key);
+    if(eval("lang_db."+key)!=undefined)
+        return eval("lang_db."+key);
+    else
+        return "";
 }
 //get a localized string with auto update function in code (RECOMMENDED)
 function lang_getHTML(key)
