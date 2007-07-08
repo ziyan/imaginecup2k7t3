@@ -12,24 +12,36 @@ function lang_init()
     {
         //no language set
         //return;
-        lang_code = "zh-CN";
+        lang_code = "en-US";
+    }
+    var lang_options = $("lang_selector").getElementsByTagName("option");
+    for(var i=0;i<lang_options.length;i++)
+    {
+        if(lang_code == lang_options[i].value)
+            lang_options[i].selected=true;
+        else
+            lang_options[i].selected=false;
     }
     lang_load(lang_code);
 }
-AniScript.Loader.add(lang_init);
+//AniScript.Loader.add(lang_init);
+
 //send a request for localization database
 function lang_load(lang_code)
 {
-    lang_ajax.setHandler(lang_callback);
     lang_ajax.request("/Localization/"+lang_code+".txt");
     //TODO: add loading code here
+    if(lang_ajax.hasError())
+    {
+        server_error = true;
+    }
+    else
+    {
+        lang_db = lang_ajax.getJSON();
+        lang_display();
+    }
 }
-//callback from the ajax
-function lang_callback()
-{
-    lang_db = lang_ajax.getJSON();
-    lang_display();
-}
+
 //get a localized string in code (NOT RECOMMENDED)
 function lang_getText(key)
 {
@@ -42,6 +54,12 @@ function lang_getText(key)
 function lang_getHTML(key)
 {
     return "<span id=\"Omni_Localized_"+key+"\">"+lang_getText(key)+"</span>";
+}
+
+//selector
+function lang_select()
+{
+    lang_set($("lang_selector").value);
 }
 //set a language
 function lang_set(lang_code)

@@ -4,6 +4,7 @@
 	font-size: 9pt;
 	margin:0px;
 	padding:0px;
+	height:101%;
 }
 img
 {
@@ -110,25 +111,43 @@ text-decoration: underline;
 	width: 790px;
 	padding-top:15px;
 }
-.content_left
+.content_left_center_right #content_left
 {
 	float: left;
 	width: 200px;
 	vertical-align:top;
 }
-.content_center
+.content_left_center_right #content_center
 {
 	float: left;
 	width: 320px;
 	padding: 0px 20px 0px 20px;
 	vertical-align:top;
 }
-.content_right
+.content_left_center_right #content_right
 {
 	float: right;
 	width: 230px;
 	vertical-align:top;
 }
+
+.content_big_left_right #content_left
+{
+	float: left;
+	width: 540px;
+	vertical-align:top;
+}
+.content_big_left_right #content_center
+{
+	display: none;
+}
+.content_big_left_right #content_right
+{
+	float: right;
+	width: 230px;
+	vertical-align:top;
+}
+
 .boxpanel
 {
 	text-align:left;
@@ -177,6 +196,36 @@ text-decoration: underline;
 	background:#F1F1F1;
 }
 
+
+.userregisterpanel
+{
+	width: auto;
+	padding-bottom:10px;
+}
+.userregisterpanel .title
+{
+	text-align:left;
+	font-size: 12pt;
+	border-bottom: dashed 1px #666666;
+}
+.userregisterpanel .content
+{
+	width: auto;
+	padding-left:20px;
+	text-align:left;
+	line-height:30px;
+}
+
+.userregisterpanel .content .step_gray
+{
+	padding: 5px 0px 10px 20px;
+	background: #EEEEEE;
+}
+.userregisterpanel .content .step
+{
+	padding: 5px 0px 10px 20px;
+	background: #FFFFFF;
+}
 
 .footer
 {
