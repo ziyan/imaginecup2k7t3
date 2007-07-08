@@ -50,6 +50,12 @@ div.lowerright
 {
 }
 
+.chooselang
+{
+	background-image: url(grad1.jpg);
+	background-repeat: repeat-x;	
+}
+
 /* -----------------
    Text Style Colors
    ----------------- */
