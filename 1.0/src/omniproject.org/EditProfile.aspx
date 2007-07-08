@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="EditProfile.aspx.cs" Inherits="EditProfile" Title="Edit Profile" Theme="Default" meta:resourcekey="PageResource1" %>
+<%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="EditProfile.aspx.cs" Inherits="EditProfile" Title="Edit Profile" meta:resourcekey="PageResource1" %>
 
 <%@ Register Src="LanguagePickerFootNote.ascx" TagName="LanguagePickerFootNote" TagPrefix="uc4" %>
 <%@ Register Src="NotAuthedControl.ascx" TagName="NotAuthedControl" TagPrefix="uc3" %>

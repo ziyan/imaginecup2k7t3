@@ -51,12 +51,12 @@ public partial class UserLogin : System.Web.UI.Page
         }
         if (user != null)
         {
-            Server.Transfer("~/Default.aspx", false);
+            Response.Redirect("~/Default.aspx", false);
         }
         else errorLabel.Visible = true;
     }
     protected void registerButton_Click(object sender, EventArgs e)
     {
-        Server.Transfer("~/RegisterAccount.aspx");
+        Response.Redirect("~/RegisterAccount.aspx");
     }
 }

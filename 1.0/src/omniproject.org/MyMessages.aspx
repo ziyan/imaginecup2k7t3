@@ -1,6 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" 
 CodeFile="MyMessages.aspx.cs" Inherits="MyMessages" 
-Title="My Messages" Theme="Default" meta:resourcekey="PageResource1" %>
+Title="My Messages" meta:resourcekey="PageResource1" %>
 
 <%@ Register Src="NotAuthedControl.ascx" TagName="NotAuthedControl" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">

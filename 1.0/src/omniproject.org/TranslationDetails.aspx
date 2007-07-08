@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="TranslationDetails.aspx.cs" Inherits="TranslationDetails" 
-Title="Translation Details" Theme="Default" meta:resourcekey="PageResource1"　%>
+Title="Translation Details" meta:resourcekey="PageResource1"　%>
 
 <%@ Register Src="NotAuthedControl.ascx" TagName="NotAuthedControl" TagPrefix="uc2" %>
 <%@ Register Src="TranslationHeader.ascx" TagName="TranslationHeader" TagPrefix="uc1" %>

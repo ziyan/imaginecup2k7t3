@@ -4,7 +4,7 @@
     protected void Page_Load(object sender, EventArgs e)
     {
         if(this.Visible)
-            Server.Transfer("~/UserLogin.aspx");
+            Response.Redirect("~/UserLogin.aspx");
     }
 </script>
 

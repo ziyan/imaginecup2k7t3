@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="SearchUser.aspx.cs" Inherits="SearchUser" Title="Search User" Theme="Default" meta:resourcekey="PageResource1"%>
+<%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="SearchUser.aspx.cs" Inherits="SearchUser" Title="Search User" meta:resourcekey="PageResource1"%>
 
 <%@ Register Src="NotAuthedControl.ascx" TagName="NotAuthedControl" TagPrefix="uc1" %>
 

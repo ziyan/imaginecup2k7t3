@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="Introduce.aspx.cs" Inherits="Introduce" Title="Introduce" Theme="Default" meta:resourcekey="PageResource1" %>
+<%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="Introduce.aspx.cs" Inherits="Introduce" Title="Introduce" meta:resourcekey="PageResource1" %>
 
 <%@ Register Src="NotAuthedControl.ascx" TagName="NotAuthedControl" TagPrefix="uc1" %>
 

@@ -60,7 +60,7 @@ public partial class RegisterAccount : System.Web.UI.Page
             if (result <= 0)
                 duplicateLabel.Visible = true;
             else
-                Server.Transfer("~/UserLogin.aspx");
+                Response.Redirect("~/UserLogin.aspx");
         }
     }
 }

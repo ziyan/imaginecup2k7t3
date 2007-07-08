@@ -1,6 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" 
 CodeFile="BrowseGlobalTrans.aspx.cs" Inherits="BrowseGlobalTrans" 
-Title="Browse Global Translations" Theme="Default" %>
+Title="Browse Global Translations" %>
 
 <%@ Register Src="TranslationHeader.ascx" TagName="TranslationHeader" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">

@@ -137,11 +137,11 @@ public partial class ComposeMessage : System.Web.UI.Page
 
             if (pendingTrans)
             {
-                Server.Transfer("RequestTranslation.aspx?msg_pending_id=" + msgId);
+                Response.Redirect("RequestTranslation.aspx?msg_pending_id=" + msgId);
             }
             else
             {
-                Server.Transfer("MyMessages.aspx");
+                Response.Redirect("MyMessages.aspx");
             }
         }
     }

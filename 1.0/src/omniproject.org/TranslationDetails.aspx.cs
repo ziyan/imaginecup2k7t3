@@ -143,11 +143,11 @@ public partial class TranslationDetails : System.Web.UI.Page
     {
         if (!Common.GetWebService().UserIsLoggedIn()) return;
         Common.GetWebService().TransReqClose(Convert.ToInt32(Request.QueryString["id"]), Convert.ToInt32(((Button)sender).ID.Replace("approveButton_", "")));
-        Server.Transfer("MyTranslations.aspx");
+        Response.Redirect("MyTranslations.aspx");
     }
     protected void composeFromTransButton_Click(object sender, EventArgs e)
     {
         if (!Common.GetWebService().UserIsLoggedIn()) return;
-        Server.Transfer("ComposeMessage.aspx?ans_id=" + ((Button)sender).ID.Replace("useButton_",""));
+        Response.Redirect("ComposeMessage.aspx?ans_id=" + ((Button)sender).ID.Replace("useButton_",""));
     }
 }

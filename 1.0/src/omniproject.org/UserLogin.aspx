@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true"
- CodeFile="UserLogin.aspx.cs" Inherits="UserLogin" Title="Login" Theme="Default"  meta:resourcekey="PageResource1"%>
+ CodeFile="UserLogin.aspx.cs" Inherits="UserLogin" Title="Login"  meta:resourcekey="PageResource1"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
     <asp:Label ID="loginLabel" runat="server" Text="Login" CssClass="title" meta:resourcekey="loginLabelResource1"></asp:Label><br />
     <asp:Panel ID="loginPanel" runat="server" meta:resourcekey="loginPanelResource1">

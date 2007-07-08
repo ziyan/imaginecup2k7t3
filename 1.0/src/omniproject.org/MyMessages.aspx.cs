@@ -222,7 +222,7 @@ public partial class MyMessages : System.Web.UI.Page
 
     protected void composeMsgLabel_Click(object sender, EventArgs e)
     {
-        Server.Transfer("ComposeMessage.aspx");
+        Response.Redirect("ComposeMessage.aspx");
     }
     protected void LinkButton_Click(object sender, EventArgs e)
     {
@@ -259,13 +259,13 @@ public partial class MyMessages : System.Web.UI.Page
         int intId = -1;
         if(msgIdLabel.Text != null && msgIdLabel.Text.Length > 0)
             intId = Convert.ToInt32(msgIdLabel.Text);
-        Server.Transfer("ComposeMessage.aspx?id=" + intId);
+        Response.Redirect("ComposeMessage.aspx?id=" + intId);
     }
     protected void requestTransButton_Click(object sender, EventArgs e)
     {
         int intId = -1;
         if (msgIdLabel.Text != null && msgIdLabel.Text.Length > 0)
             intId = Convert.ToInt32(msgIdLabel.Text);
-        Server.Transfer("RequestTranslation.aspx?msg_id=" + intId);
+        Response.Redirect("RequestTranslation.aspx?msg_id=" + intId);
     }
 }

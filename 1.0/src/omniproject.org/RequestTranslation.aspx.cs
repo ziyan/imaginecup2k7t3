@@ -195,7 +195,7 @@ public partial class RequestTranslation : System.Web.UI.Page
         
         
 
-        Server.Transfer("MyTranslations.aspx");
+        Response.Redirect("MyTranslations.aspx");
     }
     protected void userTranslatorDDL_SelectedIndexChanged(object sender, EventArgs e)
     {

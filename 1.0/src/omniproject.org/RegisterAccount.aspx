@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="RegisterAccount.aspx.cs" Inherits="RegisterAccount"
- Title="Register an Account" Theme="Default" meta:resourcekey="PageResource1" %>
+ Title="Register an Account" meta:resourcekey="PageResource1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
     <asp:Label ID="regTitleLabel" runat="server" Text="Register an Account" CssClass="title" meta:resourcekey="regTitleLabelResource1"></asp:Label><br />

@@ -80,7 +80,7 @@ public partial class TranslationHeader : System.Web.UI.UserControl
 
     public TableRow getTableRowForTranslation(Translation t, EventHandler eh, String prefix, bool hasRequester, bool hasTranslator, bool hasLanguages, bool isAnswer)
     {
-        int userid = -1;
+        //int userid = -1;
         WebService svc = Common.GetWebService();
         int prefLangId = Common.GetPreferredLanguage();
         User tmpUser;

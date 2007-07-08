@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="ComposeMessage.aspx.cs" Inherits="ComposeMessage" 
-Title="Compose a Message" Theme="Default" meta:resourcekey="PageResource1" %>
+Title="Compose a Message" meta:resourcekey="PageResource1" %>
 
 <%@ Register Src="NotAuthedControl.ascx" TagName="NotAuthedControl" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">

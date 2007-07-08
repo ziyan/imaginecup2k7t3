@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/OmniMaster.master" AutoEventWireup="true" CodeFile="RequestTranslation.aspx.cs" Inherits="RequestTranslation"
-Title="Request a Translation" Theme="Default" meta:resourcekey="PageResource1" %>
+Title="Request a Translation" meta:resourcekey="PageResource1" %>
 
 <%@ Register Src="NotAuthedControl.ascx" TagName="NotAuthedControl" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
