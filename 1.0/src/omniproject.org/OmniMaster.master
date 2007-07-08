@@ -1,4 +1,5 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="OmniMaster.master.cs" Inherits="OmniMaster" %>
+<%@ Register Src="AjaxLoadControl.ascx" TagName="AjaxLoadControl" TagPrefix="uc2" %>
 <%@ Register Src="LanguageSelector.ascx" TagName="LanguageSelector" TagPrefix="uc1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -10,12 +11,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>    
     <div>
     <div class="topbar">
         <div class="topbarLeft">
             <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="~/Default.aspx" Font-Underline="False" meta:resourcekey="homeLinkResource1" BorderWidth="0">
                 <asp:Label ID="titleLabel" runat="server" Text="Omni" CssClass="titleLink" meta:resourcekey="titleLabelResource1" Visible="true"></asp:Label>
-            </asp:HyperLink></div>
+            </asp:HyperLink>
+            </div>
         <div class="topbarRight">
             <asp:MultiView ID="loginViewTop" runat="server">
             <asp:View ID="guestView" runat="server">
@@ -43,7 +46,8 @@
         </div>
     </div>
     <div class="lower" style="left: 0px; top: 32px">
-        <div class="lowerleft">
+        <%-- <div class="lowerleft">--%>
+        <asp:Panel runat="server" ID="lowerLeftPanel" CssClass="lowerleft">
             <ul>
 				<li>
 				    <asp:HyperLink ID="autoTransLink" runat="server" NavigateUrl="~/AutomaticTranslation.aspx" meta:resourcekey="autoTransLinkResource1">
@@ -116,11 +120,23 @@
 				    
 			    </ul>
             </asp:Panel>
-        </div>
-        <div class="lowerright">
-            <asp:contentplaceholder id="Main" runat="server">
-            </asp:contentplaceholder>
-        </div>
+        </asp:Panel>
+        <%-- </div>--%>
+        <%-- <div class="lowerright">--%>
+        <asp:Panel runat="server" ID="lowerRightPanel" CssClass="lowerright">
+            <asp:UpdatePanel ID="mainUpdatePanel" runat="server">
+            <ContentTemplate>
+                <asp:contentplaceholder id="Main" runat="server">
+                </asp:contentplaceholder>
+            </ContentTemplate>
+            </asp:UpdatePanel>
+            <asp:UpdateProgress ID="mainUpdateProgress" runat="server" DisplayAfter="200" AssociatedUpdatePanelID="mainUpdatePanel">
+            <ProgressTemplate>
+                <uc2:AjaxLoadControl ID="mainAjaxLoadControl" runat="server" />
+            </ProgressTemplate>
+            </asp:UpdateProgress>               
+        <%-- </div> --%>
+        </asp:Panel>   
     </div>
     </div>
     </form>

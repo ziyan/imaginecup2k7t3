@@ -52,11 +52,11 @@ div.lowerleft
 	width: 200px;
 	padding: 10px;
 	border-style: solid;
-	border-width: 1.2px;
+	border-width: 1px;
+	filter: alpha(opacity=85);
+	opacity: 0.85;
 	_height: 300px;
 	margin-top: 5px;
-	filter: alpha(opacity=60);
-	opacity: 0.60;	
 	margin-bottom:20px;
 }
 
@@ -100,8 +100,8 @@ div.lowerright
 	_height: 500px;
 	border-style: solid;
 	border-width: 1.2px;
-	filter: alpha(opacity=80);
-	opacity: 0.80;		
+	/*filter: alpha(opacity=90);
+	opacity: 0.90;		*/
 }
 
 div.toprated
@@ -139,4 +139,11 @@ div.toprated
 	font-size: 16pt;
 	font-family: Sans-Serif;
 	font-weight: bold;
+}
+
+.ajaxLoad
+{
+	position: absolute;
+	top: -24px;
+	left: 75px;
 }
