@@ -102,6 +102,6 @@ function page_goto_home()
     page_clear();
     page_layout_left_center_right();
     content_right.appendChild($("userpanel"));
-    content_center.appendChild($("autotranspanel"));
+    content_center.appendChild($("transautopanel"));
     content_left.appendChild($("pagecontentpanel"));
 }

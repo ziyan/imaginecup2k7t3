@@ -14,6 +14,7 @@
 	"UserLoginPassword":"Password: ",
 	"UserLoginSubmitButton":"Login",
 	"UserLoginRegisterButton":"Register",
+	"UserLoginRegisterLink":"Register now for free.",
 	"UserLoginStatusInfoIncomplete":"Please fill in all blanks",
 	"UserLoginStatusUsernameInvalid":"Username format invalid",
 	"UserLoginStatusEncryptingPassword":" Encrypting password ...",
@@ -54,5 +55,13 @@
 	"UserRegisterStatusCaptchaMismatch":"Wrong text for the picture, please try again",
 	"UserRegisterStatusDuplicateUsername":"Username has been used, please choose another one",
 	"UserRegisterStatusDuplicateEmail":"The E-mail address has been used to register another account",
-	"UserRegisterStatusRegistered":"Your account has been successfully created. You can login now."
+	"UserRegisterStatusRegistered":"Your account has been successfully created. You can login now.",
+	
+	"TransAutoNoMsg":"Please enter your message",
+	"TransAutoError":"System error, please try again later",
+	"TransAutoTitle":"Automatic Translation",
+	"TransAutoENUS2ZHCN":"From U.S. English to Simplified Chinese",
+	"TransAutoZHCN2ENUS":"From Simplified Chinese to U.S. English",
+	"TransAutoSubmit":"Translate",
+	"TransAutoReset":"Clear"
 }

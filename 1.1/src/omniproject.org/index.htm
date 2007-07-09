@@ -11,6 +11,7 @@
     <script type="text/javascript" src="Script/lang.js"></script>
     <script type="text/javascript" src="Script/page.js"></script>
     <script type="text/javascript" src="Script/user.js"></script>
+    <script type="text/javascript" src="Script/trans.js"></script>
     <link rel="stylesheet" href="Style/Default.css" media="all"/>
 </head>
 <body>
@@ -18,10 +19,14 @@
 <div id="splash" style="display:block;width:100%;height:100%;z-index:11;position:absolute;top:0px;left:0px;background: #FFFFFF; filter: alpha(opacity=90);	opacity: 0.90; text-align:center; vertical-align:middle;">
 <table style="width:100%;height:100%"><tr><td>
 <img alt="" src="/image/logo_lg.gif" />
-<div id="splash_status" style="padding:5px"><img alt="" src="/image/loading.gif" title="loading" style="width:16px;height:16px" /> Loading language settings ...</div>
+<div id="splash_status" style="padding:5px"><img alt="" src="/image/loading.gif" title="loading" style="width:16px;height:16px" /> Loading ...</div>
 </td></tr></table>
 </div>
 <!--end of splash-->
+<!--begin of placeholder-->
+<div id="placeholder" style="display:block;width:100%;height:101%;z-index:-11;position:absolute;top:0px;left:0px;background: #FFFFFF;">
+</div>
+<!--end of placeholder-->
 
 <center>
 <!--begin of top-->
@@ -83,20 +88,24 @@ under development
     </div>
     <!--end of pagecontentpanel-->
     <!--begin of autotranspanel-->
-    <div id="autotranspanel" class="boxpanel">
-            <div class="title"><span id="Span1">Automatic Translation</span></div>
-            <div class="content" style="text-align:center">
-                <form action="" id="form_autotrans" onsubmit="return false" style="margin:0px;padding:5px;">
-                <textarea cols="20" rows="4" style="width:100%"></textarea> <br />
-                <select style="margin-top:5px;margin-bottom:5px">
-                <option>From U.S. English to Simplified Chinese</option>
-                <option>From Simplified Chinese to U.S. English</option>
+    <div id="transautopanel" class="boxpanel">
+            <div class="title"><span id="Omni_Localized_TransAutoTitle">Automatic Translation</span></div>
+            <div class="content">
+                <form action="" id="form_transauto" onsubmit="trans_auto();return false" style="margin:0px;padding:5px;">
+                <textarea id="form_transauto_msg" cols="20" rows="4" style="width:98%"></textarea><br />
+                <select id="form_transauto_direction" style="margin-top:5px;margin-bottom:5px;width:100%">
+                <option id="Omni_Localized_TransAutoENUS2ZHCN" value="en-US_zh-CN">U.S. English to Simplified Chinese</option>
+                <option id="Omni_Localized_TransAutoZHCN2ENUS" value="zh-CN_en-US">Simplified Chinese to U.S. English</option>
                 </select><br />
-                <input type="submit" value="Translate" /> <br />
+                <input id="Omni_Localized_TransAutoSubmit" type="submit" value="Translate" />
+                <input id="Omni_Localized_TransAutoReset" type="reset" value="Reset" onclick="trans_auto_reset();"/>
+                <span id="transautopanel_status" style="color:Red"></span>
+                <br />
                 </form>
             </div>
-            <div class="content_gray">
-            <img alt="" src="/image/loading_l.gif" style="width:100%" />
+            <div class="content_gray" id="transautopanel_resultpanel" style="display:none">
+            <img id="transautopanel_loading" alt="" src="/image/loading_l.gif" style="width:100%;display:none" />
+            <textarea cols="20" rows="4" readonly="readonly" id="transautopanel_result" style="width:98%;display:none"></textarea>
             </div>
     </div>
     <!--end of autotranspanel-->
@@ -126,7 +135,7 @@ under development
                 </table>
                 </form>
             </div>
-            <div class="content_gray"><a href="#" onclick="page_goto_register(); return false">Register now for free in four steps.</a></div>
+            <div class="content_gray"><a href="#" onclick="page_goto_register(); return false"><span id="Omni_Localized_UserLoginRegisterLink">Register now for free.</span></a></div>
         </div>
     </div>
     <!--end of userpanel-->

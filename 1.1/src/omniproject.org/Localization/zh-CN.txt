@@ -14,6 +14,7 @@
 	"UserLoginPassword":"密码: ",
 	"UserLoginSubmitButton":"登陆",
 	"UserLoginRegisterButton":"注册新帐号",
+	"UserLoginRegisterLink":"还没有帐号? 现在就免费注册!",
 	"UserLoginStatusInfoIncomplete":"请填写所有信息",
 	"UserLoginStatusUsernameInvalid":"用户名格式不正确",
 	"UserLoginStatusEncryptingPassword":" 正在加密您的密码 ...",
@@ -54,5 +55,13 @@
 	"UserRegisterStatusCaptchaMismatch":"图片中的文字不正确, 请再试",
 	"UserRegisterStatusDuplicateUsername":"您选择的用户名已经被使用, 请另选一个",
 	"UserRegisterStatusDuplicateEmail":"您填写的电子邮件地址已被用以注册",
-	"UserRegisterStatusRegistered":"您的帐号被成功地建立了, 您现在就可以马上登陆"
+	"UserRegisterStatusRegistered":"您的帐号被成功地建立了, 您现在就可以马上登陆",
+	
+	"TransAutoNoMsg":"请输入要翻译的文字",
+	"TransAutoError":"系统出错, 请稍候再试",
+	"TransAutoTitle":"自动翻译",
+	"TransAutoENUS2ZHCN":"从 英文(美国) 到 简体中文",
+	"TransAutoZHCN2ENUS":"从 简体中文 到 英文(美国)",
+	"TransAutoSubmit":"翻译",
+	"TransAutoReset":"重置"
 }
