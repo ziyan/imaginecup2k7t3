@@ -36,6 +36,7 @@ function splash_check_status()
     }
     var timer = setTimeout("splash_check_status()", 500);
 }
+
 function splash_fade()
 {
     if($("splash").style.opacity>0)

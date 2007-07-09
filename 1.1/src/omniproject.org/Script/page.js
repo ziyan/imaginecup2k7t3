@@ -13,6 +13,7 @@ var content_left = null;
 var content_center = null;
 var content_right = null;
 
+var page_current = "Home";
 
 function page_init()
 {
@@ -25,6 +26,10 @@ function page_init()
     content_left=$("content_left");
     content_center=$("content_center");
     content_right=$("content_right");
+    var page_name_string = "";
+    if(location.href.indexOf("#")>-1)
+        page_name_string=location.href.split("#")[1];
+
     page_goto_home();
 }
 //AniScript.Loader.add(page_init);
@@ -97,4 +102,6 @@ function page_goto_home()
     page_clear();
     page_layout_left_center_right();
     content_right.appendChild($("userpanel"));
+    content_center.appendChild($("autotranspanel"));
+    content_left.appendChild($("pagecontentpanel"));
 }

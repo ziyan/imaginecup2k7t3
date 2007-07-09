@@ -1,6 +1,6 @@
 ﻿{
 	"OmniDefaultTitle": "Omni",
-	"HelloToTheWorld":"hi",
+	"MenuLinkHome":"Home",
 	
 	"LanguageOptionZHCN":"Simplified Chinese",
 	"LanguageOptionENUS":"U.S. English",

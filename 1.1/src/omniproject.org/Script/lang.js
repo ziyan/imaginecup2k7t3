@@ -29,8 +29,9 @@ function lang_init()
 //send a request for localization database
 function lang_load(lang_code)
 {
+    $("lang_loading").innerHTML = loading_img;
     lang_ajax.request("/Localization/"+lang_code+".txt");
-    //TODO: add loading code here
+    $("lang_loading").innerHTML = "";
     if(lang_ajax.hasError())
     {
         server_error = true;

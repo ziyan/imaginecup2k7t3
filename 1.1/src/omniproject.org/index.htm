@@ -11,14 +11,14 @@
     <script type="text/javascript" src="Script/lang.js"></script>
     <script type="text/javascript" src="Script/page.js"></script>
     <script type="text/javascript" src="Script/user.js"></script>
-    <link rel="stylesheet" href="Style/Default.css"/>
+    <link rel="stylesheet" href="Style/Default.css" media="all"/>
 </head>
 <body>
 <!--begin of splash-->
 <div id="splash" style="display:block;width:100%;height:100%;z-index:11;position:absolute;top:0px;left:0px;background: #FFFFFF; filter: alpha(opacity=90);	opacity: 0.90; text-align:center; vertical-align:middle;">
 <table style="width:100%;height:100%"><tr><td>
 <img alt="" src="/image/logo_lg.gif" />
-<div id="splash_status" style="padding:5px"><img src="/image/loading.gif" title="loading" style="width:16px;height:16px" /> Loading language settings ...</div>
+<div id="splash_status" style="padding:5px"><img alt="" src="/image/loading.gif" title="loading" style="width:16px;height:16px" /> Loading language settings ...</div>
 </td></tr></table>
 </div>
 <!--end of splash-->
@@ -34,10 +34,10 @@
     <select id="lang_selector" onchange="lang_select()">
         <option id="Omni_Localized_LanguageOptionENUS" value="en-US">U.S. English</option>
         <option id="Omni_Localized_LanguageOptionZHCN" value="zh-CN">Simplified Chinese</option>
-    </select></td>
+    </select> <span id="lang_loading"></span></td>
     </tr>
     <tr>
-    <td class="top_menu_td"><span class="end">&nbsp;</span><a href="#"><span id="Omni_Localized_HelloToTheWorld"></span></a><a href="#" class="select">Hello</a><a href="#">Hello</a><a href="#">Hello</a><a href="#">Hello</a><a href="#">Hello</a>
+    <td class="top_menu_td"><span class="end">&nbsp;</span><a href="#" id="menu_link_home" onclick="page_goto_home();return false;"><span id="Omni_Localized_MenuLinkHome">Home</span></a><a href="#" class="select">Hello</a><a href="#">Hello</a><a href="#">Hello</a><a href="#">Hello</a><a href="#">Hello</a>
     </td>
     </tr>
     </table>
@@ -74,7 +74,32 @@ under development
 <div id="content_center"></div>
 <div id="content_right"></div>
 <!--layouts-->
-
+    <!--begin of pagecontentpanel-->
+    <div id="pagecontentpanel" class="boxpanel">
+            <div class="title"><span id="Span2">Page Content</span></div>
+            <div class="content">
+                Choose
+            </div>
+    </div>
+    <!--end of pagecontentpanel-->
+    <!--begin of autotranspanel-->
+    <div id="autotranspanel" class="boxpanel">
+            <div class="title"><span id="Span1">Automatic Translation</span></div>
+            <div class="content" style="text-align:center">
+                <form action="" id="form_autotrans" onsubmit="return false" style="margin:0px;padding:5px;">
+                <textarea cols="20" rows="4" style="width:100%"></textarea> <br />
+                <select style="margin-top:5px;margin-bottom:5px">
+                <option>From U.S. English to Simplified Chinese</option>
+                <option>From Simplified Chinese to U.S. English</option>
+                </select><br />
+                <input type="submit" value="Translate" /> <br />
+                </form>
+            </div>
+            <div class="content_gray">
+            <img alt="" src="/image/loading_l.gif" style="width:100%" />
+            </div>
+    </div>
+    <!--end of autotranspanel-->
 
     <!--begin of userpanel-->
     <div id="userpanel">

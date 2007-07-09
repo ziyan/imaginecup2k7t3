@@ -1,6 +1,6 @@
 ﻿{
 	"OmniDefaultTitle": "奥姆尼",
-	"HelloToTheWorld":"你好",
+	"MenuLinkHome":"首页",
 	
 	"LanguageOptionZHCN":"简体中文",
 	"LanguageOptionENUS":"英文(美国)",
