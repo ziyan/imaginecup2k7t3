@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.Web", "Omni.Web\Omni.W
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\Project\omniproject.org\", "..\..\..\..\omniproject.org\", "{EE4C0B1F-EDF5-4618-903C-1D713D2B0238}"
 	ProjectSection(WebsiteProperties) = preProject
-		ProjectReferences = "{8EC7D0A8-3633-4524-8B32-50FD3629177D}|Omni.Web.dll;"
+		ProjectReferences = "{8EC7D0A8-3633-4524-8B32-50FD3629177D}|Omni.Web.dll;{7A3DC95C-1704-49C8-AFEF-891FA81A3206}|Omni.Data.dll;{4B68BF19-68E9-4ABE-86F2-447E6814D7B0}|Omni.Service.dll;{C69D8F52-16BA-406C-9424-3123127410A8}|Omni.Service.External.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/omniproject.org"
 		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\omniproject.org\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\omniproject.org\"
@@ -37,27 +37,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\Project\omniproject.org\
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "51481"
-		DefaultWebSiteLanguage = "Visual C#"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\Project\service.omniproject.org\", "..\..\..\..\service.omniproject.org\", "{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}"
-	ProjectSection(WebsiteProperties) = preProject
-		ProjectReferences = "{4B68BF19-68E9-4ABE-86F2-447E6814D7B0}|Omni.Service.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/service.omniproject.org"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\service.omniproject.org\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\service.omniproject.org\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/service.omniproject.org"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\service.omniproject.org\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\service.omniproject.org\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "51500"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -141,16 +120,6 @@ Global
 		{EE4C0B1F-EDF5-4618-903C-1D713D2B0238}.Release|Any CPU.ActiveCfg = Debug|.NET
 		{EE4C0B1F-EDF5-4618-903C-1D713D2B0238}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
 		{EE4C0B1F-EDF5-4618-903C-1D713D2B0238}.Release|Mixed Platforms.Build.0 = Debug|.NET
-		{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}.Debug|.NET.ActiveCfg = Debug|.NET
-		{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}.Debug|.NET.Build.0 = Debug|.NET
-		{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}.Debug|Any CPU.ActiveCfg = Debug|.NET
-		{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
-		{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}.Debug|Mixed Platforms.Build.0 = Debug|.NET
-		{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}.Release|.NET.ActiveCfg = Debug|.NET
-		{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}.Release|.NET.Build.0 = Debug|.NET
-		{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}.Release|Any CPU.ActiveCfg = Debug|.NET
-		{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
-		{B8DB1CDC-ECCE-42EF-8DE8-D1E076A9B9BD}.Release|Mixed Platforms.Build.0 = Debug|.NET
 		{C69D8F52-16BA-406C-9424-3123127410A8}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{C69D8F52-16BA-406C-9424-3123127410A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C69D8F52-16BA-406C-9424-3123127410A8}.Debug|Any CPU.Build.0 = Debug|Any CPU

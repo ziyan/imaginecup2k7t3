@@ -547,10 +547,10 @@
   </wsdl:binding>
   <wsdl:service name="OmniService">
     <wsdl:port name="OmniServiceSoap" binding="tns:OmniServiceSoap">
-      <soap:address location="http://service.omniproject.org/service/omniservice.asmx" />
+      <soap:address location="http://omniproject.org/service/omniservice.asmx" />
     </wsdl:port>
     <wsdl:port name="OmniServiceSoap12" binding="tns:OmniServiceSoap12">
-      <soap12:address location="http://service.omniproject.org/service/omniservice.asmx" />
+      <soap12:address location="http://omniproject.org/service/omniservice.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

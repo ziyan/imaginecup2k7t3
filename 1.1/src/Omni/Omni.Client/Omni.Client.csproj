@@ -64,10 +64,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://service.omniproject.org/service/omniservice.asmx">
+    <WebReferenceUrl Include="http://omniproject.org/service/omniservice.asmx">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\org.omniproject.service\</RelPath>
-      <UpdateFromURL>http://service.omniproject.org/service/omniservice.asmx</UpdateFromURL>
+      <UpdateFromURL>http://omniproject.org/service/omniservice.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

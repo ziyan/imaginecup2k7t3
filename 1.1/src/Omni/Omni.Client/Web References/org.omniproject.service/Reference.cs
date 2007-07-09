@@ -28,7 +28,7 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public OmniService() {
-            this.Url = "http://service.omniproject.org/service/omniservice.asmx";
+            this.Url = "http://omniproject.org/service/omniservice.asmx";
         }
         
         /// <remarks/>
