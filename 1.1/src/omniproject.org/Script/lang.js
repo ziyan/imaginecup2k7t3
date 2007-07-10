@@ -29,8 +29,17 @@ function lang_init()
 //send a request for localization database
 function lang_load(lang_code)
 {
+    lang_loading = true;
+    $("lang_selector").disabled = true;
     $("lang_loading").innerHTML = loading_img;
+    lang_ajax.setHandler(lang_load_callback);
     lang_ajax.request("/Localization/"+lang_code+".txt");
+}
+function lang_load_callback()
+{
+    if(!lang_ajax.isDone()) return;
+    lang_loading = false;
+    $("lang_selector").disabled = false;
     $("lang_loading").innerHTML = "";
     if(lang_ajax.hasError())
     {

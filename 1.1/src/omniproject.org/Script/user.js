@@ -15,11 +15,11 @@ var user_current_log_date = null;
 //init function to check user status
 function user_init()
 {
+    user_loading = true;
+    $("userpanel_not_logged_in").style.display="none";
+    $("usermenu").innerHTML = loading_img + " " + lang_getHTML("UserMenuLoading");
     user_current_ajax.setHandler(user_current_callback);
     user_current_ajax.request("/handler/user/currenthandler.ashx");
-    $("userpanel_not_logged_in").style.display="none";
-    $("usermenu").innerHTML = loading_img + lang_getHTML("UserMenuLoading");
-
 }
 //AniScript.Loader.add(user_init);
 
@@ -27,6 +27,7 @@ function user_init()
 function user_current_callback()
 {
     if(!user_current_ajax.isDone()) return;
+    user_loading = false;
     if(user_current_ajax.hasError())
     {
         server_error = true;
@@ -49,7 +50,6 @@ function user_current_callback()
         user_info_clear();
     }
     user_state_update();
-    init_done = true;
 }
 
 
