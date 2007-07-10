@@ -1,6 +1,9 @@
 ﻿{
-	"OmniDefaultTitle": "奥姆尼",
+	"PageTitleHome": "奥姆尼 - 首页",
+	"PageTitleRegister": "奥姆尼 - 注册新帐号",
 	"MenuLinkHome":"首页",
+	"MenuLinkRegister":"注册",
+	"MenuLinkAbout":"关于",
 	
 	"LanguageOptionZHCN":"简体中文",
 	"LanguageOptionENUS":"英文(美国)",

@@ -26,14 +26,17 @@ function page_init()
     content_left=$("content_left");
     content_center=$("content_center");
     content_right=$("content_right");
+    
+    //detect bookmarked page
     var page_name_string = "";
     if(location.href.indexOf("#")>-1)
         page_name_string=location.href.split("#")[1];
 
-    page_goto_home();
+    page_change('Home');
 }
 //AniScript.Loader.add(page_init);
 
+//clear the content
 function page_clear()
 {
     for(var i=0;i<content_left.childNodes.length;i++)
@@ -57,6 +60,7 @@ function page_clear()
     pool.appendChild(content_right);
 }
 
+//layouts
 function page_layout_left_center_right()
 {
     content.appendChild(content_left_center_right);
@@ -89,19 +93,61 @@ function page_layout_big_center()
     //content_big_center.appendChild(content_right);
 }
 
-function page_goto_register()
+
+function page_change(page_name)
 {
     page_clear();
-    page_layout_big_left_right();
-    content_right.appendChild($("userpanel"));
-    content_left.appendChild($("userregisterpanel"));
+    switch(page_name)
+    {
+        case "Home":
+            page_goto_home();
+            break;
+        case "Register":
+            page_goto_register();
+            break;
+        default:
+            page_name = "Home";
+            page_goto_home();
+            break;
+    }
+    page_current = page_name;
+    page_update_menu();
+    lang_update_title();
 }
 
+
+function page_update_menu()
+{
+    var page_not_logged_in = ["Home","Register","About"];
+    var page_logged_in = ["Home","About"];
+    var pages;
+    if(user_is_logged_in())
+        pages = page_logged_in;
+    else
+        pages = page_not_logged_in;
+    $("page_menu").innerHTML = "";
+    for(var i=0;i<pages.length;i++)
+    {
+        var link_class = "";
+        if(pages[i]==page_current) link_class="class=\"select\"";
+        $("page_menu").innerHTML+="<a href=\"#\" "+link_class+" onclick=\"page_change('"+pages[i]+"');return false;\">"+lang_getHTML("MenuLink"+pages[i])+"</a>";
+    }
+    
+}
+
+//pages
 function page_goto_home()
 {
-    page_clear();
     page_layout_left_center_right();
     content_right.appendChild($("userpanel"));
     content_center.appendChild($("transautopanel"));
     content_left.appendChild($("pagecontentpanel"));
+}
+
+function page_goto_register()
+{
+    page_layout_big_left_right();
+    content_right.appendChild($("userpanel"));
+    content_left.appendChild($("userregisterpanel"));
+    user_register_update_captcha();
 }

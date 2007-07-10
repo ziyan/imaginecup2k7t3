@@ -33,7 +33,7 @@
 <div id="top" class="top">
     <table class="top_table">
     <tr>
-    <td class="top_logo_td" rowspan="2"><img alt="" src="/image/logo.gif" style="height:60px"/></td>
+    <td class="top_logo_td" rowspan="2"><a href="#" onclick="page_change('Home');return false"><img alt="" src="/image/logo.gif" style="height:60px"/></a></td>
     <td class="top_user_menu_td"><span id="usermenu"></span>
     | 
     <select id="lang_selector" onchange="lang_select()">
@@ -42,8 +42,7 @@
     </select> <span id="lang_loading"></span></td>
     </tr>
     <tr>
-    <td class="top_menu_td"><span class="end">&nbsp;</span><a href="#" id="menu_link_home" onclick="page_goto_home();return false;"><span id="Omni_Localized_MenuLinkHome">Home</span></a><a href="#" class="select">Hello</a><a href="#">Hello</a><a href="#">Hello</a><a href="#">Hello</a><a href="#">Hello</a>
-    </td>
+    <td class="top_menu_td"><span class="end">&nbsp;</span><span id="page_menu"></span></td>
     </tr>
     </table>
 </div>
@@ -127,7 +126,7 @@ under development
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align:center"><input id="Omni_Localized_UserLoginSubmitButton" type="submit" value="Login" /> 
-                        <input id="Omni_Localized_UserLoginRegisterButton" type="button" value="Register" onclick="page_goto_register()" /></td>
+                        <input id="Omni_Localized_UserLoginRegisterButton" type="button" value="Register" onclick="page_change('Register')" /></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align:center" id="userpanel_status"></td>
@@ -135,7 +134,7 @@ under development
                 </table>
                 </form>
             </div>
-            <div class="content_gray"><a href="#" onclick="page_goto_register(); return false"><span id="Omni_Localized_UserLoginRegisterLink">Register now for free.</span></a></div>
+            <div class="content_gray"><a href="#" onclick="page_change('Register'); return false"><span id="Omni_Localized_UserLoginRegisterLink">Register now for free.</span></a></div>
         </div>
     </div>
     <!--end of userpanel-->
@@ -168,7 +167,7 @@ under development
     </div>
     <div class="step">
     <span id="Omni_Localized_UserRegisterCaptcha">Could you read the picture? (Click on it to get a new one)</span><br />
-    <img id="userregisterpanel_captcha" alt="" src="/handler/user/captchahandler.ashx?width=200&height=80" style="width:200;height:80" onclick="user_register_update_captcha()"/><br />
+    <img id="userregisterpanel_captcha" alt="" src="" style="width:200;height:80" onclick="user_register_update_captcha()"/><br />
     <input type="text" id="form_user_register_captcha" maxlength="5"/><br />
     </div>
     <div class="step_gray">

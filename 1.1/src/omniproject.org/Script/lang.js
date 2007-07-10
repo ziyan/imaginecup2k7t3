@@ -3,7 +3,7 @@
  */
 var lang_ajax = new AniScript.Web.Ajax(); //ajax object
 var lang_db = null; //json object
-var lang_page_title = "OmniDefaultTitle";
+
 //initialize the page
 function lang_init()
 {
@@ -82,14 +82,21 @@ function lang_get()
 {
     return AniScript.Web.Cookie.read("Omni_Language");
 }
+
+//update page title
+function lang_update_title()
+{
+    //page title
+    if(eval("lang_db.PageTitle"+page_current)!=undefined)
+    {
+        document.title = eval("lang_db.PageTitle"+page_current);
+    }
+}
+
 //display
 function lang_display()
 {
-    //page title
-    if(eval("lang_db."+lang_page_title)!=undefined)
-    {
-        document.title = eval("lang_db."+lang_page_title);
-    }
+    lang_update_title();
     
     //spans
     var spans = document.body.getElementsByTagName("span");
@@ -166,6 +173,29 @@ function lang_display()
             var key = inputs[i].id.split("_")[2];
             if(eval("lang_db."+key)!=undefined)
                 inputs[i].value = eval("lang_db."+key);
+        }
+    }
+    //links
+    var links = document.body.getElementsByTagName("a");
+    for(var i=0;i<links.length;i++)
+    {
+        if(links[i].id.indexOf("Omni_Localized_")==0)
+        {
+            var key = links[i].id.split("_")[2];
+            if(eval("lang_db."+key)!=undefined)
+                links[i].title = eval("lang_db."+key);
+        }
+    }
+    //images
+    var images = document.body.getElementsByTagName("img");
+    for(var i=0;i<images.length;i++)
+    {
+        if(images[i].id.indexOf("Omni_Localized_")==0)
+        {
+            var key = images[i].id.split("_")[2];
+            if(eval("lang_db."+key)!=undefined)
+                images[i].alt = eval("lang_db."+key);
+                images[i].title = eval("lang_db."+key);
         }
     }
 }

@@ -49,9 +49,6 @@ function splash_wait_for_user()
     if(!user_loading)
     {
         if(server_error) return;
-    }
-    else
-    {
         $("splash_status").innerHTML = loading_img + " " + lang_getHTML("SplashInitDone");
         setTimeout("splash_fade()", 500);
         return;

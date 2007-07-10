@@ -1,6 +1,9 @@
 ﻿{
-	"OmniDefaultTitle": "Omni",
+	"PageTitleHome": "Omni - Home",
+	"PageTitleRegister": "Omni - Register New Account",
 	"MenuLinkHome":"Home",
+	"MenuLinkRegister":"Register",
+	"MenuLinkAbout":"About",
 	
 	"LanguageOptionZHCN":"Simplified Chinese",
 	"LanguageOptionENUS":"U.S. English",

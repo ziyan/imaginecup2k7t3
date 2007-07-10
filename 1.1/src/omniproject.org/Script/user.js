@@ -72,9 +72,13 @@ function user_state_update()
     }
     else
     {
-        $("usermenu").innerHTML="<a href=\"#\" onclick=\"page_goto_register();return false\">"+lang_getHTML("UserMenuRegister")+"</a> ";
+        //not logged in
+        $("usermenu").innerHTML="<a href=\"#\" onclick=\"page_change('Register');return false\">"+lang_getHTML("UserMenuRegister")+"</a> ";
         $("userpanel_not_logged_in").style.display="block";
+        
+        
     }
+    page_update_menu();
 }
 
 //clear user info
@@ -141,6 +145,7 @@ function user_login_callback()
     if(status=="LoggedIn" || status=="AlreadyLoggedIn")
     {
         $("userpanel_status").innerHTML="<span id=\"Omni_Localized_UserLoginStatusLoggedIn\" style=\"color:green;line-height:20px\">"+lang_getText("UserLoginStatusLoggedIn")+"</span>";
+        page_change('Home');
         user_init();
         return;
     }
@@ -287,7 +292,7 @@ function user_register_callback()
     }
     else if(status=="AlreadyLoggedIn")
     {
-        page_goto_home();
+        page_change('Home');
         user_init();
         return;
     }
@@ -314,4 +319,8 @@ function user_register_callback()
 function user_register_update_captcha()
 {
     $('userregisterpanel_captcha').src='/handler/user/captchahandler.ashx?width=200&height=80&date='+escape(new Date());
+}
+function user_is_logged_in()
+{
+    return user_current_id>0;
 }
