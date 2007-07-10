@@ -1,6 +1,7 @@
 ﻿{
 	"PageTitleHome": "奥姆尼 - 首页",
 	"PageTitleRegister": "奥姆尼 - 注册新帐号",
+	"PageTitleAbout": "奥姆尼 - 关于我们",
 	"MenuLinkHome":"首页",
 	"MenuLinkRegister":"注册",
 	"MenuLinkAbout":"关于",
@@ -36,6 +37,7 @@
 	"UserRegisterTitle":"创建一个新的帐号",
 	"UserRegisterInfo":"* 请填写所有信息.",
 	"UserRegisterSubmitButton":"提交注册",
+	"UserRegisterResetButton":"重置",
 	"UserRegisterName":"您喜欢别人如何称呼您?",
 	"UserRegisterEmail":"您最常用的电子邮箱是什么?",
 	"UserRegisterUsername":"请选择您的用户名:",

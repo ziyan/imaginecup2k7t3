@@ -13,7 +13,10 @@ var content_left = null;
 var content_center = null;
 var content_right = null;
 
-var page_current = "Home";
+var page_current = "";
+
+var page_not_logged_in = ["Home","Register","About"];
+var page_logged_in = ["Home","About"];
 
 function page_init()
 {
@@ -26,15 +29,27 @@ function page_init()
     content_left=$("content_left");
     content_center=$("content_center");
     content_right=$("content_right");
-    
-    //detect bookmarked page
+    page_location_watch();
+}
+//AniScript.Loader.add(page_init);
+
+//page watcher
+function page_location_watch()
+{
+    //detect bookmarked page and back button
     var page_name_string = "";
     if(location.href.indexOf("#")>-1)
         page_name_string=location.href.split("#")[1];
-
-    page_change('Home');
+    if(page_name_string=="")
+    {
+        page_change("Home");
+    }
+    else if(page_name_string!=page_current)
+    {
+        page_change(page_name_string);
+    }
+    setTimeout("page_location_watch()",100);
 }
-//AniScript.Loader.add(page_init);
 
 //clear the content
 function page_clear()
@@ -93,7 +108,7 @@ function page_layout_big_center()
     //content_big_center.appendChild(content_right);
 }
 
-
+//changing page
 function page_change(page_name)
 {
     page_clear();
@@ -105,26 +120,39 @@ function page_change(page_name)
         case "Register":
             page_goto_register();
             break;
+        case "About":
+            page_goto_about();
+            break;
         default:
             page_name = "Home";
             page_goto_home();
             break;
     }
     page_current = page_name;
+    location.href="/#"+page_current;
+    page_update();
+}
+
+//updating page
+function page_update()
+{
+    var pages = user_is_logged_in()?page_logged_in:page_not_logged_in;
+    var page_should_be_displayed = false;
+    for(var i=0;i<pages.length;i++)
+    {
+        if(pages[i]==page_current)
+            page_should_be_displayed=true;
+    }
+    if(!page_should_be_displayed)
+        page_change("Home");
     page_update_menu();
     lang_update_title();
 }
 
-
+//updating menu
 function page_update_menu()
 {
-    var page_not_logged_in = ["Home","Register","About"];
-    var page_logged_in = ["Home","About"];
-    var pages;
-    if(user_is_logged_in())
-        pages = page_logged_in;
-    else
-        pages = page_not_logged_in;
+    var pages = user_is_logged_in()?page_logged_in:page_not_logged_in;
     $("page_menu").innerHTML = "";
     for(var i=0;i<pages.length;i++)
     {
@@ -132,7 +160,6 @@ function page_update_menu()
         if(pages[i]==page_current) link_class="class=\"select\"";
         $("page_menu").innerHTML+="<a href=\"#\" "+link_class+" onclick=\"page_change('"+pages[i]+"');return false;\">"+lang_getHTML("MenuLink"+pages[i])+"</a>";
     }
-    
 }
 
 //pages
@@ -150,4 +177,10 @@ function page_goto_register()
     content_right.appendChild($("userpanel"));
     content_left.appendChild($("userregisterpanel"));
     user_register_update_captcha();
+}
+
+function page_goto_about()
+{
+    page_layout_big_left_right();
+    content_right.appendChild($("userpanel"));
 }

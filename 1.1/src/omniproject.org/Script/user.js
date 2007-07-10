@@ -16,7 +16,7 @@ var user_current_log_date = null;
 function user_init()
 {
     user_loading = true;
-    $("userpanel_not_logged_in").style.display="none";
+    //$("userpanel_not_logged_in").style.display="none";
     $("usermenu").innerHTML = loading_img + " " + lang_getHTML("UserMenuLoading");
     user_current_ajax.setHandler(user_current_callback);
     user_current_ajax.request("/handler/user/currenthandler.ashx");
@@ -52,11 +52,16 @@ function user_current_callback()
     user_state_update();
 }
 
+//check if user is logged in
+function user_is_logged_in()
+{
+    return user_current_id>0;
+}
 
 //update site component according to user status
 function user_state_update()
 {
-    if(user_current_id>0)
+    if(user_is_logged_in())
     {
         //logged in
         $("usermenu").innerHTML=lang_getHTML("UserMenuWelcome")+user_current_name+" | <a href=\"#\" onclick=\"user_logout();return false\">"+lang_getHTML("UserMenuLogout")+"</a> ";
@@ -75,10 +80,8 @@ function user_state_update()
         //not logged in
         $("usermenu").innerHTML="<a href=\"#\" onclick=\"page_change('Register');return false\">"+lang_getHTML("UserMenuRegister")+"</a> ";
         $("userpanel_not_logged_in").style.display="block";
-        
-        
     }
-    page_update_menu();
+    page_update();
 }
 
 //clear user info
@@ -145,7 +148,6 @@ function user_login_callback()
     if(status=="LoggedIn" || status=="AlreadyLoggedIn")
     {
         $("userpanel_status").innerHTML="<span id=\"Omni_Localized_UserLoginStatusLoggedIn\" style=\"color:green;line-height:20px\">"+lang_getText("UserLoginStatusLoggedIn")+"</span>";
-        page_change('Home');
         user_init();
         return;
     }
@@ -320,7 +322,8 @@ function user_register_update_captcha()
 {
     $('userregisterpanel_captcha').src='/handler/user/captchahandler.ashx?width=200&height=80&date='+escape(new Date());
 }
-function user_is_logged_in()
+function user_register_reset()
 {
-    return user_current_id>0;
+    $("userregisterpanel_status").innerHTML="";
+    user_register_update_captcha();
 }

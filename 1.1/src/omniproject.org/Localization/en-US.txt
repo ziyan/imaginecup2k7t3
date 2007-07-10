@@ -1,6 +1,7 @@
 ﻿{
 	"PageTitleHome": "Omni - Home",
 	"PageTitleRegister": "Omni - Register New Account",
+	"PageTitleAbout": "Omni - About Us",
 	"MenuLinkHome":"Home",
 	"MenuLinkRegister":"Register",
 	"MenuLinkAbout":"About",
@@ -36,6 +37,7 @@
 	"UserRegisterTitle":"Register A New Account",
 	"UserRegisterInfo":"* All fields are required.",
 	"UserRegisterSubmitButton":"Register",
+	"UserRegisterResetButton":"Reset",
 	"UserRegisterName":"What would you like others to call you?",
 	"UserRegisterEmail":"What's your primary E-mail address?",
 	"UserRegisterUsername":"Please choose a username:",

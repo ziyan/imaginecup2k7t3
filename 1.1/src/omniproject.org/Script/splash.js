@@ -5,6 +5,7 @@
 function splash_init()
 {
     splash_check_status();
+    $("screen").style.display="none";
     $("splash_status").innerHTML = loading_img + " Loading language settings ...";
     lang_init();
     splash_wait_for_lang();
@@ -15,9 +16,10 @@ function splash_check_status()
 {
     if(server_error)
     {
+        $("screen").style.display="none";
         $("splash").style.display = "block";
-        $("splash").style.opacity =0.90;
-        $("splash").style.filter="alpha(opacity=90)";
+        $("splash").style.opacity =1.00;
+        $("splash").style.filter="alpha(opacity=100)";
         $("splash_status").style.color="red";
         $("splash_status").innerHTML = "Error connecting to server. Please try again later.";
         return;
@@ -60,6 +62,7 @@ function splash_fade()
 {
     if($("splash").style.opacity>0)
     {
+        $("screen").style.display="block";
         $("splash").style.opacity-=0.10;
         $("splash").style.filter="alpha(opacity="+($("splash").style.opacity*100)+")";
         var timer = setTimeout("splash_fade()", 10);
