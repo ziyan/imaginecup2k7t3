@@ -54,14 +54,6 @@
       <Project>{C69D8F52-16BA-406C-9424-3123127410A8}</Project>
       <Name>Omni.Service.External</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Omni.Util\Omni.Util.csproj">
-      <Project>{02966CC6-8993-4376-BE54-48F956F944D8}</Project>
-      <Name>Omni.Util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Omni\Omni.csproj">
-      <Project>{03DBCB2C-D83C-487F-BB31-FAA3538F7B01}</Project>
-      <Name>Omni</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

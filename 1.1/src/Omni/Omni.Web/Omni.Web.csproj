@@ -35,6 +35,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
+    <Compile Include="Json\Collections\JSONArrayCollection.cs" />
+    <Compile Include="Json\Collections\JSONObjectCollection.cs" />
+    <Compile Include="Json\JSONValue.cs" />
+    <Compile Include="Json\JSONValueCollection.cs" />
+    <Compile Include="Json\Values\JSONBoolValue.cs" />
+    <Compile Include="Json\Values\JSONNumberValue.cs" />
+    <Compile Include="Json\Values\JSONStringValue.cs" />
     <Compile Include="Service\TranslationHandler.cs" />
     <Compile Include="Session\KeepAliveHandler.cs" />
     <Compile Include="User\CaptchaHandler.cs" />
@@ -44,24 +51,6 @@
     <Compile Include="User\RegisterHandler.cs" />
     <Compile Include="User\LoginHandler.cs" />
     <Compile Include="User\CurrentHandler.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JSONSharp\JSONSharp.csproj">
-      <Project>{264DAE81-F3E0-45D4-9815-3F3FF730881F}</Project>
-      <Name>JSONSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Omni.Client\Omni.Client.csproj">
-      <Project>{98F7CCF6-847B-4469-82AB-C924B6084E26}</Project>
-      <Name>Omni.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Omni.Util\Omni.Util.csproj">
-      <Project>{02966CC6-8993-4376-BE54-48F956F944D8}</Project>
-      <Name>Omni.Util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Omni\Omni.csproj">
-      <Project>{03DBCB2C-D83C-487F-BB31-FAA3538F7B01}</Project>
-      <Name>Omni</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

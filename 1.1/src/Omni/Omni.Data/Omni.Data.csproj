@@ -42,12 +42,6 @@
     <Compile Include="StoredProcedure.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Omni\Omni.csproj">
-      <Project>{03DBCB2C-D83C-487F-BB31-FAA3538F7B01}</Project>
-      <Name>Omni</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
