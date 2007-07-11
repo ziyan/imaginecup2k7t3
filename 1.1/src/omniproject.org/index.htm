@@ -12,19 +12,21 @@
     <script type="text/javascript" src="Script/page.js"></script>
     <script type="text/javascript" src="Script/user.js"></script>
     <script type="text/javascript" src="Script/trans.js"></script>
+    <script type="text/javascript" src="Script/service.js"></script>
     <link rel="stylesheet" href="Style/Default.css" media="all"/>
 </head>
 <body>
 <!--begin of splash-->
-<div id="splash" style="display:block;width:100%;height:100%;z-index:11;position:absolute;top:0px;left:0px;background: #FFFFFF; filter: alpha(opacity=100);	opacity: 1.00; text-align:center; vertical-align:middle;">
+<div id="splash" class="splash" style="filter:alpha(opacity=100);opacity:1.00;">
 <table style="width:100%;height:100%"><tr><td>
 <img alt="" src="/image/logo_lg.gif" />
 <div id="splash_status" style="padding:5px"><img alt="" src="/image/loading.gif" title="loading" style="width:16px;height:16px" /> Loading ...</div>
 </td></tr></table>
 </div>
 <!--end of splash-->
+
 <!--begin of placeholder-->
-<div id="placeholder" style="display:block;width:100%;height:101%;z-index:-11;position:absolute;top:0px;left:0px;background: #FFFFFF;">
+<div id="placeholder" class="placeholder">
 </div>
 <!--end of placeholder-->
 
@@ -63,8 +65,9 @@ under development
 <!--begin of shader-->
 <div id="shader" class="shader" style="display:none"></div>
 <!--end of shader-->
-</center>
 </div>
+</center>
+
 
 
 
@@ -79,36 +82,47 @@ under development
 <div id="content_center"></div>
 <div id="content_right"></div>
 <!--layouts-->
-    <!--begin of pagecontentpanel-->
-    <div id="pagecontentpanel" class="boxpanel">
-            <div class="title"><span id="Span2">Page Content</span></div>
+    <!--begin of servicedictpanel-->
+    <div id="servicedictpanel" class="boxpanel">
+            <div class="title"><span id="Omni_Localized_ServiceDictTitle">Dictionary Lookup</span></div>
             <div class="content">
-                Choose
-            </div>
-    </div>
-    <!--end of pagecontentpanel-->
-    <!--begin of autotranspanel-->
-    <div id="transautopanel" class="boxpanel">
-            <div class="title"><span id="Omni_Localized_TransAutoTitle">Automatic Translation</span></div>
-            <div class="content">
-                <form action="" id="form_transauto" onsubmit="trans_auto();return false" style="margin:0px;padding:5px;">
-                <textarea id="form_transauto_msg" cols="20" rows="4" style="width:98%"></textarea><br />
-                <select id="form_transauto_direction" style="margin-top:5px;margin-bottom:5px;width:100%">
-                <option id="Omni_Localized_TransAutoENUS2ZHCN" value="en-US_zh-CN">U.S. English to Simplified Chinese</option>
-                <option id="Omni_Localized_TransAutoZHCN2ENUS" value="zh-CN_en-US">Simplified Chinese to U.S. English</option>
+                <form action="" id="form_servicedict" onsubmit="service_dict();return false" style="margin:0px;padding:5px;">
+                <input id="form_servicedict_word" type="text" style="width:97%"/><br />
+                <select id="form_servicedict_lang" style="margin-top:5px;margin-bottom:5px;width:100%">
+                <option id="Omni_Localized_ServiceDictENUS" value="en-US">U.S. English Dictionary</option>
                 </select><br />
-                <input id="Omni_Localized_TransAutoSubmit" type="submit" value="Translate" />
-                <input id="Omni_Localized_TransAutoReset" type="reset" value="Reset" onclick="trans_auto_reset();"/>
-                <span id="transautopanel_status" style="color:Red"></span>
-                <br />
+                <input id="Omni_Localized_ServiceDictSubmitButton" type="submit" value="Lookup" />
+                <input id="Omni_Localized_ServiceDictResetButton" type="reset" value="Reset" onclick="service_dict_reset();"/>
+                <span id="servicedictpanel_status"></span>
                 </form>
             </div>
-            <div class="content_gray" id="transautopanel_resultpanel" style="display:none">
-            <img id="transautopanel_loading" alt="" src="/image/loading_l.gif" style="width:100%;display:none" />
-            <textarea cols="20" rows="4" readonly="readonly" id="transautopanel_result" style="width:98%;display:none"></textarea>
+            <div class="content_gray" id="servicedictpanel_resultpanel" style="display:none">
+            <textarea cols="20" rows="5" readonly="readonly" id="servicedictpanel_result" style="width:98%"></textarea>
             </div>
     </div>
-    <!--end of autotranspanel-->
+    <!--end of servicedictpanel-->
+    
+    <!--begin of servicetranspanel-->
+    <div id="servicetranspanel" class="boxpanel">
+            <div class="title"><span id="Omni_Localized_ServiceTransTitle">Automatic Translation</span></div>
+            <div class="content">
+                <form action="" id="form_servicetrans" onsubmit="service_trans();return false" style="margin:0px;padding:5px;">
+                <textarea id="form_servicetrans_msg" cols="20" rows="4" style="width:98%"></textarea><br />
+                <select id="form_servicetrans_direction" style="margin-top:5px;margin-bottom:5px;width:100%">
+                <option id="Omni_Localized_ServiceTransENUS2ZHCN" value="en-US_zh-CN">U.S. English to Simplified Chinese</option>
+                <option id="Omni_Localized_ServiceTransZHCN2ENUS" value="zh-CN_en-US">Simplified Chinese to U.S. English</option>
+                </select><br />
+                <input id="Omni_Localized_ServiceTransSubmitButton" type="submit" value="Translate" />
+                <input id="Omni_Localized_ServiceTransResetButton" type="reset" value="Reset" onclick="service_trans_reset();"/>
+                <span id="servicetranspanel_status" style="color:Red"></span>
+                </form>
+            </div>
+            <div class="content_gray" id="servicetranspanel_resultpanel" style="display:none">
+            <img id="servicetranspanel_loading" alt="" src="/image/loading_l.gif" style="width:100%;display:none" />
+            <textarea cols="20" rows="4" readonly="readonly" id="servicetranspanel_result" style="width:98%;display:none"></textarea>
+            </div>
+    </div>
+    <!--end of servicetranspanel-->
 
     <!--begin of userpanel-->
     <div id="userpanel">

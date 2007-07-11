@@ -167,8 +167,8 @@ function page_goto_home()
 {
     page_layout_left_center_right();
     content_right.appendChild($("userpanel"));
-    content_center.appendChild($("transautopanel"));
-    content_left.appendChild($("pagecontentpanel"));
+    content_center.appendChild($("servicetranspanel"));
+    content_left.appendChild($("servicedictpanel"));
 }
 
 function page_goto_register()

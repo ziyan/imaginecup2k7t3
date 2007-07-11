@@ -62,11 +62,16 @@
 	"UserRegisterStatusDuplicateEmail":"您填写的电子邮件地址已被用以注册",
 	"UserRegisterStatusRegistered":"您的帐号被成功地建立了, 您现在就可以马上登陆",
 	
-	"TransAutoNoMsg":"请输入要翻译的文字",
-	"TransAutoError":"系统出错, 请稍候再试",
-	"TransAutoTitle":"自动翻译",
-	"TransAutoENUS2ZHCN":"从 英文(美国) 到 简体中文",
-	"TransAutoZHCN2ENUS":"从 简体中文 到 英文(美国)",
-	"TransAutoSubmit":"翻译",
-	"TransAutoReset":"重置"
+	"ServiceTransNoMsg":"请输入要翻译的文字",
+	"ServiceTransError":"系统出错, 请稍候再试",
+	"ServiceTransTitle":"自动翻译",
+	"ServiceTransENUS2ZHCN":"从 英文(美国) 到 简体中文",
+	"ServiceTransZHCN2ENUS":"从 简体中文 到 英文(美国)",
+	"ServiceTransSubmitButton":"翻译",
+	"ServiceTransResetButton":"重置",
+	
+	"ServiceDictTitle":"在线词典",
+	"ServiceDictENUS":"英文(美国)词典",
+	"ServiceDictSubmitButton":"查词",
+	"ServiceDictResetButton":"重置"
 }
