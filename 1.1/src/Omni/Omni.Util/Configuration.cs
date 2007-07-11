@@ -2,7 +2,7 @@ using System;
 using System.Collections.Specialized;
 
 
-namespace Omni.Data
+namespace Omni.Util
 {
     public static class Configuration
     {

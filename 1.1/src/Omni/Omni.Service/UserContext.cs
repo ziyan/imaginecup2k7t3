@@ -48,10 +48,10 @@ namespace Omni.Service
             if (this.user != null) throw new UserAlreadyLoggedInException();
             if (!Util.Validator.IsUsername(username))
                 throw new InvalidUsernameException();
-            if (trial >= Convert.ToInt32(Data.Configuration.LocalSettings["Omni.Service.UserContext.MaxTrial"]))
+            if (trial >= Convert.ToInt32(Util.Configuration.LocalSettings["Omni.Service.UserContext.MaxTrial"]))
             {
                 TimeSpan lock_interval = DateTime.Now - last_trial;
-                if (lock_interval.TotalMinutes >= Convert.ToInt32(Data.Configuration.LocalSettings["Omni.Service.UserContext.TrialLockInterval"]))
+                if (lock_interval.TotalMinutes >= Convert.ToInt32(Util.Configuration.LocalSettings["Omni.Service.UserContext.TrialLockInterval"]))
                 {
                     trial = 0;
                 }

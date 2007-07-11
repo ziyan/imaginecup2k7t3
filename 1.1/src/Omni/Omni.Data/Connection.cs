@@ -10,7 +10,7 @@ namespace Omni.Data
         internal SqlConnection sqlcn = null;
         public Connection()
         {
-            sqlcn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings[Configuration.LocalSettings["Omni.Data.Connection"]].ConnectionString);
+            sqlcn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings[Util.Configuration.LocalSettings["Omni.Data.Connection"]].ConnectionString);
             sqlcn.Open();
         }
 

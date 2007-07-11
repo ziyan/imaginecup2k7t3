@@ -52,6 +52,16 @@
     <Compile Include="User\LoginHandler.cs" />
     <Compile Include="User\CurrentHandler.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Omni.Client\Omni.Client.csproj">
+      <Project>{6B8B8AE7-3CFF-45CC-9CD0-A173B202C57C}</Project>
+      <Name>Omni.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Omni.Util\Omni.Util.csproj">
+      <Project>{C01D5CE0-48B5-4C4C-A186-5507249666CB}</Project>
+      <Name>Omni.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
