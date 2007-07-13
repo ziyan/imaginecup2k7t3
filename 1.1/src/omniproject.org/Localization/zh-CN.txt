@@ -5,6 +5,13 @@
 	"MenuLinkHome":"首页",
 	"MenuLinkRegister":"注册",
 	"MenuLinkAbout":"关于",
+	"MenuLinkHallOfFame":"Hall Of Fame",
+	"MenuLinkProfile":"Profile",
+	"MenuLinkMessages":"Messages",
+	"MenuLinkGetIntroduced":"Get Introduced",
+	"MenuLinkFriends":"Friends",
+	"MenuLinkTranslations":"Translations",
+	"MenuLinkGroups":"Groups",
 	
 	"LanguageOptionZHCN":"简体中文",
 	"LanguageOptionENUS":"英文(美国)",
