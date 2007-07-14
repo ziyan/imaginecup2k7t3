@@ -83,7 +83,7 @@ namespace Omni.Data
             SetStoredProcedureParameter(cmd, "@sn_network", SqlDbType.NVarChar, sn_network);
             SetStoredProcedureParameter(cmd, "@sn_screenname", SqlDbType.NVarChar, sn_screenname);
             object result = cmd.ExecuteScalar();
-            return result == null ? 1 : Convert.ToInt32(result);
+            return (result == null) ? 1 : Convert.ToInt32(result);
         }
         #endregion
 

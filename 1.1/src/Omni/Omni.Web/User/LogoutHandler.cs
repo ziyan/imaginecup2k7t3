@@ -13,7 +13,8 @@ namespace Omni.Web.User
             context.Response.ContentType = "text/plain";
             context.Response.Expires = -1;
             Common.Client.UserLogout();
-            context.Response.Write("");
+            JSONObjectCollection collection = new JSONObjectCollection();
+            context.Response.Write(collection.ToString());
         }
 
         public bool IsReusable

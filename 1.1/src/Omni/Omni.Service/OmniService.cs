@@ -115,7 +115,7 @@ namespace Omni.Service
         /// <param name="email">email address</param>
         /// <param name="captcha">captcha text</param>
         /// <param name="session">session id</param>
-        /// <returns>the id of the new user</returns>
+        /// <returns>the id of the new user, or -1 for duplicate email in system</returns>
         [WebMethod(Description = "Register a new user account.")]
         public int UserRegister(string username, string md5password, string name, string email, string captcha, Guid session)
         {
@@ -133,7 +133,7 @@ namespace Omni.Service
         /// <param name="sn_network">IM network</param>
         /// <param name="sn_screenname">IM screenname</param>
         /// <param name="session">session id</param>
-        /// <returns>0 for success</returns>
+        /// <returns>0 for success, -1 for duplicate email in system</returns>
         [WebMethod(Description = "Update an existing user account.")]
         public int UserUpdate(string name, string email, string description, string sn_network, string sn_screenname, Guid session)
         {

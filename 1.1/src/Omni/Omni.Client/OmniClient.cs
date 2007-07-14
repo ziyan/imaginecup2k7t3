@@ -158,7 +158,7 @@ namespace Omni.Client
             {
                 Exception.Rethrow(e);
             }
-            return 0;
+            return -1;
         }
 
         /// <summary>

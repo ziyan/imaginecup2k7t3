@@ -123,7 +123,14 @@ namespace Omni.Service
 
             int val = Data.StoredProcedure.UserUpdate(this.user.id, name, email, description, sn_network, sn_screenname, session.Connection);
             if (val == 0)
+            {
+                this.user.name = name;
+                this.user.email = email;
+                this.user.description = description;
+                this.user.sn_network = sn_network;
+                this.user.sn_screenname = sn_screenname;
                 return val;
+            }
             else if (val == -1)
                 throw new DuplicateEmailException();
             else
