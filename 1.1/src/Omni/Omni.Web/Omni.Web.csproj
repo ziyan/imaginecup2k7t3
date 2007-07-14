@@ -28,6 +28,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JSONSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\JSONSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
@@ -35,13 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
-    <Compile Include="Json\Collections\JSONArrayCollection.cs" />
-    <Compile Include="Json\Collections\JSONObjectCollection.cs" />
-    <Compile Include="Json\JSONValue.cs" />
-    <Compile Include="Json\JSONValueCollection.cs" />
-    <Compile Include="Json\Values\JSONBoolValue.cs" />
-    <Compile Include="Json\Values\JSONNumberValue.cs" />
-    <Compile Include="Json\Values\JSONStringValue.cs" />
     <Compile Include="Service\DictionaryHandler.cs" />
     <Compile Include="Service\TranslationHandler.cs" />
     <Compile Include="Session\KeepAliveHandler.cs" />
@@ -52,6 +49,7 @@
     <Compile Include="User\RegisterHandler.cs" />
     <Compile Include="User\LoginHandler.cs" />
     <Compile Include="User\CurrentHandler.cs" />
+    <Compile Include="User\UpdateHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Omni.Client\Omni.Client.csproj">

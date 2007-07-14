@@ -13,6 +13,8 @@ namespace Omni.Client
             this.name = user.name;
             this.email = user.email;
             this.description = user.description;
+            this.sn_network = user.sn_network;
+            this.sn_screenname = user.sn_screenname;
             this.reg_date = user.reg_date;
             this.log_date = user.log_date;
         }
@@ -20,6 +22,8 @@ namespace Omni.Client
         private string username;
         private string email;
         private string description;
+        private string sn_network;
+        private string sn_screenname;
         private DateTime reg_date;
         private DateTime log_date;
         private int id;
@@ -38,6 +42,14 @@ namespace Omni.Client
         public string Description
         {
             get { return description; }
+        }
+        public string SnNetwork
+        {
+            get { return sn_network; }
+        }
+        public string SnScreenname
+        {
+            get { return sn_screenname; }
         }
         public string Name
         {

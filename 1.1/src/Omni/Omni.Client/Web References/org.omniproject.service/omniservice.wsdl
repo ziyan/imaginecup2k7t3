@@ -124,6 +124,25 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UserUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sn_network" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sn_screenname" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserUpdateResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UserCurrent">
         <s:complexType>
           <s:sequence>
@@ -145,6 +164,8 @@
           <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sn_network" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sn_screenname" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="reg_date" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="log_date" type="s:dateTime" />
         </s:sequence>
@@ -243,6 +264,12 @@
   <wsdl:message name="UserRegisterSoapOut">
     <wsdl:part name="parameters" element="tns:UserRegisterResponse" />
   </wsdl:message>
+  <wsdl:message name="UserUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:UserUpdate" />
+  </wsdl:message>
+  <wsdl:message name="UserUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:UserUpdateResponse" />
+  </wsdl:message>
   <wsdl:message name="UserCurrentSoapIn">
     <wsdl:part name="parameters" element="tns:UserCurrent" />
   </wsdl:message>
@@ -306,6 +333,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Register a new user account.</wsdl:documentation>
       <wsdl:input message="tns:UserRegisterSoapIn" />
       <wsdl:output message="tns:UserRegisterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update an existing user account.</wsdl:documentation>
+      <wsdl:input message="tns:UserUpdateSoapIn" />
+      <wsdl:output message="tns:UserUpdateSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="UserCurrent">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get current user information.</wsdl:documentation>
@@ -399,6 +431,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserRegister">
       <soap:operation soapAction="http://service.omniproject.org/UserRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdate">
+      <soap:operation soapAction="http://service.omniproject.org/UserUpdate" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -510,6 +551,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserRegister">
       <soap12:operation soapAction="http://service.omniproject.org/UserRegister" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdate">
+      <soap12:operation soapAction="http://service.omniproject.org/UserUpdate" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

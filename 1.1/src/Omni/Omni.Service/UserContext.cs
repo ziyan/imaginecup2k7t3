@@ -107,6 +107,29 @@ namespace Omni.Service
                 throw new SystemException();
         }
 
+        public int Update(string name, string email, string description, string sn_network, string sn_screenname)
+        {
+            if (this.user == null) throw new UserNotLoggedInException();
+            if (name == null || email == null || name == "" || email == "")
+                throw new ArgumentNullException();
+            if (description == null) description = "";
+            if (sn_network == null) sn_network = "";
+            if (sn_screenname == null) sn_screenname = "";
+            if (!Util.Validator.IsEmail(email))
+                throw new InvalidEmailException();
+            if (name.Length > 100) throw new ArgumentOutOfRangeException();
+            if (sn_network.Length > 100) throw new ArgumentOutOfRangeException();
+            if (sn_screenname.Length > 255) throw new ArgumentOutOfRangeException();
+
+            int val = Data.StoredProcedure.UserUpdate(this.user.id, name, email, description, sn_network, sn_screenname, session.Connection);
+            if (val == 0)
+                return val;
+            else if (val == -1)
+                throw new DuplicateEmailException();
+            else
+                throw new SystemException();
+        }
+
         #region Password
         private string encryptPassword(string prefix, string md5password)
         {

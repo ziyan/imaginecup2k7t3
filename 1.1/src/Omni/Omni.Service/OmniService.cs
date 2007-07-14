@@ -125,6 +125,23 @@ namespace Omni.Service
         }
 
         /// <summary>
+        /// Update an existing user account.
+        /// </summary>
+        /// <param name="name">display name</param>
+        /// <param name="email">email</param>
+        /// <param name="description">description</param>
+        /// <param name="sn_network">IM network</param>
+        /// <param name="sn_screenname">IM screenname</param>
+        /// <param name="session">session id</param>
+        /// <returns>0 for success</returns>
+        [WebMethod(Description = "Update an existing user account.")]
+        public int UserUpdate(string name, string email, string description, string sn_network, string sn_screenname, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            return Session.UserContext.Update(name, email, description, sn_network, sn_screenname);
+        }
+
+        /// <summary>
         /// Get current user information.
         /// </summary>
         /// <param name="session">session id</param>

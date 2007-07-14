@@ -139,6 +139,29 @@ namespace Omni.Client
         }
 
         /// <summary>
+        /// Update an existing user account.
+        /// </summary>
+        /// <param name="name">display name</param>
+        /// <param name="email">email</param>
+        /// <param name="description">description</param>
+        /// <param name="sn_network">IM network</param>
+        /// <param name="sn_screenname">IM screenname</param>
+        /// <returns>0 for success</returns>
+        public int UserUpdate(string name, string email, string description, string sn_network, string sn_screenname)
+        {
+            CheckSession();
+            try
+            {
+                return service.UserUpdate(name, email, description, sn_network, sn_screenname, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return 0;
+        }
+
+        /// <summary>
         /// Currently logged in user.
         /// </summary>
         public User UserCurrent

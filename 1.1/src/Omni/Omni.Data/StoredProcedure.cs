@@ -58,7 +58,7 @@ namespace Omni.Data
             User user = null;
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
-                user = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["log_date"]));
+                user = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["log_date"]));
             reader.Close();
             reader.Dispose();
             return user;
@@ -72,6 +72,18 @@ namespace Omni.Data
             SetStoredProcedureParameter(cmd, "@name", SqlDbType.NVarChar, name);
             object result = cmd.ExecuteScalar();
             return result == null ? 0 : Convert.ToInt32(result);
+        }
+        public static int UserUpdate(int userid, string name, string email, string description, string sn_network, string sn_screenname, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_update_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@id", SqlDbType.Int, userid);
+            SetStoredProcedureParameter(cmd, "@name", SqlDbType.NVarChar, name);
+            SetStoredProcedureParameter(cmd, "@email", SqlDbType.VarChar, email);
+            SetStoredProcedureParameter(cmd, "@description", SqlDbType.NVarChar, description);
+            SetStoredProcedureParameter(cmd, "@sn_network", SqlDbType.NVarChar, sn_network);
+            SetStoredProcedureParameter(cmd, "@sn_screenname", SqlDbType.NVarChar, sn_screenname);
+            object result = cmd.ExecuteScalar();
+            return result == null ? 1 : Convert.ToInt32(result);
         }
         #endregion
 
