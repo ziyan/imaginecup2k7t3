@@ -328,7 +328,7 @@ function user_register_update_captcha()
 function user_register_reset()
 {
     $("userregisterpanel_status").innerHTML="";
-    user_register_retrieve();
+    user_register_update_captcha();
 }
 // user profile
 function user_profile_retrieve()
@@ -343,6 +343,11 @@ function user_profile_retrieve()
         $("form_user_profile_sn_screenname").value = user_current_obj.sn_screenname;
         
     }
+}
+function user_profile_reset()
+{
+    $("userprofilepanel_status").innerHTML="";
+    user_profile_retrieve();
 }
 var user_update_ajax = null; //ajax object
 function user_update()
