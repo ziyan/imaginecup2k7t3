@@ -34,7 +34,7 @@ function user_current_callback()
         server_error = true;
         user_current_userid = 0;
         user_current_username = null;
-        user_state_update();
+        user_state_update(true);
         return;
     }
     if(user_current_ajax.getJSON().loggedin)
@@ -51,7 +51,36 @@ function user_current_callback()
     {
         user_info_clear();
     }
-    user_state_update();
+    user_state_update(true);
+}
+//callback from profile update
+function user_current_update_callback()
+{
+    if(!user_current_ajax.isDone()) return;
+    user_loading = false;
+    if(user_current_ajax.hasError())
+    {
+        server_error = true;
+        user_current_userid = 0;
+        user_current_username = null;
+        user_state_update(false);
+        return;
+    }
+    if(user_current_ajax.getJSON().loggedin)
+    {
+        user_current_id = user_current_ajax.getJSON().id;
+        user_current_username = user_current_ajax.getJSON().username;
+        user_current_name = user_current_ajax.getJSON().name;
+        user_current_email = user_current_ajax.getJSON().email;
+        user_current_reg_date = user_current_ajax.getJSON().reg_date;
+        user_current_log_date = user_current_ajax.getJSON().log_date;
+        user_current_obj = user_current_ajax.getJSON();
+    }
+    else
+    {
+        user_info_clear();     
+    }
+    user_state_update(false);
 }
 
 //check if user is logged in
@@ -61,7 +90,7 @@ function user_is_logged_in()
 }
 
 //update site component according to user status
-function user_state_update()
+function user_state_update(refresh_on_success)
 {
     if(user_is_logged_in())
     {
@@ -76,14 +105,15 @@ function user_state_update()
         $("form_user_login_password").value="";
         $("Omni_Localized_UserLoginSubmitButton").disabled=false;
         $("userpanel_status").innerHTML="";
+        if(refresh_on_success) page_update();        
     }
     else
     {
         //not logged in
         $("usermenu").innerHTML="<a href=\"#\" onclick=\"page_change('Register');return false\">"+lang_getHTML("UserMenuRegister")+"</a> ";
         $("userpanel_not_logged_in").style.display="block";
+        page_update();        
     }
-    page_update();
 }
 
 //clear user info
@@ -366,6 +396,8 @@ function user_update()
         $("form_user_profile_email").focus();
         return;
     }
+    description = newlnHTML2String(description);
+    description = stripHTML(description);
     // lock fields
     $("form_user_profile_name").disabled = true;
     $("form_user_profile_email").disabled = true;
@@ -397,6 +429,8 @@ function user_update_callback()
     if(status=="Updated")
     {
         $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";
+        user_current_ajax.setHandler(user_current_update_callback);
+        user_current_ajax.request("/handler/user/currenthandler.ashx");        
     }
     else if(status=="DuplicateEmail")
     {
@@ -407,5 +441,4 @@ function user_update_callback()
     {
         $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
     }
-    $("userprofilepanel_status").innerHTML += "("+status+")";
 }

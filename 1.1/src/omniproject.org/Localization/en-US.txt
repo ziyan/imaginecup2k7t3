@@ -82,9 +82,10 @@
 	"UserProfileHintProfileVisibility":"Your profile description will be visible to everyone.",
 	"UserProfileLanguages":"Languages",
 	"UserProfileInterests":"Interests",	
-	"UserProfileStatusEmailInvalid":"Your E-mail address is invalid",
-	"UserProfileStatusError":"System error",
 	"UserProfileStatusUpdated":"Operation complete",
+	"UserProfileStatusEmailInvalid":"Your E-mail address is invalid",
+	"UserProfileStatusDuplicateEmail":"The E-mail address has been used to register another account",	
+	"UserProfileStatusError":"System error, please try again later",
 
 		
 	

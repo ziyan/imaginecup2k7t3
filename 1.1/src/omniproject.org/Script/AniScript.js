@@ -266,9 +266,10 @@ AniScript.Web.Ajax = function(){
 	function getJSON()
 	{
 	    if(hasError()) return null;
-        return AjaxObject.responseText.parseJSON(function (key, value) {
+	    return AjaxObject.responseText.parseJSON();
+        /*return AjaxObject.responseText.parseJSON(function (key, value) {
                 return key.indexOf('date') >= 0 ? new Date(value) : value;
-            });
+            });*/
 	}
 	this.getAjaxObject=getAjaxObject;
 	this.getRSS = getRSS;
