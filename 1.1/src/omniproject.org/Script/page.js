@@ -123,6 +123,9 @@ function page_change(page_name)
         case "About":
             page_goto_about();
             break;
+        case "Profile":
+            page_goto_profile();
+            break;
         default:
             page_name = "Home";
             page_goto_home();
@@ -183,4 +186,11 @@ function page_goto_about()
 {
     page_layout_big_left_right();
     content_right.appendChild($("userpanel"));
+}
+
+function page_goto_profile()
+{
+    page_layout_big_left_right();
+    content_left.appendChild($("userprofilepanel"));
+    user_profile_retrieve();
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Account related functions
  */
 
@@ -11,6 +11,7 @@ var user_current_name = null;
 var user_current_email = null;
 var user_current_reg_date = null;
 var user_current_log_date = null;
+var user_current_obj = null;
 
 //init function to check user status
 function user_init()
@@ -44,6 +45,7 @@ function user_current_callback()
         user_current_email = user_current_ajax.getJSON().email;
         user_current_reg_date = user_current_ajax.getJSON().reg_date;
         user_current_log_date = user_current_ajax.getJSON().log_date;
+        user_current_obj = user_current_ajax.getJSON();
     }
     else
     {
@@ -93,6 +95,7 @@ function user_info_clear()
     user_current_email = null;
     user_current_reg_date = null;
     user_current_log_date = null;
+    user_current_obj = null;
 }
 
 //user login
@@ -325,5 +328,79 @@ function user_register_update_captcha()
 function user_register_reset()
 {
     $("userregisterpanel_status").innerHTML="";
-    user_register_update_captcha();
+    user_register_retrieve();
+}
+// user profile
+function user_profile_retrieve()
+{
+    if(user_current_obj != null)
+    {
+        $("form_user_profile_username").innerHTML = user_current_username;
+        $("form_user_profile_name").value = user_current_name;
+        $("form_user_profile_email").value = user_current_email;
+        $("form_user_profile_description").value = user_current_obj.description;
+        $("form_user_profile_sn_network").value = user_current_obj.sn_network;
+        $("form_user_profile_sn_screenname").value = user_current_obj.sn_screenname;
+        
+    }
+}
+var user_update_ajax = null; //ajax object
+function user_update()
+{
+    $("userprofilepanel_status").innerHTML="";
+    // fields
+    var name = $("form_user_profile_name").value.slice(0,100);
+    var email = $("form_user_profile_email").value;
+    var description = $("form_user_profile_description").value;
+    var sn_network = $("form_user_profile_sn_network").value.slice(0,100);
+    var sn_screenname = $("form_user_profile_sn_screenname").value.slice(0,255);
+    
+    if(!AniScript.Utility.Validator.isEmail(email))
+    {
+        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusEmailInvalid\" style=\"color:#993333\">"+lang_getText("UserProfileStatusEmailInvalid")+"</span>";
+        $("form_user_profile_email").focus();
+        return;
+    }
+    // lock fields
+    $("form_user_profile_name").disabled = true;
+    $("form_user_profile_email").disabled = true;
+    $("form_user_profile_description").disabled = true;
+    $("form_user_profile_sn_network").disabled = true;
+    $("form_user_profile_sn_screenname").disabled = true;
+    $("Omni_Localized_UserProfileSubmitButton").disabled = true;
+    // ajax
+    if(user_update_ajax == null) user_update_ajax = new AniScript.Web.Ajax();
+    user_update_ajax.setHandler(user_update_callback);
+    user_update_ajax.request("/handler/user/updatehandler.ashx","name="+escape(name)+"&email="+escape(email)+"&description="+escape(description)+"&snnetwork="+escape(sn_network)+"&snscreenname="+escape(sn_screenname));    
+}
+function user_update_callback()
+{
+    if(!user_update_ajax.isDone()) return;
+    if(user_update_ajax.hasError())
+    {
+        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        return;
+    }
+    $("form_user_profile_name").disabled = false;
+    $("form_user_profile_email").disabled = false;
+    $("form_user_profile_description").disabled = false;
+    $("form_user_profile_sn_network").disabled = false;
+    $("form_user_profile_sn_screenname").disabled = false;
+    $("Omni_Localized_UserProfileSubmitButton").disabled = false;
+    
+    var status = user_update_ajax.getJSON().status;
+    if(status=="Updated")
+    {
+        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";
+    }
+    else if(status=="DuplicateEmail")
+    {
+        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusDuplicateEmail\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusDuplicateEmail")+"</span>";
+        $("form_user_profile_email").focus();
+    }
+    else
+    {
+        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+    }
+    $("userprofilepanel_status").innerHTML += "("+status+")";
 }

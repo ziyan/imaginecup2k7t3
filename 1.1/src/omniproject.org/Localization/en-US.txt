@@ -69,6 +69,25 @@
 	"UserRegisterStatusDuplicateEmail":"The E-mail address has been used to register another account",
 	"UserRegisterStatusRegistered":"Your account has been successfully created. You can login now.",
 	
+	"UserProfileTitle":"Profile",
+	"UserProfileSubmitButton":"Update",
+	"UserProfileResetButton":"Reset",	
+	"UserProfileUsername":"Username:",
+	"UserProfileDisplayName":"Display Name:",
+	"UserProfileEmail":"E-Mail Address:",
+	"UserProfileDescription":"Profile Description:",
+	"UserProfileInstantMessaging":"Instant Messaging:",
+	"UserProfileNetwork":"Network:",
+	"UserProfileScreenname":"Screenname:",
+	"UserProfileHintProfileVisibility":"Your profile description will be visible to everyone.",
+	"UserProfileLanguages":"Languages",
+	"UserProfileInterests":"Interests",	
+	"UserProfileStatusEmailInvalid":"Your E-mail address is invalid",
+	"UserProfileStatusError":"System error",
+	"UserProfileStatusUpdated":"Operation complete",
+
+		
+	
 	"ServiceTransNoMsg":"Please enter your message",
 	"ServiceTransError":"System error, please try again later",
 	"ServiceTransTitle":"Automatic Translation",

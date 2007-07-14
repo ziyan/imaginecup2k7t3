@@ -227,6 +227,43 @@ text-decoration: underline;
 	background: #FFFFFF;
 }
 
+
+
+
+.userprofilepanel
+{
+	width: auto;
+	padding-bottom:10px;
+}
+.userprofilepanel .title
+{
+	text-align:left;
+	font-size: 12pt;
+	border-bottom: dashed 1px #666666;
+}
+.userprofilepanel .content
+{
+	width: auto;
+	padding-left:20px;
+	text-align:left;
+	line-height:30px;
+}
+.userprofilepanel .colheading
+{
+	font-weight: bold;
+}
+
+
+
+.hint
+{
+	padding-left: 16px;
+	background-position:left;
+	background-repeat:no-repeat;
+	background-image: url('/Image/info.gif');
+}
+
+
 .footer
 {
 	display: block;
