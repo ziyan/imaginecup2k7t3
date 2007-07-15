@@ -180,7 +180,6 @@ namespace Omni.Service
         public Data.Interest[] InterestList(Guid session)
         {
             ServiceSession Session = ServiceSession.Get(session);
-            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
             return Data.StoredProcedure.InterestList(Session.Connection);
         }
 
