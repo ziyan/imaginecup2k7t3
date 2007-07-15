@@ -88,7 +88,7 @@
 	"UserProfileStatusEmailInvalid":"Your E-mail address is invalid",
 	"UserProfileStatusDuplicateEmail":"The E-mail address has been used to register another account",	
 	"UserProfileStatusError":"System error, please try again later",
-
+	"UserProfileInterestLoading":" Loading ... ",
 	"ServiceTransNoMsg":"Please enter your message",
 	"ServiceTransError":"System error, please try again later",
 	"ServiceTransTitle":"Automatic Translation",

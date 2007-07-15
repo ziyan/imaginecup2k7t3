@@ -55,8 +55,8 @@ function lang_load_callback()
 //get a localized string in code (NOT RECOMMENDED)
 function lang_getText(key)
 {
-    if(eval("lang_db."+key)!=undefined)
-        return eval("lang_db."+key);
+    if(lang_db[key]!=undefined)
+        return lang_db[key];
     else
         return "";
 }
@@ -110,8 +110,8 @@ function lang_display()
         if(spans[i].id.indexOf("Omni_Localized_")==0)
         {
             var key = spans[i].id.split("_")[2];
-            if(eval("lang_db."+key)!=undefined)
-                spans[i].innerHTML = eval("lang_db."+key);
+            if(lang_db[key]!=undefined)
+                spans[i].innerHTML = lang_db[key];
         }
     }
     //divs
@@ -121,8 +121,8 @@ function lang_display()
         if(divs[i].id.indexOf("Omni_Localized_")==0)
         {
             var key = divs[i].id.split("_")[2];
-            if(eval("lang_db."+key)!=undefined)
-                divs[i].innerHTML = eval("lang_db."+key);
+            if(lang_db[key]!=undefined)
+                divs[i].innerHTML = lang_db[key];
         }
     }
     //buttons
@@ -132,8 +132,8 @@ function lang_display()
         if(buttons[i].id.indexOf("Omni_Localized_")==0)
         {
             var key = buttons[i].id.split("_")[2];
-            if(eval("lang_db."+key)!=undefined)
-                buttons[i].innerHTML = eval("lang_db."+key);
+            if(lang_db[key]!=undefined)
+                buttons[i].innerHTML = lang_db[key];
         }
     }
     //textareas
@@ -143,8 +143,8 @@ function lang_display()
         if(textareas[i].id.indexOf("Omni_Localized_")==0)
         {
             var key = textareas[i].id.split("_")[2];
-            if(eval("lang_db."+key)!=undefined)
-                textareas[i].innerHTML = eval("lang_db."+key);
+            if(lang_db[key]!=undefined)
+                textareas[i].innerHTML = lang_db[key];
         }
     }
     //options
@@ -154,8 +154,8 @@ function lang_display()
         if(options[i].id.indexOf("Omni_Localized_")==0)
         {
             var key = options[i].id.split("_")[2];
-            if(eval("lang_db."+key)!=undefined)
-                options[i].innerHTML = eval("lang_db."+key);
+            if(lang_db[key]!=undefined)
+                options[i].innerHTML = lang_db[key];
         }
     }
     //optgroups
@@ -165,8 +165,8 @@ function lang_display()
         if(optgroups[i].id.indexOf("Omni_Localized_")==0)
         {
             var key = optgroups[i].id.split("_")[2];
-            if(eval("lang_db."+key)!=undefined)
-                optgroups[i].label = eval("lang_db."+key);
+            if(lang_db[key]!=undefined)
+                optgroups[i].label = lang_db[key];
         }
     }
     //inputs
@@ -176,8 +176,8 @@ function lang_display()
         if(inputs[i].id.indexOf("Omni_Localized_")==0)
         {
             var key = inputs[i].id.split("_")[2];
-            if(eval("lang_db."+key)!=undefined)
-                inputs[i].value = eval("lang_db."+key);
+            if(lang_db[key]!=undefined)
+                inputs[i].value = lang_db[key];
         }
     }
     //links
@@ -187,8 +187,8 @@ function lang_display()
         if(links[i].id.indexOf("Omni_Localized_")==0)
         {
             var key = links[i].id.split("_")[2];
-            if(eval("lang_db."+key)!=undefined)
-                links[i].title = eval("lang_db."+key);
+            if(lang_db[key]!=undefined)
+                links[i].title = lang_db[key];
         }
     }
     //images
@@ -198,9 +198,11 @@ function lang_display()
         if(images[i].id.indexOf("Omni_Localized_")==0)
         {
             var key = images[i].id.split("_")[2];
-            if(eval("lang_db."+key)!=undefined)
-                images[i].alt = eval("lang_db."+key);
-                images[i].title = eval("lang_db."+key);
+            if(lang_db[key]!=undefined)
+            {
+                images[i].alt = lang_db[key];
+                images[i].title = lang_db[key];
+            }
         }
     }
 }

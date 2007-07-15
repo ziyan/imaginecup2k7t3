@@ -1,4 +1,4 @@
-﻿// Functions for Users (e.g. Profiles, etc)
+// Functions for Users (e.g. Profiles, etc)
 
 /*
 Common Objects:
@@ -76,11 +76,10 @@ function system_languages_callback()
 // In the output, rows are uniquely identified by the following string
 //       prefix_interest_id
 // e.g.  userprofilepanel_interest_12
-// FIXME: Localize
 function system_interests_table(prefix)
 {
     if(system_interests==null) return "";
-    var output = "<span style=\"line-height: 14px\">";
+    var output = "<span style=\"line-height: 10px\">";
     output += "<table>";
     // Only works for one level of parents
     for(var i=0; i<system_interests.length; i++)
@@ -88,7 +87,7 @@ function system_interests_table(prefix)
         var parent = system_interests[i];
         if(parent.parent_id != 0) continue;
         output += "<tr>";
-        output += "<td style=\"padding-left:16px\"><span id=\""+prefix+"_interest_"+parent.id+"\"></span>"+lang_getHTML("InterestName"+parent.name,prefix)+"</td>"; 
+        output += "<td style=\"padding-left:0px\"><span id=\""+prefix+"_interest_"+parent.id+"\"></span>"+lang_getHTML("InterestName"+parent.name,prefix)+"</td>"; 
         output += "</tr>";  
         for(var j=0; j<system_interests.length; j++)
         {
