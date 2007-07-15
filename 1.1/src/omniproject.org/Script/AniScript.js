@@ -155,8 +155,9 @@ AniScript.Web.Ajax = function(){
 	}
 	function request(url,data,handler){	    
 		try{
+		    if(!(getState()==0||getState()==4)) return;
 		    AjaxObject = newAjax();
-			if(AjaxObject==null) return false;	
+			if(AjaxObject==null) return false;
 			if(handler!=null) AjaxHandler = handler;
 			var async = true;
 			if(AjaxHandler!=null){async = true;}else{async = false;}

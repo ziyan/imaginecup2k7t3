@@ -65,6 +65,11 @@ function lang_getHTML(key)
 {
     return "<span id=\"Omni_Localized_"+key+"\">"+lang_getText(key)+"</span>";
 }
+//get a localized string with auto update function in code (RECOMMENDED)
+function lang_getHTML(key,postfix)
+{
+    return "<span id=\"Omni_Localized_"+key+"_"+postfix+"\">"+lang_getText(key)+"</span>";
+}
 
 //selector
 function lang_select()

@@ -88,14 +88,14 @@ function system_interests_table(prefix)
         var parent = system_interests[i];
         if(parent.parent_id != 0) continue;
         output += "<tr>";
-        output += "<td style=\"padding-left:16px\"><span id=\""+prefix+"_interest_"+parent.id+"\"></span>"+lang_getHTML("InterestName"+parent.name)+"</td>"; 
+        output += "<td style=\"padding-left:16px\"><span id=\""+prefix+"_interest_"+parent.id+"\"></span>"+lang_getHTML("InterestName"+parent.name,prefix)+"</td>"; 
         output += "</tr>";  
         for(var j=0; j<system_interests.length; j++)
         {
             var child = system_interests[j];
             if(child.parent_id != parent.id) continue;
             output += "<tr>";
-            output += "<td style=\"padding-left:16px\"><span id=\""+prefix+"_interest_"+child.id+"\"></span>"+lang_getHTML("InterestName"+child.name)+"</td>"; 
+            output += "<td style=\"padding-left:16px\"><span id=\""+prefix+"_interest_"+child.id+"\"></span>"+lang_getHTML("InterestName"+child.name,prefix)+"</td>"; 
             output += "</tr>";            
         }
     }
