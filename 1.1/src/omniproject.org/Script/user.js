@@ -12,6 +12,14 @@ var user_current_email = null;
 var user_current_reg_date = null;
 var user_current_log_date = null;
 var user_current_obj = null;
+var user_current_interests = null;
+var user_current_languages = null;
+
+// Interests and Languages (full list)
+var system_languages_ajax = new AniScript.Web.Ajax(); // Ajax
+var system_interests_ajax = new AniScript.Web.Ajax(); // Ajax
+var system_languages = null; // Language[]
+var system_interests = null; // Interest[]
 
 //init function to check user status
 function user_init()
@@ -20,7 +28,7 @@ function user_init()
     //$("userpanel_not_logged_in").style.display="none";
     $("usermenu").innerHTML = loading_img + " " + lang_getHTML("UserMenuLoading");
     user_current_ajax.setHandler(user_current_callback);
-    user_current_ajax.request("/handler/user/currenthandler.ashx");
+    user_current_ajax.request("/handler/user/currenthandler.ashx");    
 }
 //AniScript.Loader.add(user_init);
 
@@ -34,7 +42,8 @@ function user_current_callback()
         server_error = true;
         user_current_userid = 0;
         user_current_username = null;
-        user_state_update(true);
+        if(!user_loading && !system_interests_loading && !system_languages_loading)
+            user_state_update(true);
         return;
     }
     if(user_current_ajax.getJSON().loggedin)
@@ -46,13 +55,59 @@ function user_current_callback()
         user_current_reg_date = user_current_ajax.getJSON().reg_date;
         user_current_log_date = user_current_ajax.getJSON().log_date;
         user_current_obj = user_current_ajax.getJSON();
+        // system level languages & interests
+        ///// system_languages_ajax
+        system_interests_loading = true;
+        system_interests_ajax.setHandler(system_interests_callback);
+        system_interests_ajax.request("/handler/users/interestshandler.ashx");
     }
     else
     {
         user_info_clear();
     }
-    user_state_update(true);
+    if(!user_loading && !system_interests_loading && !system_languages_loading)
+        user_state_update(true);
 }
+//callback from init
+function system_interests_callback()
+{
+    if(!system_interests_ajax.isDone()) return;
+    system_interests_loading = false;
+    if(system_interests_ajax.hasError())
+    {
+        if(!user_loading)
+            server_error = true;
+        system_interests = null;
+        if(!user_loading && !system_interests_loading && !system_languages_loading)
+            user_state_update(true);        
+        return;
+    }
+    else system_interests = system_interests_ajax.getJSON();
+    if(!user_loading && !system_interests_loading && !system_languages_loading)
+        user_state_update(true);    
+}
+// callback from init
+/*
+function system_languages_callback()
+{
+    if(!system_languages_ajax.isDone()) return;
+    system_languages_loading = false;
+    if(system_languages_ajax.hasError())
+    {
+        if(!user_loading)
+            server_error = true;
+        system_languages = null;
+        if(!user_loading && !system_interests_loading && !system_languages_loading)
+            user_state_update(true);        
+        return;
+    }
+    else system_languages = system_languages_ajax.getJSON();
+    if(!user_loading && !system_interests_loading && !system_languages_loading)
+        user_state_update(true);    
+} 
+*/
+
+
 //callback from profile update
 function user_current_update_callback()
 {
@@ -126,6 +181,8 @@ function user_info_clear()
     user_current_reg_date = null;
     user_current_log_date = null;
     user_current_obj = null;
+    user_current_interests = null;
+    user_current_languages = null;
 }
 
 //user login
@@ -299,11 +356,6 @@ function user_register()
 function user_register_callback()
 {
     if(!user_register_ajax.isDone()) return;
-    if(user_register_ajax.hasError())
-    {
-        $("userregisterpanel_status").innerHTML="<span id=\"Omni_Localized_UserRegisterStatusError\" style=\"color:#993333;\">"+lang_getText("UserRegisterStatusError")+"</span>";
-        return;
-    }
     $("form_user_register_name").disabled=false;
     $("form_user_register_username").disabled=false;
     $("form_user_register_email").disabled=false;
@@ -312,6 +364,11 @@ function user_register_callback()
     $("form_user_register_captcha").disabled=false;
     $("form_user_register_captcha").value="";
     $("Omni_Localized_UserRegisterSubmitButton").disabled=false;
+    if(user_register_ajax.hasError())
+    {
+        $("userregisterpanel_status").innerHTML="<span id=\"Omni_Localized_UserRegisterStatusError\" style=\"color:#993333;\">"+lang_getText("UserRegisterStatusError")+"</span>";
+        return;
+    }
     user_register_update_captcha();
     
     var status = user_register_ajax.getJSON().status;
@@ -371,7 +428,11 @@ function user_profile_retrieve()
         $("form_user_profile_description").value = user_current_obj.description;
         $("form_user_profile_sn_network").value = user_current_obj.sn_network;
         $("form_user_profile_sn_screenname").value = user_current_obj.sn_screenname;
-        
+        $("form_user_profile_interests").innerHTML = loading_img;
+        // ajax
+        if(user_update_interests_ajax == null) user_update_interests_ajax = new AniScript.Web.Ajax();
+        user_update_interests_ajax.setHandler(user_update_interests_callback);
+        user_update_interests_ajax.request("/handler/users/userinterestshandler.ashx","id="+escape(user_current_id));          
     }
 }
 function user_profile_reset()
@@ -380,6 +441,8 @@ function user_profile_reset()
     user_profile_retrieve();
 }
 var user_update_ajax = null; //ajax object
+var user_update_interests_ajax = null; //ajax object
+
 function user_update()
 {
     $("userprofilepanel_status").innerHTML="";
@@ -413,17 +476,17 @@ function user_update()
 function user_update_callback()
 {
     if(!user_update_ajax.isDone()) return;
-    if(user_update_ajax.hasError())
-    {
-        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
-        return;
-    }
     $("form_user_profile_name").disabled = false;
     $("form_user_profile_email").disabled = false;
     $("form_user_profile_description").disabled = false;
     $("form_user_profile_sn_network").disabled = false;
     $("form_user_profile_sn_screenname").disabled = false;
     $("Omni_Localized_UserProfileSubmitButton").disabled = false;
+    if(user_update_ajax.hasError())
+    {
+        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        return;
+    }
     
     var status = user_update_ajax.getJSON().status;
     if(status=="Updated")
@@ -441,4 +504,44 @@ function user_update_callback()
     {
         $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
     }
+}
+function user_update_interests_callback()
+{
+    if(!user_update_interests_ajax.isDone()) return;
+    if(user_update_interests_ajax.hasError())
+    {
+        $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        return;
+    }    
+    var status = user_update_interests_ajax.getJSON().status;
+    if(status=="Complete")
+    {
+        user_current_interests = user_update_interests_ajax.getJSON().interests;
+        $("form_user_profile_interests").innerHTML = get_interests_table(system_interests,"userprofilepanel");
+        // Add checkboxes
+        for(var x=0; x<system_interests.length; x++)
+        {
+            var cell = $("userprofilepanel_interest_"+system_interests[x].id);
+            if(cell != undefined)
+            {
+                var chk = document.createElement("INPUT");
+                chk.setAttribute("type","checkbox");
+                chk.setAttribute("value",system_interests[x].id);
+                chk.setAttribute("id","userprofilepanel_interest_"+system_interests[x].id+"_chk");
+                chk.setAttribute("defaultChecked",false);
+                cell.appendChild(chk);
+                cell.width = 20;
+            }
+        }
+        for(var x=0; x<user_current_interests.length; x++)
+        {
+            var chk = $("userprofilepanel_interest_"+user_current_interests[x].id+"_chk");
+            if(chk != null && chk != undefined)
+                chk.checked = true;
+        }
+    }
+    else
+    {
+        $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+    }    
 }
