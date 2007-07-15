@@ -51,6 +51,10 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback UserCurrentOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserInterestsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InterestsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback DefinitionLookupOperationCompleted;
         
         private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
@@ -125,6 +129,12 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event UserCurrentCompletedEventHandler UserCurrentCompleted;
+        
+        /// <remarks/>
+        public event UserInterestsCompletedEventHandler UserInterestsCompleted;
+        
+        /// <remarks/>
+        public event InterestsCompletedEventHandler InterestsCompleted;
         
         /// <remarks/>
         public event DefinitionLookupCompletedEventHandler DefinitionLookupCompleted;
@@ -480,6 +490,66 @@ namespace Omni.Client.org.omniproject.service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/UserInterests", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Interest[] UserInterests(int id, System.Guid session) {
+            object[] results = this.Invoke("UserInterests", new object[] {
+                        id,
+                        session});
+            return ((Interest[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserInterestsAsync(int id, System.Guid session) {
+            this.UserInterestsAsync(id, session, null);
+        }
+        
+        /// <remarks/>
+        public void UserInterestsAsync(int id, System.Guid session, object userState) {
+            if ((this.UserInterestsOperationCompleted == null)) {
+                this.UserInterestsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserInterestsOperationCompleted);
+            }
+            this.InvokeAsync("UserInterests", new object[] {
+                        id,
+                        session}, this.UserInterestsOperationCompleted, userState);
+        }
+        
+        private void OnUserInterestsOperationCompleted(object arg) {
+            if ((this.UserInterestsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserInterestsCompleted(this, new UserInterestsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/Interests", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Interest[] Interests(System.Guid session) {
+            object[] results = this.Invoke("Interests", new object[] {
+                        session});
+            return ((Interest[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InterestsAsync(System.Guid session) {
+            this.InterestsAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void InterestsAsync(System.Guid session, object userState) {
+            if ((this.InterestsOperationCompleted == null)) {
+                this.InterestsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInterestsOperationCompleted);
+            }
+            this.InvokeAsync("Interests", new object[] {
+                        session}, this.InterestsOperationCompleted, userState);
+        }
+        
+        private void OnInterestsOperationCompleted(object arg) {
+            if ((this.InterestsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InterestsCompleted(this, new InterestsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/DefinitionLookup", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string DefinitionLookup(string lang, string word) {
             object[] results = this.Invoke("DefinitionLookup", new object[] {
@@ -675,6 +745,51 @@ namespace Omni.Client.org.omniproject.service {
             }
             set {
                 this.log_dateField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.42")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
+    public partial class Interest {
+        
+        private int idField;
+        
+        private int parent_idField;
+        
+        private string nameField;
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int parent_id {
+            get {
+                return this.parent_idField;
+            }
+            set {
+                this.parent_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
             }
         }
     }
@@ -895,6 +1010,58 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((User)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void UserInterestsCompletedEventHandler(object sender, UserInterestsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserInterestsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserInterestsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Interest[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Interest[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void InterestsCompletedEventHandler(object sender, InterestsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InterestsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InterestsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Interest[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Interest[])(this.results[0]));
             }
         }
     }

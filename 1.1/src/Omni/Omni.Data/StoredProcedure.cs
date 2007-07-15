@@ -2,6 +2,8 @@ using System;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Omni.Data
 {
@@ -84,6 +86,36 @@ namespace Omni.Data
             SetStoredProcedureParameter(cmd, "@sn_screenname", SqlDbType.NVarChar, sn_screenname);
             object result = cmd.ExecuteScalar();
             return (result == null) ? 1 : Convert.ToInt32(result);
+        }
+        #endregion
+
+        #region Users (Profiles, Interests, etc.)
+        public static Interest[] UserInterests(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_interest_list_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Interest> result = new List<Interest>();
+            while (reader.Read())
+            {
+                result.Add(new Interest(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["parent_id"]), reader["name"].ToString()));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+        public static Interest[] Interests(Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_interest_list", connection);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Interest> result = new List<Interest>();
+            while (reader.Read())
+            {
+                result.Add(new Interest(Convert.ToInt32(reader["id"]), Convert.ToInt32(reader["parent_id"]), reader["name"].ToString()));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
         }
         #endregion
 

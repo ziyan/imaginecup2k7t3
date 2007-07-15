@@ -154,6 +154,38 @@ namespace Omni.Service
         }
         #endregion
 
+        #region Users (Profiles, etc.)
+        /// <summary>
+        /// Get interests for a user.
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <param name="session">session id</param>
+        /// <returns>Array of interest ids</returns>
+        [WebMethod(Description = "Get interests for a user.")]
+        public Data.Interest[] UserInterests(int id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            if (id <= 0) throw new ArgumentOutOfRangeException();
+
+            return Data.StoredProcedure.UserInterests(Session.UserContext.User.id, Session.Connection);
+        }
+        /// <summary>
+        /// Get all interests in the system.
+        /// </summary>
+        /// <param name="session">session id</param>
+        /// <returns>Array of interest ids</returns>
+        [WebMethod(Description = "Get all interests in the system.")]
+        public Data.Interest[] Interests(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+
+            return Data.StoredProcedure.Interests(Session.Connection);
+        }
+
+        #endregion
+
         #region Lookup service
         /// <summary>
         /// Dictionary definition lookup service.
