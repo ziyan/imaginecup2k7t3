@@ -179,7 +179,6 @@ function page_goto_register()
     page_layout_big_left_right();
     content_right.appendChild($("userpanel"));
     content_left.appendChild($("userregisterpanel"));
-    user_register_update_captcha();
 }
 
 function page_goto_about()
@@ -191,6 +190,7 @@ function page_goto_about()
 function page_goto_profile()
 {
     page_layout_big_left_right();
+    content_right.appendChild($("userpanel"));
     content_left.appendChild($("userprofilepanel"));
     user_profile_retrieve();
 }

@@ -99,5 +99,6 @@ function splash_fade()
     else
     {
         $("splash").style.display = "none";
+        user_register_update_captcha();
     }
 }

@@ -18,14 +18,16 @@ input, textarea, select, button
 
 a
 {
-color: #006dba;
-text-decoration: underline;
+	color: #006dba;
+	text-decoration: underline;
+	outline: none;
 }
 
 a:hover, a:active
 {
-color: #CC6600;
-text-decoration: underline;
+	color: #CC6600;
+	text-decoration: underline;
+	outline: none;
 }
 
 .top
@@ -314,3 +316,74 @@ text-decoration: underline;
 	text-align:center;
 	vertical-align:middle;
 }
+
+
+/* rater */	
+.rater
+{
+	list-style:none;
+	margin: 0px;
+	padding:0px;
+	width: 125px;
+	height: 25px;
+	position: relative;
+	overflow:hidden;
+	background: url(/image/rater.gif) top left repeat-x;
+}
+.rater li
+{
+	padding:0px;
+	margin:0px;
+	/*\*/
+	float: left;
+	/* */
+}
+.rater li a
+{
+	display:block;
+	width:25px;
+	height: 25px;
+	line-height:25px;		
+	text-decoration: none;
+	text-indent: -9000px;
+	z-index: 20;
+	position: absolute;
+	padding: 0px;
+	overflow:hidden;
+}
+.rater li a:hover
+{
+	background: url(/image/rater.gif) left bottom;
+	z-index: 3;
+	left: 0px;
+	border:none;
+}
+.rater a.star-one{left: 0px;}
+.rater a.star-one:hover{width:25px;}
+.rater a.star-two{left:25px;}
+.rater a.star-two:hover{width: 50px;}
+.rater a.star-three{left: 50px;}
+.rater a.star-three:hover{width: 75px;}
+.rater a.star-four{left: 75px;}	
+.rater a.star-four:hover{width: 100px;}
+.rater a.star-five{left: 100px;}
+.rater a.star-five:hover{width: 125px;}
+.rater li.current-rating
+{
+	background: url(/image/rater.gif) center left;
+	position: absolute;
+	height: 25px;
+	display: block;
+	text-indent: -9000px;
+	z-index: 1;
+}
+.rater li.user-rating
+{
+	background: url(/image/rater.gif) left bottom;
+	position: absolute;
+	height: 25px;
+	display: block;
+	text-indent: -9000px;
+	z-index: 2;
+}
+

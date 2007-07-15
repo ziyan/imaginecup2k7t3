@@ -1,96 +1,13 @@
-<style>
-	/*             styles for the star rater                */	
-	.star-rating{
-		list-style:none;
-		margin: 0px;
-		padding:0px;
-		width: 125px;
-		height: 25px;
-		position: relative;
-		overflow:hidden;
-		background: url(alt_star.gif) top left repeat-x;
-	}
-	.star-rating li{
-		padding:0px;
-		margin:0px;
-		/*\*/
-		float: left;
-		/* */
-	}
-	.star-rating li a{
-		display:block;
-		width:25px;
-		height: 25px;
-		line-height:25px;		
-		text-decoration: none;
-		text-indent: -9000px;
-		z-index: 20;
-		position: absolute;
-		padding: 0px;
-		overflow:hidden;
-	}
-	.star-rating li a:hover{
-		background: url(alt_star.gif) left bottom;
-		z-index: 2;
-		left: 0px;
-		border:none;
-	}
-	.star-rating a.one-star{
-		left: 0px;
-	}
-	.star-rating a.one-star:hover{
-		width:25px;
-	}
-	.star-rating a.two-stars{
-		left:25px;
-	}
-	.star-rating a.two-stars:hover{
-		width: 50px;
-	}
-	.star-rating a.three-stars{
-		left: 50px;
-	}
-	.star-rating a.three-stars:hover{
-		width: 75px;
-	}
-	.star-rating a.four-stars{
-		left: 75px;
-	}	
-	.star-rating a.four-stars:hover{
-		width: 100px;
-	}
-	.star-rating a.five-stars{
-		left: 100px;
-	}
-	.star-rating a.five-stars:hover{
-		width: 125px;
-	}
-	.star-rating li.current-rating{
-		background: url(alt_star.gif) center left;
-		position: absolute;
-		height: 25px;
-		display: block;
-		text-indent: -9000px;
-		z-index: 1;
-	}
-	
-	/* remove halo effect in firefox   */
-	a:active{
-		outline: none;
-	}		
-		
-</style>
-<br /><br /><br />
-<ul class='star-rating'>
-	<li class="current-rating" style="width:100px;"></li>
-	<li><a href='#' title='1 star out of 5' class='one-star' onclick="return false"></a></li>
-	<li><a href='#' title='2 stars out of 5' class='two-stars' onclick="return false"></a></li>
-	<li><a href='#' title='3 stars out of 5' class='three-stars' onclick="return false"></a></li>
-	<li><a href='#' title='4 stars out of 5' class='four-stars' onclick="return false"></a></li>
-	<li><a href='#' title='5 stars out of 5' class='five-stars' onclick="return false"></a></li>
-</ul>
-
-<ul class='star-rating'>
-	<li class="current-rating" style="width:100px;"></li>
-</ul>
-		
+<html>
+<head>
+<script type="text/javascript" src="Script/AniScript.js"></script>
+<script type="text/javascript" src="Script/rater.js"></script>
+<link rel="stylesheet" href="Style/Default.css" media="all"/>
+</head>
+<body>
+<script>
+document.writeln(rater_create("a",2,3,2));
+</script>
+<a href=# onclick="alert(rater_get_rating('a')+1)">get</a>
+</body>
+</html>
