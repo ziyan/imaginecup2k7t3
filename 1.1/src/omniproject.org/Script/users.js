@@ -26,7 +26,7 @@ Language : Object
 //       prefix_interest_id
 // e.g.  userprofilepanel_interest_12
 // FIXME: Localize
-function get_interests_table(interests, prefix)
+function users_interests_table(interests, prefix)
 {
     var output = "<span style=\"line-height: 14px\">";
     output += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">";

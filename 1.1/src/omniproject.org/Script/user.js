@@ -57,9 +57,7 @@ function user_current_callback()
         user_current_obj = user_current_ajax.getJSON();
         // system level languages & interests
         ///// system_languages_ajax
-        system_interests_loading = true;
-        system_interests_ajax.setHandler(system_interests_callback);
-        system_interests_ajax.request("/handler/users/interestshandler.ashx");
+        system_interests();
     }
     else
     {
@@ -68,7 +66,16 @@ function user_current_callback()
     if(!user_loading && !system_interests_loading && !system_languages_loading)
         user_state_update(true);
 }
-//callback from init
+
+//load system interests
+function system_interests()
+{
+    system_interests_loading = true;
+    system_interests_ajax.setHandler(system_interests_callback);
+    system_interests_ajax.request("/handler/interest/listhandler.ashx");
+}
+
+//callback system interests
 function system_interests_callback()
 {
     if(!system_interests_ajax.isDone()) return;
@@ -428,11 +435,11 @@ function user_profile_retrieve()
         $("form_user_profile_description").value = user_current_obj.description;
         $("form_user_profile_sn_network").value = user_current_obj.sn_network;
         $("form_user_profile_sn_screenname").value = user_current_obj.sn_screenname;
-        $("form_user_profile_interests").innerHTML = loading_img;
+        $("form_user_profile_interests").innerHTML = loading_img+" "+lang_getHTML("UserProfileInterestLoading");
         // ajax
         if(user_update_interests_ajax == null) user_update_interests_ajax = new AniScript.Web.Ajax();
         user_update_interests_ajax.setHandler(user_update_interests_callback);
-        user_update_interests_ajax.request("/handler/users/userinterestshandler.ashx","id="+escape(user_current_id));          
+        user_update_interests_ajax.request("/handler/user/interestshandler.ashx","id="+escape(user_current_id));          
     }
 }
 function user_profile_reset()
@@ -468,6 +475,7 @@ function user_update()
     $("form_user_profile_sn_network").disabled = true;
     $("form_user_profile_sn_screenname").disabled = true;
     $("Omni_Localized_UserProfileSubmitButton").disabled = true;
+    $("userprofilepanel_status").innerHTML=loading_img+" "+ lang_getHTML("UserProfileUpdating");
     // ajax
     if(user_update_ajax == null) user_update_ajax = new AniScript.Web.Ajax();
     user_update_ajax.setHandler(user_update_callback);
@@ -517,7 +525,7 @@ function user_update_interests_callback()
     if(status=="Complete")
     {
         user_current_interests = user_update_interests_ajax.getJSON().interests;
-        $("form_user_profile_interests").innerHTML = get_interests_table(system_interests,"userprofilepanel");
+        $("form_user_profile_interests").innerHTML = users_get_interests_table(system_interests,"userprofilepanel");
         // Add checkboxes
         for(var x=0; x<system_interests.length; x++)
         {

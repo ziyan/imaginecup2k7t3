@@ -1,46 +1,96 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <title>Untitled Page</title>
-    <script type="text/javascript" src="Script/global.js"></script>
-    <script type="text/javascript" src="Script/md5.js"></script>
-    <script type="text/javascript" src="Script/JSON.js"></script>
-    <script type="text/javascript" src="Script/AniScript.js"></script>
-    <script type="text/javascript">
-var ajax = new AniScript.Web.Ajax();
-function request()
-{
-    ajax.setHandler(callback);
-    ajax.request("/localization/zh-cn.txt");
-}
-function callback()
-{
-    $("session").innerHTML = ajax.getJSON().HelloToTheWorld;
-}
+<style>
+	/*             styles for the star rater                */	
+	.star-rating{
+		list-style:none;
+		margin: 0px;
+		padding:0px;
+		width: 125px;
+		height: 25px;
+		position: relative;
+		overflow:hidden;
+		background: url(alt_star.gif) top left repeat-x;
+	}
+	.star-rating li{
+		padding:0px;
+		margin:0px;
+		/*\*/
+		float: left;
+		/* */
+	}
+	.star-rating li a{
+		display:block;
+		width:25px;
+		height: 25px;
+		line-height:25px;		
+		text-decoration: none;
+		text-indent: -9000px;
+		z-index: 20;
+		position: absolute;
+		padding: 0px;
+		overflow:hidden;
+	}
+	.star-rating li a:hover{
+		background: url(alt_star.gif) left bottom;
+		z-index: 2;
+		left: 0px;
+		border:none;
+	}
+	.star-rating a.one-star{
+		left: 0px;
+	}
+	.star-rating a.one-star:hover{
+		width:25px;
+	}
+	.star-rating a.two-stars{
+		left:25px;
+	}
+	.star-rating a.two-stars:hover{
+		width: 50px;
+	}
+	.star-rating a.three-stars{
+		left: 50px;
+	}
+	.star-rating a.three-stars:hover{
+		width: 75px;
+	}
+	.star-rating a.four-stars{
+		left: 75px;
+	}	
+	.star-rating a.four-stars:hover{
+		width: 100px;
+	}
+	.star-rating a.five-stars{
+		left: 100px;
+	}
+	.star-rating a.five-stars:hover{
+		width: 125px;
+	}
+	.star-rating li.current-rating{
+		background: url(alt_star.gif) center left;
+		position: absolute;
+		height: 25px;
+		display: block;
+		text-indent: -9000px;
+		z-index: 1;
+	}
+	
+	/* remove halo effect in firefox   */
+	a:active{
+		outline: none;
+	}		
+		
+</style>
+<br /><br /><br />
+<ul class='star-rating'>
+	<li class="current-rating" style="width:100px;"></li>
+	<li><a href='#' title='1 star out of 5' class='one-star' onclick="return false"></a></li>
+	<li><a href='#' title='2 stars out of 5' class='two-stars' onclick="return false"></a></li>
+	<li><a href='#' title='3 stars out of 5' class='three-stars' onclick="return false"></a></li>
+	<li><a href='#' title='4 stars out of 5' class='four-stars' onclick="return false"></a></li>
+	<li><a href='#' title='5 stars out of 5' class='five-stars' onclick="return false"></a></li>
+</ul>
 
-AniScript.Loader.add(request);
-//AniScript.Unloader.add(function(){alert("hello");});
-</script>
-</head>
-<body>
-<div id="session"></div>
-<div id="md5"></div>
-<div id="a">
-<span id="Omni_Localized_HelloToTheWorld_1">Hello To the World</span><br /><span id="Omni_Localized_HelloToTheWorld_2">Hello To the World</span>
-</div>
-<script type="text/javascript">
-$("md5").innerHTML = hex_md5("anikjim");
-</script>
-<a href="#" onclick="lang_set('zh-CN')">a</a>
-<a href="#" onclick="lang_set('en-US')">b</a>
-<button id="Omni_Localized_HelloToTheWorld_7"></button>
-<input id="Omni_Localized_HelloToTheWorld_8" value="" type="button"/>
-<textarea cols="10" rows="3" id="Omni_Localized_HelloToTheWorld_99"></textarea>
-<select>
-    <optgroup id="Omni_Localized_HelloToTheWorld_99ad" label="d">
-    <option id="Omni_Localized_HelloToTheWorld_99a">fdsf</option>
-    </optgroup>
-</select>
-</body>
-</html>
+<ul class='star-rating'>
+	<li class="current-rating" style="width:100px;"></li>
+</ul>
+		
