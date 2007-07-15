@@ -18,6 +18,8 @@
 	
 	"SplashPageInit":"正在初始化页面 ...",
 	"SplashUserInit":"正在获取用户数据 ...",
+	"SplashSystemInterestsInit":"正在获取系统信息 ...",
+	"SplashSystemLanguagessInit":"正在获取系统语言列表 ...",
 	"SplashInitDone":"完成初始化 ...",
 	
 	"UserLoginTitle":"用户登录",
@@ -98,5 +100,17 @@
 	"ServiceDictTitle":"在线词典",
 	"ServiceDictENUS":"英文(美国)词典",
 	"ServiceDictSubmitButton":"查词",
-	"ServiceDictResetButton":"重置"
+	"ServiceDictResetButton":"重置",
+	
+	"InterestNameMusic":"音乐",
+	"InterestNameMovies":"电影",
+	"InterestNameSports":"运动",
+	"InterestNameTV":"电视剧",
+	"InterestNameTechnology":"科技",
+	"InterestNameMusicRockPop":"摇滚音乐",
+	"InterestNameMusicRap":"说唱",
+	"InterestNameMusicTechnoDance":"电子舞蹈",
+	"InterestNameMusicCountry":"乡村音乐",
+	"InterestNameMusicClassical":"经典音乐",
+	"InterestNameMusicOldies":"老音乐"
 }

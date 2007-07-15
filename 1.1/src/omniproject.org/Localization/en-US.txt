@@ -17,6 +17,8 @@
 	"LanguageOptionENUS":"U.S. English",
 	
 	"SplashPageInit":"Initializing page layout ...",
+	"SplashSystemInterestsInit":"Fetching system info ...",
+	"SplashSystemLanguagessInit":"Fetching system language list ...",
 	"SplashUserInit":"Fetching user information ...",
 	"SplashInitDone":"Initializing done ...",
 	
@@ -100,5 +102,17 @@
 	"ServiceDictTitle":"Online Dictionary",
 	"ServiceDictENUS":"U.S. English Dictionary",
 	"ServiceDictSubmitButton":"Lookup",
-	"ServiceDictResetButton":"Reset"
+	"ServiceDictResetButton":"Reset",
+	
+	"InterestNameMusic":"Music",
+	"InterestNameMovies":"Movies",
+	"InterestNameSports":"Sports",
+	"InterestNameTV":"TV Shows",
+	"InterestNameTechnology":"Technology",
+	"InterestNameMusicRockPop":"Rock and Pop",
+	"InterestNameMusicRap":"Rap",
+	"InterestNameMusicTechnoDance":"Techno and Dance",
+	"InterestNameMusicCountry":"Country",
+	"InterestNameMusicClassical":"Classical",
+	"InterestNameMusicOldies":"Oldies"
 }

@@ -6,20 +6,7 @@
 //some global accessible variable for user
 var user_current_ajax = new AniScript.Web.Ajax(); //ajax object
 var user_current_id = 0;
-var user_current_username = null;
-var user_current_name = null;
-var user_current_email = null;
-var user_current_reg_date = null;
-var user_current_log_date = null;
 var user_current_obj = null;
-var user_current_interests = null;
-var user_current_languages = null;
-
-// Interests and Languages (full list)
-var system_languages_ajax = new AniScript.Web.Ajax(); // Ajax
-var system_interests_ajax = new AniScript.Web.Ajax(); // Ajax
-var system_languages = null; // Language[]
-var system_interests = null; // Interest[]
 
 //init function to check user status
 function user_init()
@@ -32,7 +19,7 @@ function user_init()
 }
 //AniScript.Loader.add(user_init);
 
-//callback from init
+//callback from profile update
 function user_current_callback()
 {
     if(!user_current_ajax.isDone()) return;
@@ -41,108 +28,19 @@ function user_current_callback()
     {
         server_error = true;
         user_current_userid = 0;
-        user_current_username = null;
-        if(!user_loading && !system_interests_loading && !system_languages_loading)
-            user_state_update(true);
+        user_state_update();
         return;
     }
     if(user_current_ajax.getJSON().loggedin)
     {
         user_current_id = user_current_ajax.getJSON().id;
-        user_current_username = user_current_ajax.getJSON().username;
-        user_current_name = user_current_ajax.getJSON().name;
-        user_current_email = user_current_ajax.getJSON().email;
-        user_current_reg_date = user_current_ajax.getJSON().reg_date;
-        user_current_log_date = user_current_ajax.getJSON().log_date;
         user_current_obj = user_current_ajax.getJSON();
-        // system level languages & interests
-        ///// system_languages_ajax
-        system_interests();
     }
     else
     {
         user_info_clear();
     }
-    if(!user_loading && !system_interests_loading && !system_languages_loading)
-        user_state_update(true);
-}
-
-//load system interests
-function system_interests()
-{
-    system_interests_loading = true;
-    system_interests_ajax.setHandler(system_interests_callback);
-    system_interests_ajax.request("/handler/interest/listhandler.ashx");
-}
-
-//callback system interests
-function system_interests_callback()
-{
-    if(!system_interests_ajax.isDone()) return;
-    system_interests_loading = false;
-    if(system_interests_ajax.hasError())
-    {
-        if(!user_loading)
-            server_error = true;
-        system_interests = null;
-        if(!user_loading && !system_interests_loading && !system_languages_loading)
-            user_state_update(true);        
-        return;
-    }
-    else system_interests = system_interests_ajax.getJSON();
-    if(!user_loading && !system_interests_loading && !system_languages_loading)
-        user_state_update(true);    
-}
-// callback from init
-/*
-function system_languages_callback()
-{
-    if(!system_languages_ajax.isDone()) return;
-    system_languages_loading = false;
-    if(system_languages_ajax.hasError())
-    {
-        if(!user_loading)
-            server_error = true;
-        system_languages = null;
-        if(!user_loading && !system_interests_loading && !system_languages_loading)
-            user_state_update(true);        
-        return;
-    }
-    else system_languages = system_languages_ajax.getJSON();
-    if(!user_loading && !system_interests_loading && !system_languages_loading)
-        user_state_update(true);    
-} 
-*/
-
-
-//callback from profile update
-function user_current_update_callback()
-{
-    if(!user_current_ajax.isDone()) return;
-    user_loading = false;
-    if(user_current_ajax.hasError())
-    {
-        server_error = true;
-        user_current_userid = 0;
-        user_current_username = null;
-        user_state_update(false);
-        return;
-    }
-    if(user_current_ajax.getJSON().loggedin)
-    {
-        user_current_id = user_current_ajax.getJSON().id;
-        user_current_username = user_current_ajax.getJSON().username;
-        user_current_name = user_current_ajax.getJSON().name;
-        user_current_email = user_current_ajax.getJSON().email;
-        user_current_reg_date = user_current_ajax.getJSON().reg_date;
-        user_current_log_date = user_current_ajax.getJSON().log_date;
-        user_current_obj = user_current_ajax.getJSON();
-    }
-    else
-    {
-        user_info_clear();     
-    }
-    user_state_update(false);
+    user_state_update();
 }
 
 //check if user is logged in
@@ -152,12 +50,12 @@ function user_is_logged_in()
 }
 
 //update site component according to user status
-function user_state_update(refresh_on_success)
+function user_state_update()
 {
     if(user_is_logged_in())
     {
         //logged in
-        $("usermenu").innerHTML=lang_getHTML("UserMenuWelcome")+user_current_name+" | <a href=\"#\" onclick=\"user_logout();return false\">"+lang_getHTML("UserMenuLogout")+"</a> ";
+        $("usermenu").innerHTML=lang_getHTML("UserMenuWelcome")+user_current_obj.name+" | <a href=\"#\" onclick=\"user_logout();return false\">"+lang_getHTML("UserMenuLogout")+"</a> ";
         $("userpanel_not_logged_in").style.display="none";
         
         //clear the form
@@ -167,7 +65,7 @@ function user_state_update(refresh_on_success)
         $("form_user_login_password").value="";
         $("Omni_Localized_UserLoginSubmitButton").disabled=false;
         $("userpanel_status").innerHTML="";
-        if(refresh_on_success) page_update();        
+        page_update();        
     }
     else
     {
@@ -424,14 +322,28 @@ function user_register_reset()
     $("userregisterpanel_status").innerHTML="";
     user_register_update_captcha();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // user profile
 function user_profile_retrieve()
 {
     if(user_current_obj != null)
     {
-        $("form_user_profile_username").innerHTML = user_current_username;
-        $("form_user_profile_name").value = user_current_name;
-        $("form_user_profile_email").value = user_current_email;
+        $("form_user_profile_username").innerHTML = user_current_obj.username;
+        $("form_user_profile_name").value = user_current_obj.name;
+        $("form_user_profile_email").value = user_current_obj.email;
         $("form_user_profile_description").value = user_current_obj.description;
         $("form_user_profile_sn_network").value = user_current_obj.sn_network;
         $("form_user_profile_sn_screenname").value = user_current_obj.sn_screenname;
@@ -442,11 +354,60 @@ function user_profile_retrieve()
         user_update_interests_ajax.request("/handler/user/interestshandler.ashx","id="+escape(user_current_id));          
     }
 }
+function user_update_interests_callback()
+{
+    if(!user_update_interests_ajax.isDone()) return;
+    if(user_update_interests_ajax.hasError())
+    {
+        $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        return;
+    }    
+    var status = user_update_interests_ajax.getJSON().status;
+    if(status=="Complete")
+    {
+        user_current_interests = user_update_interests_ajax.getJSON().interests;
+        $("form_user_profile_interests").innerHTML = system_interests_table("userprofilepanel");
+        // Add checkboxes
+        for(var x=0; x<system_interests.length; x++)
+        {
+            var cell = $("userprofilepanel_interest_"+system_interests[x].id);
+            if(cell != undefined)
+            {
+                var chk = document.createElement("INPUT");
+                chk.setAttribute("type","checkbox");
+                chk.setAttribute("value",system_interests[x].id);
+                chk.setAttribute("id","userprofilepanel_interest_"+system_interests[x].id+"_chk");
+                chk.setAttribute("defaultChecked",false);
+                cell.appendChild(chk);
+                cell.width = 20;
+            }
+        }
+        for(var x=0; x<user_current_interests.length; x++)
+        {
+            var chk = $("userprofilepanel_interest_"+user_current_interests[x].id+"_chk");
+            if(chk != null && chk != undefined)
+                chk.checked = true;
+        }
+    }
+    else
+    {
+        $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+    }    
+}
+
+
+
+
+
+
+
+
 function user_profile_reset()
 {
     $("userprofilepanel_status").innerHTML="";
     user_profile_retrieve();
 }
+
 var user_update_ajax = null; //ajax object
 var user_update_interests_ajax = null; //ajax object
 
@@ -500,8 +461,7 @@ function user_update_callback()
     if(status=="Updated")
     {
         $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";
-        user_current_ajax.setHandler(user_current_update_callback);
-        user_current_ajax.request("/handler/user/currenthandler.ashx");        
+        user_init();   
     }
     else if(status=="DuplicateEmail")
     {
@@ -512,44 +472,4 @@ function user_update_callback()
     {
         $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
     }
-}
-function user_update_interests_callback()
-{
-    if(!user_update_interests_ajax.isDone()) return;
-    if(user_update_interests_ajax.hasError())
-    {
-        $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
-        return;
-    }    
-    var status = user_update_interests_ajax.getJSON().status;
-    if(status=="Complete")
-    {
-        user_current_interests = user_update_interests_ajax.getJSON().interests;
-        $("form_user_profile_interests").innerHTML = users_get_interests_table(system_interests,"userprofilepanel");
-        // Add checkboxes
-        for(var x=0; x<system_interests.length; x++)
-        {
-            var cell = $("userprofilepanel_interest_"+system_interests[x].id);
-            if(cell != undefined)
-            {
-                var chk = document.createElement("INPUT");
-                chk.setAttribute("type","checkbox");
-                chk.setAttribute("value",system_interests[x].id);
-                chk.setAttribute("id","userprofilepanel_interest_"+system_interests[x].id+"_chk");
-                chk.setAttribute("defaultChecked",false);
-                cell.appendChild(chk);
-                cell.width = 20;
-            }
-        }
-        for(var x=0; x<user_current_interests.length; x++)
-        {
-            var chk = $("userprofilepanel_interest_"+user_current_interests[x].id+"_chk");
-            if(chk != null && chk != undefined)
-                chk.checked = true;
-        }
-    }
-    else
-    {
-        $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
-    }    
 }

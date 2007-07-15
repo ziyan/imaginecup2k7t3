@@ -36,14 +36,43 @@ function splash_wait_for_lang()
         $("splash_status").innerHTML = loading_img + " " + lang_getHTML("SplashPageInit");
         page_init();
         if(server_error) return;
-        
-        //loading user info
-        $("splash_status").innerHTML = loading_img + " " + lang_getHTML("SplashUserInit");
-        user_init();
-        splash_wait_for_user()
+
+        //loading system interests info
+        $("splash_status").innerHTML = loading_img + " " + lang_getHTML("SplashSystemInterestsInit");
+        system_interests_init();
+        splash_wait_for_system_interests();
         return;
     }
     var timer = setTimeout("splash_wait_for_lang()", 500);
+}
+
+
+function splash_wait_for_system_interests()
+{
+    if(!system_interests_loading)
+    {
+        if(server_error) return;
+        //loading languages info
+        $("splash_status").innerHTML = loading_img + " " + lang_getHTML("SplashSystemLanguagesInit");
+        //system_langauges_init();
+        splash_wait_for_system_languages();
+        return;
+    }
+    setTimeout("splash_wait_for_system_interests()", 500);
+}
+
+function splash_wait_for_system_languages()
+{
+    if(!system_languages_loading)
+    {
+        if(server_error) return;
+        //loading user info
+        $("splash_status").innerHTML = loading_img + " " + lang_getHTML("SplashUserInit");
+        user_init();
+        splash_wait_for_user();
+        return;
+    }
+    setTimeout("splash_wait_for_system_languages()", 500);
 }
 
 function splash_wait_for_user()
