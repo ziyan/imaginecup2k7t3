@@ -197,17 +197,17 @@
           <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
         </s:sequence>
       </s:complexType>
-      <s:element name="Interests">
+      <s:element name="InterestList">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="InterestsResponse">
+      <s:element name="InterestListResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="InterestsResult" type="tns:ArrayOfInterest" />
+            <s:element minOccurs="0" maxOccurs="1" name="InterestListResult" type="tns:ArrayOfInterest" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -323,11 +323,11 @@
   <wsdl:message name="UserInterestsSoapOut">
     <wsdl:part name="parameters" element="tns:UserInterestsResponse" />
   </wsdl:message>
-  <wsdl:message name="InterestsSoapIn">
-    <wsdl:part name="parameters" element="tns:Interests" />
+  <wsdl:message name="InterestListSoapIn">
+    <wsdl:part name="parameters" element="tns:InterestList" />
   </wsdl:message>
-  <wsdl:message name="InterestsSoapOut">
-    <wsdl:part name="parameters" element="tns:InterestsResponse" />
+  <wsdl:message name="InterestListSoapOut">
+    <wsdl:part name="parameters" element="tns:InterestListResponse" />
   </wsdl:message>
   <wsdl:message name="DefinitionLookupSoapIn">
     <wsdl:part name="parameters" element="tns:DefinitionLookup" />
@@ -402,10 +402,10 @@
       <wsdl:input message="tns:UserInterestsSoapIn" />
       <wsdl:output message="tns:UserInterestsSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Interests">
+    <wsdl:operation name="InterestList">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all interests in the system.</wsdl:documentation>
-      <wsdl:input message="tns:InterestsSoapIn" />
-      <wsdl:output message="tns:InterestsSoapOut" />
+      <wsdl:input message="tns:InterestListSoapIn" />
+      <wsdl:output message="tns:InterestListSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="DefinitionLookup">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Dictionary definition lookup service.</wsdl:documentation>
@@ -528,8 +528,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Interests">
-      <soap:operation soapAction="http://service.omniproject.org/Interests" style="document" />
+    <wsdl:operation name="InterestList">
+      <soap:operation soapAction="http://service.omniproject.org/InterestList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -666,8 +666,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Interests">
-      <soap12:operation soapAction="http://service.omniproject.org/Interests" style="document" />
+    <wsdl:operation name="InterestList">
+      <soap12:operation soapAction="http://service.omniproject.org/InterestList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

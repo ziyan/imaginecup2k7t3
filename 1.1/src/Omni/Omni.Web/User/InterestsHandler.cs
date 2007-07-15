@@ -4,9 +4,9 @@ using JSONSharp;
 using JSONSharp.Collections;
 using JSONSharp.Values;
 
-namespace Omni.Web.Users
+namespace Omni.Web.User
 {
-    public class UserInterestsHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState
+    public class InterestsHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState
     {
         public void ProcessRequest(HttpContext context)
         {

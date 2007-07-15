@@ -174,34 +174,7 @@ namespace Omni.Client
                 return new User(user);
             }
         }
-        #endregion
 
-        #region Users (Profile, etc.)
-        /// <summary>
-        /// Get all interests in the system.
-        /// </summary>
-        /// <returns>Interests (array of interest ids)</returns>
-        public Interest[] Interests()
-        {
-            CheckSession();
-            try
-            {
-                org.omniproject.service.Interest[] svcInterests = service.Interests(session);
-                if (svcInterests == null) return null;
-                Interest[] interests = new Interest[svcInterests.Length];
-                for (int i = 0; i < interests.Length; i++)
-                {
-                    interests[i] = new Interest(svcInterests[i]);
-                }
-                return interests;
-            }
-            catch (System.Exception e)
-            {
-                Exception.Rethrow(e);
-            }
-            return null;
-        }
-        
         /// <summary>
         /// Get interests for a user.
         /// </summary>
@@ -226,7 +199,36 @@ namespace Omni.Client
                 Exception.Rethrow(e);
             }
             return null;
-         }
+        }
+        #endregion
+
+        #region Interest
+        /// <summary>
+        /// Get all interests in the system.
+        /// </summary>
+        /// <returns>Interests (array of interest ids)</returns>
+        public Interest[] InterestList()
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Interest[] svcInterests = service.InterestList(session);
+                if (svcInterests == null) return null;
+                Interest[] interests = new Interest[svcInterests.Length];
+                for (int i = 0; i < interests.Length; i++)
+                {
+                    interests[i] = new Interest(svcInterests[i]);
+                }
+                return interests;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+        
+        
          
 
         #endregion

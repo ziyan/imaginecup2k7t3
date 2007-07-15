@@ -87,9 +87,6 @@ namespace Omni.Data
             object result = cmd.ExecuteScalar();
             return (result == null) ? 1 : Convert.ToInt32(result);
         }
-        #endregion
-
-        #region Users (Profiles, Interests, etc.)
         public static Interest[] UserInterests(int user_id, Connection connection)
         {
             SqlCommand cmd = GetStoredProcedure("omni_user_interest_list_by_id", connection);
@@ -104,7 +101,10 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
-        public static Interest[] Interests(Connection connection)
+        #endregion
+
+        #region Interest
+        public static Interest[] InterestList(Connection connection)
         {
             SqlCommand cmd = GetStoredProcedure("omni_interest_list", connection);
             SqlDataReader reader = cmd.ExecuteReader();
@@ -117,9 +117,6 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
-        #endregion
-
-        #region Interest
         #endregion
 
 
