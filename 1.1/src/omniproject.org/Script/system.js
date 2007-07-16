@@ -79,8 +79,7 @@ function system_languages_callback()
 function system_interests_table(prefix)
 {
     if(system_interests==null) return "";
-    var output = "<span style=\"line-height: 10px\">";
-    output += "<table>";
+    var output = "<span style=\"line-height: 10px\"><table>";
     // Only works for one level of parents
     for(var i=0; i<system_interests.length; i++)
     {
