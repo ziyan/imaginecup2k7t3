@@ -44,11 +44,15 @@ namespace Omni.Web.User
             {
                 for (int i = 0; i < interests.Length; i++)
                 {
+                    /*
+                     // Uncomment this block to send over full interests.
+                     // Unnecessary right now, since interests are loaded at startup.
                     JSONObjectCollection obj = new JSONObjectCollection();
                     obj.Add(new JSONStringValue("id"), new JSONStringValue(interests[i].ID.ToString()));
                     obj.Add(new JSONStringValue("parent_id"), new JSONStringValue(interests[i].ParentID.ToString()));
                     obj.Add(new JSONStringValue("name"), new JSONStringValue(interests[i].Name));
-                    jsonInterests.Add(obj);
+                    jsonInterests.Add(obj);*/
+                    jsonInterests.Add(new JSONNumberValue(interests[i].ID));
                 }
             }
             collection.Add(new JSONStringValue("interests"), jsonInterests);
