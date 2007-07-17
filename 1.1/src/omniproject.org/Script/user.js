@@ -386,7 +386,7 @@ function user_update_interests_callback()
         }
         for(var x=0; x<user_current_interests.length; x++)
         {
-            var chk = $("userprofilepanel_interest_"+user_current_interests[x].id+"_chk");
+            var chk = $("userprofilepanel_interest_"+user_current_interests[x]+"_chk");
             if(chk != null && chk != undefined)
                 chk.checked = true;
         }

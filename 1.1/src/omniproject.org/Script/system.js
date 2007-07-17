@@ -3,19 +3,13 @@
 /*
 Common Objects:
 
-Interests : Array of Interest
-Interest : Object
+System Interests : Array of Interest
+System Interest : Object
   id
   parent_id
   name
-  
-Languages : Array of Language
-Language : Object
-  id
-  name
-  known     (true / false)
-  skill     (int, 1 to 5)
-  
+User Interests: Array of interest_id's that match
+  with loaded System Interests.  
 */
 
 // Interests and Languages (full list)
