@@ -353,7 +353,7 @@ function user_profile_retrieve()
         // ajax
         if(user_update_interests_ajax == null) user_update_interests_ajax = new AniScript.Web.Ajax();
         user_update_interests_ajax.setHandler(user_update_interests_callback);
-        user_update_interests_ajax.request("/handler/user/interestshandler.ashx","id="+escape(user_current_id));          
+        user_update_interests_ajax.request("/handler/user/interestshandler.ashx","user_id="+escape(user_current_id));          
     }
 }
 function user_update_interests_callback()
@@ -365,7 +365,7 @@ function user_update_interests_callback()
         return;
     }    
     var status = user_update_interests_ajax.getJSON().status;
-    if(status=="Complete")
+    if(status=="OK")
     {
         user_current_interests = user_update_interests_ajax.getJSON().interests;
         $("form_user_profile_interests").innerHTML = system_interests_table("userprofilepanel");
@@ -386,7 +386,7 @@ function user_update_interests_callback()
         }
         for(var x=0; x<user_current_interests.length; x++)
         {
-            var chk = $("userprofilepanel_interest_"+user_current_interests[x]+"_chk");
+            var chk = $("userprofilepanel_interest_"+user_current_interests[x].id+"_chk");
             if(chk != null && chk != undefined)
                 chk.checked = true;
         }
