@@ -13,29 +13,29 @@ namespace Omni.Web.User
             context.Response.ContentType = "text/plain";
             context.Response.Expires = -1;
 
-            String status = "Unknown";
+            string status = "Unknown";
 
-            String idStr = context.Request["id"];
-            int userid = -1;
+            int user_id = Convert.ToInt32(Util.Validator.IsInteger(context.Request["user_id"]) ? context.Request["user_id"] : "0");
             Client.Interest[] interests = null;
-            if (idStr != null && idStr != "")
+            if (user_id > 0)
             {
                 try
                 {
-                    userid = Convert.ToInt32(idStr);
-                    status = "Complete";
+                    interests = Common.Client.UserInterests(user_id);
+                    if (interests != null)
+                        status = "OK";
+                    else
+                        status = "Error";
                 }
-                catch (System.Exception)
+                catch
                 {
-                    status = "InvalidID";
+                    status = "Error";
                 }
-                if (userid >= 0)
-                {
-                    interests = Common.Client.UserInterests(userid);
-                }
-                else status = "InvalidID";
             }
-            else status = "Incomplete";
+            else
+            {
+                status = "InComplete";
+            }
 
             JSONObjectCollection collection = new JSONObjectCollection();
             collection.Add(new JSONStringValue("status"), new JSONStringValue(status));
@@ -63,7 +63,7 @@ namespace Omni.Web.User
         {
             get
             {
-                return false;
+                return true;
             }
         }
     }
