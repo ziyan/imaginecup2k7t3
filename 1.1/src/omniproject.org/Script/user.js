@@ -350,6 +350,7 @@ function user_profile_retrieve()
         $("form_user_profile_sn_network").value = user_current_obj.sn_network;
         $("form_user_profile_sn_screenname").value = user_current_obj.sn_screenname;
         $("form_user_profile_interests").innerHTML = loading_img+" "+lang_getHTML("UserProfileInterestLoading");
+        $("Omni_Localized_UserProfileSubmitButton").disabled = true;
         // ajax
         if(user_update_interests_ajax == null) user_update_interests_ajax = new AniScript.Web.Ajax();
         user_update_interests_ajax.setHandler(user_update_interests_callback);
@@ -359,9 +360,11 @@ function user_profile_retrieve()
 function user_update_interests_callback()
 {
     if(!user_update_interests_ajax.isDone()) return;
+    $("Omni_Localized_UserProfileSubmitButton").disabled = false;
     if(user_update_interests_ajax.hasError())
     {
         $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        user_current_interests = null;
         return;
     }    
     var status = user_update_interests_ajax.getJSON().status;
@@ -386,7 +389,7 @@ function user_update_interests_callback()
         }
         for(var x=0; x<user_current_interests.length; x++)
         {
-            var chk = $("userprofilepanel_interest_"+user_current_interests[x].id+"_chk");
+            var chk = $("userprofilepanel_interest_"+user_current_interests[x]/*.id*/+"_chk");
             if(chk != null && chk != undefined)
                 chk.checked = true;
         }
@@ -394,6 +397,7 @@ function user_update_interests_callback()
     else
     {
         $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        user_current_interests = null;
     }    
 }
 
@@ -431,6 +435,20 @@ function user_update()
     }
     description = newlnHTML2String(description);
     description = stripHTML(description);
+    
+    var ids = new Array();
+    for(var x=0; x < system_interests.length; x++)
+    {
+        var curId = "userprofilepanel_interest_"+system_interests[x].id+"_chk";
+        var ele = $(curId);
+        if(ele != null && ele != undefined)
+        {
+            if(ele.checked)
+                ids.push(system_interests[x].id);
+        }
+    }
+    // FIXME : Update user's interests with the above IDs
+    
     // lock fields
     $("form_user_profile_name").disabled = true;
     $("form_user_profile_email").disabled = true;
