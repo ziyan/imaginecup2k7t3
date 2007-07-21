@@ -32,7 +32,7 @@ a:hover, a:active
 
 .top
 {
-	width: 790px;
+	width: 790px; _width: 800px;
 	margin:0px;
 	padding:0px;
 }
@@ -110,7 +110,7 @@ a:hover, a:active
 }
 .content
 {
-	width: 790px;
+	width: 790px; _width: 800px;
 	padding-top:15px;
 }
 .content_left_center_right #content_left
@@ -270,7 +270,7 @@ a:hover, a:active
 {
 	display: block;
 	text-align: center;
-	width: 790px;
+	width: 790px; _width: 800px;
 	clear: both;
 	border-top: 1px dashed #666666;
 	color:#666666;
