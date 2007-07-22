@@ -23,7 +23,7 @@ function system_interests_init()
 {
     system_interests_loading = true;
     system_interests_ajax.setHandler(system_interests_callback);
-    system_interests_ajax.request("/handler/interest/listhandler.ashx");
+    system_interests_ajax.request(hosturl+"handler/interest/listhandler.ashx");
 }
 
 //callback system interests

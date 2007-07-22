@@ -132,7 +132,7 @@ function page_change(page_name)
             break;
     }
     page_current = page_name;
-    location.href="/#"+page_current;
+    location.href=hosturl+"index.htm"+"#"+page_current;
     page_update();
 }
 

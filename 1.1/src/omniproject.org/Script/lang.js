@@ -33,7 +33,7 @@ function lang_load(lang_code)
     $("lang_selector").disabled = true;
     $("lang_loading").innerHTML = loading_img;
     lang_ajax.setHandler(lang_load_callback);
-    lang_ajax.request("/Localization/"+lang_code+".txt");
+    lang_ajax.request(hosturl+"Localization/"+lang_code+".txt");
 }
 function lang_load_callback()
 {

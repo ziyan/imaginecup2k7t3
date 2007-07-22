@@ -24,7 +24,7 @@ function service_trans()
     //ajax
     if(service_trans_ajax==null) service_trans_ajax = new AniScript.Web.Ajax();
     service_trans_ajax.setHandler(service_trans_callback);
-    service_trans_ajax.request("/handler/service/translationhandler.ashx","message="+escape(msg)+"&src_lang="+escape(src_lang)+"&dst_lang="+escape(dst_lang));
+    service_trans_ajax.request(hosturl+"handler/service/translationhandler.ashx","message="+escape(msg)+"&src_lang="+escape(src_lang)+"&dst_lang="+escape(dst_lang));
 }
 function service_trans_callback()
 {
@@ -64,7 +64,7 @@ function service_dict()
     //ajax
     if(service_dict_ajax==null) service_dict_ajax = new AniScript.Web.Ajax();
     service_dict_ajax.setHandler(service_dict_callback);
-    service_dict_ajax.request("/handler/service/dictionaryhandler.ashx","word="+escape(word)+"&lang="+escape(lang));
+    service_dict_ajax.request(hosturl+"handler/service/dictionaryhandler.ashx","word="+escape(word)+"&lang="+escape(lang));
 }
 function service_dict_callback()
 {

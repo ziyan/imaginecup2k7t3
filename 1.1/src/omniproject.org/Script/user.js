@@ -15,7 +15,7 @@ function user_init()
     //$("userpanel_not_logged_in").style.display="none";
     $("usermenu").innerHTML = loading_img + " " + lang_getHTML("UserMenuLoading");
     user_current_ajax.setHandler(user_current_callback);
-    user_current_ajax.request("/handler/user/currenthandler.ashx");
+    user_current_ajax.request(hosturl+"handler/user/currenthandler.ashx");
 }
 //AniScript.Loader.add(user_init);
 
@@ -125,7 +125,7 @@ function user_login()
     //ajax
     if(user_login_ajax==null) user_login_ajax = new AniScript.Web.Ajax();
     user_login_ajax.setHandler(user_login_callback);
-    user_login_ajax.request("/handler/user/loginhandler.ashx","username="+escape(username)+"&md5password="+escape(md5password));
+    user_login_ajax.request(hosturl+"handler/user/loginhandler.ashx","username="+escape(username)+"&md5password="+escape(md5password));
 }
 
 function user_login_callback()
@@ -177,7 +177,7 @@ function user_logout()
 {
     if(user_logout_ajax == null) user_logout_ajax = new AniScript.Web.Ajax();
     user_logout_ajax.setHandler(user_logout_callback);
-    user_logout_ajax.request("/handler/user/logouthandler.ashx");
+    user_logout_ajax.request(hosturl+"handler/user/logouthandler.ashx");
     //$("usermenu").innerHTML = loading_img + lang_getHTML("UserMenuLoggingOut");
     user_info_clear();
     user_state_update();
@@ -258,7 +258,7 @@ function user_register()
     //ajax
     if(user_register_ajax == null) user_register_ajax = new AniScript.Web.Ajax();
     user_register_ajax.setHandler(user_register_callback);
-    user_register_ajax.request("/handler/user/registerhandler.ashx","username="+escape(username)+"&md5password="+escape(md5password)+"&email="+escape(email)+"&name="+escape(name)+"&captcha="+escape(captcha));
+    user_register_ajax.request(hosturl+"handler/user/registerhandler.ashx","username="+escape(username)+"&md5password="+escape(md5password)+"&email="+escape(email)+"&name="+escape(name)+"&captcha="+escape(captcha));
 }
 function user_register_callback()
 {
@@ -354,7 +354,7 @@ function user_profile_retrieve()
         // ajax
         if(user_update_interests_ajax == null) user_update_interests_ajax = new AniScript.Web.Ajax();
         user_update_interests_ajax.setHandler(user_update_interests_callback);
-        user_update_interests_ajax.request("/handler/user/interestshandler.ashx","user_id="+escape(user_current_id));          
+        user_update_interests_ajax.request(hosturl+"handler/user/interestshandler.ashx","user_id="+escape(user_current_id));          
     }
 }
 function user_update_interests_callback()
@@ -460,7 +460,7 @@ function user_update()
     // ajax
     if(user_update_ajax == null) user_update_ajax = new AniScript.Web.Ajax();
     user_update_ajax.setHandler(user_update_callback);
-    user_update_ajax.request("/handler/user/updatehandler.ashx","name="+escape(name)+"&email="+escape(email)+"&description="+escape(description)+"&snnetwork="+escape(sn_network)+"&snscreenname="+escape(sn_screenname));    
+    user_update_ajax.request(hosturl+"handler/user/updatehandler.ashx","name="+escape(name)+"&email="+escape(email)+"&description="+escape(description)+"&snnetwork="+escape(sn_network)+"&snscreenname="+escape(sn_screenname));    
 }
 function user_update_callback()
 {
