@@ -1,8 +1,9 @@
-﻿// Site URL
-var hosturl = location.href.toLowerCase().replace("index.htm","");
+﻿// Site URL for debugging
+var hosturl = location.href.toLowerCase();
+hosturl = hosturl.substring(0,hosturl.indexOf("index.htm"));
 
 // Global settings
-var loading_img = "<img alt=\"\" src=\"/image/loading.gif\" title=\"loading\" style=\"width:16px;height:16px\" />";
+var loading_img = "<img alt=\"\" src=\"image/loading.gif\" title=\"loading\" style=\"width:16px;height:16px\" />";
 var username_pattern = /[0-9a-zA-Z\.\-_]{3,100}$/;
 
 
