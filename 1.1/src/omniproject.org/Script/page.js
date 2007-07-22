@@ -17,6 +17,8 @@ var page_current = "";
 
 var page_not_logged_in = ["Home","Register","HallOfFame","About"];
 var page_logged_in = ["Home","Profile","GetIntroduced","Friends","Messages","Groups","HallOfFame","About"];
+var langbar_not_logged_in = ["AutoTrans","TransDB"];
+var langbar_logged_in = ["AutoTrans","TransDB"];
 
 function page_init()
 {
@@ -140,15 +142,20 @@ function page_change(page_name)
 function page_update()
 {
     var pages = user_is_logged_in()?page_logged_in:page_not_logged_in;
+    var langbarpages = user_is_logged_in()?langbar_logged_in:langbar_not_logged_in;
     var page_should_be_displayed = false;
     for(var i=0;i<pages.length;i++)
     {
         if(pages[i]==page_current)
             page_should_be_displayed=true;
+        if(langbarpages[i]==page_current)
+            page_should_be_displayed=true;            
     }
     if(!page_should_be_displayed)
         page_change("Home");
+        
     page_update_menu();
+    page_update_langbar();
     lang_update_title();
 }
 
@@ -165,13 +172,61 @@ function page_update_menu()
     }
 }
 
+//update the language bar
+function page_update_langbar()
+{
+    var pages = user_is_logged_in()?langbar_logged_in:langbar_not_logged_in;
+    $("langbarlinks").innerHTML = "";
+    for(var i=0;i<pages.length;i++)
+    {
+        var link_class = "";
+        if(pages[i]==page_current) link_class="class=\"select\"";
+        if(pages[i] == "AutoTrans")
+        {
+            if(langbar_expanded) link_class="class=\"select\"";
+            $("langbarlinks").innerHTML+="<a id=\"LangBarLink"+pages[i]+"\" href=\"#\" "+link_class+" onclick=\"langbar_auto_trans();return false;\">"+lang_getHTML("LangBarLink"+pages[i])+"</a>";
+        }
+        else
+            $("langbarlinks").innerHTML+="<a id=\"LangBarLink"+pages[i]+"\" href=\"#\" "+link_class+" onclick=\"page_change('"+pages[i]+"');return false;\">"+lang_getHTML("LangBarLink"+pages[i])+"</a>";
+    }
+}
+
+function langbar_auto_trans()
+{
+    langbar_expanded = !langbar_expanded;
+    page_update_langbar();
+
+    if(langbar_expanded)
+    {
+        $("langbar").style.height = "120px";
+        $("langbar").style.background = "orange url('Image/bg/bg_orange_120h.gif')";
+        
+        $("langbar").appendChild($("servicetranspanel"));
+    }
+    else
+    {
+        $("langbar").style.height = "30px";
+        $("langbar").style.background = "orange url('Image/bg/bg_orange_30h.gif')";
+        
+        pool.appendChild($("servicetranspanel"));
+    }
+}
+
 //pages
 function page_goto_home()
 {
-    page_layout_left_center_right();
+    page_layout_big_left_right();
     content_right.appendChild($("userpanel"));
-    content_center.appendChild($("servicetranspanel"));
-    content_left.appendChild($("servicedictpanel"));
+    //content_center.appendChild($("servicetranspanel"));
+    //content_left.appendChild($("servicedictpanel"));
+    if(user_is_logged_in())
+    {
+        // Some main user page goes here
+    }
+    else
+    {
+        content_left.appendChild($("omniguestpanel"));
+    }
 }
 
 function page_goto_register()

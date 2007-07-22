@@ -87,27 +87,50 @@ a:hover, a:active
 	border-right: 1px dashed #CCCCCC;
 }
 
-#header
+.header_orange_120
+{
+	height: 120px;
+	background: orange url('../Image/bg/bg_orange_120h.gif');
+}
+.header_orange_30
+{
+	height: 30px;
+	background: orange url('../Image/bg/bg_orange_30h.gif');
+}
+.header_gray_120
+{
+	height: 120px;
+	background: gray url('../Image/bg/bg_gray_120h.gif'); 
+}
+#langbar
 {
 	width: 100%;
 	margin:0px;
 	padding:0px;
 }
-.header_orange_120
+#langbar a
 {
-	height: 120px;
-	background: orange url('/Image/bg/bg_orange_120h.gif'); 
+	position: relative;
+	top: 8px;
+	padding: 7px 10px 7px 10px;
+	border-right: 1px dashed #CCCCCC;
+	color: #000000;
 }
-.header_orange_30
+#langbar a:hover, .langbar a:active
 {
-	height: 30px;
-	background: orange url('/Image/bg/bg_orange_30h.gif'); 
+	color: #cc5705;
+	text-decoration: underline;
+	background-color: #f6f6f6;
+	border-top: 1px solid #e1e1e1;
 }
-.header_gray_120
+#langbar .select
 {
-	height: 120px;
-	background: gray url('/Image/bg/bg_gray_120h.gif'); 
+	color: #8c8c8c;
+	border-right: 1px dashed #CCCCCC;
+	border-top: 1px solid #999999;
+	background-color: #f6f6f6;
 }
+
 .content
 {
 	width: 790px; _width: 800px;
@@ -265,6 +288,12 @@ a:hover, a:active
 	background-image: url('/Image/info.gif');
 }
 
+.heading
+{
+	font-weight: bold;
+	font-size: 175%;
+	margin: 0pt;
+}
 
 .footer
 {
@@ -328,7 +357,7 @@ a:hover, a:active
 	height: 25px;
 	position: relative;
 	overflow:hidden;
-	background: url(/image/rater.gif) top left repeat-x;
+	background: url(../image/rater.gif) top left repeat-x;
 }
 .rater li
 {
@@ -353,7 +382,7 @@ a:hover, a:active
 }
 .rater li a:hover
 {
-	background: url(/image/rater.gif) left bottom;
+	background: url(../image/rater.gif) left bottom;
 	z-index: 3;
 	left: 0px;
 	border:none;
@@ -370,7 +399,7 @@ a:hover, a:active
 .rater a.star-five:hover{width: 125px;}
 .rater li.current-rating
 {
-	background: url(/image/rater.gif) center left;
+	background: url(../image/rater.gif) center left;
 	position: absolute;
 	height: 25px;
 	display: block;
@@ -379,7 +408,7 @@ a:hover, a:active
 }
 .rater li.user-rating
 {
-	background: url(/image/rater.gif) left bottom;
+	background: url(../image/rater.gif) left bottom;
 	position: absolute;
 	height: 25px;
 	display: block;

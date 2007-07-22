@@ -52,10 +52,11 @@
     </table>
 </div>
 <!--end of top-->
-<!--begin of header-->
-<div id="header" class="header_orange_120">
+<!--begin of langbar-->
+<div id="langbar" class="header_orange_30">
+<span id="langbarlinks"></span>
 </div>
-<!--end of header-->
+<!--end of langbar-->
 <!--begin of content-->
 <div id="content" class="content"></div>
 <!--end of content-->
@@ -84,6 +85,25 @@ under development
 <div id="content_center"></div>
 <div id="content_right"></div>
 <!--layouts-->
+    <!-- begin of omniguestpanel -->
+    <div id="omniguestpanel" class="boxpanel">
+        <div class="title"><span id="Omni_Localized_GuestPanelWelcome">Welcome to Omni!</span></div>
+        <div class="content">
+        <p class="heading"><span id="Omni_Localized_GuestPanelOverview">Overview</span></p>
+        <p><span id="Omni_Localized_GuestPanelOverviewText">
+        Omni is a language learning system that uses social networking concepts to encourage student collaboration.
+        Omni allows users to meet and communicate with each other in the language they are learning. Integrated into
+        Omni are a set of features designed to help language learners of varying skill levels share information. When
+        students encounter difficulties they can work past them by cooperating with other users. By allowing open 
+        access to Omni, other social networks and communication services will be able to use the power of the network
+        to allow their users to communicate across language barriers. One of the greatest obstacles for language
+        students is moving from the classroom to native speaking; Omni seeks to overcome these difficulties using 
+        social networking.
+        </span></p>
+        </div>
+    </div>
+    <!-- end of omniguestpanel -->
+
     <!--begin of servicedictpanel-->
     <div id="servicedictpanel" class="boxpanel">
             <div class="title"><span id="Omni_Localized_ServiceDictTitle">Dictionary Lookup</span></div>
@@ -105,6 +125,7 @@ under development
     <!--end of servicedictpanel-->
     
     <!--begin of servicetranspanel-->
+    <!--
     <div id="servicetranspanel" class="boxpanel">
             <div class="title"><span id="Omni_Localized_ServiceTransTitle">Automatic Translation</span></div>
             <div class="content">
@@ -124,7 +145,33 @@ under development
             <textarea cols="20" rows="4" readonly="readonly" id="servicetranspanel_result" style="width:98%;display:none"></textarea>
             </div>
     </div>
+    -->
     <!--end of servicetranspanel-->
+    <!--begin of servicetranspanel-->
+    <div id="servicetranspanel" style="margin-top: 15px;">
+        <form action="" id="form_servicetrans" onsubmit="service_trans();return false" style="margin:0px;padding:5px;">
+        <table>
+        <tr>
+        <td>
+        <textarea id="form_servicetrans_msg" cols="20" rows="3" style="width:300px;"></textarea>
+        <img id="servicetranspanel_loading" alt="" src="image/loading_l.gif" style="width:100%;display:none" />
+        <textarea cols="20" rows="3" readonly="readonly" id="servicetranspanel_result" style="width:300px;display:none"></textarea>
+        </td>
+        <td>
+        <select id="form_servicetrans_direction" style="margin-top:5px;margin-bottom:5px;">
+        <option id="Omni_Localized_ServiceTransENUS2ZHCN" value="en-US_zh-CN">U.S. English to Simplified Chinese</option>
+        <option id="Omni_Localized_ServiceTransZHCN2ENUS" value="zh-CN_en-US">Simplified Chinese to U.S. English</option>
+        </select><br />
+        <input id="Omni_Localized_ServiceTransSubmitButton" type="submit" value="Translate" />
+        <input id="Omni_Localized_ServiceTransResetButton" type="reset" value="Reset" onclick="service_trans_reset();"/>
+        <br />
+        <span id="servicetranspanel_status" style="color:Black; padding: 2px;"></span>        
+        </td>
+        </tr>
+        </table>
+        </form>
+    </div>
+    <!--end of servicetranspanel-->    
 
     <!--begin of userpanel-->
     <div id="userpanel">

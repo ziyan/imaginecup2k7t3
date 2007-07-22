@@ -14,6 +14,10 @@ var user_loading = false;
 var system_languages_loading = false;
 var system_interests_loading = false;
 
+// Language bar status
+var langbar_expanded = false;
+var langbar_results = false;
+
 // Input validation
 function stripHTML(str) {
     return str.replace(/(<([^>]+)>)/ig,"");

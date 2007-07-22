@@ -66,7 +66,9 @@ function user_state_update()
         $("form_user_login_password").value="";
         $("Omni_Localized_UserLoginSubmitButton").disabled=false;
         $("userpanel_status").innerHTML="";
-        page_update();
+        //page_update();
+        //refresh the panels too, based on login status
+        page_change(page_current);
     }
     else
     {
@@ -74,7 +76,9 @@ function user_state_update()
         $("usermenu").innerHTML="<a href=\"#\" onclick=\"page_change('Register');return false\">"+lang_getHTML("UserMenuRegister")+"</a> ";
         $("userpanel_not_logged_in").style.display="block";
         $("userpanel_logged_in").style.display="none";
-        page_update();        
+        //page_update();
+        //refresh the panels too, based on login status
+        page_change(page_current);      
     }
 }
 

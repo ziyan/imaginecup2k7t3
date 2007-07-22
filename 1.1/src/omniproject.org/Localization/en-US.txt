@@ -12,6 +12,8 @@
 	"MenuLinkFriends":"Friends",
 	"MenuLinkTranslations":"Translations",
 	"MenuLinkGroups":"Groups",
+	"LangBarLinkAutoTrans":"Quick Translation",
+	"LangBarLinkTransDB":"Translation Database",
 	
 	"LanguageOptionZHCN":"Simplified Chinese",
 	"LanguageOptionENUS":"U.S. English",
@@ -21,6 +23,10 @@
 	"SplashSystemLanguagessInit":"Fetching system language list ...",
 	"SplashUserInit":"Fetching user information ...",
 	"SplashInitDone":"Initializing done ...",
+	
+	"GuestPanelWelcome":"Welcome to Omni!",
+	"GuestPanelOverview":"Overview",
+	"GuestPanelOverviewText":"Omni is a language learning system that uses social networking concepts to encourage student collaboration. Omni allows users to meet and communicate with each other in the language they are learning. Integrated into Omni are a set of features designed to help language learners of varying skill levels share information. When students encounter difficulties they can work past them by cooperating with other users. By allowing open access to Omni, other social networks and communication services will be able to use the power of the network to allow their users to communicate across language barriers. One of the greatest obstacles for language students is moving from the classroom to native speaking; Omni seeks to overcome these difficulties using social networking.",
 	
 	"UserLoginTitle":"User Login",
 	"UserLoginUsername":"Username: ",

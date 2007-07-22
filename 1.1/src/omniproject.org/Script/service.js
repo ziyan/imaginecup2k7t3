@@ -18,9 +18,10 @@ function service_trans()
     var src_lang = direction.split("_")[0];
     var dst_lang = direction.split("_")[1];
     
-    $("servicetranspanel_resultpanel").style.display="block";
+    //$("servicetranspanel_resultpanel").style.display="block";
     $("servicetranspanel_loading").style.display="block";
     $("servicetranspanel_result").style.display="none";
+    $("form_servicetrans_msg").style.display = "none";    
     //ajax
     if(service_trans_ajax==null) service_trans_ajax = new AniScript.Web.Ajax();
     service_trans_ajax.setHandler(service_trans_callback);
@@ -33,22 +34,35 @@ function service_trans_callback()
     {
         service_trans_reset();
         $("servicetranspanel_status").innerHTML=lang_getHTML("ServiceTransError");
+        $("form_servicetrans_msg").style.display = "block";    
         return;
     }
-    $("servicetranspanel_resultpanel").style.display="block";
+    //$("servicetranspanel_resultpanel").style.display="block";
     $("servicetranspanel_loading").style.display="none";
     $("servicetranspanel_result").value = service_trans_ajax.getJSON().message;
     $("servicetranspanel_result").style.display="block";
+    $("form_servicetrans_msg").style.display = "none";
     
+    $("Omni_Localized_ServiceTransSubmitButton").disabled = true;
+    $("form_servicetrans_direction").disabled = true;
+    langbar_results = true;
     
 }
 function service_trans_reset()
 {
     $("servicetranspanel_status").innerHTML="";
-    $("servicetranspanel_resultpanel").style.display="none";
+    //$("servicetranspanel_resultpanel").style.display="none";
     $("servicetranspanel_loading").style.display="none";
     $("servicetranspanel_result").style.display="none";
     $("servicetranspanel_result").innerText = "";
+    if(langbar_results)
+    {
+        $("Omni_Localized_ServiceTransSubmitButton").disabled = false;
+        $("form_servicetrans_direction").disabled = false;
+        $("form_servicetrans_msg").style.display = "block";
+        langbar_results = false;
+    }
+
 }
 
 
