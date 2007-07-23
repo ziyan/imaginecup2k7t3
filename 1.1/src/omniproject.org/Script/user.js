@@ -512,7 +512,7 @@ function get_introduced_retrieve()
         
         // FIXME: read languages properly
         $("get_introduced_lang").options[0] = new Option("U.S. English", "en-US");
-        $("get_introduced_lang").options[1] = new Option("zh-CN", "Simplified Chinese");
+        $("get_introduced_lang").options[1] = new Option("Simplified Chinese", "zh-CN");
     }
 }
 
