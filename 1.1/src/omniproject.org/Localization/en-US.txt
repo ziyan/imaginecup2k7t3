@@ -150,5 +150,12 @@
 	"InterestNameCheeseAmerican":"American",
 	"InterestNameCheeseParmesan":"Parmesan",
 	"InterestNameCheeseMozzerela":"Mozzerela",
-	"InterestNameSportsBasketball":"Basketball"	
+	"InterestNameSportsBasketball":"Basketball",
+	
+	"GetIntroducedTitle":"Get Introduced",
+	"GetIntroducedDescription":"Omni can introduce you to other users to talk to, based on mutual languages spoken, and common interests.",
+	"GetIntroducedLanguage":"Introduction Language:",	
+	"GetIntroducedIntroduceButton":"Introduce",
+	"GetIntroducedStatusError":"System error, please try again later",
+	"GetIntroducedNoMatch":"There were no matches."
 }

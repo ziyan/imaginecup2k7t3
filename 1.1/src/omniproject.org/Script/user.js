@@ -321,7 +321,7 @@ function user_register_callback()
 }
 function user_register_update_captcha()
 {
-    $('userregisterpanel_captcha').src='/handler/user/captchahandler.ashx?width=200&height=80&date='+escape(new Date());
+    $('userregisterpanel_captcha').src=hosturl+'handler/user/captchahandler.ashx?width=200&height=80&date='+escape(new Date());
 }
 function user_register_reset()
 {
@@ -495,5 +495,57 @@ function user_update_callback()
     else
     {
         $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+    }
+}
+
+// -----------------------------------------------
+//                 getIntroduced functions
+// -----------------------------------------------
+
+var get_introduced_ajax = new AniScript.Web.Ajax();
+
+function get_introduced_retrieve()
+{
+    if(user_current_obj != null)
+    {
+        $("get_introduced_lang").options.length = 0;
+        
+        // FIXME: read languages properly
+        $("get_introduced_lang").options[0] = new Option("U.S. English", "en-US");
+        $("get_introduced_lang").options[1] = new Option("zh-CN", "Simplified Chinese");
+    }
+}
+
+function get_introduced()
+{
+    $("get_introduced_status").innerHTML="";
+    
+    var selectedIndex = $("get_introduced_lang").selectedIndex;
+    var language = $("get_introduced_lang").options[selectedIndex];
+    $("get_introduced_lang").disabled = true;
+    $("Omni_Localized_GetIntroducedIntroduceButton").disabled = true;
+ 
+    get_introduced_ajax.setHandler(get_introduced_callback);
+    get_introduced_ajax.request(hosturl + "handler/user/GetIntroducedHandler.ashx", 
+            "language=" + escape(language));
+}
+
+function get_introduced_callback()
+{
+    if(!get_introduced_ajax.isDone()) return;
+    
+    $("get_introduced_lang").disabled = false;
+    $("Omni_Localized_GetIntroducedIntroduceButton").disabled = false;
+    
+    if(get_introduced_ajax.hasError())
+    {
+        $("get_introduced_status").innerHTML="<span id=\"Omni_Localized_GetIntroducedStatusError\" style=\"color:#993333;\">"+lang_getText("GetIntroducedStatusError")+"</span>";
+        return;
+    }
+    
+    var status = get_introduced_ajax.getJSON().status;
+    if(status=="No Match")
+    {
+        $("get_introduced_status").innerHTML="<span id=\"Omni_Localized_GetIntroducedNoMatch\" style=\"color:green;\">"+lang_getText("GetIntroducedNoMatch")+"</span>";
     }
 }

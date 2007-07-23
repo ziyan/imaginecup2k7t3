@@ -113,6 +113,8 @@ function page_layout_big_center()
 //changing page
 function page_change(page_name)
 {
+    if (pool === null) return; // this happens during initialization
+    
     page_clear();
     switch(page_name)
     {
@@ -127,6 +129,9 @@ function page_change(page_name)
             break;
         case "Profile":
             page_goto_profile();
+            break;
+        case "GetIntroduced":
+            page_goto_get_introduced();
             break;
         default:
             page_name = "Home";
@@ -248,4 +253,12 @@ function page_goto_profile()
     content_right.appendChild($("userpanel"));
     content_left.appendChild($("userprofilepanel"));
     user_profile_retrieve();
+}
+
+function page_goto_get_introduced()
+{
+    page_layout_big_left_right();
+    content_right.appendChild($("userpanel"));
+    content_left.appendChild($("get_introduced_panel"));
+    get_introduced_retrieve();
 }

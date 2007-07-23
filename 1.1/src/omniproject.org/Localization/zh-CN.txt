@@ -151,5 +151,12 @@
 	"InterestNameCheeseAmerican":"美式奶酪",
 	"InterestNameCheeseParmesan":"帕米森奶酪",
 	"InterestNameCheeseMozzerela":"莫兹拉奶酪",
-	"InterestNameSportsBasketball":"篮球"	
+	"InterestNameSportsBasketball":"篮球",
+	
+	"GetIntroducedTitle":"1",
+	"GetIntroducedDescription":"2.",
+	"GetIntroducedLanguage":"3:",	
+	"GetIntroducedIntroduceButton":"4",
+	"GetIntroducedStatusError":"5",
+	"GetIntroducedNoMatch":"6"
 }

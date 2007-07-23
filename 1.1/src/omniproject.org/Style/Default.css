@@ -280,6 +280,31 @@ a:hover, a:active
 
 
 
+
+.get_introduced_panel .title
+{
+	text-align:left;
+	font-size: 12pt;
+	border-bottom: dashed 1px #666666;
+}
+.get_introduced_panel .content
+{
+	width: auto;
+	padding-left:20px;
+	text-align:left;
+	line-height:30px;
+}
+.get_introduced_panel .content .description
+{
+	line-height:normal;
+}
+.get_introduced_panel .colheading
+{
+	font-weight: bold;
+}
+
+
+
 .hint
 {
 	padding-left: 16px;
