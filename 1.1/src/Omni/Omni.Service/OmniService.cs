@@ -167,6 +167,23 @@ namespace Omni.Service
             if (id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.UserInterests(Session.UserContext.User.id, Session.Connection);
         }
+
+        /// <summary>
+        /// Get a user profile. E-mail and IM info are not available
+        /// unless the profiled user has the requesting user as a
+        /// friend.
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <param name="session">session id</param>
+        /// <returns>Array of interest ids</returns>
+        [WebMethod(Description = "Get a user profile.")]
+        public Data.User UserProfile(int id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            if (id <= 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.UserProfile(Session.UserContext.User.id, id, Session.Connection);
+        }
         #endregion
 
         #region Interest

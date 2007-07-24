@@ -34,7 +34,7 @@ namespace Omni.Web.User
             }
             else
             {
-                status = "InComplete";
+                status = "Incomplete";
             }
 
             JSONObjectCollection collection = new JSONObjectCollection();

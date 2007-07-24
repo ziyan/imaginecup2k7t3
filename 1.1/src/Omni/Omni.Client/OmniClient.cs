@@ -200,6 +200,26 @@ namespace Omni.Client
             }
             return null;
         }
+        /// <summary>
+        /// Get a user's profile.
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <returns>User object</returns>
+        public User UserProfile(int id)
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.User svcUser = service.UserProfile(id, session);
+                if (svcUser == null) return null;
+                return new User(svcUser);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
         #endregion
 
         #region Interest

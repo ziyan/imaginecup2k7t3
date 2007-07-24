@@ -197,6 +197,21 @@
           <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="UserProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserProfileResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="InterestList">
         <s:complexType>
           <s:sequence>
@@ -323,6 +338,12 @@
   <wsdl:message name="UserInterestsSoapOut">
     <wsdl:part name="parameters" element="tns:UserInterestsResponse" />
   </wsdl:message>
+  <wsdl:message name="UserProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:UserProfile" />
+  </wsdl:message>
+  <wsdl:message name="UserProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:UserProfileResponse" />
+  </wsdl:message>
   <wsdl:message name="InterestListSoapIn">
     <wsdl:part name="parameters" element="tns:InterestList" />
   </wsdl:message>
@@ -401,6 +422,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get interests for a user.</wsdl:documentation>
       <wsdl:input message="tns:UserInterestsSoapIn" />
       <wsdl:output message="tns:UserInterestsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserProfile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a user profile.</wsdl:documentation>
+      <wsdl:input message="tns:UserProfileSoapIn" />
+      <wsdl:output message="tns:UserProfileSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="InterestList">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all interests in the system.</wsdl:documentation>
@@ -521,6 +547,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserInterests">
       <soap:operation soapAction="http://service.omniproject.org/UserInterests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserProfile">
+      <soap:operation soapAction="http://service.omniproject.org/UserProfile" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -659,6 +694,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserInterests">
       <soap12:operation soapAction="http://service.omniproject.org/UserInterests" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserProfile">
+      <soap12:operation soapAction="http://service.omniproject.org/UserProfile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
