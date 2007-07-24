@@ -41,7 +41,7 @@ function page_location_watch()
     //detect bookmarked page and back button
     var page_name_string = "";
     if(location.href.indexOf("#")>-1)
-        page_name_string=location.href.split("#")[1];
+        page_name_string=location.href.split("#")[1];    
     if(page_name_string=="")
     {
         page_change("Home");
@@ -114,7 +114,7 @@ function page_layout_big_center()
 function page_change(page_name)
 {
     if (pool === null) return; // this happens during initialization
-    
+
     page_clear();
     switch(page_name)
     {
@@ -139,7 +139,7 @@ function page_change(page_name)
             break;
     }
     page_current = page_name;
-    location.href=hosturl+"index.htm"+"#"+page_current;
+    location.href=hosturl+hostpage+"#"+page_current;
     page_update();
 }
 
@@ -204,14 +204,14 @@ function langbar_auto_trans()
     if(langbar_expanded)
     {
         $("langbar").style.height = "120px";
-        $("langbar").style.background = "orange url('Image/bg/bg_orange_120h.gif')";
+        $("langbar").style.background = "#ff6d06 url('Image/bg/bg_orange_120h.gif')";
         
         $("langbar").appendChild($("servicetranspanel"));
     }
     else
     {
         $("langbar").style.height = "30px";
-        $("langbar").style.background = "orange url('Image/bg/bg_orange_30h.gif')";
+        $("langbar").style.background = "#ff6d06 url('Image/bg/bg_orange_30h.gif')";
         
         pool.appendChild($("servicetranspanel"));
     }
@@ -224,14 +224,7 @@ function page_goto_home()
     content_right.appendChild($("userpanel"));
     //content_center.appendChild($("servicetranspanel"));
     //content_left.appendChild($("servicedictpanel"));
-    if(user_is_logged_in())
-    {
-        // Some main user page goes here
-    }
-    else
-    {
-        content_left.appendChild($("omniguestpanel"));
-    }
+    content_left.appendChild($("omnihomepanel"));
 }
 
 function page_goto_register()

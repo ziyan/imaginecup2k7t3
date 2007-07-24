@@ -90,12 +90,12 @@ a:hover, a:active
 .header_orange_120
 {
 	height: 120px;
-	background: orange url('../Image/bg/bg_orange_120h.gif');
+	background: #ff6d06 url('../Image/bg/bg_orange_120h.gif');
 }
 .header_orange_30
 {
 	height: 30px;
-	background: orange url('../Image/bg/bg_orange_30h.gif');
+	background: #ff6d06 url('../Image/bg/bg_orange_30h.gif');
 }
 .header_gray_120
 {

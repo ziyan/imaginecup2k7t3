@@ -1,6 +1,12 @@
 ﻿// Site URL for debugging
+var hostpage = "";
 var hosturl = location.href.toLowerCase();
-hosturl = hosturl.substring(0,hosturl.indexOf("index.htm"));
+if(hosturl.indexOf("index.htm") >= 0)
+{
+    hosturl = hosturl.substring(0,hosturl.indexOf("index.htm"));
+    hostpage = "index.htm";
+}
+else if(hosturl[hosturl.length-1] != "/") hosturl = hosturl + "/";
 
 // Global settings
 var loading_img = "<img alt=\"\" src=\"image/loading.gif\" title=\"loading\" style=\"width:16px;height:16px\" />";
