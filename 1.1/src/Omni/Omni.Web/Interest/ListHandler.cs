@@ -38,8 +38,8 @@ namespace Omni.Web.Interest
                 for (int i = 0; i < interests.Length; i++)
                 {
                     JSONObjectCollection obj = new JSONObjectCollection();
-                    obj.Add(new JSONStringValue("id"), new JSONStringValue(interests[i].ID.ToString()));
-                    obj.Add(new JSONStringValue("parent_id"), new JSONStringValue(interests[i].ParentID.ToString()));
+                    obj.Add(new JSONStringValue("id"), new JSONNumberValue(interests[i].ID));
+                    obj.Add(new JSONStringValue("parent_id"), new JSONNumberValue(interests[i].ParentID));
                     obj.Add(new JSONStringValue("name"), new JSONStringValue(interests[i].Name));
                     jsonInterests.Add(obj);
                 }

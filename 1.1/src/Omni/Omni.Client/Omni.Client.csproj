@@ -35,6 +35,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Language.cs" />
     <Compile Include="User.cs" />
     <Compile Include="OmniClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +83,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Web References\org.omniproject.service\Interest.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\org.omniproject.service\Language.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\org.omniproject.service\omniservice.disco" />

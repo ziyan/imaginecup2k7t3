@@ -42,6 +42,7 @@
     <Compile Include="Json\Values\JSONBoolValue.cs" />
     <Compile Include="Json\Values\JSONNumberValue.cs" />
     <Compile Include="Json\Values\JSONStringValue.cs" />
+    <Compile Include="Language\ListHandler.cs" />
     <Compile Include="Service\DictionaryHandler.cs" />
     <Compile Include="Service\TranslationHandler.cs" />
     <Compile Include="Session\KeepAliveHandler.cs" />

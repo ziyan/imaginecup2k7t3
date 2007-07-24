@@ -57,6 +57,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback InterestListOperationCompleted;
         
+        private System.Threading.SendOrPostCallback LanguageListOperationCompleted;
+        
         private System.Threading.SendOrPostCallback DefinitionLookupOperationCompleted;
         
         private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
@@ -140,6 +142,9 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event InterestListCompletedEventHandler InterestListCompleted;
+        
+        /// <remarks/>
+        public event LanguageListCompletedEventHandler LanguageListCompleted;
         
         /// <remarks/>
         public event DefinitionLookupCompletedEventHandler DefinitionLookupCompleted;
@@ -586,6 +591,35 @@ namespace Omni.Client.org.omniproject.service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/LanguageList", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Language[] LanguageList(System.Guid session) {
+            object[] results = this.Invoke("LanguageList", new object[] {
+                        session});
+            return ((Language[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LanguageListAsync(System.Guid session) {
+            this.LanguageListAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void LanguageListAsync(System.Guid session, object userState) {
+            if ((this.LanguageListOperationCompleted == null)) {
+                this.LanguageListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLanguageListOperationCompleted);
+            }
+            this.InvokeAsync("LanguageList", new object[] {
+                        session}, this.LanguageListOperationCompleted, userState);
+        }
+        
+        private void OnLanguageListOperationCompleted(object arg) {
+            if ((this.LanguageListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LanguageListCompleted(this, new LanguageListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/DefinitionLookup", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string DefinitionLookup(string lang, string word) {
             object[] results = this.Invoke("DefinitionLookup", new object[] {
@@ -781,6 +815,39 @@ namespace Omni.Client.org.omniproject.service {
             }
             set {
                 this.log_dateField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.42")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
+    public partial class Language {
+        
+        private int idField;
+        
+        private string codeField;
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
             }
         }
     }
@@ -1124,6 +1191,32 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Interest[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void LanguageListCompletedEventHandler(object sender, LanguageListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LanguageListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LanguageListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Language[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Language[])(this.results[0]));
             }
         }
     }

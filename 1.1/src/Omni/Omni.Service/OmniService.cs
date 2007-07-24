@@ -192,12 +192,28 @@ namespace Omni.Service
         /// Get all interests in the system.
         /// </summary>
         /// <param name="session">session id</param>
-        /// <returns>Array of interest ids</returns>
+        /// <returns>Array of interests (id/ parentid/ name)</returns>
         [WebMethod(Description = "Get all interests in the system.")]
         public Data.Interest[] InterestList(Guid session)
         {
             ServiceSession Session = ServiceSession.Get(session);
             return Data.StoredProcedure.InterestList(Session.Connection);
+        }
+
+        #endregion
+
+        #region Language
+
+        /// <summary>
+        /// Get all languages in the system.
+        /// </summary>
+        /// <param name="session">session id</param>
+        /// <returns>Array of languages (id & culture code)</returns>
+        [WebMethod(Description = "Get all languages in the system.")]
+        public Data.Language[] LanguageList(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            return Data.StoredProcedure.LanguageList(Session.Connection);
         }
 
         #endregion

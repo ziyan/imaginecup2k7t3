@@ -146,6 +146,22 @@ namespace Omni.Data
         }
         #endregion
 
+        #region Language
+        public static Language[] LanguageList(Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_lang_list", connection);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Language> result = new List<Language>();
+            while (reader.Read())
+            {
+                result.Add(new Language(Convert.ToInt32(reader["id"]), reader["code"].ToString()));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+        #endregion
+
 
     }
 }

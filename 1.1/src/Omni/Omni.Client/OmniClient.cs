@@ -248,8 +248,33 @@ namespace Omni.Client
             return null;
         }
         
-        
-         
+        #endregion
+
+        #region Language
+        /// <summary>
+        /// Get all languages in the system.
+        /// </summary>
+        /// <returns>Array of Languages (id & culture code)</returns>
+        public Language[] LanguageList()
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Language[] svcLanguages = service.LanguageList(session);
+                if (svcLanguages == null) return null;
+                Language[] languages = new Language[svcLanguages.Length];
+                for (int i = 0; i < languages.Length; i++)
+                {
+                    languages[i] = new Language(svcLanguages[i]);
+                }
+                return languages;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
 
         #endregion
 
