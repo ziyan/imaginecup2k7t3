@@ -58,6 +58,8 @@ function user_state_update()
         $("usermenu").innerHTML=lang_getHTML("UserMenuWelcome")+user_current_obj.name+" | <a href=\"#\" onclick=\"user_logout();return false\">"+lang_getHTML("UserMenuLogout")+"</a> ";
         $("userpanel_not_logged_in").style.display="none";
         $("userpanel_logged_in").style.display="block";
+        $("omnihomepanel_not_logged_in").style.display="none";
+        $("omnihomepanel_logged_in").style.display="block";
         
         //clear the form
         $("form_user_login_username").disabled=false;
@@ -66,10 +68,7 @@ function user_state_update()
         $("form_user_login_password").value="";
         $("Omni_Localized_UserLoginSubmitButton").disabled=false;
         $("userpanel_status").innerHTML="";
-        //page_update();
-        //refresh the panels too, based on login status
-	if(page_current != "Profile")
-	        page_change(page_current);
+        page_update();
     }
     else
     {
@@ -77,9 +76,9 @@ function user_state_update()
         $("usermenu").innerHTML="<a href=\"#\" onclick=\"page_change('Register');return false\">"+lang_getHTML("UserMenuRegister")+"</a> ";
         $("userpanel_not_logged_in").style.display="block";
         $("userpanel_logged_in").style.display="none";
-        page_update();
-        //refresh the panels too, based on login status
-        //page_change(page_current);    
+        $("omnihomepanel_not_logged_in").style.display="block";
+        $("omnihomepanel_logged_in").style.display="none";
+        page_update(); 
     }
 }
 
