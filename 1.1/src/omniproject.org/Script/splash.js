@@ -49,7 +49,7 @@ function splash_wait_for_system_interests()
         if(server_error) return;
         //loading languages info
         $("splash_status").innerHTML = loading_img + " " + lang_getHTML("SplashSystemLanguagesInit");
-        //system_langauges_init();
+        system_languages_init();
         splash_wait_for_system_languages();
         return;
     }

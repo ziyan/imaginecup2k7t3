@@ -77,7 +77,9 @@ function user_state_update()
         $("usermenu").innerHTML="<a href=\"#\" onclick=\"page_change('Register');return false\">"+lang_getHTML("UserMenuRegister")+"</a> ";
         $("userpanel_not_logged_in").style.display="block";
         $("userpanel_logged_in").style.display="none";
-        page_update(); 
+        page_update();
+        //refresh the panels too, based on login status
+        //page_change(page_current);    
     }
 }
 
@@ -334,13 +336,6 @@ function user_register_reset()
 
 
 
-
-
-
-
-
-
-
 // user profile
 function user_profile_retrieve()
 {
@@ -505,13 +500,20 @@ var get_introduced_ajax = new AniScript.Web.Ajax();
 
 function get_introduced_retrieve()
 {
-    if(user_current_obj != null)
+    // FIXME : Displays all system languages. Should probably only
+    // display those that the user has selected in their profile, but user languages
+    // aren't implemented yet.
+    if(user_current_obj != null  && system_languages.length != 0)
     {
-        $("get_introduced_lang").options.length = 0;
-        
-        // FIXME: read languages properly
-        $("get_introduced_lang").options[0] = new Option("U.S. English", "en-US");
-        $("get_introduced_lang").options[1] = new Option("Simplified Chinese", "zh-CN");
+        $("get_introduced_lang").options.length = system_languages.length;
+        for(var x=0; x<system_languages.length; x++)
+        {
+            var myOpt = document.createElement("OPTION");
+            myOpt.id = "Omni_Localized_LanguageName"+system_languages[x].short_code;
+            myOpt.text = sys_lang_by_short_code(system_languages[x].short_code, "GetIntroduced");
+            myOpt.value = system_languages[x].id;
+            $("get_introduced_lang").options[x] = myOpt;
+        }
     }
 }
 

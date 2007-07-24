@@ -20,7 +20,7 @@
 	
 	"SplashPageInit":"Initializing page layout ...",
 	"SplashSystemInterestsInit":"Fetching system info ...",
-	"SplashSystemLanguagessInit":"Fetching system language list ...",
+	"SplashSystemLanguagesInit":"Fetching system language list ...",
 	"SplashUserInit":"Fetching user information ...",
 	"SplashInitDone":"Initializing done ...",
 	
@@ -151,6 +151,9 @@
 	"InterestNameCheeseParmesan":"Parmesan",
 	"InterestNameCheeseMozzerela":"Mozzerela",
 	"InterestNameSportsBasketball":"Basketball",
+	
+	"LanguageNameZHCN":"Simplified Chinese",
+	"LanguageNameENUS":"U.S. English",
 	
 	"GetIntroducedTitle":"Get Introduced",
 	"GetIntroducedDescription":"Omni can introduce you to other users to talk to, based on mutual languages spoken, and common interests.",
