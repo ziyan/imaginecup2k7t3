@@ -55,6 +55,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback UserProfileOperationCompleted;
         
+        private System.Threading.SendOrPostCallback FriendsListOperationCompleted;
+        
         private System.Threading.SendOrPostCallback InterestListOperationCompleted;
         
         private System.Threading.SendOrPostCallback LanguageListOperationCompleted;
@@ -139,6 +141,9 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event UserProfileCompletedEventHandler UserProfileCompleted;
+        
+        /// <remarks/>
+        public event FriendsListCompletedEventHandler FriendsListCompleted;
         
         /// <remarks/>
         public event InterestListCompletedEventHandler InterestListCompleted;
@@ -558,6 +563,35 @@ namespace Omni.Client.org.omniproject.service {
             if ((this.UserProfileCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserProfileCompleted(this, new UserProfileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/FriendsList", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public User[] FriendsList(System.Guid session) {
+            object[] results = this.Invoke("FriendsList", new object[] {
+                        session});
+            return ((User[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FriendsListAsync(System.Guid session) {
+            this.FriendsListAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void FriendsListAsync(System.Guid session, object userState) {
+            if ((this.FriendsListOperationCompleted == null)) {
+                this.FriendsListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFriendsListOperationCompleted);
+            }
+            this.InvokeAsync("FriendsList", new object[] {
+                        session}, this.FriendsListOperationCompleted, userState);
+        }
+        
+        private void OnFriendsListOperationCompleted(object arg) {
+            if ((this.FriendsListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FriendsListCompleted(this, new FriendsListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1165,6 +1199,32 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((User)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void FriendsListCompletedEventHandler(object sender, FriendsListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FriendsListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FriendsListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public User[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((User[])(this.results[0]));
             }
         }
     }

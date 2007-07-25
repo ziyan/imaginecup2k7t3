@@ -212,6 +212,25 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="FriendsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FriendsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FriendsListResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="InterestList">
         <s:complexType>
           <s:sequence>
@@ -369,6 +388,12 @@
   <wsdl:message name="UserProfileSoapOut">
     <wsdl:part name="parameters" element="tns:UserProfileResponse" />
   </wsdl:message>
+  <wsdl:message name="FriendsListSoapIn">
+    <wsdl:part name="parameters" element="tns:FriendsList" />
+  </wsdl:message>
+  <wsdl:message name="FriendsListSoapOut">
+    <wsdl:part name="parameters" element="tns:FriendsListResponse" />
+  </wsdl:message>
   <wsdl:message name="InterestListSoapIn">
     <wsdl:part name="parameters" element="tns:InterestList" />
   </wsdl:message>
@@ -458,6 +483,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a user profile.</wsdl:documentation>
       <wsdl:input message="tns:UserProfileSoapIn" />
       <wsdl:output message="tns:UserProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FriendsList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all friends for a user.</wsdl:documentation>
+      <wsdl:input message="tns:FriendsListSoapIn" />
+      <wsdl:output message="tns:FriendsListSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="InterestList">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all interests in the system.</wsdl:documentation>
@@ -592,6 +622,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserProfile">
       <soap:operation soapAction="http://service.omniproject.org/UserProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendsList">
+      <soap:operation soapAction="http://service.omniproject.org/FriendsList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -748,6 +787,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserProfile">
       <soap12:operation soapAction="http://service.omniproject.org/UserProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendsList">
+      <soap12:operation soapAction="http://service.omniproject.org/FriendsList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

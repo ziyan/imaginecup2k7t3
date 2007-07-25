@@ -40,18 +40,7 @@ namespace Omni.Web.User
 
             JSONObjectCollection collection = new JSONObjectCollection();
             collection.Add(new JSONStringValue("status"), new JSONStringValue(status));
-            if (user != null)
-            {
-                collection.Add(new JSONStringValue("id"), new JSONNumberValue(user.ID));
-                collection.Add(new JSONStringValue("username"), new JSONStringValue(user.Username));                
-                collection.Add(new JSONStringValue("email"), new JSONStringValue(user.Email));
-                collection.Add(new JSONStringValue("name"), new JSONStringValue(user.Name));
-                collection.Add(new JSONStringValue("description"), new JSONStringValue(user.Description==null?"":user.Description));
-                collection.Add(new JSONStringValue("sn_network"), new JSONStringValue(user.SnNetwork == null ? "" : user.SnNetwork));
-                collection.Add(new JSONStringValue("sn_screenname"), new JSONStringValue(user.SnScreenname == null ? "" : user.SnScreenname));
-                collection.Add(new JSONStringValue("reg_date"), new JSONStringValue(user.RegDate.ToString()));
-                collection.Add(new JSONStringValue("log_date"), new JSONStringValue(user.LogDate.ToString()));
-            }
+            collection.Add(new JSONStringValue("user"), Common.getUserJSON(user));
             context.Response.Write(collection.ToString());
         }
 

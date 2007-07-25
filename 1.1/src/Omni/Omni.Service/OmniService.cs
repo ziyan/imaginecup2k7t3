@@ -186,8 +186,23 @@ namespace Omni.Service
         }
         #endregion
 
+        #region Friends
+        /// <summary>
+        /// Get all friends for the current user.
+        /// </summary>
+        /// <param name="session">session id</param>
+        /// <returns>Array of users</returns>
+        [WebMethod(Description = "Get all friends for a user.")]
+        public Data.User[] FriendsList(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.FriendsList(Session.UserContext.User.id, Session.Connection);
+        }
+        #endregion
+
         #region Interest
-        
+
         /// <summary>
         /// Get all interests in the system.
         /// </summary>

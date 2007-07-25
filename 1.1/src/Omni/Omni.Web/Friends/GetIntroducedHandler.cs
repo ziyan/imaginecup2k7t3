@@ -5,7 +5,7 @@ using JSONSharp;
 using JSONSharp.Collections;
 using JSONSharp.Values;
 
-namespace Omni.Web.User
+namespace Omni.Web.Friends
 {
     public class GetIntroducedHandler : IHttpHandler, IRequiresSessionState
     {

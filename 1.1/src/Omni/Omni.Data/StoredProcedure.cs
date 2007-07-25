@@ -130,6 +130,39 @@ namespace Omni.Data
         }
         #endregion
 
+        #region Friends
+        public static User[] FriendsList(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_favor_user_list_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            List<User> users = new List<User>();
+            SqlDataReader reader = cmd.ExecuteReader();
+            // Don't need their login date
+            while (reader.Read())
+                users.Add(new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now));
+            reader.Close();
+            reader.Dispose();
+
+            foreach (User u in users)
+            {
+                cmd = GetStoredProcedure("omni_user_favor_check_pair", connection);
+                SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, u.id);
+                SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, user_id);
+                object result = cmd.ExecuteScalar();
+                int result2 = (result == null) ? -1 : Convert.ToInt32(result);
+                if (result2 != 1 && u != null)
+                {
+                    // Not the profile user's friend, remove contact info
+                    u.email = "";
+                    u.sn_network = "";
+                    u.sn_screenname = "";
+                }
+            }
+
+            return users.ToArray();
+        }
+        #endregion
+
         #region Interest
         public static Interest[] InterestList(Connection connection)
         {

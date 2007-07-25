@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
+    <Compile Include="Friends\ListHandler.cs" />
     <Compile Include="Json\Collections\JSONArrayCollection.cs" />
     <Compile Include="Json\Collections\JSONObjectCollection.cs" />
     <Compile Include="Json\JSONValue.cs" />
@@ -48,7 +49,7 @@
     <Compile Include="Session\KeepAliveHandler.cs" />
     <Compile Include="Interest\ListHandler.cs" />
     <Compile Include="User\ProfileHandler.cs" />
-    <Compile Include="User\GetIntroducedHandler.cs" />
+    <Compile Include="Friends\GetIntroducedHandler.cs" />
     <Compile Include="User\InterestsHandler.cs" />
     <Compile Include="User\CaptchaHandler.cs" />
     <Compile Include="HttpModule.cs" />
