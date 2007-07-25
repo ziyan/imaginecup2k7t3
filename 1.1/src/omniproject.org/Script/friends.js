@@ -25,7 +25,7 @@ function profile_interests_table(ids, prefix)
         {
             if(ids[k1] == parent.id)
             {
-                idx = ids[k1];
+                idx1 = ids[k1];
                 break;
             }
         }
@@ -44,7 +44,7 @@ function profile_interests_table(ids, prefix)
             {
                 if(ids[k2] == child.id)
                 {
-                    idx = ids[k2];
+                    idx2 = ids[k2];
                     break;
                 }
             }
@@ -66,12 +66,18 @@ function omni_profile_panel_reset()
     $("omniprofilepanel_content").style.display = "none";
 }
 
+var omni_profile_panel_user = null;
+var omni_profile_interests_ajax = null;
+
 function omni_profile_panel_display(user)
 {
+    omni_profile_panel_user = user;
+
     $("omniprofilepanel_username").innerHTML = user.username;
     $("omniprofilepanel_name").innerHTML = user.name;
     $("omniprofilepanel_email").innerHTML = user.email;
-    $("omniprofilepanel_description").value = user.description;
+    //$("omniprofilepanel_description").value = user.description;
+    $("omniprofilepanel_description").innerHTML = user.description;
     $("omniprofilepanel_network").innerHTML = user.sn_network;
     $("omniprofilepanel_screenname").innerHTML = user.sn_screenname;
     // Contact info visibility
@@ -91,8 +97,35 @@ function omni_profile_panel_display(user)
         $("omniprofilepanel_imrow3").style.display = null;
     }*/
     
+    // Get Interests
+    if(omni_profile_interests_ajax == null)
+        omni_profile_interests_ajax = new AniScript.Web.Ajax();
+    omni_profile_interests_ajax.setHandler(omni_profile_interests_callback);
+    $("omniprofilepanel_interests").innerHTML = loading_img+" "+lang_getHTML("OmniProfileLoading","Interest");
+    omni_profile_interests_ajax.request(hosturl+"handler/user/interestshandler.ashx","user_id="+escape(user.id));
+
     $("omniprofilepanel_content_empty").style.display = "none";
     $("omniprofilepanel_content").style.display = "block";
+}
+
+function omni_profile_interests_callback()
+{
+    if(!omni_profile_interests_ajax.isDone()) return;
+    if(omni_profile_interests_ajax.hasError())
+    {
+        $("omniprofilepanel_interests").innerHTML="<span id=\"Omni_Localized_OmniProfileStatusError_Int\" style=\"color:#993333;\">"+lang_getText("OmniProfileStatusError")+"</span>";
+        return;
+    }    
+    var status = omni_profile_interests_ajax.getJSON().status;
+    if(status=="OK")
+    {
+        var interests = omni_profile_interests_ajax.getJSON().interests;
+        $("omniprofilepanel_interests").innerHTML = profile_interests_table(interests, "omniprofilepanel");
+    }
+    else
+    {
+        $("omniprofilepanel_interests").innerHTML="<span id=\"Omni_Localized_OmniProfileStatusError_Int\" style=\"color:#993333;\">"+lang_getText("OmniProfileStatusError")+"</span>";
+    }    
 }
 
 // Friends List

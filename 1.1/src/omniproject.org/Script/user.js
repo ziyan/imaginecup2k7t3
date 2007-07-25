@@ -346,7 +346,7 @@ function user_profile_retrieve()
         $("form_user_profile_description").value = user_current_obj.description;
         $("form_user_profile_sn_network").value = user_current_obj.sn_network;
         $("form_user_profile_sn_screenname").value = user_current_obj.sn_screenname;
-        $("form_user_profile_interests").innerHTML = loading_img+" "+lang_getHTML("UserProfileInterestLoading");
+        $("form_user_profile_interests").innerHTML = loading_img+" "+lang_getHTML("UserProfileLoading","Interest");
         $("Omni_Localized_UserProfileSubmitButton").disabled = true;
         // ajax
         if(user_update_interests_ajax == null) user_update_interests_ajax = new AniScript.Web.Ajax();

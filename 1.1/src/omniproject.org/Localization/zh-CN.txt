@@ -94,7 +94,7 @@
 	"UserProfileStatusDuplicateEmail":"您填写的电子邮件地址已被用以注册",		
 	"UserProfileStatusError":"系统出错, 请稍候再试",
 	"UserProfileStatusUpdated":"操作成功",
-	"UserProfileInterestLoading":" 加载中 ... ",	
+	"UserProfileLoading":" 加载中 ... ",	
 	
 	"ServiceTransNoMsg":"请输入要翻译的文字",
 	"ServiceTransError":"系统出错, 请稍候再试",
@@ -126,6 +126,7 @@
 	"OmniProfileScreenname":"Screenname:",
 	"OmniProfileLanguages":"Languages",
 	"OmniProfileInterests":"Interests",
+	"OmniProfileLoading":" 加载中 ... ",	
 	"OmniProfileGroupMemberships":"Group Memberships",
 	"OmniProfileSendMessage":"Send Message",
 	"OmniProfileAddFriend":"Add Friend",
@@ -133,6 +134,7 @@
 	"OmniProfileRemoveFriendConfirm":"Are you sure?",
 	"OmniProfileRemoveFriendConfirmYes":"Yes",
 	"OmniProfileRemoveFriendConfirmNo":"No",
+	"OmniProfileStatusError":"系统出错, 请稍候再试",
 	
 	"OmniUserTableUsername":"Username",
 	"OmniUserTableDisplayName":"Display Name",	
