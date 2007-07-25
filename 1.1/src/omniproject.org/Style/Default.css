@@ -173,6 +173,23 @@ a:hover, a:active
 	vertical-align:top;
 }
 
+.content_equal_left_right #content_left
+{
+	float: left;
+	width: 385px;
+	vertical-align:top;
+}
+.content_equal_left_right #content_center
+{
+	display: none;
+}
+.content_equal_left_right #content_right
+{
+	float: right;
+	width: 385px;
+	vertical-align:top;
+}
+
 .boxpanel
 {
 	text-align:left;
@@ -279,6 +296,59 @@ a:hover, a:active
 }
 
 
+.friendspanel .title
+{
+	text-align:left;
+	font-size: 12pt;
+	border-bottom: dashed 1px #666666;
+}
+.friendspanel .content
+{
+	width: auto;
+	padding-left:20px;
+	text-align:left;
+	line-height:30px;
+}
+.friendspanel .content .description
+{
+	line-height:normal;
+}
+.friendspanel .colheading
+{
+	font-weight: bold;
+}
+
+
+.omniprofilepanel .title
+{
+	text-align:left;
+	font-size: 12pt;
+	border-bottom: dashed 1px #666666;
+}
+.omniprofilepanel .content
+{
+	width: auto;
+	padding-left:20px;
+	text-align:left;
+	line-height:30px;
+}
+.omniprofilepanel .content .description
+{
+	line-height:normal;
+}
+.omniprofilepaneltable
+{
+	line-height: 250%;
+}
+.omniprofilepaneltable .colheading
+{
+	font-weight: bold;
+}
+.omniprofilepaneltable .colheading_lg
+{
+	font-weight: bold;
+	font-size: 200%;
+}
 
 
 .get_introduced_panel .title
@@ -302,6 +372,25 @@ a:hover, a:active
 {
 	font-weight: bold;
 }
+
+
+
+.detailtable
+{
+	background-color: #f8f8f8;
+	border: outset 1px Black;
+}
+.detailtable tr th
+{
+	background-color: #dddddd;
+	border: inset 1px Black;
+}
+.detailtable tr td
+{
+	background-color: #f8f8f8;
+	border: inset 1px Black;
+}
+
 
 
 

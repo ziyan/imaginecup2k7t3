@@ -360,7 +360,7 @@ function user_update_interests_callback()
     $("Omni_Localized_UserProfileSubmitButton").disabled = false;
     if(user_update_interests_ajax.hasError())
     {
-        $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError_Int\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
         user_current_interests = null;
         return;
     }    
@@ -393,7 +393,7 @@ function user_update_interests_callback()
     }
     else
     {
-        $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError_Int\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
         user_current_interests = null;
     }    
 }
@@ -488,64 +488,5 @@ function user_update_callback()
     else
     {
         $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
-    }
-}
-
-// -----------------------------------------------
-//                 getIntroduced functions
-// -----------------------------------------------
-
-var get_introduced_ajax = new AniScript.Web.Ajax();
-
-function get_introduced_retrieve()
-{
-    // FIXME : Displays all system languages. Should probably only
-    // display those that the user has selected in their profile, but user languages
-    // aren't implemented yet.
-    if(user_current_obj != null  && system_languages.length != 0)
-    {
-        $("get_introduced_lang").options.length = system_languages.length;
-        for(var x=0; x<system_languages.length; x++)
-        {
-            var myOpt = document.createElement("OPTION");
-            myOpt.id = "Omni_Localized_LanguageName"+system_languages[x].short_code;
-            myOpt.text = sys_lang_by_short_code(system_languages[x].short_code, "GetIntroduced");
-            myOpt.value = system_languages[x].id;
-            $("get_introduced_lang").options[x] = myOpt;
-        }
-    }
-}
-
-function get_introduced()
-{
-    $("get_introduced_status").innerHTML="";
-    
-    var selectedIndex = $("get_introduced_lang").selectedIndex;
-    var language = $("get_introduced_lang").options[selectedIndex];
-    $("get_introduced_lang").disabled = true;
-    $("Omni_Localized_GetIntroducedIntroduceButton").disabled = true;
- 
-    get_introduced_ajax.setHandler(get_introduced_callback);
-    get_introduced_ajax.request(hosturl + "handler/user/GetIntroducedHandler.ashx", 
-            "language=" + escape(language));
-}
-
-function get_introduced_callback()
-{
-    if(!get_introduced_ajax.isDone()) return;
-    
-    $("get_introduced_lang").disabled = false;
-    $("Omni_Localized_GetIntroducedIntroduceButton").disabled = false;
-    
-    if(get_introduced_ajax.hasError())
-    {
-        $("get_introduced_status").innerHTML="<span id=\"Omni_Localized_GetIntroducedStatusError\" style=\"color:#993333;\">"+lang_getText("GetIntroducedStatusError")+"</span>";
-        return;
-    }
-    
-    var status = get_introduced_ajax.getJSON().status;
-    if(status=="No Match")
-    {
-        $("get_introduced_status").innerHTML="<span id=\"Omni_Localized_GetIntroducedNoMatch\" style=\"color:green;\">"+lang_getText("GetIntroducedNoMatch")+"</span>";
     }
 }

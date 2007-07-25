@@ -5,6 +5,7 @@
 var pool = null;
 var content = null;
 var content_left_center_right = null;
+var content_equal_left_right = null;
 var content_big_left_right = null;
 var content_left_big_right = null;
 var content_big_center = null;
@@ -25,6 +26,7 @@ function page_init()
     pool = $("pool");
     content = $("content");
     content_left_center_right=$("content_left_center_right");
+    content_equal_left_right=$("content_equal_left_right");
     content_big_left_right=$("content_big_left_right");
     content_left_big_right=$("content_left_big_right");
     content_big_center=$("content_big_center");
@@ -69,6 +71,7 @@ function page_clear()
         pool.appendChild(content_right.childNodes[i]);
     }
     pool.appendChild(content_left_center_right);
+    pool.appendChild(content_equal_left_right);    
     pool.appendChild(content_big_left_right);
     pool.appendChild(content_left_big_right);
     pool.appendChild(content_big_center);
@@ -84,6 +87,14 @@ function page_layout_left_center_right()
     content_left_center_right.appendChild(content_left);
     content_left_center_right.appendChild(content_center);
     content_left_center_right.appendChild(content_right);
+}
+
+function page_layout_equal_left_right()
+{
+    content.appendChild(content_equal_left_right);
+    content_equal_left_right.appendChild(content_left);
+    //content_big_left_right.appendChild(content_center);
+    content_equal_left_right.appendChild(content_right);
 }
 
 function page_layout_big_left_right()
@@ -133,6 +144,9 @@ function page_change(page_name)
         case "GetIntroduced":
             page_goto_get_introduced();
             break;
+        case "Friends":
+            page_goto_friends();
+            break;    
         default:
             page_name = "Home";
             page_goto_home();
@@ -250,8 +264,18 @@ function page_goto_profile()
 
 function page_goto_get_introduced()
 {
-    page_layout_big_left_right();
-    content_right.appendChild($("userpanel"));
+    page_layout_equal_left_right();
+    content_right.appendChild($("omniprofilepanel"));
     content_left.appendChild($("get_introduced_panel"));
+    omni_profile_panel_reset();
     get_introduced_retrieve();
+}
+
+function page_goto_friends()
+{
+    page_layout_equal_left_right();
+    content_right.appendChild($("omniprofilepanel"));
+    content_left.appendChild($("friendspanel"));
+    omni_profile_panel_reset();
+    friends_list_retrieve();    
 }

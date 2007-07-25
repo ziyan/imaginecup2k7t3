@@ -12,6 +12,7 @@
     <script type="text/javascript" src="Script/system.js"></script>
     <script type="text/javascript" src="Script/page.js"></script>    
     <script type="text/javascript" src="Script/user.js"></script>
+    <script type="text/javascript" src="Script/friends.js"></script>    
     <script type="text/javascript" src="Script/trans.js"></script>
     <script type="text/javascript" src="Script/service.js"></script>
     <script type="text/javascript" src="Script/rater.js"></script>
@@ -78,6 +79,7 @@ under development
 
 <!--layouts-->
 <div id="content_left_center_right" class="content_left_center_right"></div>
+<div id="content_equal_left_right" class="content_equal_left_right"></div>
 <div id="content_big_left_right" class="content_big_left_right"></div>
 <div id="content_left_big_right" class="content_left_big_right"></div>
 <div id="content_big_center" class="content_big_center"></div>
@@ -324,7 +326,101 @@ under development
     </div>
     </div>
     <!--end of userprofilepanel-->    
-    
+    <!-- begin of friendspanel -->
+    <div id="friendspanel" class="friendspanel">
+        <div class="title"><span id="Omni_Localized_FriendsTitle">Friends</span></div>
+        <div class="content">
+        <p><a href="#" onclick="page_change('GetIntroduced'); return false"><span id="Omni_Localized_FriendsIntroduceLink">Allow Omni to introduce you to other users.</span></a></p>
+        <p><a onclick="return false"><span id="Omni_Localized_FriendsSearchForUser">Search for User</span></a></p>
+        <p><strong><span id="Omni_Localized_FriendsListTitle">Friends</span></strong>
+        <br />
+        <span id="friendspanel_friendstable"></span>
+        </p>        
+        </div>
+    </div>
+    <!-- end of friendspanel -->
+    <!-- begin of omniprofilepanel -->
+    <div id="omniprofilepanel" class="boxpanel">
+        <div class="title"><span id="Omni_Localized_OmniProfileTitle">Profile</span></div>
+        <div id="omniprofilepanel_content_empty" class="content">
+        <span id="Omni_Localized_OmniProfileSelectHint">Select a user to see their profile.</span>
+        </div>
+        <div id="omniprofilepanel_content" class="content" style="display:none">
+            <table border="0" class="omniprofilepaneltable" width="385">
+                <tr>
+                    <td class="colheading_lg" colspan="4" id="omniprofilepanel_name">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="colheading" colspan="2">
+                        <span id="Omni_Localized_OmniProfileUsername">Username:</span></td>
+                    <td style="width: 15px">
+                    </td>
+                    <td id="omniprofilepanel_username">
+                    </td>
+                </tr>
+                <tr id="omniprofilepanel_emailrow">
+                    <td class="colheading" colspan="2">
+                        <span id="Omni_Localized_OmniProfileEmail">E-Mail Address:</span></td>
+                    <td style="width: 15px">
+                    </td>
+                    <td id="omniprofilepanel_email">
+                    </td>
+                </tr>
+                <tr style="line-height: 100%;">
+                    <td class="colheading" colspan="2">
+                        <span id="Omni_Localized_OmniProfileDescription">Profile Description:</span></td>
+                    <td style="width: 15px">
+                    </td>
+                    <td>
+                    <textarea style="position: relative; left: -10px;" cols="42" rows="4" id="omniprofilepanel_description" readonly="readonly"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        
+                    </td>
+                </tr>                
+                <tr id="omniprofilepanel_imrow1">
+                    <td class="colheading" colspan="4">
+                        <span id="Omni_Localized_OmniProfileInstantMessaging">Instant Messaging:</span></td>
+                </tr>
+                <tr id="omniprofilepanel_imrow2">
+                    <td style="width: 15px">
+                    </td>
+                    <td class="colheading">
+                        <span id="Omni_Localized_OmniProfileNetwork">Network:</span></td>
+                    <td style="width: 15px">
+                    </td>
+                    <td id="omniprofilepanel_network">
+                    </td>
+                </tr>
+                <tr id="omniprofilepanel_imrow3">
+                    <td style="width: 15px">
+                    </td>
+                    <td class="colheading">
+                        <span id="Omni_Localized_OmniProfileScreenname">Screenname:</span></td>
+                    <td style="width: 15px">
+                    </td>
+                    <td id="omniprofilepanel_screenname">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="colheading" colspan="4">
+                        <span id="Omni_Localized_OmniProfileLanguages">Languages</span></td>
+                </tr>
+                <tr>
+                    <td class="colheading" colspan="4" valign="top">
+                        <span id="Omni_Localized_OmniProfileInterests">Interests</span></td>
+                </tr>                
+                <tr>
+                    <td colspan="4" id="omniprofilepanel_interests">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- end of omniprofilepanel -->
     <!--begin of get_introduced_panel-->
     <div id="get_introduced_panel" class="get_introduced_panel">
         <div class="title"><span id="Omni_Localized_GetIntroducedTitle">Get Introduced</span></div>

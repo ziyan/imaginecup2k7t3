@@ -106,64 +106,6 @@ function system_interests_table(prefix)
     return output;
 }
 
-// Render interests w/ tree structure, but only for interest ids
-//   passed in
-// ids : Array of interest ids as ints
-// prefix (userprofilepanel, etc). Do not include any "_"'s.
-// Returns string (HTML)
-// In the output, rows are uniquely identified by the following string
-//       prefix_interest_id
-// e.g.  userprofilepanel_interest_12
-function profile_interests_table(ids, prefix)
-{
-    if(system_interests==null) return "";
-    if(ids == null || ids == undefined || ids.length == 0) return "";
-    var output = "<span style=\"line-height: 10px\"><table>";
-    // Only works for one level of parents
-    for(var i=0; i<system_interests.length; i++)
-    {
-        var parent = system_interests[i];
-        if(parent.parent_id != 0) continue;
-        
-        var idx1 = -1;
-        for(var k1=0;k1<ids.length;k1++)
-        {
-            if(ids[k1] == parent.id)
-            {
-                idx = ids[k1];
-                break;
-            }
-        }
-        if(idx1 == -1) continue;
-        
-        output += "<tr>";
-        output += "<td style=\"padding-left:0px\">"+lang_getHTML("InterestName"+parent.name,prefix)+"</td>"; 
-        output += "</tr>";  
-        for(var j=0; j<system_interests.length; j++)
-        {
-            var child = system_interests[j];
-            if(child.parent_id != parent.id) continue;
-            
-            var idx2 = -1;
-            for(var k2=0;k2<ids.length;k2++)
-            {
-                if(ids[k2] == child.id)
-                {
-                    idx = ids[k2];
-                    break;
-                }
-            }
-            if(idx2 == -1) continue;            
-            
-            output += "<tr>";
-            output += "<td style=\"padding-left:16px\">"+lang_getHTML("InterestName"+child.name,prefix)+"</td>"; 
-            output += "</tr>";            
-        }
-    }
-    output += "</table></span>";
-    return output;
-}
-
 // Language stuff
 // Localize a language name by ID
 // span: true to auto-localize (surrounded by localizable span)
