@@ -13,7 +13,7 @@ function profile_interests_table(ids, prefix)
 {
     if(system_interests==null) return "";
     if(ids == null || ids == undefined || ids.length == 0) return "";
-    var output = "<span style=\"line-height: 10px\"><table>";
+    var output = "<span style=\"line-height: 16px\"><table>";
     // Only works for one level of parents
     for(var i=0; i<system_interests.length; i++)
     {
@@ -81,27 +81,27 @@ function omni_profile_panel_display(user)
     $("omniprofilepanel_network").innerHTML = user.sn_network;
     $("omniprofilepanel_screenname").innerHTML = user.sn_screenname;
     // Contact info visibility
-    // Messes up formatting for now
-    /*if(user.email == "") $("omniprofilepanel_emailrow").style.display = "none";
-    else $("omniprofilepanel_emailrow").style.display = null;
-    if(user.sn_network == "" && user.sn_screenname == "")
+    if(user.email == "")
     {
+        $("omniprofilepanel_emailrow").style.display = "none";
         $("omniprofilepanel_imrow1").style.display = "none";
         $("omniprofilepanel_imrow2").style.display = "none";
-        $("omniprofilepanel_imrow3").style.display = "none";
+        $("omniprofilepanel_imrow3").style.display = "none";        
     }
     else
     {
+        $("omniprofilepanel_emailrow").style.display = null;
         $("omniprofilepanel_imrow1").style.display = null;
         $("omniprofilepanel_imrow2").style.display = null;
-        $("omniprofilepanel_imrow3").style.display = null;
-    }*/
+        $("omniprofilepanel_imrow3").style.display = null;        
+    }
     
     // Get Interests
     if(omni_profile_interests_ajax == null)
         omni_profile_interests_ajax = new AniScript.Web.Ajax();
     omni_profile_interests_ajax.setHandler(omni_profile_interests_callback);
     $("omniprofilepanel_interests").innerHTML = loading_img+" "+lang_getHTML("OmniProfileLoading","Interest");
+    alert(hosturl+"handler/user/interestshandler.ashx?"+"user_id="+escape(user.id));
     omni_profile_interests_ajax.request(hosturl+"handler/user/interestshandler.ashx","user_id="+escape(user.id));
 
     $("omniprofilepanel_content_empty").style.display = "none";
@@ -145,7 +145,7 @@ function friends_list_retrieve_callback()
     
     if(friends_list_ajax.hasError())
     {
-        $("friendspanel_friendstable").innerHTML="<span id=\"Omni_Localized_FriendsStatusError\" style=\"color:#993333;\">"+lang_getText("GetIntroducedStatusError")+"</span>";
+        $("friendspanel_friendstable").innerHTML="<span id=\"Omni_Localized_FriendsStatusError_Friends\" style=\"color:#993333;\">"+lang_getText("FriendsStatusError")+"</span>";
         return;
     }
     
@@ -159,6 +159,55 @@ function friends_list_retrieve_callback()
     }
     tablestr += "</table>";
     table.innerHTML = tablestr;
+}
+
+// Search for a User (Friends Panel)
+var friends_search_user_ajax = null;
+var friends_search_results_users = null;
+function friends_search_user()
+{
+    if(friends_search_user_ajax == null)
+        friends_search_user_ajax = new AniScript.Web.Ajax();
+        
+    var search = $("friendspanel_searchcriteria").value;
+        
+    friends_search_user_ajax.setHandler(friends_search_user_callback);
+    friends_search_user_ajax.request(hosturl + "handler/friends/searchusershandler.ashx","search="+escape(search));
+}
+
+function friends_search_user_callback()
+{
+    if(!friends_search_user_ajax.isDone()) return;
+    
+    if(friends_search_user_ajax.hasError())
+    {
+        $("friendspanel_searchresultstable").innerHTML="<span id=\"Omni_Localized_FriendsStatusError_Search\" style=\"color:#993333;\">"+lang_getText("FriendsStatusError")+"</span>";
+        return;
+    }
+    
+    var table = $("friendspanel_searchresultstable");
+    results = friends_search_user_ajax.getJSON();
+    friends_search_results_users = results; 
+    if(results.length > 0)
+    {
+        var tablestr = "<table class=\"detailtable\" cellpadding=\"2\" width=\"370\"><tr><th>"+lang_getHTML("OmniUserTableUsername","FriendsSearch")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","FriendsSearch")+"</th></tr>";
+        
+        for(var x=0; x<results.length; x++)
+        {
+            tablestr += "<tr><td><a href=\"#\" onclick=\"omni_profile_panel_display(friends_search_results_users["+x+"]); return false\">"+results[x].username+"</a></td><td>"+results[x].name+"</td></tr>";
+        }
+        tablestr += "</table>";
+        table.innerHTML = tablestr;
+    }
+    else table.innerHTML = "<span id=\"Omni_Localized_FriendsSearchNoResults\" style=\"color:#993333;\">"+lang_getText("FriendsSearchNoResults")+"</span>";
+}
+
+function friends_toggle_search_panel()
+{
+    var panel = $("friendspanel_searchpanel");
+    if(panel.style.display != null && panel.style.display == "none")
+        panel.style.display = "block";
+    else panel.style.display = "none";
 }
 
 
@@ -195,7 +244,7 @@ function get_introduced()
     var language = $("get_introduced_lang").options[selectedIndex];
     $("get_introduced_lang").disabled = true;
     $("Omni_Localized_GetIntroducedIntroduceButton").disabled = true;
- 
+    
     get_introduced_ajax.setHandler(get_introduced_callback);
     get_introduced_ajax.request(hosturl + "handler/friends/GetIntroducedHandler.ashx", 
             "language=" + escape(language));
@@ -215,7 +264,7 @@ function get_introduced_callback()
     }
     
     var status = get_introduced_ajax.getJSON().status;
-    if(status=="No Match")
+    if(status=="NoMatch")
     {
         $("get_introduced_status").innerHTML="<span id=\"Omni_Localized_GetIntroducedNoMatch\" style=\"color:green;\">"+lang_getText("GetIntroducedNoMatch")+"</span>";
     }

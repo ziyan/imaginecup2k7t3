@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
@@ -331,7 +331,17 @@ under development
         <div class="title"><span id="Omni_Localized_FriendsTitle">Friends</span></div>
         <div class="content">
         <p><a href="#" onclick="page_change('GetIntroduced'); return false"><span id="Omni_Localized_FriendsIntroduceLink">Allow Omni to introduce you to other users.</span></a></p>
-        <p><a onclick="return false"><span id="Omni_Localized_FriendsSearchForUser">Search for User</span></a></p>
+        <a href="#" onclick="friends_toggle_search_panel(); return false"><span id="Omni_Localized_FriendsSearchForUser">Search for User</span></a>
+        <div id="friendspanel_searchpanel" style="display: none;">
+            <span id="Omni_Localized_FriendsSearchCriteria" style="line-height: 175%;">Search by Username, E-Mail, Display
+                Name, or Profile Description:</span><br />
+            <form action="" id="friendspanel_searchform" onsubmit="friends_search_user(); return false"
+                style="margin: 0px">
+                <input type="text" size="53" maxlength="255" id="friendspanel_searchcriteria" /><br />
+                <input type="submit" value="Search" id="Omni_Localized_FriendsSearchButton" />
+            </form>
+            <span id="friendspanel_searchresultstable"></span>
+        </div>
         <p><strong><span id="Omni_Localized_FriendsListTitle">Friends</span></strong>
         <br />
         <span id="friendspanel_friendstable"></span>
@@ -367,7 +377,7 @@ under development
                     <td id="omniprofilepanel_email">
                     </td>
                 </tr>
-                <tr style="line-height: 100%;">
+                <tr style="line-height: 120%;">
                     <td class="colheading" colspan="2">
                         <span id="Omni_Localized_OmniProfileDescription">Profile Description:</span></td>
                     <td style="width: 15px">
@@ -381,11 +391,11 @@ under development
                         
                     </td>
                 </tr>                
-                <tr id="omniprofilepanel_imrow1">
+                <tr id="omniprofilepanel_imrow1" style="line-height: 150%;">
                     <td class="colheading" colspan="4">
                         <span id="Omni_Localized_OmniProfileInstantMessaging">Instant Messaging:</span></td>
                 </tr>
-                <tr id="omniprofilepanel_imrow2">
+                <tr id="omniprofilepanel_imrow2" style="line-height: 150%;">
                     <td style="width: 15px">
                     </td>
                     <td class="colheading">
@@ -395,7 +405,7 @@ under development
                     <td id="omniprofilepanel_network">
                     </td>
                 </tr>
-                <tr id="omniprofilepanel_imrow3">
+                <tr id="omniprofilepanel_imrow3" style="line-height: 150%;">
                     <td style="width: 15px">
                     </td>
                     <td class="colheading">
@@ -410,7 +420,7 @@ under development
                         <span id="Omni_Localized_OmniProfileLanguages">Languages</span></td>
                 </tr>
                 <tr>
-                    <td class="colheading" colspan="4" valign="top">
+                    <td class="colheading" colspan="4" valign="top"  style="line-height: 120%;">
                         <span id="Omni_Localized_OmniProfileInterests">Interests</span></td>
                 </tr>                
                 <tr>

@@ -105,7 +105,8 @@
 	
 	"FriendsIntroduceLink":"Allow Omni to introduce you to other users.",
 	"FriendsSearchForUser":"Search for User",
-	"FriendsSearchCriteria":"Username, E-Mail, or Display Name:",
+	"FriendsSearchCriteria":"Search by Username, E-Mail, Display Name, Profile Description, or Instant Messaging Screenname:",
+	"FriendsSearchNoResults":"No Results Found.",
 	"FriendsSearchButton":"Search",
 	"FriendsTitle":"Friends",
 	"FriendsListTitle":"Friends",
