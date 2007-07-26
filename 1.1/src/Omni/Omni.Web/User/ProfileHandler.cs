@@ -27,7 +27,7 @@ namespace Omni.Web.User
                     else
                         status = "Error";//Null";
                 }
-                catch(System.Exception e)
+                catch(System.Exception /*e*/)
                 {
                     status = "Error";// +e.Message;
                 }
