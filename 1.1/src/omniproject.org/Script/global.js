@@ -12,7 +12,7 @@ else
     {
         hosturl = hosturl.substring(0,hosturl.indexOf("#"));
     }
-    if(hosturl[hosturl.length-1] != "/") hosturl = hosturl + "/";
+    if(hosturl.charAt(hosturl.length-1) != "/") hosturl = hosturl + "/";
 }
 
 // Global settings
