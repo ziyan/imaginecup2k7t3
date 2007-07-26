@@ -22,7 +22,7 @@ namespace Omni.Web
             JSONObjectCollection collection = new JSONObjectCollection();
             if (user != null)
             {
-                collection.Add(new JSONStringValue("id"), new JSONNumberValue(user.ID));
+                collection.Add(new JSONStringValue("id"), new JSONStringValue(user.ID.ToString()));
                 collection.Add(new JSONStringValue("username"), new JSONStringValue(user.Username));
                 collection.Add(new JSONStringValue("email"), new JSONStringValue(user.Email));
                 collection.Add(new JSONStringValue("name"), new JSONStringValue(user.Name));

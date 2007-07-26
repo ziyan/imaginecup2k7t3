@@ -165,7 +165,7 @@ namespace Omni.Service
             ServiceSession Session = ServiceSession.Get(session);
             if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
             if (id <= 0) throw new ArgumentOutOfRangeException();
-            return Data.StoredProcedure.UserInterests(Session.UserContext.User.id, Session.Connection);
+            return Data.StoredProcedure.UserInterests(id, Session.Connection);
         }
 
         /// <summary>
@@ -198,6 +198,18 @@ namespace Omni.Service
             ServiceSession Session = ServiceSession.Get(session);
             if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
             return Data.StoredProcedure.FriendsList(Session.UserContext.User.id, Session.Connection);
+        }
+        /// <summary>
+        /// Search for Omni users by username, email, display name, or description.
+        /// </summary>
+        /// <param name="search">search criteria</param>
+        /// <returns>Array of users</returns>
+        [WebMethod(Description = "Search for Omni users by username, email, display name, or description.")]
+        public Data.User[] FriendsSearchUsers(string search, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.FriendsSearchUsers(Session.UserContext.User.id, search, Session.Connection);
         }
         #endregion
 

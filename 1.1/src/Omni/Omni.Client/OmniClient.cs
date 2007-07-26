@@ -247,6 +247,32 @@ namespace Omni.Client
             }
             return null;
         }
+        /// <summary>
+        /// Search for a user in Omni by username, display name, email, or description.
+        /// </summary>
+        /// <returns>Array of Users</returns>
+        public User[] FriendsSearchUsers(string search)
+        {
+            String msg = "";
+
+            CheckSession();
+            try
+            {
+                org.omniproject.service.User[] svcUsers = service.FriendsSearchUsers(search, session);
+                if (svcUsers == null) return null;
+                User[] users = new User[svcUsers.Length];
+                for (int i = 0; i < users.Length; i++)
+                {
+                    users[i] = new User(svcUsers[i]);
+                }
+                return users;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
         #endregion
 
         #region Interest

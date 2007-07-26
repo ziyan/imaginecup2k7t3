@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
+    <Compile Include="Friends\SearchUsersHandler.cs" />
     <Compile Include="Friends\ListHandler.cs" />
     <Compile Include="Json\Collections\JSONArrayCollection.cs" />
     <Compile Include="Json\Collections\JSONObjectCollection.cs" />

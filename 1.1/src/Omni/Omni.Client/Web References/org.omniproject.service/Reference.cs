@@ -57,6 +57,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback FriendsListOperationCompleted;
         
+        private System.Threading.SendOrPostCallback FriendsSearchUsersOperationCompleted;
+        
         private System.Threading.SendOrPostCallback InterestListOperationCompleted;
         
         private System.Threading.SendOrPostCallback LanguageListOperationCompleted;
@@ -144,6 +146,9 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event FriendsListCompletedEventHandler FriendsListCompleted;
+        
+        /// <remarks/>
+        public event FriendsSearchUsersCompletedEventHandler FriendsSearchUsersCompleted;
         
         /// <remarks/>
         public event InterestListCompletedEventHandler InterestListCompleted;
@@ -592,6 +597,37 @@ namespace Omni.Client.org.omniproject.service {
             if ((this.FriendsListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.FriendsListCompleted(this, new FriendsListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/FriendsSearchUsers", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public User[] FriendsSearchUsers(string search, System.Guid session) {
+            object[] results = this.Invoke("FriendsSearchUsers", new object[] {
+                        search,
+                        session});
+            return ((User[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FriendsSearchUsersAsync(string search, System.Guid session) {
+            this.FriendsSearchUsersAsync(search, session, null);
+        }
+        
+        /// <remarks/>
+        public void FriendsSearchUsersAsync(string search, System.Guid session, object userState) {
+            if ((this.FriendsSearchUsersOperationCompleted == null)) {
+                this.FriendsSearchUsersOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFriendsSearchUsersOperationCompleted);
+            }
+            this.InvokeAsync("FriendsSearchUsers", new object[] {
+                        search,
+                        session}, this.FriendsSearchUsersOperationCompleted, userState);
+        }
+        
+        private void OnFriendsSearchUsersOperationCompleted(object arg) {
+            if ((this.FriendsSearchUsersCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FriendsSearchUsersCompleted(this, new FriendsSearchUsersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1216,6 +1252,32 @@ namespace Omni.Client.org.omniproject.service {
         private object[] results;
         
         internal FriendsListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public User[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((User[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void FriendsSearchUsersCompletedEventHandler(object sender, FriendsSearchUsersCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FriendsSearchUsersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FriendsSearchUsersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
