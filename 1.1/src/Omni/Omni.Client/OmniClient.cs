@@ -253,8 +253,6 @@ namespace Omni.Client
         /// <returns>Array of Users</returns>
         public User[] FriendsSearchUsers(string search)
         {
-            String msg = "";
-
             CheckSession();
             try
             {
