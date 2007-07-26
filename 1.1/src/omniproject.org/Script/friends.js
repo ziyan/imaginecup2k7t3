@@ -198,7 +198,7 @@ function friends_search_user_callback()
         tablestr += "</table>";
         table.innerHTML = tablestr;
     }
-    else table.innerHTML = "<span id=\"Omni_Localized_FriendsSearchNoResults\" style=\"color:#993333;\">"+lang_getText("FriendsSearchNoResults")+"</span>";
+    else table.innerHTML = "<span id=\"Omni_Localized_FriendsSearchNoResults\" style=\"color:green;\">"+lang_getText("FriendsSearchNoResults")+"</span>";
 }
 
 function friends_toggle_search_panel()
@@ -263,7 +263,7 @@ function get_introduced_callback()
     }
     
     var status = get_introduced_ajax.getJSON().status;
-    if(status=="NoMatch")
+    if(status=="No Match")
     {
         $("get_introduced_status").innerHTML="<span id=\"Omni_Localized_GetIntroducedNoMatch\" style=\"color:green;\">"+lang_getText("GetIntroducedNoMatch")+"</span>";
     }
