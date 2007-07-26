@@ -101,7 +101,6 @@ function omni_profile_panel_display(user)
         omni_profile_interests_ajax = new AniScript.Web.Ajax();
     omni_profile_interests_ajax.setHandler(omni_profile_interests_callback);
     $("omniprofilepanel_interests").innerHTML = loading_img+" "+lang_getHTML("OmniProfileLoading","Interest");
-    alert(hosturl+"handler/user/interestshandler.ashx?"+"user_id="+escape(user.id));
     omni_profile_interests_ajax.request(hosturl+"handler/user/interestshandler.ashx","user_id="+escape(user.id));
 
     $("omniprofilepanel_content_empty").style.display = "none";
