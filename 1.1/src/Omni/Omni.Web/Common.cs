@@ -35,6 +35,19 @@ namespace Omni.Web
             return collection;
         }
 
+        public static JSONObjectCollection getUserSimilJSON(Client.UserSimil us)
+        {
+            JSONObjectCollection collection = new JSONObjectCollection();
+            if (us != null)
+            {
+                collection.Add(new JSONStringValue("user"), getUserJSON(us.User));
+                collection.Add(new JSONStringValue("self_rating"), new JSONStringValue(us.SelfRating.ToString()));
+                collection.Add(new JSONStringValue("net_rating"), new JSONStringValue(us.NetRating.ToString()));
+                collection.Add(new JSONStringValue("simil"), new JSONStringValue(us.Simil.ToString()));
+            }
+            return collection;
+        }
+
         public static JSONObjectCollection getInterestJSON(Client.Interest interest)
         {
             JSONObjectCollection obj = new JSONObjectCollection();

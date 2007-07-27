@@ -120,7 +120,7 @@ namespace Omni.Data
                 SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, cur_user_id);
                 object result = cmd.ExecuteScalar();
                 int result2 = (result == null) ? -1 : Convert.ToInt32(result);
-                if (result2 != 1 && user != null)
+                if (result2 != 1)
                 {
                     // Not the profile user's friend, remove contact info
                     user.email = "";
@@ -155,7 +155,7 @@ namespace Omni.Data
                     SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, user_id);
                     object result = cmd.ExecuteScalar();
                     int result2 = (result == null) ? -1 : Convert.ToInt32(result);
-                    if (result2 != 1 && u != null)
+                    if (result2 != 1)
                     {
                         // Not the profile user's friend, remove contact info
                         u.email = "";
@@ -167,10 +167,8 @@ namespace Omni.Data
 
             return users.ToArray();
         }
-        public static User[] FriendsSearchUsers(int user_id, string search, Connection connection)
+        public static User[] FriendsSearchUsers(int user_id, string search, int maxresults, Connection connection)
         {
-            const int max = 10;
-
             SqlCommand cmd = GetStoredProcedure("omni_user_search", connection);
             SetStoredProcedureParameter(cmd, "@keyword", SqlDbType.NVarChar, search);
 
@@ -178,7 +176,7 @@ namespace Omni.Data
             SqlDataReader reader = cmd.ExecuteReader();
             int i = 0;
             // Don't need their login date
-            while (reader.Read() && i < max)
+            while (reader.Read() && i < maxresults)
             {
                 users.Add(new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now));
                 i++;
@@ -195,12 +193,52 @@ namespace Omni.Data
                     SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, user_id);
                     object result = cmd.ExecuteScalar();
                     int result2 = (result == null) ? -1 : Convert.ToInt32(result);
-                    if (result2 != 1 && u != null)
+                    if (result2 != 1)
                     {
                         // Not the profile user's friend, remove contact info
                         u.email = "";
                         u.sn_network = "";
                         u.sn_screenname = "";
+                    }
+                }
+            }
+
+            return users.ToArray();
+        }
+        public static UserSimil[] FriendsGetIntroduced(int user_id, int lang_id, int maxresults, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_intro_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@id", SqlDbType.Int, user_id);
+            SetStoredProcedureParameter(cmd, "@lang_id", SqlDbType.Int, lang_id);
+
+            List<UserSimil> users = new List<UserSimil>();
+            SqlDataReader reader = cmd.ExecuteReader();
+            int i = 0;
+            // Don't need their login date
+            while (reader.Read() && i < maxresults)
+            {
+                User u = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now);
+                users.Add(new UserSimil(u, Convert.ToInt16(reader["self_rating"]), Convert.ToSingle(reader["net_rating"]), Convert.ToDouble(reader["simil"])));
+                i++;
+            }
+            reader.Close();
+            reader.Dispose();
+
+            foreach (UserSimil us in users)
+            {
+                if (us.user.id != user_id)
+                {
+                    cmd = GetStoredProcedure("omni_user_favor_check_pair", connection);
+                    SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, us.user.id);
+                    SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, user_id);
+                    object result = cmd.ExecuteScalar();
+                    int result2 = (result == null) ? -1 : Convert.ToInt32(result);
+                    if (result2 != 1)
+                    {
+                        // Not the profile user's friend, remove contact info
+                        us.user.email = "";
+                        us.user.sn_network = "";
+                        us.user.sn_screenname = "";
                     }
                 }
             }

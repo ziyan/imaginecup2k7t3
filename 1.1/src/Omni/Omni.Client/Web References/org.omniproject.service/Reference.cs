@@ -59,6 +59,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback FriendsSearchUsersOperationCompleted;
         
+        private System.Threading.SendOrPostCallback FriendsGetIntroducedOperationCompleted;
+        
         private System.Threading.SendOrPostCallback InterestListOperationCompleted;
         
         private System.Threading.SendOrPostCallback LanguageListOperationCompleted;
@@ -149,6 +151,9 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event FriendsSearchUsersCompletedEventHandler FriendsSearchUsersCompleted;
+        
+        /// <remarks/>
+        public event FriendsGetIntroducedCompletedEventHandler FriendsGetIntroducedCompleted;
         
         /// <remarks/>
         public event InterestListCompletedEventHandler InterestListCompleted;
@@ -632,6 +637,37 @@ namespace Omni.Client.org.omniproject.service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/FriendsGetIntroduced", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserSimil[] FriendsGetIntroduced(int lang_id, System.Guid session) {
+            object[] results = this.Invoke("FriendsGetIntroduced", new object[] {
+                        lang_id,
+                        session});
+            return ((UserSimil[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FriendsGetIntroducedAsync(int lang_id, System.Guid session) {
+            this.FriendsGetIntroducedAsync(lang_id, session, null);
+        }
+        
+        /// <remarks/>
+        public void FriendsGetIntroducedAsync(int lang_id, System.Guid session, object userState) {
+            if ((this.FriendsGetIntroducedOperationCompleted == null)) {
+                this.FriendsGetIntroducedOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFriendsGetIntroducedOperationCompleted);
+            }
+            this.InvokeAsync("FriendsGetIntroduced", new object[] {
+                        lang_id,
+                        session}, this.FriendsGetIntroducedOperationCompleted, userState);
+        }
+        
+        private void OnFriendsGetIntroducedOperationCompleted(object arg) {
+            if ((this.FriendsGetIntroducedCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FriendsGetIntroducedCompleted(this, new FriendsGetIntroducedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/InterestList", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Interest[] InterestList(System.Guid session) {
             object[] results = this.Invoke("InterestList", new object[] {
@@ -918,6 +954,63 @@ namespace Omni.Client.org.omniproject.service {
             }
             set {
                 this.codeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.42")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
+    public partial class UserSimil {
+        
+        private User userField;
+        
+        private int self_ratingField;
+        
+        private float net_ratingField;
+        
+        private double similField;
+        
+        /// <remarks/>
+        public User user {
+            get {
+                return this.userField;
+            }
+            set {
+                this.userField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int self_rating {
+            get {
+                return this.self_ratingField;
+            }
+            set {
+                this.self_ratingField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float net_rating {
+            get {
+                return this.net_ratingField;
+            }
+            set {
+                this.net_ratingField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double simil {
+            get {
+                return this.similField;
+            }
+            set {
+                this.similField = value;
             }
         }
     }
@@ -1287,6 +1380,32 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((User[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void FriendsGetIntroducedCompletedEventHandler(object sender, FriendsGetIntroducedCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FriendsGetIntroducedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FriendsGetIntroducedCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserSimil[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserSimil[])(this.results[0]));
             }
         }
     }

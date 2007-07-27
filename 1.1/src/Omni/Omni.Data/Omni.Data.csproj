@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="UserSimil.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="Interest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

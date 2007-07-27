@@ -246,6 +246,34 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="FriendsGetIntroduced">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="lang_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FriendsGetIntroducedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FriendsGetIntroducedResult" type="tns:ArrayOfUserSimil" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserSimil">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserSimil" nillable="true" type="tns:UserSimil" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserSimil">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          <s:element minOccurs="1" maxOccurs="1" name="self_rating" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="net_rating" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="simil" type="s:double" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="InterestList">
         <s:complexType>
           <s:sequence>
@@ -415,6 +443,12 @@
   <wsdl:message name="FriendsSearchUsersSoapOut">
     <wsdl:part name="parameters" element="tns:FriendsSearchUsersResponse" />
   </wsdl:message>
+  <wsdl:message name="FriendsGetIntroducedSoapIn">
+    <wsdl:part name="parameters" element="tns:FriendsGetIntroduced" />
+  </wsdl:message>
+  <wsdl:message name="FriendsGetIntroducedSoapOut">
+    <wsdl:part name="parameters" element="tns:FriendsGetIntroducedResponse" />
+  </wsdl:message>
   <wsdl:message name="InterestListSoapIn">
     <wsdl:part name="parameters" element="tns:InterestList" />
   </wsdl:message>
@@ -514,6 +548,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search for Omni users by username, email, display name, or description.</wsdl:documentation>
       <wsdl:input message="tns:FriendsSearchUsersSoapIn" />
       <wsdl:output message="tns:FriendsSearchUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FriendsGetIntroduced">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get introduced to other Omni users (by a specific lang, and common interests).</wsdl:documentation>
+      <wsdl:input message="tns:FriendsGetIntroducedSoapIn" />
+      <wsdl:output message="tns:FriendsGetIntroducedSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="InterestList">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all interests in the system.</wsdl:documentation>
@@ -666,6 +705,15 @@
     </wsdl:operation>
     <wsdl:operation name="FriendsSearchUsers">
       <soap:operation soapAction="http://service.omniproject.org/FriendsSearchUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendsGetIntroduced">
+      <soap:operation soapAction="http://service.omniproject.org/FriendsGetIntroduced" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -840,6 +888,15 @@
     </wsdl:operation>
     <wsdl:operation name="FriendsSearchUsers">
       <soap12:operation soapAction="http://service.omniproject.org/FriendsSearchUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendsGetIntroduced">
+      <soap12:operation soapAction="http://service.omniproject.org/FriendsGetIntroduced" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

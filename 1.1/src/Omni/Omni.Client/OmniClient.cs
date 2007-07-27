@@ -271,6 +271,30 @@ namespace Omni.Client
             }
             return null;
         }
+        /// <summary>
+        /// Get introduced to other Omni users (by a specific lang, and common interests).
+        /// </summary>
+        /// <returns>Array of UserSimil</returns>
+        public UserSimil[] FriendsGetIntroduced(int lang_id)
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.UserSimil[] svcUsers = service.FriendsGetIntroduced(lang_id, session);
+                if (svcUsers == null) return null;
+                UserSimil[] users = new UserSimil[svcUsers.Length];
+                for (int i = 0; i < users.Length; i++)
+                {
+                    users[i] = new UserSimil(svcUsers[i]);
+                }
+                return users;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
         #endregion
 
         #region Interest

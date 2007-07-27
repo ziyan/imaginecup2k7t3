@@ -203,13 +203,25 @@ namespace Omni.Service
         /// Search for Omni users by username, email, display name, or description.
         /// </summary>
         /// <param name="search">search criteria</param>
-        /// <returns>Array of users</returns>
+        /// <returns>Array of users (Max 10)</returns>
         [WebMethod(Description = "Search for Omni users by username, email, display name, or description.")]
         public Data.User[] FriendsSearchUsers(string search, Guid session)
         {
             ServiceSession Session = ServiceSession.Get(session);
             if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
-            return Data.StoredProcedure.FriendsSearchUsers(Session.UserContext.User.id, search, Session.Connection);
+            return Data.StoredProcedure.FriendsSearchUsers(Session.UserContext.User.id, search, 10, Session.Connection);
+        }
+        /// <summary>
+        /// Get introduced to other Omni users (by a specific lang, and common interests).
+        /// </summary>
+        /// <param name="lang_id">introduction language id</param>
+        /// <returns>Array of UserSimil objects (users/ratings/similarities) (Max 10)</returns>
+        [WebMethod(Description = "Get introduced to other Omni users (by a specific lang, and common interests).")]
+        public Data.UserSimil[] FriendsGetIntroduced(int lang_id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.FriendsGetIntroduced(Session.UserContext.User.id, lang_id, 10, Session.Connection);
         }
         #endregion
 
