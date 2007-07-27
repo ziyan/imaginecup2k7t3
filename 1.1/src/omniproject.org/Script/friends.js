@@ -134,6 +134,7 @@ function friends_list_retrieve()
 {
     if(friends_list_ajax == null)
         friends_list_ajax = new AniScript.Web.Ajax();
+    $("friendspanel_friendstable").innerHTML=loading_img+" "+lang_getHTML("FriendsLoading","FriendList");
     friends_list_ajax.setHandler(friends_list_retrieve_callback);
     friends_list_ajax.request(hosturl + "handler/friends/ListHandler.ashx");
 }
@@ -169,7 +170,7 @@ function friends_search_user()
         friends_search_user_ajax = new AniScript.Web.Ajax();
         
     var search = $("friendspanel_searchcriteria").value;
-        
+    $("friendspanel_searchresultstable").innerHTML = loading_img+" "+lang_getHTML("FriendsLoading","Search");
     friends_search_user_ajax.setHandler(friends_search_user_callback);
     friends_search_user_ajax.request(hosturl + "handler/friends/searchusershandler.ashx","search="+escape(search));
 }
@@ -215,13 +216,14 @@ function friends_toggle_search_panel()
 // -----------------------------------------------
 
 var get_introduced_ajax = new AniScript.Web.Ajax();
+var get_introduced_results = null;
 
 function get_introduced_retrieve()
 {
     // FIXME : Displays all system languages. Should probably only
     // display those that the user has selected in their profile, but user languages
     // aren't implemented yet.
-    if(user_current_obj != null  && system_languages.length != 0)
+    if(user_current_obj != null && system_languages.length != 0)
     {
         $("get_introduced_lang").options.length = system_languages.length;
         for(var x=0; x<system_languages.length; x++)
@@ -237,20 +239,22 @@ function get_introduced_retrieve()
 
 function get_introduced()
 {
-    $("get_introduced_status").innerHTML="";
+    $("get_introduced_results").innerHTML=loading_img+" "+lang_getHTML("GetIntroducedLoading");
     
     var selectedIndex = $("get_introduced_lang").selectedIndex;
-    var language = $("get_introduced_lang").options[selectedIndex];
+    var langid = $("get_introduced_lang").options[selectedIndex].value;
     $("get_introduced_lang").disabled = true;
     $("Omni_Localized_GetIntroducedIntroduceButton").disabled = true;
     
     get_introduced_ajax.setHandler(get_introduced_callback);
     get_introduced_ajax.request(hosturl + "handler/friends/GetIntroducedHandler.ashx", 
-            "language=" + escape(language));
+            "langid=" + escape(langid));
 }
 
 function get_introduced_callback()
 {
+    var table = $("get_introduced_results");
+
     if(!get_introduced_ajax.isDone()) return;
     
     $("get_introduced_lang").disabled = false;
@@ -258,13 +262,28 @@ function get_introduced_callback()
     
     if(get_introduced_ajax.hasError())
     {
-        $("get_introduced_status").innerHTML="<span id=\"Omni_Localized_GetIntroducedStatusError\" style=\"color:#993333;\">"+lang_getText("GetIntroducedStatusError")+"</span>";
+        table.innerHTML="<span id=\"Omni_Localized_GetIntroducedStatusError\" style=\"color:#993333;\">"+lang_getText("GetIntroducedStatusError")+"</span>";
         return;
     }
-    
     var status = get_introduced_ajax.getJSON().status;
-    if(status=="No Match")
+    if(status=="Incomplete")
     {
-        $("get_introduced_status").innerHTML="<span id=\"Omni_Localized_GetIntroducedNoMatch\" style=\"color:green;\">"+lang_getText("GetIntroducedNoMatch")+"</span>";
+        table.innerHTML="<span id=\"Omni_Localized_GetIntroducedStatusError\" style=\"color:#993333;\">"+lang_getText("GetIntroducedStatusError")+"</span>";
+        return;
+    }    
+    
+    var results = get_introduced_ajax.getJSON().matches;
+    get_introduced_results = results; 
+    if(results.length > 0)
+    {
+        var tablestr = "<table class=\"detailtable\" cellpadding=\"2\" width=\"370\" style=\"line-height:150%;\"><tr><th>"+lang_getHTML("OmniUserTableUsername","GetIntroduced")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","GetIntroduced")+"</th><th>"+lang_getHTML("GetIntroducedUserRating")+"</th><th>"+lang_getHTML("GetIntroducedSystemRating")+"</th><th>"+lang_getHTML("GetIntroducedSimilarity")+"</th></tr>";
+        
+        for(var x=0; x<results.length; x++)
+        {
+            tablestr += "<tr><td><a href=\"#\" onclick=\"omni_profile_panel_display(get_introduced_results["+x+"].user); return false\">"+results[x].user.username+"</a></td><td>"+results[x].user.name+"</td><td>"+results[x].self_rating+"</td><td>"+results[x].net_rating+"</td><td>"+results[x].simil+"</td></tr>";
+        }
+        tablestr += "</table>";
+        table.innerHTML = tablestr;
     }
+    else table.innerHTML = "<span id=\"Omni_Localized_GetIntroducedNoMatch\" style=\"color:green;\">"+lang_getText("GetIntroducedNoMatch")+"</span>";
 }

@@ -115,6 +115,7 @@
 	"FriendsRemoveConfirm":"Are you sure?",
 	"FriendsRemoveConfirmYes":"Yes",
 	"FriendsRemoveConfirmNo":"No",	
+	"FriendsLoading":" Loading ... ",	
 	
 	"OmniProfileSelectHint":"Select a user to see their profile.",
 	"OmniProfileTitle":"Profile",
@@ -188,13 +189,26 @@
 	"InterestNameCheeseMozzerela":"Mozzerela",
 	"InterestNameSportsBasketball":"Basketball",
 	
-	"LanguageNameZHCN":"Simplified Chinese",
-	"LanguageNameENUS":"U.S. English",
+	"LanguageNameZHCN":"Chinese (Simplified)",
+	"LanguageNameENUS":"English (U.S.)",
+	"LanguageNameKO":"Korean",
+	"LanguageNameES":"Spanish",
+	"LanguageNameDE":"German",
+	"LanguageNameJA":"Japanese",
+	"LanguageNameFR":"French",
+	"LanguageNamePT":"Portuguese",
+	"LanguageNameRU":"Russian",
+	"LanguageNameIT":"Italian",
 	
 	"GetIntroducedTitle":"Get Introduced",
 	"GetIntroducedDescription":"Omni can introduce you to other users to talk to, based on mutual languages spoken, and common interests.",
-	"GetIntroducedLanguage":"Introduction Language:",	
+	"GetIntroducedLanguage":"Introduction Language:",
+	"GetIntroducedLanguageHint":"Omni will match you with another user that speaks this language, at a higher skill level.",
 	"GetIntroducedIntroduceButton":"Introduce",
 	"GetIntroducedStatusError":"System error, please try again later",
-	"GetIntroducedNoMatch":"There were no matches."
+	"GetIntroducedNoMatch":"There were no matches.",
+	"GetIntroducedUserRating":"User Rating",
+	"GetIntroducedSystemRating":"System Rating",
+	"GetIntroducedSimilarity":"Similarity",
+	"GetIntroducedLoading":" Loading ... ",	
 }

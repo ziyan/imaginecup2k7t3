@@ -44,3 +44,13 @@ function newlnString2HTML(str) {
 function newlnHTML2String(str) {
     return str.replace(/<br>/g,"\n");
 }
+
+// Clear globally cached results on logout
+function clear_cached_results()
+{
+    // friends.js
+    omni_profile_panel_user = null;
+    friends = null;
+    friends_search_results_users = null;
+    get_introduced_results = null;
+}

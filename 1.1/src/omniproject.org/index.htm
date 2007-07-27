@@ -433,33 +433,31 @@ under development
     <!-- end of omniprofilepanel -->
     <!--begin of get_introduced_panel-->
     <div id="get_introduced_panel" class="get_introduced_panel">
-        <div class="title"><span id="Omni_Localized_GetIntroducedTitle">Get Introduced</span></div>
-        <div class="content">
-            <div class="description"><span id="Omni_Localized_GetIntroducedDescription">Omni can introduce you to other users to talk to, based on mutual languages spoken, and common interests.</span></div>
-            <form action="" id="get_introduced_form" 
-                    onsubmit="get_introduced(); return false" style="margin:0px">
+        <div class="title">
+            <span id="Omni_Localized_GetIntroducedTitle">Get Introduced</span></div>
+        <div class="content" style="margin-bottom: 30px;">
+            <div class="description">
+                <span id="Omni_Localized_GetIntroducedDescription">Omni can introduce you to other users
+                    to talk to, based on mutual languages spoken, and common interests.</span></div>
+            <form action="" id="get_introduced_form" onsubmit="get_introduced(); return false"
+                style="margin: 0px">
                 <table border="0">
                     <tr>
                         <td class="colheading" colspan="2">
-                            <span id="Omni_Localized_GetIntroducedLanguage">
-                                Introduction Language:
-                            </span>
+                            <span id="Omni_Localized_GetIntroducedLanguage">Introduction Language: </span>
                         </td>
-                        <td style="width:15px"></td>
+                        <td style="width: 15px">
+                        </td>
                         <td id="get_introduced_language_value">
                             <select id="get_introduced_lang">
                             </select>
                         </td>
                     </tr>
-                </table>  
-                <div class="step">
-                    <div style="margin:5px 0px 5px 0px; height:30px; line-height:10px">
-                        <input type="submit" value="Introduce" 
-                                id="Omni_Localized_GetIntroducedIntroduceButton"/>
-                        <span id="get_introduced_status"></span>
-                    </div>
-                </div>
+                </table>
+                <input type="submit" value="Introduce" id="Omni_Localized_GetIntroducedIntroduceButton" />
+                <br />
             </form>
+            <span id="get_introduced_results"></span>
         </div>
     </div>
     <!--end of get_introduced_panel-->

@@ -7,6 +7,8 @@
 var user_current_ajax = new AniScript.Web.Ajax(); //ajax object
 var user_current_id = 0;
 var user_current_obj = null;
+var user_current_languages = null;
+var user_current_interests = null;
 
 //init function to check user status
 function user_init()
@@ -86,11 +88,6 @@ function user_state_update()
 function user_info_clear()
 {
     user_current_id = 0;
-    user_current_username = null;
-    user_current_name = null;
-    user_current_email = null;
-    user_current_reg_date = null;
-    user_current_log_date = null;
     user_current_obj = null;
     user_current_interests = null;
     user_current_languages = null;
@@ -184,6 +181,10 @@ function user_logout()
     user_logout_ajax.request(hosturl+"handler/user/logouthandler.ashx");
     //$("usermenu").innerHTML = loading_img + lang_getHTML("UserMenuLoggingOut");
     user_info_clear();
+    
+    // Clear cache of any saved data from last user
+    clear_cached_results();
+    
     user_state_update();
 }
 function user_logout_callback()
