@@ -95,6 +95,7 @@
 	"UserProfileStatusDuplicateEmail":"The E-mail address has been used to register another account",	
 	"UserProfileStatusError":"System error, please try again later",
 	"UserProfileLoading":" Loading ... ",
+	"UserProfileUpdating":" Updating ... ",	
 	"ServiceTransNoMsg":"Please enter your message",
 	"ServiceTransError":"System error, please try again later",
 	"ServiceTransTitle":"Automatic Translation",

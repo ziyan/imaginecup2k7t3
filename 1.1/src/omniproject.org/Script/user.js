@@ -5,6 +5,7 @@
 
 //some global accessible variable for user
 var user_current_ajax = new AniScript.Web.Ajax(); //ajax object
+var user_current_interests_ajax = null; //ajax object
 var user_current_id = 0;
 var user_current_obj = null;
 var user_current_languages = null;
@@ -350,25 +351,25 @@ function user_profile_retrieve()
         $("form_user_profile_interests").innerHTML = loading_img+" "+lang_getHTML("UserProfileLoading","Interest");
         $("Omni_Localized_UserProfileSubmitButton").disabled = true;
         // ajax
-        if(user_update_interests_ajax == null) user_update_interests_ajax = new AniScript.Web.Ajax();
-        user_update_interests_ajax.setHandler(user_update_interests_callback);
-        user_update_interests_ajax.request(hosturl+"handler/user/interestshandler.ashx","user_id="+escape(user_current_id));          
+        if(user_current_interests_ajax == null) user_current_interests_ajax = new AniScript.Web.Ajax();
+        user_current_interests_ajax.setHandler(user_current_interests_callback);
+        user_current_interests_ajax.request(hosturl+"handler/user/interestshandler.ashx","user_id="+escape(user_current_id));          
     }
 }
-function user_update_interests_callback()
+function user_current_interests_callback()
 {
-    if(!user_update_interests_ajax.isDone()) return;
+    if(!user_current_interests_ajax.isDone()) return;
     $("Omni_Localized_UserProfileSubmitButton").disabled = false;
-    if(user_update_interests_ajax.hasError())
+    if(user_current_interests_ajax.hasError())
     {
         $("form_user_profile_interests").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError_Int\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
         user_current_interests = null;
         return;
     }    
-    var status = user_update_interests_ajax.getJSON().status;
+    var status = user_current_interests_ajax.getJSON().status;
     if(status=="OK")
     {
-        user_current_interests = user_update_interests_ajax.getJSON().interests;
+        user_current_interests = user_current_interests_ajax.getJSON().interests;
         $("form_user_profile_interests").innerHTML = system_interests_table("userprofilepanel");
         // Add checkboxes
         for(var x=0; x<system_interests.length; x++)
@@ -445,7 +446,10 @@ function user_update()
                 ids.push(system_interests[x].id);
         }
     }
-    // FIXME : Update user's interests with the above IDs
+    
+    var arrayStr;
+    if(user_current_interests == null) arrayStr = ""; //won't update interests
+    else arrayStr = ids.toJSONString();    
     
     // lock fields
     $("form_user_profile_name").disabled = true;
@@ -453,12 +457,21 @@ function user_update()
     $("form_user_profile_description").disabled = true;
     $("form_user_profile_sn_network").disabled = true;
     $("form_user_profile_sn_screenname").disabled = true;
+    $("form_user_profile_interests").style.display = "none";
+    $("userprofilepanel_interestsupdating").style.display = null;
+    // FIXME: lock languages panel
     $("Omni_Localized_UserProfileSubmitButton").disabled = true;
     $("userprofilepanel_status").innerHTML=loading_img+" "+ lang_getHTML("UserProfileUpdating");
     // ajax
     if(user_update_ajax == null) user_update_ajax = new AniScript.Web.Ajax();
     user_update_ajax.setHandler(user_update_callback);
-    user_update_ajax.request(hosturl+"handler/user/updatehandler.ashx","name="+escape(name)+"&email="+escape(email)+"&description="+escape(description)+"&snnetwork="+escape(sn_network)+"&snscreenname="+escape(sn_screenname));    
+    user_update_ajax.request(hosturl+"handler/user/updatehandler.ashx","name="+escape(name)+"&email="+escape(email)+"&description="+escape(description)+"&snnetwork="+escape(sn_network)+"&snscreenname="+escape(sn_screenname));
+    // interests ajax
+    if(user_update_interests_ajax == null) user_update_interests_ajax = new AniScript.Web.Ajax();
+    user_update_interests_ajax.setHandler(user_update_interests_callback);
+    user_update_interests_ajax.request(hosturl+"handler/user/updateinterestshandler.ashx","interests="+escape(arrayStr));
+    
+    
 }
 function user_update_callback()
 {
@@ -474,17 +487,47 @@ function user_update_callback()
         $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
         return;
     }
-    
+
     var status = user_update_ajax.getJSON().status;
     if(status=="Updated")
     {
-        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";
+        // Don't overwrite another error msg w/ a success one
+        if($("userprofilepanel_status").innerHTML.indexOf("UserProfileUpdating") > -1)
+            $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";
         user_init();   
     }
     else if(status=="DuplicateEmail")
     {
         $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusDuplicateEmail\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusDuplicateEmail")+"</span>";
         $("form_user_profile_email").focus();
+    }
+    else
+    {
+        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+    }
+}
+
+function user_update_interests_callback()
+{
+    if(!user_update_interests_ajax.isDone()) return;
+    $("form_user_profile_interests").style.display = null;
+    $("userprofilepanel_interestsupdating").style.display = "none";
+    
+    $("Omni_Localized_UserProfileSubmitButton").disabled = false;
+    if(user_update_ajax.hasError())
+    {
+        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        return;
+    }
+
+    var status = user_update_interests_ajax.getJSON().status;
+    if(status=="OK")
+    {
+        // Don't overwrite another error msg w/ a success one
+        if($("userprofilepanel_status").innerHTML.indexOf("UserProfileUpdating") > -1)
+        {
+            $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";
+        }
     }
     else
     {
