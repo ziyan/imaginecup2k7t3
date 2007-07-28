@@ -48,6 +48,19 @@ namespace Omni.Web
             return collection;
         }
 
+        public static JSONObjectCollection getUserLanguageJSON(Client.UserLanguage us)
+        {
+            JSONObjectCollection collection = new JSONObjectCollection();
+            if (us != null)
+            {
+                collection.Add(new JSONStringValue("user_id"), new JSONStringValue(us.UserId.ToString()));
+                collection.Add(new JSONStringValue("lang_id"), new JSONStringValue(us.LangId.ToString()));
+                collection.Add(new JSONStringValue("self_rating"), new JSONStringValue(us.SelfRating.ToString()));
+                collection.Add(new JSONStringValue("net_rating"), new JSONStringValue(us.NetRating.ToString()));
+            }
+            return collection;
+        }
+
         public static JSONObjectCollection getInterestJSON(Client.Interest interest)
         {
             JSONObjectCollection obj = new JSONObjectCollection();

@@ -170,7 +170,7 @@ namespace Omni.Service
         /// </summary>
         /// <param name="id">user id</param>
         /// <param name="session">session id</param>
-        /// <returns>Array of interest ids</returns>
+        /// <returns>Array of interests</returns>
         [WebMethod(Description = "Get interests for a user.")]
         public Data.Interest[] UserInterests(int id, Guid session)
         {
@@ -187,7 +187,7 @@ namespace Omni.Service
         /// </summary>
         /// <param name="id">user id</param>
         /// <param name="session">session id</param>
-        /// <returns>Array of interest ids</returns>
+        /// <returns>User object</returns>
         [WebMethod(Description = "Get a user profile.")]
         public Data.User UserProfile(int id, Guid session)
         {
@@ -195,6 +195,20 @@ namespace Omni.Service
             if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
             if (id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.UserProfile(Session.UserContext.User.id, id, Session.Connection);
+        }
+        /// <summary>
+        /// Gets a user's languages.
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <param name="session">session id</param>
+        /// <returns>Array of UserLanguages</returns>
+        [WebMethod(Description = "Gets a user's languages.")]
+        public Data.UserLanguage[] UserLanguages(int id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            if (id <= 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.UserLanguages(id, Session.Connection);
         }
         #endregion
 

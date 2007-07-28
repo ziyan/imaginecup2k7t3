@@ -147,6 +147,21 @@ namespace Omni.Data
 
             return user;
         }
+        public static UserLanguage[] UserLanguages(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_lang_list_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<UserLanguage> result = new List<UserLanguage>();
+            while (reader.Read())
+            {
+                result.Add(new UserLanguage(user_id, Convert.ToInt32(reader["lang_id"]), Convert.ToInt16(reader["self_rating"]), Convert.ToSingle(reader["net_rating"])));
+            }
+            reader.Close();
+            reader.Dispose();
+            return result.ToArray();
+        }
+
         #endregion
 
         #region Friends

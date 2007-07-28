@@ -200,7 +200,7 @@ namespace Omni.Client
         /// Get interests for a user.
         /// </summary>
         /// <param name="id">user id</param>
-        /// <returns>Interests (array of interest ids)</returns>
+        /// <returns>Array of Interests</returns>
         public Interest[] UserInterests(int id)
         {
             CheckSession();
@@ -234,6 +234,31 @@ namespace Omni.Client
                 org.omniproject.service.User svcUser = service.UserProfile(id, session);
                 if (svcUser == null) return null;
                 return new User(svcUser);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+        /// <summary>
+        /// Get languages for a user.
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <returns>Array of UserLanguages</returns>
+        public UserLanguage[] UserLanguages(int id)
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.UserLanguage[] svcLanguages = service.UserLanguages(id, session);
+                if (svcLanguages == null) return null;
+                UserLanguage[] languages = new UserLanguage[svcLanguages.Length];
+                for (int i = 0; i < languages.Length; i++)
+                {
+                    languages[i] = new UserLanguage(svcLanguages[i]);
+                }
+                return languages;
             }
             catch (System.Exception e)
             {

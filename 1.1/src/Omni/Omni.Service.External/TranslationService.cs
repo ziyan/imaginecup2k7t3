@@ -65,6 +65,15 @@ namespace Omni.Service.External
             lang_code.Add("zh", "zh");
             lang_code.Add("zh-cn", "zh");
             lang_code.Add("zh-tw", "zh");
+
+            lang_code.Add("ko", "ko");
+            lang_code.Add("es", "es");
+            lang_code.Add("de", "de");
+            lang_code.Add("ja", "ja");
+            lang_code.Add("fr", "fr");
+            lang_code.Add("pt", "pt");
+            lang_code.Add("ru", "ru");
+            lang_code.Add("it", "it");
         }
 
         public static string Lookup(string src_lang, string dst_lang, string message)

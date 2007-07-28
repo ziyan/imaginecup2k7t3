@@ -232,6 +232,34 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UserLanguages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserLanguagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserLanguagesResult" type="tns:ArrayOfUserLanguage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserLanguage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserLanguage" nillable="true" type="tns:UserLanguage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserLanguage">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="lang_id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="self_rating" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="net_rating" type="s:float" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="FriendsList">
         <s:complexType>
           <s:sequence>
@@ -502,6 +530,12 @@
   <wsdl:message name="UserProfileSoapOut">
     <wsdl:part name="parameters" element="tns:UserProfileResponse" />
   </wsdl:message>
+  <wsdl:message name="UserLanguagesSoapIn">
+    <wsdl:part name="parameters" element="tns:UserLanguages" />
+  </wsdl:message>
+  <wsdl:message name="UserLanguagesSoapOut">
+    <wsdl:part name="parameters" element="tns:UserLanguagesResponse" />
+  </wsdl:message>
   <wsdl:message name="FriendsListSoapIn">
     <wsdl:part name="parameters" element="tns:FriendsList" />
   </wsdl:message>
@@ -632,6 +666,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a user profile.</wsdl:documentation>
       <wsdl:input message="tns:UserProfileSoapIn" />
       <wsdl:output message="tns:UserProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLanguages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a user profile.</wsdl:documentation>
+      <wsdl:input message="tns:UserLanguagesSoapIn" />
+      <wsdl:output message="tns:UserLanguagesSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="FriendsList">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all friends for a user.</wsdl:documentation>
@@ -805,6 +844,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserProfile">
       <soap:operation soapAction="http://service.omniproject.org/UserProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserLanguages">
+      <soap:operation soapAction="http://service.omniproject.org/UserLanguages" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1024,6 +1072,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserProfile">
       <soap12:operation soapAction="http://service.omniproject.org/UserProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserLanguages">
+      <soap12:operation soapAction="http://service.omniproject.org/UserLanguages" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -57,6 +57,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback UserProfileOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserLanguagesOperationCompleted;
+        
         private System.Threading.SendOrPostCallback FriendsListOperationCompleted;
         
         private System.Threading.SendOrPostCallback FriendsCheckFriendPairOperationCompleted;
@@ -156,6 +158,9 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event UserProfileCompletedEventHandler UserProfileCompleted;
+        
+        /// <remarks/>
+        public event UserLanguagesCompletedEventHandler UserLanguagesCompleted;
         
         /// <remarks/>
         public event FriendsListCompletedEventHandler FriendsListCompleted;
@@ -624,6 +629,37 @@ namespace Omni.Client.org.omniproject.service {
             if ((this.UserProfileCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserProfileCompleted(this, new UserProfileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/UserLanguages", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserLanguage[] UserLanguages(int id, System.Guid session) {
+            object[] results = this.Invoke("UserLanguages", new object[] {
+                        id,
+                        session});
+            return ((UserLanguage[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserLanguagesAsync(int id, System.Guid session) {
+            this.UserLanguagesAsync(id, session, null);
+        }
+        
+        /// <remarks/>
+        public void UserLanguagesAsync(int id, System.Guid session, object userState) {
+            if ((this.UserLanguagesOperationCompleted == null)) {
+                this.UserLanguagesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserLanguagesOperationCompleted);
+            }
+            this.InvokeAsync("UserLanguages", new object[] {
+                        id,
+                        session}, this.UserLanguagesOperationCompleted, userState);
+        }
+        
+        private void OnUserLanguagesOperationCompleted(object arg) {
+            if ((this.UserLanguagesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserLanguagesCompleted(this, new UserLanguagesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1165,6 +1201,63 @@ namespace Omni.Client.org.omniproject.service {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
+    public partial class UserLanguage {
+        
+        private int user_idField;
+        
+        private int lang_idField;
+        
+        private int self_ratingField;
+        
+        private float net_ratingField;
+        
+        /// <remarks/>
+        public int user_id {
+            get {
+                return this.user_idField;
+            }
+            set {
+                this.user_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int lang_id {
+            get {
+                return this.lang_idField;
+            }
+            set {
+                this.lang_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int self_rating {
+            get {
+                return this.self_ratingField;
+            }
+            set {
+                this.self_ratingField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float net_rating {
+            get {
+                return this.net_ratingField;
+            }
+            set {
+                this.net_ratingField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.42")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
     public partial class Interest {
         
         private int idField;
@@ -1498,6 +1591,32 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((User)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void UserLanguagesCompletedEventHandler(object sender, UserLanguagesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserLanguagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserLanguagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserLanguage[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserLanguage[])(this.results[0]));
             }
         }
     }

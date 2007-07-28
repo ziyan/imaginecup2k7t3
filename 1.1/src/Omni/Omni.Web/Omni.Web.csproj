@@ -56,6 +56,7 @@
     <Compile Include="Service\TranslationHandler.cs" />
     <Compile Include="Session\KeepAliveHandler.cs" />
     <Compile Include="Interest\ListHandler.cs" />
+    <Compile Include="User\LanguagesHandler.cs" />
     <Compile Include="User\ProfileHandler.cs" />
     <Compile Include="Friends\GetIntroducedHandler.cs" />
     <Compile Include="User\InterestsHandler.cs" />
