@@ -17,9 +17,9 @@ var content_right = null;
 var page_current = "";
 
 var page_not_logged_in = ["Home","Register","HallOfFame","About"];
-var page_logged_in = ["Home","Profile","GetIntroduced","Friends","Messages","Groups","HallOfFame","About"];
+var page_logged_in = ["Home","Profile","GetIntroduced","Friends","Messages",/*"Groups",*/"HallOfFame","About"];
 var langbar_not_logged_in = ["AutoTrans","TransDB"];
-var langbar_logged_in = ["AutoTrans","TransDB"];
+var langbar_logged_in = ["AutoTrans","TransDB","PerformTrans","RequestTrans","TransHistory"];
 
 function page_init()
 {

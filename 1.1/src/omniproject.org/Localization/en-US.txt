@@ -14,6 +14,12 @@
 	"MenuLinkGroups":"Groups",
 	"LangBarLinkAutoTrans":"Quick Translation",
 	"LangBarLinkTransDB":"Translation Database",
+	"LangBarLinkPerformTrans":"Perform Translation",
+	"LangBarLinkRequestTrans":"Request Translation",
+	"LangBarLinkTransHistory":"My Translation History",
+	
+	"LangBarNoteApproveTranslations":"Translation answers to approve:",
+	"LangBarNotePersonalRequests":"Translation requests to answer:",
 	
 	"LanguageOptionZHCN":"Simplified Chinese",
 	"LanguageOptionENUS":"U.S. English",

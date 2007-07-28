@@ -190,7 +190,7 @@ function friends_list_retrieve_callback()
     }
     
     var table = $("friendspanel_friendstable");
-    var tablestr = "<table class=\"detailtable\" cellpadding=\"2\" width=\"370\"><tr><th>"+lang_getHTML("OmniUserTableUsername","Friends")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","Friends")+"</th><th></th></tr>";
+    var tablestr = "<table class=\"detailtable\" cellpadding=\"5\" width=\"370\" style=\"line-height: 175%;\"><tr><th>"+lang_getHTML("OmniUserTableUsername","Friends")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","Friends")+"</th><th></th></tr>";
     friends = friends_list_ajax.getJSON();
     
     for(var x=0; x<friends.length; x++)
