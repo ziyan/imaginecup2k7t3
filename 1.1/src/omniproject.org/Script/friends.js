@@ -68,6 +68,7 @@ function omni_profile_panel_reset()
 
 var omni_profile_panel_user = null;
 var omni_profile_interests_ajax = null;
+var omni_profile_friends_ajax = null;
 
 function omni_profile_panel_display(user)
 {
@@ -103,8 +104,22 @@ function omni_profile_panel_display(user)
     $("omniprofilepanel_interests").innerHTML = loading_img+" "+lang_getHTML("OmniProfileLoading","Interest");
     omni_profile_interests_ajax.request(hosturl+"handler/user/interestshandler.ashx","user_id="+escape(user.id));
 
+    omni_profile_friends_retrieve();
+
     $("omniprofilepanel_content_empty").style.display = "none";
     $("omniprofilepanel_content").style.display = "block";
+}
+
+function omni_profile_friends_retrieve()
+{
+    // Check Friend status, to determine Add/Remove Friend buttons
+    if(omni_profile_friends_ajax == null)
+        omni_profile_friends_ajax = new AniScript.Web.Ajax();
+    omni_profile_friends_ajax.setHandler(omni_profile_friends_callback);
+    $("omniprofilepanel_actionsrow").style.display = "none";
+    $("omniprofilepanel_actionsloading").style.display = null;
+    omni_profile_friends_ajax.request(hosturl+"handler/friends/checkfriendpairhandler.ashx","friendid="+escape(omni_profile_panel_user.id));
+
 }
 
 function omni_profile_interests_callback()
@@ -125,6 +140,37 @@ function omni_profile_interests_callback()
     {
         $("omniprofilepanel_interests").innerHTML="<span id=\"Omni_Localized_OmniProfileStatusError_Int\" style=\"color:#993333;\">"+lang_getText("OmniProfileStatusError")+"</span>";
     }    
+}
+
+function omni_profile_friends_callback()
+{
+    if(!omni_profile_friends_ajax.isDone()) return;
+    if(omni_profile_friends_ajax.hasError())
+    {
+        $("omniprofilepanel_actionsloading").style.display = "none";
+        return;
+    }    
+    var friends = omni_profile_friends_ajax.getJSON().friends;
+    $("omniprofilepanel_actionsrow").style.display = null;
+    $("omniprofilepanel_actionsloading").style.display = "none";
+    var addfriend = $("Omni_Localized_OmniProfileAddFriend");
+    var removefriend = $("Omni_Localized_OmniProfileRemoveFriend");
+    if(friends == 1)
+    {
+        addfriend.style.display = "none";
+        removefriend.style.display = null;
+        
+        removefriend.onclick = "";
+    }
+    else
+    {
+        addfriend.style.display = null;
+        removefriend.style.display = "none";
+        
+        addfriend.onclick = "";
+    }    
+    
+    $("Omni_Localized_OmniProfileSendMessage").onclick = "";
 }
 
 // Friends List
@@ -150,15 +196,28 @@ function friends_list_retrieve_callback()
     }
     
     var table = $("friendspanel_friendstable");
-    var tablestr = "<table class=\"detailtable\" cellpadding=\"2\" width=\"370\"><tr><th>"+lang_getHTML("OmniUserTableUsername","Friends")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","Friends")+"</th></tr>";
+    var tablestr = "<table class=\"detailtable\" cellpadding=\"2\" width=\"370\"><tr><th>"+lang_getHTML("OmniUserTableUsername","Friends")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","Friends")+"</th><th></th></tr>";
     friends = friends_list_ajax.getJSON();
     
     for(var x=0; x<friends.length; x++)
     {
-        tablestr += "<tr><td><a href=\"#\" onclick=\"omni_profile_panel_display(friends["+x+"]); return false\">"+friends[x].username+"</a></td><td>"+friends[x].name+"</td></tr>";
+        // FIXME : Fix callback
+        tablestr += "<tr><td><a href=\"#\" onclick=\"omni_profile_panel_display(friends["+x+"]); return false\">"+friends[x].username+"</a></td><td>"+friends[x].name+"</td><td><a href=\"#\" onclick=\"friends_remove(friends["+x+"], null); return false\">"+lang_getHTML("FriendsRemoveButton")+"</a></tr>";
     }
     tablestr += "</table>";
     table.innerHTML = tablestr;
+}
+
+// Add & Remove a Friend
+// Called from multiple places, so the callback function is required
+function friends_remove(friend, callback)
+{
+
+}
+
+function friends_add(friend, callback)
+{
+
 }
 
 // Search for a User (Friends Panel)
