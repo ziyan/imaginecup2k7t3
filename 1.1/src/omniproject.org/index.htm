@@ -43,8 +43,8 @@
     <td class="top_user_menu_td"><span id="usermenu"></span>
     | 
     <select id="lang_selector" onchange="lang_select()">
-        <option id="Omni_Localized_LanguageOptionENUS" value="en-US">U.S. English</option>
-        <option id="Omni_Localized_LanguageOptionZHCN" value="zh-CN">Simplified Chinese</option>
+        <option id="Omni_Localized_LanguageOptionENUS" value="en-US">English (U.S.)</option>
+        <option id="Omni_Localized_LanguageOptionZHCN" value="zh-CN">Chinese (Simplified)</option>
     </select> <span id="lang_loading"></span></td>
     </tr>
     <tr>
@@ -166,8 +166,24 @@ under development
         </td>
         <td>
         <select id="form_servicetrans_direction" style="margin-top:5px;margin-bottom:5px;">
-        <option id="Omni_Localized_ServiceTransENUS2ZHCN" value="en-US_zh-CN">U.S. English to Simplified Chinese</option>
-        <option id="Omni_Localized_ServiceTransZHCN2ENUS" value="zh-CN_en-US">Simplified Chinese to U.S. English</option>
+        <option id="Omni_Localized_ServiceTransENUS2ZHCN" value="en-US_zh-CN">English (U.S.) to Chinese (Simplified)</option>
+        <option id="Omni_Localized_ServiceTransENUS2KO" value="en-US_ko">English (U.S.) to Korean</option>
+        <option id="Omni_Localized_ServiceTransENUS2FR" value="en-US_fr">English (U.S.) to French</option>
+        <option id="Omni_Localized_ServiceTransENUS2IT" value="en-US_it">English (U.S.) to Italian</option>
+        <option id="Omni_Localized_ServiceTransENUS2JA" value="en-US_ja">English (U.S.) to Japanese</option>
+        <option id="Omni_Localized_ServiceTransENUS2PT" value="en-US_pt">English (U.S.) to Portuguese</option>
+        <option id="Omni_Localized_ServiceTransENUS2RU" value="en-US_ru">English (U.S.) to Russian</option>
+        <option id="Omni_Localized_ServiceTransENUS2ES" value="en-US_es">English (U.S.) to Spanish</option>        
+        
+        <option id="Omni_Localized_ServiceTransZHCN2ENUS" value="zh-CN_en-US">Chinese (Simplified) to English (U.S.)</option>        
+        <option id="Omni_Localized_ServiceTransKO2ENUS" value="ko_en-US">Korean to English (U.S.)</option>
+        <option id="Omni_Localized_ServiceTransFR2ENUS" value="fr_en-US">French to English (U.S.)</option>
+        <option id="Omni_Localized_ServiceTransIT2ENUS" value="it_en-US">Italian to English (U.S.)</option>
+        <option id="Omni_Localized_ServiceTransJA2ENUS" value="ja_en-US">Japanese to English (U.S.)</option>
+        <option id="Omni_Localized_ServiceTransPT2ENUS" value="pt_en-US">Portuguese to English (U.S.)</option>
+        <option id="Omni_Localized_ServiceTransRU2ENUS" value="ru_en-US">Russian to English (U.S.)</option>
+        <option id="Omni_Localized_ServiceTransES2ENUS" value="es_en-US">Spanish to English (U.S.)</option>        
+                
         </select><br />
         <input id="Omni_Localized_ServiceTransSubmitButton" type="submit" value="Translate" />
         <input id="Omni_Localized_ServiceTransResetButton" type="reset" value="Reset" onclick="service_trans_reset();"/>
@@ -311,7 +327,9 @@ under development
         </tr>
         <tr>
             <td class="colheading" colspan="2"><span id="Omni_Localized_UserProfileLanguages">Languages</span></td>
-        </tr>
+            <td colspan="2" id="form_user_profile_languages"></td>
+            <td colspan="2" id="userprofilepanel_languagesupdating" style="display: none"><img alt="" src="image/loading.gif" title="loading" style="width:16px;height:16px" /><span id="Omni_Localized_UserProfileUpdating_Languages"> Updating ... </span></td>
+        </tr>          
         <tr>
             <td class="colheading" colspan="2" valign="top"><span id="Omni_Localized_UserProfileInterests">Interests</span></td>
             <td colspan="2" id="form_user_profile_interests"></td>
@@ -378,7 +396,7 @@ under development
                     <td id="omniprofilepanel_email">
                     </td>
                 </tr>
-                <tr style="line-height: 120%;">
+                <tr style="line-height: 150%;">
                     <td class="colheading" colspan="2">
                         <span id="Omni_Localized_OmniProfileDescription">Profile Description:</span></td>
                     <td style="width: 15px">
@@ -417,9 +435,13 @@ under development
                     </td>
                 </tr>
                 <tr>
-                    <td class="colheading" colspan="4">
+                    <td class="colheading" colspan="4" valign="top"  style="line-height: 120%;">
                         <span id="Omni_Localized_OmniProfileLanguages">Languages</span></td>
                 </tr>
+                <tr>
+                    <td colspan="4" id="omniprofilepanel_languages">
+                    </td>
+                </tr>                
                 <tr>
                     <td class="colheading" colspan="4" valign="top"  style="line-height: 120%;">
                         <span id="Omni_Localized_OmniProfileInterests">Interests</span></td>

@@ -68,6 +68,7 @@ function omni_profile_panel_reset()
 
 var omni_profile_panel_user = null;
 var omni_profile_interests_ajax = null;
+var omni_profile_languages_ajax = null;
 var omni_profile_friends_ajax = null;
 
 function omni_profile_panel_display(user)
@@ -103,7 +104,13 @@ function omni_profile_panel_display(user)
     omni_profile_interests_ajax.setHandler(omni_profile_interests_callback);
     $("omniprofilepanel_interests").innerHTML = loading_img+" "+lang_getHTML("OmniProfileLoading","Interest");
     omni_profile_interests_ajax.request(hosturl+"handler/user/interestshandler.ashx","user_id="+escape(user.id));
-
+    // Get Languages
+    if(omni_profile_languages_ajax == null)
+        omni_profile_languages_ajax = new AniScript.Web.Ajax();
+    omni_profile_languages_ajax.setHandler(omni_profile_languages_callback);
+    $("omniprofilepanel_languages").innerHTML = loading_img+" "+lang_getHTML("OmniProfileLoading","Language");
+    omni_profile_languages_ajax.request(hosturl+"handler/user/languageshandler.ashx","user_id="+escape(user.id));
+    
     omni_profile_friends_retrieve();
 
     $("omniprofilepanel_content_empty").style.display = "none";
@@ -139,6 +146,32 @@ function omni_profile_interests_callback()
     else
     {
         $("omniprofilepanel_interests").innerHTML="<span id=\"Omni_Localized_OmniProfileStatusError_Int\" style=\"color:#993333;\">"+lang_getText("OmniProfileStatusError")+"</span>";
+    }    
+}
+
+function omni_profile_languages_callback()
+{
+    if(!omni_profile_languages_ajax.isDone()) return;
+    if(omni_profile_languages_ajax.hasError())
+    {
+        $("omniprofilepanel_languages").innerHTML="<span id=\"Omni_Localized_OmniProfileStatusError_Lang\" style=\"color:#993333;\">"+lang_getText("OmniProfileStatusError")+"</span>";
+        return;
+    }    
+    var status = omni_profile_languages_ajax.getJSON().status;
+    if(status=="OK")
+    {
+        var languages = omni_profile_languages_ajax.getJSON().languages;
+        // FIXME
+        var outstr = "";
+        for(var i=0; i< languages.length; i++)
+        {
+            outstr += languages[i].toJSONString()+"<br>";
+        }
+        $("omniprofilepanel_languages").innerHTML = outstr;
+    }
+    else
+    {
+        $("omniprofilepanel_languages").innerHTML="<span id=\"Omni_Localized_OmniProfileStatusError_Lang\" style=\"color:#993333;\">"+lang_getText("OmniProfileStatusError")+"</span>";
     }    
 }
 
