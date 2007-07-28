@@ -266,6 +266,36 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="FriendsAdd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="friend_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FriendsAddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FriendsAddResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FriendsRemove">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="friend_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FriendsRemoveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FriendsRemoveResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="FriendsSearchUsers">
         <s:complexType>
           <s:sequence>
@@ -484,6 +514,18 @@
   <wsdl:message name="FriendsCheckFriendPairSoapOut">
     <wsdl:part name="parameters" element="tns:FriendsCheckFriendPairResponse" />
   </wsdl:message>
+  <wsdl:message name="FriendsAddSoapIn">
+    <wsdl:part name="parameters" element="tns:FriendsAdd" />
+  </wsdl:message>
+  <wsdl:message name="FriendsAddSoapOut">
+    <wsdl:part name="parameters" element="tns:FriendsAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="FriendsRemoveSoapIn">
+    <wsdl:part name="parameters" element="tns:FriendsRemove" />
+  </wsdl:message>
+  <wsdl:message name="FriendsRemoveSoapOut">
+    <wsdl:part name="parameters" element="tns:FriendsRemoveResponse" />
+  </wsdl:message>
   <wsdl:message name="FriendsSearchUsersSoapIn">
     <wsdl:part name="parameters" element="tns:FriendsSearchUsers" />
   </wsdl:message>
@@ -600,6 +642,16 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if this user has Friend on their friends list.</wsdl:documentation>
       <wsdl:input message="tns:FriendsCheckFriendPairSoapIn" />
       <wsdl:output message="tns:FriendsCheckFriendPairSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FriendsAdd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a friend to this user's friend list.</wsdl:documentation>
+      <wsdl:input message="tns:FriendsAddSoapIn" />
+      <wsdl:output message="tns:FriendsAddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FriendsRemove">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Removes a friend from this user's friend list.</wsdl:documentation>
+      <wsdl:input message="tns:FriendsRemoveSoapIn" />
+      <wsdl:output message="tns:FriendsRemoveSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="FriendsSearchUsers">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search for Omni users by username, email, display name, or description.</wsdl:documentation>
@@ -771,6 +823,24 @@
     </wsdl:operation>
     <wsdl:operation name="FriendsCheckFriendPair">
       <soap:operation soapAction="http://service.omniproject.org/FriendsCheckFriendPair" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendsAdd">
+      <soap:operation soapAction="http://service.omniproject.org/FriendsAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendsRemove">
+      <soap:operation soapAction="http://service.omniproject.org/FriendsRemove" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -972,6 +1042,24 @@
     </wsdl:operation>
     <wsdl:operation name="FriendsCheckFriendPair">
       <soap12:operation soapAction="http://service.omniproject.org/FriendsCheckFriendPair" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendsAdd">
+      <soap12:operation soapAction="http://service.omniproject.org/FriendsAdd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendsRemove">
+      <soap12:operation soapAction="http://service.omniproject.org/FriendsRemove" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

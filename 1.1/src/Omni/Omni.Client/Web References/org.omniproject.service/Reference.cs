@@ -61,6 +61,10 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback FriendsCheckFriendPairOperationCompleted;
         
+        private System.Threading.SendOrPostCallback FriendsAddOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback FriendsRemoveOperationCompleted;
+        
         private System.Threading.SendOrPostCallback FriendsSearchUsersOperationCompleted;
         
         private System.Threading.SendOrPostCallback FriendsGetIntroducedOperationCompleted;
@@ -158,6 +162,12 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event FriendsCheckFriendPairCompletedEventHandler FriendsCheckFriendPairCompleted;
+        
+        /// <remarks/>
+        public event FriendsAddCompletedEventHandler FriendsAddCompleted;
+        
+        /// <remarks/>
+        public event FriendsRemoveCompletedEventHandler FriendsRemoveCompleted;
         
         /// <remarks/>
         public event FriendsSearchUsersCompletedEventHandler FriendsSearchUsersCompleted;
@@ -674,6 +684,68 @@ namespace Omni.Client.org.omniproject.service {
             if ((this.FriendsCheckFriendPairCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.FriendsCheckFriendPairCompleted(this, new FriendsCheckFriendPairCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/FriendsAdd", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int FriendsAdd(int friend_id, System.Guid session) {
+            object[] results = this.Invoke("FriendsAdd", new object[] {
+                        friend_id,
+                        session});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FriendsAddAsync(int friend_id, System.Guid session) {
+            this.FriendsAddAsync(friend_id, session, null);
+        }
+        
+        /// <remarks/>
+        public void FriendsAddAsync(int friend_id, System.Guid session, object userState) {
+            if ((this.FriendsAddOperationCompleted == null)) {
+                this.FriendsAddOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFriendsAddOperationCompleted);
+            }
+            this.InvokeAsync("FriendsAdd", new object[] {
+                        friend_id,
+                        session}, this.FriendsAddOperationCompleted, userState);
+        }
+        
+        private void OnFriendsAddOperationCompleted(object arg) {
+            if ((this.FriendsAddCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FriendsAddCompleted(this, new FriendsAddCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/FriendsRemove", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int FriendsRemove(int friend_id, System.Guid session) {
+            object[] results = this.Invoke("FriendsRemove", new object[] {
+                        friend_id,
+                        session});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FriendsRemoveAsync(int friend_id, System.Guid session) {
+            this.FriendsRemoveAsync(friend_id, session, null);
+        }
+        
+        /// <remarks/>
+        public void FriendsRemoveAsync(int friend_id, System.Guid session, object userState) {
+            if ((this.FriendsRemoveOperationCompleted == null)) {
+                this.FriendsRemoveOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFriendsRemoveOperationCompleted);
+            }
+            this.InvokeAsync("FriendsRemove", new object[] {
+                        friend_id,
+                        session}, this.FriendsRemoveOperationCompleted, userState);
+        }
+        
+        private void OnFriendsRemoveOperationCompleted(object arg) {
+            if ((this.FriendsRemoveCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FriendsRemoveCompleted(this, new FriendsRemoveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1469,6 +1541,58 @@ namespace Omni.Client.org.omniproject.service {
         private object[] results;
         
         internal FriendsCheckFriendPairCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void FriendsAddCompletedEventHandler(object sender, FriendsAddCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FriendsAddCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FriendsAddCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void FriendsRemoveCompletedEventHandler(object sender, FriendsRemoveCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FriendsRemoveCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FriendsRemoveCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -225,6 +225,32 @@ namespace Omni.Service
             return Data.StoredProcedure.FriendsCheckFriendPair(Session.UserContext.User.id, friend_id, Session.Connection);
         }
         /// <summary>
+        /// Adds a friend to this user's friend list.
+        /// </summary>
+        /// <param name="friend_id">friend id</param>
+        /// <param name="session">session id</param>
+        /// <returns>1 for success</returns>
+        [WebMethod(Description = "Adds a friend to this user's friend list.")]
+        public int FriendsAdd(int friend_id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.FriendsAdd(Session.UserContext.User.id, friend_id, Session.Connection);
+        }
+        /// <summary>
+        /// Removes a friend to this user's friend list.
+        /// </summary>
+        /// <param name="friend_id">friend id</param>
+        /// <param name="session">session id</param>
+        /// <returns>1 for success</returns>
+        [WebMethod(Description = "Removes a friend from this user's friend list.")]
+        public int FriendsRemove(int friend_id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.FriendsRemove(Session.UserContext.User.id, friend_id, Session.Connection);
+        }
+        /// <summary>
         /// Search for Omni users by username, email, display name, or description.
         /// </summary>
         /// <param name="search">search criteria</param>

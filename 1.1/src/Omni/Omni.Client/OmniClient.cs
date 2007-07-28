@@ -272,7 +272,6 @@ namespace Omni.Client
         /// Checks if this user has Friend on their friends list.
         /// </summary>
         /// <param name="friend_id">friend id</param>
-        /// <param name="session">session id</param>
         /// <returns>1 if they do, 0 otherwise</returns>
         public int FriendsCheckFriendPair(int friend_id)
         {
@@ -280,6 +279,43 @@ namespace Omni.Client
             try
             {
                 return service.FriendsCheckFriendPair(friend_id, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return 0;
+        }
+        /// <summary>
+        /// Adds a friend to this user's friend list.
+        /// </summary>
+        /// <param name="friend_id">friend id</param>
+        /// <returns>1 for success</returns>
+        public int FriendsAdd(int friend_id)
+        {
+            CheckSession();
+            try
+            {
+                return service.FriendsAdd(friend_id, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return 0;
+        }
+        /// <summary>
+        /// Removes a friend to this user's friend list.
+        /// </summary>
+        /// <param name="friend_id">friend id</param>
+        /// <param name="session">session id</param>
+        /// <returns>1 for success</returns>
+        public int FriendsRemove(int friend_id)
+        {
+            CheckSession();
+            try
+            {
+                return service.FriendsRemove(friend_id, session);
             }
             catch (System.Exception e)
             {

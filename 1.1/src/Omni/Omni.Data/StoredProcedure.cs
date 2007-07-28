@@ -187,6 +187,22 @@ namespace Omni.Data
             int intResult =  (result == null) ? 0 : Convert.ToInt32(result);
             return (intResult == 1) ? 1 : 0;
         }
+        public static int FriendsAdd(int user_id, int friend_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_favor_user_add_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, friend_id);
+            object result = cmd.ExecuteScalar();
+            return (result == null) ? 0 : Convert.ToInt32(result);
+        }
+        public static int FriendsRemove(int user_id, int friend_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_favor_user_delete_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, friend_id);
+            object result = cmd.ExecuteScalar();
+            return (result == null) ? 0 : Convert.ToInt32(result);
+        }
         public static User[] FriendsSearchUsers(int user_id, string search, int maxresults, Connection connection)
         {
             SqlCommand cmd = GetStoredProcedure("omni_user_search", connection);
