@@ -433,13 +433,13 @@ under development
             <table border="0" class="omniprofilepanelactiontable">
                 <tr id="omniprofilepanel_actionsrow" style="display: none;">
                     <td>
-                        <input type="button" value="Add Friend" id="Omni_Localized_OmniProfileAddFriend" />
-                        <input type="button" value="Remove Friend" id="Omni_Localized_OmniProfileRemoveFriend" />
+                        <input type="button" value="Add Friend" id="Omni_Localized_OmniProfileAddFriend" onclick="friends_add(omni_profile_panel_user); return false" />
+                        <input type="button" value="Remove Friend" id="Omni_Localized_OmniProfileRemoveFriend" onclick="friends_remove(omni_profile_panel_user); return false" />
                     </td>
                     <td style="width: 30px;">
                     </td>
                     <td>
-                        <input type="button" value="Send Message" id="Omni_Localized_OmniProfileSendMessage" /></td>
+                        <input type="button" value="Send Message" id="Omni_Localized_OmniProfileSendMessage" onclick="" /></td>
                 </tr>
                 <tr id="omniprofilepanel_actionsloading" style="display: none;">
                     <td colspan="4">

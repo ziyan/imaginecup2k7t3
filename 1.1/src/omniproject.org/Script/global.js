@@ -53,4 +53,6 @@ function clear_cached_results()
     friends = null;
     friends_search_results_users = null;
     get_introduced_results = null;
+    friends_removed_friend = null;
+    friends_added_friend = null;    
 }

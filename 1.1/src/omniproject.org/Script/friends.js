@@ -159,18 +159,12 @@ function omni_profile_friends_callback()
     {
         addfriend.style.display = "none";
         removefriend.style.display = null;
-        
-        removefriend.onclick = "";
     }
     else
     {
         addfriend.style.display = null;
         removefriend.style.display = "none";
-        
-        addfriend.onclick = "";
     }    
-    
-    $("Omni_Localized_OmniProfileSendMessage").onclick = "";
 }
 
 // Friends List
@@ -201,23 +195,74 @@ function friends_list_retrieve_callback()
     
     for(var x=0; x<friends.length; x++)
     {
-        // FIXME : Fix callback
-        tablestr += "<tr><td><a href=\"#\" onclick=\"omni_profile_panel_display(friends["+x+"]); return false\">"+friends[x].username+"</a></td><td>"+friends[x].name+"</td><td><a href=\"#\" onclick=\"friends_remove(friends["+x+"], null); return false\">"+lang_getHTML("FriendsRemoveButton")+"</a></tr>";
+        tablestr += "<tr><td><a href=\"#\" onclick=\"omni_profile_panel_display(friends["+x+"]); return false\">"+friends[x].username+"</a></td><td>"+friends[x].name+"</td><td><a href=\"#\" onclick=\"friends_remove(friends["+x+"]); return false\">"+lang_getHTML("FriendsRemoveButton")+"</a></tr>";
     }
     tablestr += "</table>";
     table.innerHTML = tablestr;
 }
 
 // Add & Remove a Friend
-// Called from multiple places, so the callback function is required
-function friends_remove(friend, callback)
-{
 
+var friends_remove_ajax = null;
+var friends_add_ajax = null;
+var friends_removed_friend = null;
+var friends_added_friend = null;
+
+function friends_remove(friend)
+{
+    if(friends_remove_ajax == null)
+        friends_remove_ajax = new AniScript.Web.Ajax();
+        
+    friends_removed_friend = friend;
+        
+    friends_remove_ajax.setHandler(friends_remove_callback);
+    friends_remove_ajax.request(hosturl + "handler/friends/removehandler.ashx","friendid="+escape(friend.id));
 }
 
-function friends_add(friend, callback)
+function friends_add(friend)
 {
+    if(friends_add_ajax == null)
+        friends_add_ajax = new AniScript.Web.Ajax();
+        
+    friends_added_friend = friend;
+        
+    friends_add_ajax.setHandler(friends_add_callback);
+    friends_add_ajax.request(hosturl + "handler/friends/addhandler.ashx","friendid="+escape(friend.id));
+}
 
+function friends_remove_callback()
+{
+    friends_addremove_callback(friends_remove_ajax);
+}
+
+function friends_add_callback()
+{
+    friends_addremove_callback(friends_add_ajax);
+}
+
+function friends_addremove_callback(ajax)
+{
+    if(!ajax.isDone()) return;
+    if(ajax.hasError()) return;
+    
+    if(friends_added_friend != null)
+    {
+        // Omni Profile Panel
+        if(omni_profile_panel_user != null && friends_added_friend.id == omni_profile_panel_user.id)
+        {
+            omni_profile_friends_retrieve();
+        }
+    }
+    if(friends_removed_friend != null)
+    {
+        // Omni Profile Panel
+        if(omni_profile_panel_user != null && friends_removed_friend.id == omni_profile_panel_user.id)
+        {
+            omni_profile_friends_retrieve();
+        }
+    }    
+    // Friends list in Friends panel
+    friends_list_retrieve();
 }
 
 // Search for a User (Friends Panel)
