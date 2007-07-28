@@ -143,6 +143,26 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UserUpdateInterests">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ids" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UserUpdateInterestsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserUpdateInterestsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UserCurrent">
         <s:complexType>
           <s:sequence>
@@ -413,6 +433,12 @@
   <wsdl:message name="UserUpdateSoapOut">
     <wsdl:part name="parameters" element="tns:UserUpdateResponse" />
   </wsdl:message>
+  <wsdl:message name="UserUpdateInterestsSoapIn">
+    <wsdl:part name="parameters" element="tns:UserUpdateInterests" />
+  </wsdl:message>
+  <wsdl:message name="UserUpdateInterestsSoapOut">
+    <wsdl:part name="parameters" element="tns:UserUpdateInterestsResponse" />
+  </wsdl:message>
   <wsdl:message name="UserCurrentSoapIn">
     <wsdl:part name="parameters" element="tns:UserCurrent" />
   </wsdl:message>
@@ -523,6 +549,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update an existing user account.</wsdl:documentation>
       <wsdl:input message="tns:UserUpdateSoapIn" />
       <wsdl:output message="tns:UserUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdateInterests">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update a user's interests.</wsdl:documentation>
+      <wsdl:input message="tns:UserUpdateInterestsSoapIn" />
+      <wsdl:output message="tns:UserUpdateInterestsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="UserCurrent">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get current user information.</wsdl:documentation>
@@ -660,6 +691,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserUpdate">
       <soap:operation soapAction="http://service.omniproject.org/UserUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdateInterests">
+      <soap:operation soapAction="http://service.omniproject.org/UserUpdateInterests" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -843,6 +883,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserUpdate">
       <soap12:operation soapAction="http://service.omniproject.org/UserUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdateInterests">
+      <soap12:operation soapAction="http://service.omniproject.org/UserUpdateInterests" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

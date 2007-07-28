@@ -137,6 +137,17 @@ namespace Omni.Service
                 throw new SystemException();
         }
 
+        public int UpdateInterests(int[] ids)
+        {
+            if (this.user == null) throw new UserNotLoggedInException();
+            if (ids == null) throw new ArgumentNullException();
+            // An empty array will remove existing interests
+
+            int val = Data.StoredProcedure.UserUpdateInterests(this.user.id, ids, session.Connection);
+            if (val == 0) return val;
+            else throw new SystemException();
+        }
+
         #region Password
         private string encryptPassword(string prefix, string md5password)
         {

@@ -162,6 +162,27 @@ namespace Omni.Client
         }
 
         /// <summary>
+        /// Update interests for a user. Any user interests not
+        /// in this list will be removed from the user's interests.
+        /// </summary>
+        /// <param name="ids">array of interest ids</param>
+        /// <returns>0 for success</returns>
+        public int UserUpdateInterests(int[] ids)
+        {
+            int val = -22;
+            CheckSession();
+            try
+            {
+                val = service.UserUpdateInterests(ids, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return -4;
+        }
+
+        /// <summary>
         /// Currently logged in user.
         /// </summary>
         public User UserCurrent

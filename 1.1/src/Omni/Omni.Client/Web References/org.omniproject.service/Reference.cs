@@ -49,6 +49,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback UserUpdateOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserUpdateInterestsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UserCurrentOperationCompleted;
         
         private System.Threading.SendOrPostCallback UserInterestsOperationCompleted;
@@ -136,6 +138,9 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event UserUpdateCompletedEventHandler UserUpdateCompleted;
+        
+        /// <remarks/>
+        public event UserUpdateInterestsCompletedEventHandler UserUpdateInterestsCompleted;
         
         /// <remarks/>
         public event UserCurrentCompletedEventHandler UserCurrentCompleted;
@@ -482,6 +487,37 @@ namespace Omni.Client.org.omniproject.service {
             if ((this.UserUpdateCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserUpdateCompleted(this, new UserUpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/UserUpdateInterests", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int UserUpdateInterests(int[] ids, System.Guid session) {
+            object[] results = this.Invoke("UserUpdateInterests", new object[] {
+                        ids,
+                        session});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserUpdateInterestsAsync(int[] ids, System.Guid session) {
+            this.UserUpdateInterestsAsync(ids, session, null);
+        }
+        
+        /// <remarks/>
+        public void UserUpdateInterestsAsync(int[] ids, System.Guid session, object userState) {
+            if ((this.UserUpdateInterestsOperationCompleted == null)) {
+                this.UserUpdateInterestsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserUpdateInterestsOperationCompleted);
+            }
+            this.InvokeAsync("UserUpdateInterests", new object[] {
+                        ids,
+                        session}, this.UserUpdateInterestsOperationCompleted, userState);
+        }
+        
+        private void OnUserUpdateInterestsOperationCompleted(object arg) {
+            if ((this.UserUpdateInterestsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserUpdateInterestsCompleted(this, new UserUpdateInterestsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1241,6 +1277,32 @@ namespace Omni.Client.org.omniproject.service {
         private object[] results;
         
         internal UserUpdateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void UserUpdateInterestsCompletedEventHandler(object sender, UserUpdateInterestsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserUpdateInterestsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserUpdateInterestsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

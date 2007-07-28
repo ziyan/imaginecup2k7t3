@@ -142,6 +142,18 @@ namespace Omni.Service
         }
 
         /// <summary>
+        /// Update a user's interests. Any not in the provided list will be removed.
+        /// </summary>
+        /// <param name="ids">array of interest ids</param>
+        /// <returns>0 for success</returns>
+        [WebMethod(Description = "Update a user's interests.")]
+        public int UserUpdateInterests(int[] ids, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            return Session.UserContext.UpdateInterests(ids);
+        }
+
+        /// <summary>
         /// Get current user information.
         /// </summary>
         /// <param name="session">session id</param>

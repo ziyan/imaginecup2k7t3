@@ -87,6 +87,22 @@ namespace Omni.Data
             object result = cmd.ExecuteScalar();
             return (result == null) ? 1 : Convert.ToInt32(result);
         }
+        public static int UserUpdateInterests(int userid, int[] ids, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_interest_delete_all", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, userid);
+            cmd.ExecuteNonQuery();
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                cmd = GetStoredProcedure("omni_user_interest_add_by_id", connection);
+                SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, userid);
+                SetStoredProcedureParameter(cmd, "@interest_id", SqlDbType.Int, ids[i]);
+                cmd.ExecuteNonQuery();
+            }
+
+            return -10;
+        }
         public static Interest[] UserInterests(int user_id, Connection connection)
         {
             SqlCommand cmd = GetStoredProcedure("omni_user_interest_list_by_id", connection);
