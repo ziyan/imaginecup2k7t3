@@ -269,6 +269,25 @@ namespace Omni.Client
             return null;
         }
         /// <summary>
+        /// Checks if this user has Friend on their friends list.
+        /// </summary>
+        /// <param name="friend_id">friend id</param>
+        /// <param name="session">session id</param>
+        /// <returns>1 if they do, 0 otherwise</returns>
+        public int FriendsCheckFriendPair(int friend_id)
+        {
+            CheckSession();
+            try
+            {
+                return service.FriendsCheckFriendPair(friend_id, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return 0;
+        }
+        /// <summary>
         /// Search for a user in Omni by username, display name, email, or description.
         /// </summary>
         /// <returns>Array of Users</returns>

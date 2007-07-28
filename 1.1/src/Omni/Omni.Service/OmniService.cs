@@ -212,6 +212,19 @@ namespace Omni.Service
             return Data.StoredProcedure.FriendsList(Session.UserContext.User.id, Session.Connection);
         }
         /// <summary>
+        /// Checks if this user has Friend on their friends list.
+        /// </summary>
+        /// <param name="friend_id">friend id</param>
+        /// <param name="session">session id</param>
+        /// <returns>1 if they do, 0 otherwise</returns>
+        [WebMethod(Description = "Checks if this user has Friend on their friends list.")]
+        public int FriendsCheckFriendPair(int friend_id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.FriendsCheckFriendPair(Session.UserContext.User.id, friend_id, Session.Connection);
+        }
+        /// <summary>
         /// Search for Omni users by username, email, display name, or description.
         /// </summary>
         /// <param name="search">search criteria</param>

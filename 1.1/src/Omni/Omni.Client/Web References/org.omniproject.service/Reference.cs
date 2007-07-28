@@ -59,6 +59,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback FriendsListOperationCompleted;
         
+        private System.Threading.SendOrPostCallback FriendsCheckFriendPairOperationCompleted;
+        
         private System.Threading.SendOrPostCallback FriendsSearchUsersOperationCompleted;
         
         private System.Threading.SendOrPostCallback FriendsGetIntroducedOperationCompleted;
@@ -153,6 +155,9 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event FriendsListCompletedEventHandler FriendsListCompleted;
+        
+        /// <remarks/>
+        public event FriendsCheckFriendPairCompletedEventHandler FriendsCheckFriendPairCompleted;
         
         /// <remarks/>
         public event FriendsSearchUsersCompletedEventHandler FriendsSearchUsersCompleted;
@@ -638,6 +643,37 @@ namespace Omni.Client.org.omniproject.service {
             if ((this.FriendsListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.FriendsListCompleted(this, new FriendsListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/FriendsCheckFriendPair", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int FriendsCheckFriendPair(int friend_id, System.Guid session) {
+            object[] results = this.Invoke("FriendsCheckFriendPair", new object[] {
+                        friend_id,
+                        session});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FriendsCheckFriendPairAsync(int friend_id, System.Guid session) {
+            this.FriendsCheckFriendPairAsync(friend_id, session, null);
+        }
+        
+        /// <remarks/>
+        public void FriendsCheckFriendPairAsync(int friend_id, System.Guid session, object userState) {
+            if ((this.FriendsCheckFriendPairOperationCompleted == null)) {
+                this.FriendsCheckFriendPairOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFriendsCheckFriendPairOperationCompleted);
+            }
+            this.InvokeAsync("FriendsCheckFriendPair", new object[] {
+                        friend_id,
+                        session}, this.FriendsCheckFriendPairOperationCompleted, userState);
+        }
+        
+        private void OnFriendsCheckFriendPairOperationCompleted(object arg) {
+            if ((this.FriendsCheckFriendPairCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FriendsCheckFriendPairCompleted(this, new FriendsCheckFriendPairCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1416,6 +1452,32 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((User[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void FriendsCheckFriendPairCompletedEventHandler(object sender, FriendsCheckFriendPairCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FriendsCheckFriendPairCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FriendsCheckFriendPairCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
             }
         }
     }

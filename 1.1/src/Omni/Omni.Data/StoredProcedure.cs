@@ -166,12 +166,7 @@ namespace Omni.Data
             {
                 if (u.id != user_id)
                 {
-                    cmd = GetStoredProcedure("omni_user_favor_check_pair", connection);
-                    SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, u.id);
-                    SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, user_id);
-                    object result = cmd.ExecuteScalar();
-                    int result2 = (result == null) ? -1 : Convert.ToInt32(result);
-                    if (result2 != 1)
+                    if (FriendsCheckFriendPair(u.id, user_id, connection) == 0)
                     {
                         // Not the profile user's friend, remove contact info
                         u.email = "";
@@ -182,6 +177,15 @@ namespace Omni.Data
             }
 
             return users.ToArray();
+        }
+        public static int FriendsCheckFriendPair(int user_id, int friend_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_favor_check_pair", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, friend_id);
+            object result = cmd.ExecuteScalar();
+            int intResult =  (result == null) ? 0 : Convert.ToInt32(result);
+            return (intResult == 1) ? 1 : 0;
         }
         public static User[] FriendsSearchUsers(int user_id, string search, int maxresults, Connection connection)
         {
@@ -204,12 +208,7 @@ namespace Omni.Data
             {
                 if (u.id != user_id)
                 {
-                    cmd = GetStoredProcedure("omni_user_favor_check_pair", connection);
-                    SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, u.id);
-                    SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, user_id);
-                    object result = cmd.ExecuteScalar();
-                    int result2 = (result == null) ? -1 : Convert.ToInt32(result);
-                    if (result2 != 1)
+                    if (FriendsCheckFriendPair(u.id, user_id, connection) == 0)
                     {
                         // Not the profile user's friend, remove contact info
                         u.email = "";
@@ -244,12 +243,7 @@ namespace Omni.Data
             {
                 if (us.user.id != user_id)
                 {
-                    cmd = GetStoredProcedure("omni_user_favor_check_pair", connection);
-                    SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, us.user.id);
-                    SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, user_id);
-                    object result = cmd.ExecuteScalar();
-                    int result2 = (result == null) ? -1 : Convert.ToInt32(result);
-                    if (result2 != 1)
+                    if (FriendsCheckFriendPair(us.user.id, user_id, connection) == 0)
                     {
                         // Not the profile user's friend, remove contact info
                         us.user.email = "";

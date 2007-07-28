@@ -251,6 +251,21 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
         </s:sequence>
       </s:complexType>
+      <s:element name="FriendsCheckFriendPair">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="friend_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FriendsCheckFriendPairResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FriendsCheckFriendPairResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="FriendsSearchUsers">
         <s:complexType>
           <s:sequence>
@@ -463,6 +478,12 @@
   <wsdl:message name="FriendsListSoapOut">
     <wsdl:part name="parameters" element="tns:FriendsListResponse" />
   </wsdl:message>
+  <wsdl:message name="FriendsCheckFriendPairSoapIn">
+    <wsdl:part name="parameters" element="tns:FriendsCheckFriendPair" />
+  </wsdl:message>
+  <wsdl:message name="FriendsCheckFriendPairSoapOut">
+    <wsdl:part name="parameters" element="tns:FriendsCheckFriendPairResponse" />
+  </wsdl:message>
   <wsdl:message name="FriendsSearchUsersSoapIn">
     <wsdl:part name="parameters" element="tns:FriendsSearchUsers" />
   </wsdl:message>
@@ -574,6 +595,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all friends for a user.</wsdl:documentation>
       <wsdl:input message="tns:FriendsListSoapIn" />
       <wsdl:output message="tns:FriendsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FriendsCheckFriendPair">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if this user has Friend on their friends list.</wsdl:documentation>
+      <wsdl:input message="tns:FriendsCheckFriendPairSoapIn" />
+      <wsdl:output message="tns:FriendsCheckFriendPairSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="FriendsSearchUsers">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search for Omni users by username, email, display name, or description.</wsdl:documentation>
@@ -736,6 +762,15 @@
     </wsdl:operation>
     <wsdl:operation name="FriendsList">
       <soap:operation soapAction="http://service.omniproject.org/FriendsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendsCheckFriendPair">
+      <soap:operation soapAction="http://service.omniproject.org/FriendsCheckFriendPair" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -928,6 +963,15 @@
     </wsdl:operation>
     <wsdl:operation name="FriendsList">
       <soap12:operation soapAction="http://service.omniproject.org/FriendsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendsCheckFriendPair">
+      <soap12:operation soapAction="http://service.omniproject.org/FriendsCheckFriendPair" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
