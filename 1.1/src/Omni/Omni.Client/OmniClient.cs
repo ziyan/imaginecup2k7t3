@@ -454,6 +454,38 @@ namespace Omni.Client
 
         #endregion
 
+        #region Translation
+
+        /// <summary>
+        /// Search for translations based on certain criteria.
+        /// </summary>
+        /// <param name="src_lang_id">Source (Search) Lang ID</param>
+        /// <param name="dst_lang_id">Destination Lang ID</param>
+        /// <param name="keyword">search keyword</param>
+        /// <returns>Array of Translations</returns>
+        public Translation[] TranslationSearch(string keyword, int src_lang_id, int dst_lang_id)
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Translation[] svcObj = service.TranslationSearch(keyword, src_lang_id, dst_lang_id, session);
+                if (svcObj == null) return null;
+                Translation[] objArray = new Translation[svcObj.Length];
+                for (int i = 0; i < objArray.Length; i++)
+                {
+                    objArray[i] = new Translation(svcObj[i]);
+                }
+                return objArray;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        #endregion
+
         #region Lookup service
         /// <summary>
         /// Dictionary definition lookup service.

@@ -35,6 +35,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumeration.cs" />
+    <Compile Include="Translation.cs" />
     <Compile Include="UserLanguage.cs" />
     <Compile Include="UserSimil.cs" />
     <Compile Include="Language.cs" />
@@ -94,6 +96,9 @@
     <None Include="Web References\org.omniproject.service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\org.omniproject.service\Translation.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\org.omniproject.service\User.datasource">
       <DependentUpon>Reference.map</DependentUpon>

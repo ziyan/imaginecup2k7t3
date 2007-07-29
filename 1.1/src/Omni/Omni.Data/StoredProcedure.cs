@@ -147,6 +147,18 @@ namespace Omni.Data
 
             return user;
         }
+        public static string UserUsernameById(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_username_get_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            string username = "";
+            if (reader.Read())
+                username = reader["username"].ToString();
+            reader.Close();
+            reader.Dispose();
+            return username;
+        }
         public static UserLanguage[] UserLanguages(int user_id, Connection connection)
         {
             SqlCommand cmd = GetStoredProcedure("omni_user_lang_list_by_id", connection);
@@ -320,6 +332,32 @@ namespace Omni.Data
         }
         #endregion
 
+        #region Translations
+        public static Translation[] TranslationSearch(string keyword, int src_lang_id, int dst_lang_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_search", connection);
+            SetStoredProcedureParameter(cmd, "@keyword", SqlDbType.NVarChar, keyword);
+            SetStoredProcedureParameter(cmd, "@src_lang_id", SqlDbType.Int, src_lang_id);
+            SetStoredProcedureParameter(cmd, "@dst_lang_id", SqlDbType.Int, dst_lang_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> result = new List<Translation>();
+            while (reader.Read())
+            {
+                result.Add(new Translation(Convert.ToInt32(reader["id"]),
+                                        0, "",
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        0, 0, "",
+                                        Convert.ToString(reader["subject"]),
+                                        "", Convert.ToDateTime(reader["date"]), true));
+            }
+            reader.Close();
+            reader.Dispose();
+
+            return result.ToArray();
+        }
+
+        #endregion
 
     }
 }

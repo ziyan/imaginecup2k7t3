@@ -196,6 +196,13 @@ namespace Omni.Service
             if (id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.UserProfile(Session.UserContext.User.id, id, Session.Connection);
         }
+
+        // Helper method
+        private string UserUsernameById(int id, Omni.Data.Connection connection)
+        {
+            return Data.StoredProcedure.UserUsernameById(id, connection);
+        }
+
         /// <summary>
         /// Gets a user's languages.
         /// </summary>
@@ -318,6 +325,25 @@ namespace Omni.Service
         {
             ServiceSession Session = ServiceSession.Get(session);
             return Data.StoredProcedure.LanguageList(Session.Connection);
+        }
+
+        #endregion
+
+        #region Translations
+
+        /// <summary>
+        /// Search for translations based on certain criteria.
+        /// </summary>
+        /// <param name="src_lang_id">Source (Search) Lang ID</param>
+        /// <param name="dst_lang_id">Destination Lang ID</param>
+        /// <param name="keyword">search keyword</param>
+        /// <param name="session">session id</param>
+        /// <returns>Array of Translations</returns>
+        [WebMethod(Description = "Search for translations based on certain criteria.")]
+        public Data.Translation[] TranslationSearch(string keyword, int src_lang_id, int dst_lang_id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            return Data.StoredProcedure.TranslationSearch(keyword, src_lang_id, dst_lang_id, Session.Connection);
         }
 
         #endregion

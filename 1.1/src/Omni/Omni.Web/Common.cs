@@ -48,6 +48,39 @@ namespace Omni.Web
             return collection;
         }
 
+        public static JSONObjectCollection getTranslationJSON(Client.Translation t)
+        {
+
+            JSONObjectCollection collection = new JSONObjectCollection();
+            if (t != null)
+            {
+                collection.Add(new JSONStringValue("type"), new JSONStringValue(t.Type.ToString()));
+
+                collection.Add(new JSONStringValue("request_id"), new JSONStringValue(t.RequestID.ToString()));
+                collection.Add(new JSONStringValue("src_lang_id"), new JSONStringValue(t.SrcLangID.ToString()));
+                collection.Add(new JSONStringValue("dst_lang_id"), new JSONStringValue(t.DstLangID.ToString()));
+                collection.Add(new JSONStringValue("user_id"), new JSONStringValue(t.UserID.ToString()));
+                collection.Add(new JSONStringValue("username"), new JSONStringValue(t.Username.ToString()));
+                collection.Add(new JSONStringValue("dst_id"), new JSONStringValue(t.DstID.ToString()));
+                collection.Add(new JSONStringValue("dst_type"), new JSONStringValue(t.DstType.ToString()));
+                collection.Add(new JSONStringValue("dst_username"), new JSONStringValue(t.DstUsername.ToString()));
+                collection.Add(new JSONStringValue("subject"), new JSONStringValue(t.Subject.ToString()));
+                collection.Add(new JSONStringValue("orig_body"), new JSONStringValue(t.OrigBody.ToString()));
+                collection.Add(new JSONStringValue("date"), new JSONStringValue(t.Date.ToString()));
+                collection.Add(new JSONStringValue("completed"), new JSONStringValue(t.Completed.ToString()));
+
+                if (t.Type == Omni.Client.TransType.Full)
+                {
+                    collection.Add(new JSONStringValue("trans_id"), new JSONStringValue(t.TransID.ToString()));
+                    collection.Add(new JSONStringValue("trans_body"), new JSONStringValue(t.TransBody.ToString()));
+                    collection.Add(new JSONStringValue("trans_rating"), new JSONStringValue(t.TransRating.ToString()));
+                    collection.Add(new JSONStringValue("trans_date"), new JSONStringValue(t.TransDate.ToString()));
+                    collection.Add(new JSONStringValue("trans_user"), new JSONStringValue(t.TransUser.ToString()));
+                }
+            }
+            return collection;
+        }
+
         public static JSONObjectCollection getUserLanguageJSON(Client.UserLanguage us)
         {
             JSONObjectCollection collection = new JSONObjectCollection();

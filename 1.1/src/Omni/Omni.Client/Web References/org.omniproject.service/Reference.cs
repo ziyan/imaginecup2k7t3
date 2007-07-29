@@ -75,6 +75,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback LanguageListOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TranslationSearchOperationCompleted;
+        
         private System.Threading.SendOrPostCallback DefinitionLookupOperationCompleted;
         
         private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
@@ -185,6 +187,9 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event LanguageListCompletedEventHandler LanguageListCompleted;
+        
+        /// <remarks/>
+        public event TranslationSearchCompletedEventHandler TranslationSearchCompleted;
         
         /// <remarks/>
         public event DefinitionLookupCompletedEventHandler DefinitionLookupCompleted;
@@ -906,6 +911,41 @@ namespace Omni.Client.org.omniproject.service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationSearch", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation[] TranslationSearch(string keyword, int src_lang_id, int dst_lang_id, System.Guid session) {
+            object[] results = this.Invoke("TranslationSearch", new object[] {
+                        keyword,
+                        src_lang_id,
+                        dst_lang_id,
+                        session});
+            return ((Translation[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationSearchAsync(string keyword, int src_lang_id, int dst_lang_id, System.Guid session) {
+            this.TranslationSearchAsync(keyword, src_lang_id, dst_lang_id, session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationSearchAsync(string keyword, int src_lang_id, int dst_lang_id, System.Guid session, object userState) {
+            if ((this.TranslationSearchOperationCompleted == null)) {
+                this.TranslationSearchOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationSearchOperationCompleted);
+            }
+            this.InvokeAsync("TranslationSearch", new object[] {
+                        keyword,
+                        src_lang_id,
+                        dst_lang_id,
+                        session}, this.TranslationSearchOperationCompleted, userState);
+        }
+        
+        private void OnTranslationSearchOperationCompleted(object arg) {
+            if ((this.TranslationSearchCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationSearchCompleted(this, new TranslationSearchCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/DefinitionLookup", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string DefinitionLookup(string lang, string word) {
             object[] results = this.Invoke("DefinitionLookup", new object[] {
@@ -1103,6 +1143,260 @@ namespace Omni.Client.org.omniproject.service {
                 this.log_dateField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.42")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
+    public partial class Translation {
+        
+        private TransType typeField;
+        
+        private int request_idField;
+        
+        private int user_idField;
+        
+        private string usernameField;
+        
+        private int src_lang_idField;
+        
+        private int dst_lang_idField;
+        
+        private int dst_idField;
+        
+        private TransDstType dst_typeField;
+        
+        private string dst_usernameField;
+        
+        private string subjectField;
+        
+        private string orig_bodyField;
+        
+        private System.DateTime dateField;
+        
+        private bool completedField;
+        
+        private int trans_idField;
+        
+        private string trans_bodyField;
+        
+        private int trans_ratingField;
+        
+        private System.DateTime trans_dateField;
+        
+        private int trans_userField;
+        
+        /// <remarks/>
+        public TransType type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int request_id {
+            get {
+                return this.request_idField;
+            }
+            set {
+                this.request_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int user_id {
+            get {
+                return this.user_idField;
+            }
+            set {
+                this.user_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int src_lang_id {
+            get {
+                return this.src_lang_idField;
+            }
+            set {
+                this.src_lang_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int dst_lang_id {
+            get {
+                return this.dst_lang_idField;
+            }
+            set {
+                this.dst_lang_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int dst_id {
+            get {
+                return this.dst_idField;
+            }
+            set {
+                this.dst_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TransDstType dst_type {
+            get {
+                return this.dst_typeField;
+            }
+            set {
+                this.dst_typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string dst_username {
+            get {
+                return this.dst_usernameField;
+            }
+            set {
+                this.dst_usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string subject {
+            get {
+                return this.subjectField;
+            }
+            set {
+                this.subjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string orig_body {
+            get {
+                return this.orig_bodyField;
+            }
+            set {
+                this.orig_bodyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime date {
+            get {
+                return this.dateField;
+            }
+            set {
+                this.dateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool completed {
+            get {
+                return this.completedField;
+            }
+            set {
+                this.completedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int trans_id {
+            get {
+                return this.trans_idField;
+            }
+            set {
+                this.trans_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string trans_body {
+            get {
+                return this.trans_bodyField;
+            }
+            set {
+                this.trans_bodyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int trans_rating {
+            get {
+                return this.trans_ratingField;
+            }
+            set {
+                this.trans_ratingField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime trans_date {
+            get {
+                return this.trans_dateField;
+            }
+            set {
+                this.trans_dateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int trans_user {
+            get {
+                return this.trans_userField;
+            }
+            set {
+                this.trans_userField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.42")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
+    public enum TransType {
+        
+        /// <remarks/>
+        Request,
+        
+        /// <remarks/>
+        Full,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.42")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
+    public enum TransDstType {
+        
+        /// <remarks/>
+        Public,
+        
+        /// <remarks/>
+        User,
+        
+        /// <remarks/>
+        Group,
     }
     
     /// <remarks/>
@@ -1825,6 +2119,32 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Language[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationSearchCompletedEventHandler(object sender, TranslationSearchCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationSearchCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationSearchCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation[])(this.results[0]));
             }
         }
     }

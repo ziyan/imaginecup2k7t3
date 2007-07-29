@@ -37,6 +37,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="Enumeration.cs" />
+    <Compile Include="Translation.cs" />
     <Compile Include="UserLanguage.cs" />
     <Compile Include="UserSimil.cs" />
     <Compile Include="Language.cs" />
