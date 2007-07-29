@@ -147,6 +147,9 @@
 	"OmniProfileNetwork":"即时消息网络:",
 	"OmniProfileScreenname":"即时消息昵称:",
 	"OmniProfileLanguages":"语言",
+	"OmniProfileLangTableLanguage":"Language",
+	"OmniProfileLangTableUserRating":"User Rating",
+	"OmniProfileLangTableSystemRating":"Community Rating",		
 	"OmniProfileInterests":"兴趣",
 	"OmniProfileLoading":" 加载中 ... ",	
 	"OmniProfileGroupMemberships":"Group Memberships",
@@ -207,7 +210,7 @@
 	"InterestNameCheeseProvolone":"普弗伦奶酪",
 	"InterestNameCheeseAmerican":"美式奶酪",
 	"InterestNameCheeseParmesan":"帕米森奶酪",
-	"InterestNameCheeseMozzerela":"莫兹拉奶酪",
+	"InterestNameCheeseMozzarella":"莫兹拉奶酪",
 	"InterestNameSportsBasketball":"篮球",
 	
 	"LanguageNameZHCN":"简体中文",
@@ -230,5 +233,19 @@
 	"GetIntroducedNoMatch":"There were no matches.",
 	"GetIntroducedUserRating":"User Rating",
 	"GetIntroducedSystemRating":"System Rating",
-	"GetIntroducedSimilarity":"Similarity"
+	"GetIntroducedSimilarity":"Similarity",
+	"GetIntroducedLoading":" 加载中 ... ",
+	
+	"ViewTransTitle":"View Translations",
+	"ViewTransTabMyTranslations":"My Translations",
+	"ViewTransTabAllTranslations":"All Translations",
+	"ViewTransTabNeedApproval":"Need Approval",
+	"ViewTransSearch":"Search",
+	"ViewTransSearchSearchLang":"Search Language:",
+	"ViewTransSearchOtherLang":"Other Language:",
+	"ViewTransSearchKeywords":"Keywords:",
+	"ViewTransSearchButton":"Search",
+	"ViewTransNoResults":"No translations found.",
+	
+	"TransDetailTitle":"Translation Details"	
 }

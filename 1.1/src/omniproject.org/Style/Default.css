@@ -239,25 +239,6 @@ a:hover, a:active
 }
 
 
-.userregisterpanel
-{
-	width: auto;
-	padding-bottom:10px;
-}
-.userregisterpanel .title
-{
-	text-align:left;
-	font-size: 12pt;
-	border-bottom: dashed 1px #666666;
-}
-.userregisterpanel .content
-{
-	width: auto;
-	padding-left:20px;
-	text-align:left;
-	line-height:30px;
-}
-
 .userregisterpanel .content .step_gray
 {
 	padding: 5px 0px 10px 20px;
@@ -272,70 +253,33 @@ a:hover, a:active
 
 
 
-.userprofilepanel
+.standardpanel
 {
 	width: auto;
 	padding-bottom:10px;
 }
-.userprofilepanel .title
+.standardpanel .title
 {
 	text-align:left;
 	font-size: 12pt;
 	border-bottom: dashed 1px #666666;
 }
-.userprofilepanel .content
+.standardpanel .content
 {
 	width: auto;
 	padding-left:20px;
 	text-align:left;
 	line-height:30px;
 }
-.userprofilepanel .colheading
+.standardpanel .colheading
 {
 	font-weight: bold;
 }
-
-
-.friendspanel .title
-{
-	text-align:left;
-	font-size: 12pt;
-	border-bottom: dashed 1px #666666;
-}
-.friendspanel .content
-{
-	width: auto;
-	padding-left:20px;
-	text-align:left;
-	line-height:30px;
-}
-.friendspanel .content .description
+.standardpanel .content .description
 {
 	line-height:normal;
 }
-.friendspanel .colheading
-{
-	font-weight: bold;
-}
 
-
-.omniprofilepanel .title
-{
-	text-align:left;
-	font-size: 12pt;
-	border-bottom: dashed 1px #666666;
-}
-.omniprofilepanel .content
-{
-	width: auto;
-	padding-left:20px;
-	text-align:left;
-	line-height:30px;
-}
-.omniprofilepanel .content .description
-{
-	line-height:normal;
-}
 .omniprofilepaneltable
 {
 	line-height: 250%;
@@ -346,33 +290,33 @@ a:hover, a:active
 }
 .omniprofilepaneltable .colheading_lg
 {
-	font-weight: bold;
 	font-size: 200%;
-}
-
-
-.get_introduced_panel .title
-{
-	text-align:left;
-	font-size: 12pt;
-	border-bottom: dashed 1px #666666;
-}
-.get_introduced_panel .content
-{
-	width: auto;
-	padding-left:20px;
-	text-align:left;
-	line-height:30px;
-}
-.get_introduced_panel .content .description
-{
-	line-height:normal;
-}
-.get_introduced_panel .colheading
-{
 	font-weight: bold;
 }
 
+
+.viewtranstab a
+{
+	position: relative;
+	top: 8px;
+	padding: 7px 10px 7px 10px;
+	border-right: 1px dashed #CCCCCC;
+	color: #000000;
+}
+.viewtranstab a:hover, .viewtranstab a:active
+{
+	color: #cc5705;
+	text-decoration: underline;
+	background-color: #f6f6f6;
+	border-top: 1px solid #e1e1e1;
+}
+.viewtranstab .select
+{
+	color: #8c8c8c;
+	border-right: 1px dashed #CCCCCC;
+	border-top: 1px solid #999999;
+	background-color: #f6f6f6;
+}
 
 
 .detailtable

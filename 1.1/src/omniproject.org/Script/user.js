@@ -62,7 +62,7 @@ function user_state_update()
         $("userpanel_not_logged_in").style.display="none";
         $("userpanel_logged_in").style.display="block";
         $("omnihomepanel_not_logged_in").style.display="none";
-        //$("omnihomepanel_logged_in").style.display="block"; //After there's content
+        $("omnihomepanel_logged_in").style.display="block";
         
         //clear the form
         $("form_user_login_username").disabled=false;

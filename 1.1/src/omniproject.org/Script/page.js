@@ -16,8 +16,8 @@ var content_right = null;
 
 var page_current = "";
 
-var page_not_logged_in = ["Home","Register","HallOfFame","About"];
-var page_logged_in = ["Home","Profile","GetIntroduced","Friends","Messages",/*"Groups",*/"HallOfFame","About"];
+var page_not_logged_in = ["Home","Register","HallOfFame"/*,"About"*/];
+var page_logged_in = ["Home","Profile","GetIntroduced","Friends","Messages",/*"Groups",*/"HallOfFame"/*,"About"*/];
 var langbar_not_logged_in = ["AutoTrans","ViewTrans"];
 var langbar_logged_in = ["AutoTrans","ViewTrans","PerformTrans","RequestTrans"];
 
@@ -135,9 +135,6 @@ function page_change(page_name)
         case "Register":
             page_goto_register();
             break;
-        case "About":
-            page_goto_about();
-            break;
         case "Profile":
             page_goto_profile();
             break;
@@ -147,6 +144,9 @@ function page_change(page_name)
         case "Friends":
             page_goto_friends();
             break;    
+        case "ViewTrans":
+            page_goto_view_trans();
+            break;                
         default:
             page_name = "Home";
             page_goto_home();
@@ -248,12 +248,6 @@ function page_goto_register()
     content_left.appendChild($("userregisterpanel"));
 }
 
-function page_goto_about()
-{
-    page_layout_big_left_right();
-    content_right.appendChild($("userpanel"));
-}
-
 function page_goto_profile()
 {
     page_layout_big_left_right();
@@ -278,4 +272,12 @@ function page_goto_friends()
     content_left.appendChild($("friendspanel"));
     omni_profile_panel_reset();
     friends_list_retrieve();    
+}
+
+function page_goto_view_trans()
+{
+    page_layout_equal_left_right();
+    content_right.appendChild($("transdetailpanel"));
+    content_left.appendChild($("viewtranspanel"));
+    view_trans_init();
 }

@@ -106,7 +106,7 @@ under development
             </div>
         </div>
         <div id="omnihomepanel_logged_in" class="boxpanel">
-            <!-- TBD -->
+            TBD
         </div>
     </div>
     <!-- end of omnihomepanel -->
@@ -232,7 +232,7 @@ under development
     </div>
     <!--end of userpanel-->
     <!--begin of userregisterpanel-->
-    <div id="userregisterpanel" class="userregisterpanel">
+    <div id="userregisterpanel" class="userregisterpanel standardpanel">
     <div class="title"><span id="Omni_Localized_UserRegisterTitle">Register A New Account</span></div>
     <div class="content">
     <span id="Omni_Localized_UserRegisterInfo">* All fields are required.</span>
@@ -278,7 +278,7 @@ under development
     </div>
    <!--end of userregisterpanel-->
     <!--begin of userprofilepanel-->
-    <div id="userprofilepanel" class="userprofilepanel">
+    <div id="userprofilepanel" class="standardpanel">
     <div class="title"><span id="Omni_Localized_UserProfileTitle">Profile</span></div>
     <div class="content">
     <form action="" id="form_user_profile" onsubmit="user_update(); return false" style="margin:0px">
@@ -346,7 +346,7 @@ under development
     </div>
     <!--end of userprofilepanel-->    
     <!-- begin of friendspanel -->
-    <div id="friendspanel" class="friendspanel">
+    <div id="friendspanel" class="standardpanel">
         <div class="title"><span id="Omni_Localized_FriendsTitle">Friends</span></div>
         <div class="content">
         <p><a href="#" onclick="page_change('GetIntroduced'); return false"><span id="Omni_Localized_FriendsIntroduceLink">Allow Omni to introduce you to other users.</span></a></p>
@@ -410,11 +410,11 @@ under development
                         
                     </td>
                 </tr>                
-                <tr id="omniprofilepanel_imrow1" style="line-height: 150%;">
+                <tr id="omniprofilepanel_imrow1" style="line-height: 200%;">
                     <td class="colheading" colspan="4">
                         <span id="Omni_Localized_OmniProfileInstantMessaging">Instant Messaging:</span></td>
                 </tr>
-                <tr id="omniprofilepanel_imrow2" style="line-height: 150%;">
+                <tr id="omniprofilepanel_imrow2" style="line-height: 200%;">
                     <td style="width: 15px">
                     </td>
                     <td class="colheading">
@@ -424,7 +424,7 @@ under development
                     <td id="omniprofilepanel_network">
                     </td>
                 </tr>
-                <tr id="omniprofilepanel_imrow3" style="line-height: 150%;">
+                <tr id="omniprofilepanel_imrow3" style="line-height: 200%;">
                     <td style="width: 15px">
                     </td>
                     <td class="colheading">
@@ -474,7 +474,7 @@ under development
     </div>
     <!-- end of omniprofilepanel -->
     <!--begin of get_introduced_panel-->
-    <div id="get_introduced_panel" class="get_introduced_panel">
+    <div id="get_introduced_panel" class="standardpanel">
         <div class="title">
             <span id="Omni_Localized_GetIntroducedTitle">Get Introduced</span></div>
         <div class="content" style="margin-bottom: 30px;">
@@ -503,6 +503,61 @@ under development
         </div>
     </div>
     <!--end of get_introduced_panel-->
+    <!--begin of viewtranspanel-->
+    <div id="viewtranspanel" class="standardpanel">
+        <div class="title">
+            <span id="Omni_Localized_ViewTransTitle">View Translations</span>
+        </div>
+        <div class="content" style="margin-bottom: 30px;">
+        <div id="viewtranstab" class="viewtranstab" style="margin-bottom: 20px;">
+        </div>
+        <div id="viewtranspanel_searchpanel" style="display: none;">
+        <span id="Omni_Localized_ViewTransSearch">Search</span>
+                <table border="0" style="line-height: 150%;">
+                    <tr>
+                        <td class="colheading">
+                            <span id="Omni_Localized_ViewTransSearchSearchLang">Search Language:</span>
+                        </td>
+                        <td style="width: 15px">
+                        </td>
+                        <td>
+                            <select id="viewtranssearch_searchlang">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="colheading">
+                            <span id="Omni_Localized_ViewTransSearchOtherLang">Other Language:</span>
+                        </td>
+                        <td style="width: 15px">
+                        </td>
+                        <td>
+                            <select id="viewtranssearch_otherlang">
+                            </select>
+                        </td>
+                    </tr>                    
+                </table>
+            <form action="" id="viewtranspanel_searchform" onsubmit="view_trans_search; return false"
+                style="margin: 0px;">
+                <span id="Omni_Localized_ViewTransSearchKeywords">Keywords:</span><br />
+                <input type="text" size="53" maxlength="255" id="viewtrans_searchcriteria" /><br />
+                <input type="submit" value="Search" id="Omni_Localized_ViewTransSearchButton" />
+            </form>
+            <span id="viewtrans_transtable"></span>
+        </div>
+        
+        </div>
+    </div>
+    <!--end of viewtranspanel-->
+    <!--begin of viewtranspanel-->
+    <div id="transdetailpanel" class="boxpanel">
+        <div class="title">
+            <span id="Omni_Localized_TransDetailTitle">Translation Details</span>
+        </div>
+        <div class="content" style="margin-bottom: 30px;">
+        </div>
+    </div>
+    <!--end of viewtranspanel-->    
 </div>
 
 </body>
