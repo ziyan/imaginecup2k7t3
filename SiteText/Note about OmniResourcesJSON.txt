@@ -1,0 +1,9 @@
+IMPORTANT NOTE: The extension of the file is .csv, but in reality in Excel the appropriate file type is:
+  Unicode text (.txt)
+
+For translation purposes:
+* Adding new rows to the existing OmniResourcesJSON.csv file works fine.
+* Clicking Save in Excel with the file open works fine. The file type should show as Unicode text.
+* Converting the file to a true Excel spreadsheet (.XLS) should work fine.
+! Changing the file dropdown to Comma Separated Values (CSV) will NOT work. All unicode text will be lost, which defeats the point of translating.
+
