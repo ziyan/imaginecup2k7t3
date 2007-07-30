@@ -32,7 +32,7 @@ a:hover, a:active
 
 .top
 {
-	width: 790px; _width: 800px;
+	width: 970px; _width: 982px;
 	margin:0px;
 	padding:0px;
 }
@@ -133,33 +133,33 @@ a:hover, a:active
 
 .content
 {
-	width: 790px; _width: 800px;
+	width: 970px; _width: 982px;
 	padding-top:15px;
 }
 .content_left_center_right #content_left
 {
 	float: left;
-	width: 200px;
+	width: 245px;
 	vertical-align:top;
 }
 .content_left_center_right #content_center
 {
 	float: left;
-	width: 320px;
+	width: 392px;
 	padding: 0px 20px 0px 20px;
 	vertical-align:top;
 }
 .content_left_center_right #content_right
 {
 	float: right;
-	width: 230px;
+	width: 282px;
 	vertical-align:top;
 }
 
 .content_big_left_right #content_left
 {
 	float: left;
-	width: 540px;
+	width: 663px;
 	vertical-align:top;
 }
 .content_big_left_right #content_center
@@ -169,14 +169,14 @@ a:hover, a:active
 .content_big_left_right #content_right
 {
 	float: right;
-	width: 230px;
+	width: 282px;
 	vertical-align:top;
 }
 
 .content_equal_left_right #content_left
 {
 	float: left;
-	width: 385px;
+	width: 472px;
 	vertical-align:top;
 }
 .content_equal_left_right #content_center
@@ -186,7 +186,7 @@ a:hover, a:active
 .content_equal_left_right #content_right
 {
 	float: right;
-	width: 385px;
+	width: 472px;
 	vertical-align:top;
 }
 
@@ -323,10 +323,13 @@ a:hover, a:active
 {
 	background-color: #f8f8f8;
 	border: outset 1px Black;
+	line-height: 175%;
+	width: 455px;
 }
 .detailtable tr th
 {
 	background-color: #dddddd;
+	font-weight: bold;
 	border: inset 1px Black;
 }
 .detailtable tr td
@@ -335,6 +338,27 @@ a:hover, a:active
 	border: inset 1px Black;
 }
 
+.transtable
+{
+	background-color: #f8f8f8;
+	border: outset 1px Black;
+	line-height: 175%;
+	width: 452px;
+	font-size: 95%;
+}
+.transtable tr td
+{
+	border: inset 1px Black;
+}
+.transtable .data
+{
+	background-color: #f8f8f8;
+}
+.transtable .header
+{
+	background-color: #dddddd;
+	font-weight: bold;
+}
 
 
 
@@ -349,15 +373,21 @@ a:hover, a:active
 .heading
 {
 	font-weight: bold;
-	font-size: 175%;
+	font-size: 140%;
 	margin: 0pt;
+	line-height: 100%;
+}
+
+.para
+{
+	line-height: 150%;
 }
 
 .footer
 {
 	display: block;
 	text-align: center;
-	width: 790px; _width: 800px;
+	width: 970px; _width: 982px;
 	clear: both;
 	border-top: 1px dashed #666666;
 	color:#666666;

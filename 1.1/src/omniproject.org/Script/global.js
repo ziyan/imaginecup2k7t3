@@ -48,11 +48,20 @@ function newlnHTML2String(str) {
 // Clear globally cached results on logout
 function clear_cached_results()
 {
+    // user.js
+    user_temp_languages = null;
+    user_temp_language_skills = null;
     // friends.js
     omni_profile_panel_user = null;
     friends = null;
     friends_search_results_users = null;
     get_introduced_results = null;
     friends_removed_friend = null;
-    friends_added_friend = null;    
+    friends_added_friend = null;
+    // trans.js
+    view_trans_active_tab_id = null;
+    view_trans_active_trans_id = null;
+    view_trans_details_req_obj = null;
+    view_trans_details_ans_obj = null;
+    view_trans_init();
 }

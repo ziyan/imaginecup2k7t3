@@ -6,8 +6,13 @@
 //some global accessible variable for user
 var user_current_ajax = new AniScript.Web.Ajax(); //ajax object
 var user_current_interests_ajax = null; //ajax object
+var user_current_languages_ajax = null; //ajax object
 var user_current_id = 0;
 var user_current_obj = null;
+
+var user_current_obj_lang = null; // IDs only.
+// This is pulled over on with UserCurrent, unlike user_current_languages
+
 var user_current_languages = null;
 var user_current_interests = null;
 
@@ -36,8 +41,9 @@ function user_current_callback()
     }
     if(user_current_ajax.getJSON().loggedin)
     {
-        user_current_id = user_current_ajax.getJSON().id;
-        user_current_obj = user_current_ajax.getJSON();
+        user_current_id = user_current_ajax.getJSON().user.id;
+        user_current_obj = user_current_ajax.getJSON().user;
+        user_current_obj_lang = user_current_ajax.getJSON().user_lang;
     }
     else
     {
@@ -76,7 +82,7 @@ function user_state_update()
     else
     {
         //not logged in
-        $("usermenu").innerHTML="<a href=\"#\" onclick=\"page_change('Register');return false\">"+lang_getHTML("UserMenuRegister")+"</a> ";
+        $("usermenu").innerHTML="<a href=\"#\" onclick=\"page_change('Register');return false\">"+lang_getHTML("UserMenuRegister")+"</a> | <a href=\"#\" onclick=\"page_change('Home');return false\">"+lang_getHTML("UserMenuLogin")+"</a> ";
         $("userpanel_not_logged_in").style.display="block";
         $("userpanel_logged_in").style.display="none";
         $("omnihomepanel_not_logged_in").style.display="block";
@@ -90,6 +96,7 @@ function user_info_clear()
 {
     user_current_id = 0;
     user_current_obj = null;
+    user_current_obj_lang = null;
     user_current_interests = null;
     user_current_languages = null;
 }
@@ -349,11 +356,15 @@ function user_profile_retrieve()
         $("form_user_profile_sn_network").value = user_current_obj.sn_network;
         $("form_user_profile_sn_screenname").value = user_current_obj.sn_screenname;
         $("form_user_profile_interests").innerHTML = loading_img+" "+lang_getHTML("UserProfileLoading","Interest");
+        $("form_user_profile_languages").innerHTML = loading_img+" "+lang_getHTML("UserProfileLoading","Language");
         $("Omni_Localized_UserProfileSubmitButton").disabled = true;
         // ajax
         if(user_current_interests_ajax == null) user_current_interests_ajax = new AniScript.Web.Ajax();
         user_current_interests_ajax.setHandler(user_current_interests_callback);
-        user_current_interests_ajax.request(hosturl+"handler/user/interestshandler.ashx","user_id="+escape(user_current_id));          
+        user_current_interests_ajax.request(hosturl+"handler/user/interestshandler.ashx","user_id="+escape(user_current_id));
+        if(user_current_languages_ajax == null) user_current_languages_ajax = new AniScript.Web.Ajax();
+        user_current_languages_ajax.setHandler(user_current_languages_callback);
+        user_current_languages_ajax.request(hosturl+"handler/user/languageshandler.ashx","user_id="+escape(user_current_id));
     }
 }
 function user_current_interests_callback()
@@ -400,7 +411,139 @@ function user_current_interests_callback()
     }    
 }
 
+var user_temp_languages = null;
+var user_temp_language_skills = null;
 
+function user_profile_lang_add(id)
+{
+    user_profile_update_temp_lang_skills();
+    user_temp_languages.push(id);
+    get_user_current_language_html();
+}
+
+function user_profile_lang_remove(id)
+{
+    user_profile_update_temp_lang_skills();
+    var myArray = new Array();
+    for(var x=0; x<user_temp_languages.length; x++)
+    {
+        if(user_temp_languages[x] != id)
+            myArray.push(user_temp_languages[x]);
+    }
+    user_temp_languages = myArray;
+    get_user_current_language_html();
+}
+
+function user_profile_update_temp_lang_skills()
+{
+    for(var i=0;i<user_temp_languages.length; i++)
+    {
+        for(var k=1; k<=5; k++)
+        {
+            var myId = "UserProfileLangRating_"+user_temp_languages[i]+"_"+k;
+            var myObj = $(myId);
+            if(myObj != null && myObj != undefined)
+            {
+                if(myObj.checked)
+                {
+                    user_temp_language_skills[user_temp_languages[i]] = k;
+                    break;
+                }
+            }
+        }
+    }
+}
+
+function get_user_current_language_html()
+{
+    var html = "<br/>";
+    
+    user_temp_languages.sort();
+    
+    if(user_temp_languages.length < system_languages.length)
+    {
+        html += "<select id=\"userprofile_langdd\" size=\"1\">";
+        for(var i=0; i<system_languages.length;i++)
+        {
+            var remove = false;
+            for(var j=0;j<user_temp_languages.length;j++)
+            {
+                if(user_temp_languages[j] == system_languages[i].id)
+                {
+                    remove = true;
+                    break;
+                }
+            }
+            if(!remove)
+                html += "<option id=\"Omni_Localized_LanguageName"+system_languages[i].short_code+"\" value=\""+system_languages[i].id+"\">"+sys_lang_by_short_code(system_languages[i].short_code, "EditProfileLangDD")+"</option>";
+        }
+        html += "</select>&nbsp;&nbsp;&nbsp;&nbsp;";
+        html += "<a href=\"#\" onclick=\"user_profile_lang_add($('userprofile_langdd').options[$('userprofile_langdd').selectedIndex].value); return false\"><span id=\"Omni_Localized_UserProfileLanguagesAdd\">Add Language</span></a>";
+    }
+    html += "<br/>";
+    
+    if(user_temp_languages.length>0)
+        html += "<table class=\"detailtable\" cellpadding=\"2\"><th>"+lang_getHTML("UserProfileLanguagesLanguage")+"</th><th>"+lang_getHTML("UserProfileLanguagesSkill")+"</th><th></th>";
+    for(var i=0; i<user_temp_languages.length; i++)
+    {
+        var rating = 1;
+        var ratingObj = null;
+        if(user_temp_language_skills != null && user_temp_language_skills != undefined)
+            ratingObj = user_temp_language_skills[user_temp_languages[i]];
+        if(ratingObj != null && ratingObj != undefined) {
+            rating = ratingObj; }
+    
+        html += "<tr><td>"+sys_lang_by_id(user_temp_languages[i],"UserProfileLang"+i,true)+"</td>";
+        html += "<td style=\"font-size: 130%;\">";
+        for(var k=1; k<=5; k++)
+        {
+            var chk = "";
+            if(k == rating) chk = " checked ";
+            html += "<input type=\"radio\" "+chk+" name=\"UserProfileLang"+user_temp_languages[i]+"\" id=\"UserProfileLangRating_"+user_temp_languages[i]+"_"+k+"\" value=\""+k+"\"> "+k;
+            if(k<5) html += " | ";
+        }
+        html += "</td>";
+        html += "<a href=\"#\" onclick=\"user_profile_lang_remove("+user_temp_languages[i]+"); return false\"><span id=\"Omni_Localized_UserProfileLanguagesRemove\">Remove Language</span></a>";
+    }
+    if(user_temp_languages.length>0)
+        html += "</table>";
+    html += "<br/>";
+    
+    $("form_user_profile_languages").innerHTML = html;
+}
+
+function user_current_languages_callback()
+{
+    if(!user_current_languages_ajax.isDone()) return;
+    $("Omni_Localized_UserProfileSubmitButton").disabled = false;
+    if(user_current_languages_ajax.hasError())
+    {
+        $("form_user_profile_languages").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError_Lang\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        user_current_languages = null;
+        user_temp_languages = null;
+        return;
+    }    
+    var status = user_current_languages_ajax.getJSON().status;
+    if(status=="OK")
+    {
+        user_current_languages = user_current_languages_ajax.getJSON().languages;
+        //$("form_user_profile_languages").innerHTML = user_current_languages.toJSONString();
+        user_temp_languages = new Array();
+        user_temp_language_skills = new Object();
+        for(var x=0;x<user_current_languages.length;x++)
+        {
+            user_temp_languages.push(user_current_languages[x].lang_id);
+            user_temp_language_skills[user_current_languages[x].lang_id] = user_current_languages[x].self_rating;
+        }
+        get_user_current_language_html();
+    }
+    else
+    {
+        $("form_user_profile_languages").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError_Lang\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        user_current_languages = null;
+        user_temp_languages = null;
+    }        
+}
 
 
 
@@ -415,6 +558,7 @@ function user_profile_reset()
 
 var user_update_ajax = null; //ajax object
 var user_update_interests_ajax = null; //ajax object
+var user_update_languages_ajax = null; //ajax object
 
 function user_update()
 {
@@ -449,7 +593,34 @@ function user_update()
     
     var arrayStr;
     if(user_current_interests == null) arrayStr = ""; //won't update interests
-    else arrayStr = ids.toJSONString();    
+    else arrayStr = ids.toJSONString();
+    
+    // Languages
+    var langIdStr, langSkillStr;
+    if(user_temp_languages == null)
+    {
+        langIdStr = "";
+        langSkillStr = "";
+    }
+    else
+    {
+        var langIdArray = new Array();
+        //langIdStr = user_temp_languages.toJSONString();
+        var langSkillArray = new Array();   
+        for(var x=0; x<user_temp_languages.length; x++)
+        {
+            langIdArray.push(parseInt(user_temp_languages[x]));
+        
+            var skill = user_temp_language_skills[user_temp_languages[x]];
+            if(skill != null && skill != undefined)
+            {
+                langSkillArray.push(parseInt(skill));
+            }
+            else langSkillArray.push(1);
+        }
+        langSkillStr = langSkillArray.toJSONString();
+        langIdStr = langIdArray.toJSONString();
+    }
     
     // lock fields
     $("form_user_profile_name").disabled = true;
@@ -459,7 +630,8 @@ function user_update()
     $("form_user_profile_sn_screenname").disabled = true;
     $("form_user_profile_interests").style.display = "none";
     $("userprofilepanel_interestsupdating").style.display = null;
-    // FIXME: lock languages panel
+    $("form_user_profile_languages").style.display = "none";
+    $("userprofilepanel_languagesupdating").style.display = null;
     $("Omni_Localized_UserProfileSubmitButton").disabled = true;
     $("userprofilepanel_status").innerHTML=loading_img+" "+ lang_getHTML("UserProfileUpdating");
     // ajax
@@ -470,7 +642,10 @@ function user_update()
     if(user_update_interests_ajax == null) user_update_interests_ajax = new AniScript.Web.Ajax();
     user_update_interests_ajax.setHandler(user_update_interests_callback);
     user_update_interests_ajax.request(hosturl+"handler/user/updateinterestshandler.ashx","interests="+escape(arrayStr));
-    
+    // languages ajax
+    if(user_update_languages_ajax == null) user_update_languages_ajax = new AniScript.Web.Ajax();
+    user_update_languages_ajax.setHandler(user_update_languages_callback);
+    user_update_languages_ajax.request(hosturl+"handler/user/updatelanguageshandler.ashx","languages="+escape(langIdStr)+"&skills="+escape(langSkillStr));
     
 }
 function user_update_callback()
@@ -514,13 +689,41 @@ function user_update_interests_callback()
     $("userprofilepanel_interestsupdating").style.display = "none";
     
     $("Omni_Localized_UserProfileSubmitButton").disabled = false;
-    if(user_update_ajax.hasError())
+    if(user_update_interests_ajax.hasError())
     {
         $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
         return;
     }
 
     var status = user_update_interests_ajax.getJSON().status;
+    if(status=="OK")
+    {
+        // Don't overwrite another error msg w/ a success one
+        if($("userprofilepanel_status").innerHTML.indexOf("UserProfileUpdating") > -1)
+        {
+            $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";
+        }
+    }
+    else
+    {
+        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+    }
+}
+
+function user_update_languages_callback()
+{
+    if(!user_update_languages_ajax.isDone()) return;
+    $("form_user_profile_languages").style.display = null;
+    $("userprofilepanel_languagesupdating").style.display = "none";
+    
+    $("Omni_Localized_UserProfileSubmitButton").disabled = false;
+    if(user_update_languages_ajax.hasError())
+    {
+        $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusError\" style=\"color:#993333;\">"+lang_getText("UserProfileStatusError")+"</span>";
+        return;
+    }
+
+    var status = user_update_languages_ajax.getJSON().status;
     if(status=="OK")
     {
         // Don't overwrite another error msg w/ a success one

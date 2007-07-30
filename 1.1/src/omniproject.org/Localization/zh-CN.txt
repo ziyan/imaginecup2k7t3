@@ -17,9 +17,6 @@
 	"LangBarLinkPerformTrans":"Perform Translation",
 	"LangBarLinkRequestTrans":"Request Translation",
 	
-	"LangBarNoteApproveTranslations":"Translation answers to approve:",
-	"LangBarNotePersonalRequests":"Translation requests to answer:",	
-	
 	"LanguageOptionZHCN":"简体中文",
 	"LanguageOptionENUS":"英文(美国)",
 	
@@ -31,7 +28,19 @@
 	
 	"GuestPanelWelcome":"Welcome to Omni!",
 	"GuestPanelOverview":"Overview",
-	"GuestPanelOverviewText":"Omni is a language learning system that uses social networking concepts to encourage student collaboration. Omni allows users to meet and communicate with each other in the language they are learning. Integrated into Omni are a set of features designed to help language learners of varying skill levels share information. When students encounter difficulties they can work past them by cooperating with other users. By allowing open access to Omni, other social networks and communication services will be able to use the power of the network to allow their users to communicate across language barriers. One of the greatest obstacles for language students is moving from the classroom to native speaking; Omni seeks to overcome these difficulties using social networking.",
+	"GuestPanelOverviewText":"Omni is a language learning system that uses social networking to encourage student collaboration. Omni allows you to meet and communicate with each other in the language you are learning. Integrated into Omni are a set of features designed to help language learners of every skill level share information. When you encounter difficulties, Omni will help you work past them by find you help from other users. By allowing open access to Omni, other social networks and communication services use the power of the network to allow everyone to communicate across language barriers. Omni is here to help you make connections and maintain them regardless of the language you are speaking.",
+	
+	"UserPanelOmniThings":"Things to do on Omni:",
+	"UserPanelOmniThings1":"Meet someone new",
+	"UserPanelOmniThings2":"Help someone with a translation",
+	"UserPanelOmniThings3":"View the top translators on the network",
+	"UserPanelOmniThings4":"Find someone you know",
+	"UserPanelOmniThings5":"Send a message to a friend",
+	"UserPanelOmniThings6":"Get help with a language problem",
+	"UserPanelOmniThings7":"Tell Omni more about yourself",
+	"UserPanelOmniThings8":"View translations you've been involved with in the past",
+	"UserPanelOmniThings9":"Search translations that have already been completed",
+	"UserPanelOmniThings10":"Get a quick automated translation",
 	
 	"UserLoginTitle":"用户登录",
 	"UserLoginUsername":"用户名: ",
@@ -52,6 +61,7 @@
 	"UserMenuLogout":"登出",
 	"UserMenuLoggingOut":" 正在登出 ... ",
 	"UserMenuRegister":"注册新帐号",
+	"UserMenuLogin":"登陆",
 	"UserMenuLoading":" 加载中 ... ",
 	
 	"UserRegisterTitle":"创建一个新的帐号",
@@ -131,12 +141,12 @@
 	"FriendsSearchButton":"Search",
 	"FriendsTitle":"Friends",
 	"FriendsListTitle":"Friends",
-	"FriendsStatusError":"System error, please try again later",
+	"FriendsStatusError":"系统出错, 请稍候再试",
 	"FriendsRemoveButton":"Remove",
 	"FriendsRemoveConfirm":"Are you sure?",
 	"FriendsRemoveConfirmYes":"Yes",
 	"FriendsRemoveConfirmNo":"No",	
-	"FriendsLoading":" Loading ... ",	
+	"FriendsLoading":" 加载中 ... ",	
 	
 	"OmniProfileSelectHint":"Select a user to see their profile.",
 	"OmniProfileTitle":"我的资料",
@@ -229,7 +239,7 @@
 	"GetIntroducedLanguage":"Introduction Language:",
 	"GetIntroducedLanguageHint":"Omni will match you with another user that speaks this language, at a higher skill level.",
 	"GetIntroducedIntroduceButton":"Introduce",
-	"GetIntroducedStatusError":"System error, please try again later",
+	"GetIntroducedStatusError":"系统出错, 请稍候再试",
 	"GetIntroducedNoMatch":"There were no matches.",
 	"GetIntroducedUserRating":"User Rating",
 	"GetIntroducedSystemRating":"System Rating",
@@ -237,6 +247,7 @@
 	"GetIntroducedLoading":" 加载中 ... ",
 	
 	"ViewTransTitle":"View Translations",
+	"ViewTransLoading":" 加载中 ... ",	
 	"ViewTransTabMyTranslations":"My Translations",
 	"ViewTransTabAllTranslations":"All Translations",
 	"ViewTransTabNeedApproval":"Need Approval",
@@ -246,6 +257,20 @@
 	"ViewTransSearchKeywords":"Keywords:",
 	"ViewTransSearchButton":"Search",
 	"ViewTransNoResults":"No translations found.",
+	"ViewTransStatusError":"System error, please try again later",
 	
-	"TransDetailTitle":"Translation Details"	
+	"TransDetailTitle":"Translation Details",
+	"TransDetailLoading":" 加载中 ... ",
+	"TransDetailStatusError":"系统出错, 请稍候再试",	
+	
+	"TransHeaderDate":"Date",
+	"TransHeaderRequestor":"Requestor",
+	"TransHeaderTranslator":"Translator",
+	"TransHeaderSubject":"Subject",
+	"TransHeaderSrcLang":"Source Language",
+	"TransHeaderDstLang":"Destination Language",
+	"TransHeaderRating":"Rating",
+	"TransHeaderCompleted":"Completed",
+	"TransHeaderCompletedYes":"Yes",
+	"TransHeaderGlobal":"Global"
 }

@@ -11,7 +11,7 @@ function rater_create(id, type, current_rating, user_rating)
     html+="<ul id=\""+id+"\" class=\"rater\">";
     html+="<li id=\""+id+"_current_rating\" class=\"current-rating\" style=\"width:"+(current_rating*25)+"px;\">"+current_rating+"</li>";
     html+="<li id=\""+id+"_user_rating\" class=\"user-rating\" style=\"width:"+(user_rating*25)+"px;\">"+user_rating+"</li>";
-    html+="<li id=\""+id+"_rating\">0</li>";
+    html+="<li id=\""+id+"_rating\" style=\"display: none;\">0</li>";
     if(type>0)
     {
         html+="<li><a href=\"#\" id=\""+id+"_star1\" class=\"star-one\" onclick=\"rater_rate('"+id+"',"+type+",1);return false\"></a></li>";
@@ -54,6 +54,7 @@ function rater_rate(id, type, score)
 function rater_get_rating(id)
 {
     return parseInt($(id+"_rating").innerHTML);
+    return parseInt($(id+"_current_rating").innerHTML);
 }
 function rater_get_user_rating(id)
 {

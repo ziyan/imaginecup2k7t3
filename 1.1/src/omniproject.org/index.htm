@@ -89,11 +89,11 @@ under development
 <!--layouts-->
     <!-- begin of omnihomepanel -->
     <div id="omnihomepanel">
-        <div id="omnihomepanel_not_logged_in" class="boxpanel">
+        <div id="omnihomepanel_not_logged_in" class="standardpanel">
             <div class="title"><span id="Omni_Localized_GuestPanelWelcome">Welcome to Omni!</span></div>
             <div class="content">
             <p class="heading"><span id="Omni_Localized_GuestPanelOverview">Overview</span></p>
-            <p><span id="Omni_Localized_GuestPanelOverviewText">
+            <p class="para"><span id="Omni_Localized_GuestPanelOverviewText">
             Omni is a language learning system that uses social networking concepts to encourage student collaboration.
             Omni allows users to meet and communicate with each other in the language they are learning. Integrated into
             Omni are a set of features designed to help language learners of varying skill levels share information. When
@@ -105,8 +105,29 @@ under development
             </span></p>
             </div>
         </div>
-        <div id="omnihomepanel_logged_in" class="boxpanel">
-            TBD
+        <div id="omnihomepanel_logged_in" class="standardpanel">
+            <div class="title">
+                <!-- FIXME -->
+            </div>
+            <div class="content">
+                <p class="heading">
+                    <span id="Omni_Localized_UserPanelOmniThings">Things to do on Omni:</span>
+                </p>
+                <span class="para">
+                    <ul>
+                        <li><span id="Omni_Localized_UserPanelOmniThings1">Meet someone new</span></li>
+                        <li><span id="Omni_Localized_UserPanelOmniThings2">Help someone with a translation</span></li>
+                        <li><span id="Omni_Localized_UserPanelOmniThings3">View the top translators on the network</span></li>
+                        <li><span id="Omni_Localized_UserPanelOmniThings4">Find someone you know</span></li>
+                        <li><span id="Omni_Localized_UserPanelOmniThings5">Send a message to a friend</span></li>
+                        <li><span id="Omni_Localized_UserPanelOmniThings6">Get help with a language problem</span></li>
+                        <li><span id="Omni_Localized_UserPanelOmniThings7">Tell Omni more about yourself</span></li>
+                        <li><span id="Omni_Localized_UserPanelOmniThings8">View translations you've been involved with in the past</span></li>
+                        <li><span id="Omni_Localized_UserPanelOmniThings9">Search translations that have already been completed</span></li>
+                        <li><span id="Omni_Localized_UserPanelOmniThings10">Get a quick automated translation</span></li>
+                    </ul>
+                </span>
+            </div>
         </div>
     </div>
     <!-- end of omnihomepanel -->
@@ -202,7 +223,7 @@ under development
             <div class="title_orange"><span id="Omni_Localized_UserLoginTitle">User Login</span></div>
             <div class="content">
                 <form action="" id="form_user_login" onsubmit="user_login(); return false" style="margin:0px">
-                <table>
+                <table style="margin-left:auto; margin-right:auto;">
                     <tr>
                         <td style="text-align:right;width:50px"><span id="Omni_Localized_UserLoginUsername">Username: </span></td>
                         <td><input id="form_user_login_username" type="text" style="width:130px" maxlength="100" /></td>
@@ -509,10 +530,10 @@ under development
             <span id="Omni_Localized_ViewTransTitle">View Translations</span>
         </div>
         <div class="content" style="margin-bottom: 30px;">
-        <div id="viewtranstab" class="viewtranstab" style="margin-bottom: 20px;">
-        </div>
-        <div id="viewtranspanel_searchpanel" style="display: none;">
-        <span id="Omni_Localized_ViewTransSearch">Search</span>
+            <div id="viewtranstab" class="viewtranstab" style="margin-bottom: 20px;">
+            </div>
+            <div id="viewtranspanel_searchpanel" style="display: none;">
+                <!--<span id="Omni_Localized_ViewTransSearch">Search</span>-->
                 <table border="0" style="line-height: 150%;">
                     <tr>
                         <td class="colheading">
@@ -535,17 +556,18 @@ under development
                             <select id="viewtranssearch_otherlang">
                             </select>
                         </td>
-                    </tr>                    
+                    </tr>
                 </table>
-            <form action="" id="viewtranspanel_searchform" onsubmit="view_trans_search; return false"
-                style="margin: 0px;">
-                <span id="Omni_Localized_ViewTransSearchKeywords">Keywords:</span><br />
-                <input type="text" size="53" maxlength="255" id="viewtrans_searchcriteria" /><br />
-                <input type="submit" value="Search" id="Omni_Localized_ViewTransSearchButton" />
-            </form>
-            <span id="viewtrans_transtable"></span>
-        </div>
-        
+                <form action="" id="viewtranspanel_searchform" onsubmit="view_trans_search(); return false"
+                    style="margin: 0px;">
+                    <span id="Omni_Localized_ViewTransSearchKeywords">Keywords:</span><br />
+                    <input type="text" size="53" maxlength="255" id="viewtrans_searchcriteria" /><br />
+                    <input type="submit" value="Search" id="Omni_Localized_ViewTransSearchButton" />
+                </form>
+            </div>
+            <span id="viewtrans_transtable_mine"></span>
+            <span id="viewtrans_transtable_approval"></span>
+            <span id="viewtrans_transtable_all"></span>
         </div>
     </div>
     <!--end of viewtranspanel-->
@@ -555,6 +577,9 @@ under development
             <span id="Omni_Localized_TransDetailTitle">Translation Details</span>
         </div>
         <div class="content" style="margin-bottom: 30px;">
+        <div id="transdetailpanel_req"></div>
+        <br /><br />
+        <div id="transdetailpanel_ans"></div>
         </div>
     </div>
     <!--end of viewtranspanel-->    

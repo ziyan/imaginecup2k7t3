@@ -107,6 +107,19 @@ function system_interests_table(prefix)
 }
 
 // Language stuff
+function sys_lang_obj_by_id(id)
+{
+    if(system_languages == null) return null;
+    for(var x = 0; x<system_languages.length;x++)
+    {
+        if(system_languages[x].id == id)
+        {
+            return system_languages[x];
+        }
+    }
+    return null;
+}
+
 // Localize a language name by ID
 // span: true to auto-localize (surrounded by localizable span)
 function sys_lang_by_id(id, prefix, span)
@@ -135,7 +148,7 @@ function sys_lang_by_short_code(code, prefix, span)
 {
     var str = "LanguageName"+code;
     if(span != null && span != undefined && span)
-        return lang_getHTML(str);
+        return lang_getHTML(str, prefix);
     else return lang_getText(str);
 }
 

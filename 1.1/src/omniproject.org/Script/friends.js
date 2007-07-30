@@ -115,6 +115,7 @@ function omni_profile_panel_display(user)
 
     $("omniprofilepanel_content_empty").style.display = "none";
     $("omniprofilepanel_content").style.display = "block";
+    $("omniprofilepanel").scrollIntoView();
 }
 
 function omni_profile_friends_retrieve()
@@ -161,12 +162,12 @@ function omni_profile_languages_callback()
     if(status=="OK")
     {
         var languages = omni_profile_languages_ajax.getJSON().languages;
-        // FIXME
-        var outstr = "";
+        var outstr = "<table class=\"detailtable\"\" cellpadding=\"2\" ><tr><th>"+lang_getHTML("OmniProfileLangTableLanguage")+"</th><th>"+lang_getHTML("OmniProfileLangTableUserRating")+"</th><th>"+lang_getHTML("OmniProfileLangTableSystemRating")+"</th></tr>";
         for(var i=0; i< languages.length; i++)
         {
-            outstr += languages[i].toJSONString()+"<br>";
+            outstr += "<tr><td>"+sys_lang_by_id(languages[i].lang_id,"OmniProfileLang"+i,true)+"</td><td>"+languages[i].self_rating+"</td><td>"+languages[i].net_rating+"</td></tr>";
         }
+        outstr += "</table>";
         $("omniprofilepanel_languages").innerHTML = outstr;
     }
     else
@@ -223,7 +224,7 @@ function friends_list_retrieve_callback()
     }
     
     var table = $("friendspanel_friendstable");
-    var tablestr = "<table class=\"detailtable\" cellpadding=\"5\" width=\"370\" style=\"line-height: 175%;\"><tr><th>"+lang_getHTML("OmniUserTableUsername","Friends")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","Friends")+"</th><th></th></tr>";
+    var tablestr = "<table class=\"detailtable\" cellpadding=\"5\"><tr><th>"+lang_getHTML("OmniUserTableUsername","Friends")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","Friends")+"</th><th></th></tr>";
     friends = friends_list_ajax.getJSON();
     
     for(var x=0; x<friends.length; x++)
@@ -327,7 +328,7 @@ function friends_search_user_callback()
     friends_search_results_users = results; 
     if(results.length > 0)
     {
-        var tablestr = "<table class=\"detailtable\" cellpadding=\"2\" width=\"370\"><tr><th>"+lang_getHTML("OmniUserTableUsername","FriendsSearch")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","FriendsSearch")+"</th></tr>";
+        var tablestr = "<table class=\"detailtable\" cellpadding=\"2\"><tr><th>"+lang_getHTML("OmniUserTableUsername","FriendsSearch")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","FriendsSearch")+"</th></tr>";
         
         for(var x=0; x<results.length; x++)
         {
@@ -357,18 +358,16 @@ var get_introduced_results = null;
 
 function get_introduced_retrieve()
 {
-    // FIXME : Displays all system languages. Should probably only
-    // display those that the user has selected in their profile, but user languages
-    // aren't implemented yet.
-    if(user_current_obj != null && system_languages.length != 0)
+    if(user_current_obj_lang!= null && user_current_obj_lang.length != 0)
     {
-        $("get_introduced_lang").options.length = system_languages.length;
-        for(var x=0; x<system_languages.length; x++)
+        $("get_introduced_lang").options.length = user_current_obj_lang.length;
+        for(var x=0; x<user_current_obj_lang.length; x++)
         {
+            var syslang = sys_lang_obj_by_id(user_current_obj_lang[x]);        
             var myOpt = document.createElement("OPTION");
-            myOpt.id = "Omni_Localized_LanguageName"+system_languages[x].short_code;
-            myOpt.text = sys_lang_by_short_code(system_languages[x].short_code, "GetIntroduced");
-            myOpt.value = system_languages[x].id;
+            myOpt.id = "Omni_Localized_LanguageName"+syslang.short_code;
+            myOpt.text = sys_lang_by_short_code(syslang.short_code, "GetIntroduced");
+            myOpt.value = syslang.id;
             $("get_introduced_lang").options[x] = myOpt;
         }
     }
@@ -413,7 +412,7 @@ function get_introduced_callback()
     get_introduced_results = results; 
     if(results.length > 0)
     {
-        var tablestr = "<table class=\"detailtable\" cellpadding=\"2\" width=\"370\" style=\"line-height:150%;\"><tr><th>"+lang_getHTML("OmniUserTableUsername","GetIntroduced")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","GetIntroduced")+"</th><th>"+lang_getHTML("GetIntroducedUserRating")+"</th><th>"+lang_getHTML("GetIntroducedSystemRating")+"</th><th>"+lang_getHTML("GetIntroducedSimilarity")+"</th></tr>";
+        var tablestr = "<table class=\"detailtable\" cellpadding=\"2\"><tr><th>"+lang_getHTML("OmniUserTableUsername","GetIntroduced")+"</th><th>"+lang_getHTML("OmniUserTableDisplayName","GetIntroduced")+"</th><th>"+lang_getHTML("GetIntroducedUserRating")+"</th><th>"+lang_getHTML("GetIntroducedSystemRating")+"</th><th>"+lang_getHTML("GetIntroducedSimilarity")+"</th></tr>";
         
         for(var x=0; x<results.length; x++)
         {
