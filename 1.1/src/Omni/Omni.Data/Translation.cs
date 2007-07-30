@@ -53,7 +53,8 @@ namespace Omni.Data
                             string trans_body,
                             int trans_rating,
                             DateTime trans_date,
-                            int trans_user)
+                            int trans_user,
+                            string trans_username)
         {
             type = TransType.Full;
 
@@ -75,6 +76,7 @@ namespace Omni.Data
             this.trans_rating = trans_rating;
             this.trans_date = trans_date;
             this.trans_user = trans_user;
+            this.trans_username = trans_username;
         }
        
         public TransType type;
@@ -99,5 +101,6 @@ namespace Omni.Data
         public int trans_rating;
         public DateTime trans_date;
         public int trans_user;
+        public string trans_username;
     }
 }

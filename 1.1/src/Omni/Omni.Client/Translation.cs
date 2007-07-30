@@ -30,6 +30,7 @@ namespace Omni.Client
                 this.trans_rating = t.trans_rating;
                 this.trans_date = t.trans_date;
                 this.trans_user = t.trans_user;
+                this.trans_username = t.trans_username;
             }
         }
         private TransType type;
@@ -52,6 +53,7 @@ namespace Omni.Client
         private int trans_rating;
         private DateTime trans_date;
         private int trans_user;
+        private string trans_username;
 
         public TransType Type
         {
@@ -126,6 +128,10 @@ namespace Omni.Client
         public int TransUser
         {
             get { return trans_user; }
+        }
+        public string TransUsername
+        {
+            get { return trans_username; }
         }
 
     }

@@ -169,17 +169,36 @@ namespace Omni.Client
         /// <returns>0 for success</returns>
         public int UserUpdateInterests(int[] ids)
         {
-            int val = -22;
             CheckSession();
             try
             {
-                val = service.UserUpdateInterests(ids, session);
+                return service.UserUpdateInterests(ids, session);
             }
             catch (System.Exception e)
             {
                 Exception.Rethrow(e);
             }
-            return -4;
+            return -1;
+        }
+
+        /// <summary>
+        /// Update languages for a user. Any user languages not
+        /// in this list will be removed from the user's languages.
+        /// </summary>
+        /// <param name="ids">array of interest ids</param>
+        /// <returns>0 for success</returns>
+        public int UserUpdateLanguages(int[] ids, int[] skills)
+        {
+            CheckSession();
+            try
+            {
+                return service.UserUpdateLanguages(ids, skills, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return -1;
         }
 
         /// <summary>
@@ -469,6 +488,105 @@ namespace Omni.Client
             try
             {
                 org.omniproject.service.Translation[] svcObj = service.TranslationSearch(keyword, src_lang_id, dst_lang_id, session);
+                if (svcObj == null) return null;
+                Translation[] objArray = new Translation[svcObj.Length];
+                for (int i = 0; i < objArray.Length; i++)
+                {
+                    objArray[i] = new Translation(svcObj[i]);
+                }
+                return objArray;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get all unapproved translations for the current user.
+        /// </summary>
+        /// <returns>Array of Translations</returns>
+        public Translation[] TranslationGetUnapprovedForUser()
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Translation[] svcObj = service.TranslationGetUnapprovedForUser(session);
+                if (svcObj == null) return null;
+                Translation[] objArray = new Translation[svcObj.Length];
+                for (int i = 0; i < objArray.Length; i++)
+                {
+                    objArray[i] = new Translation(svcObj[i]);
+                }
+                return objArray;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get all translations owned by the current user, except those pending approval.
+        /// </summary>
+        /// <returns>Array of Translations</returns>
+        public Translation[] TranslationGetNonPendingApprovalForUser()
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Translation[] svcObj = service.TranslationGetNonPendingApprovalForUser(session);
+                if (svcObj == null) return null;
+                Translation[] objArray = new Translation[svcObj.Length];
+                for (int i = 0; i < objArray.Length; i++)
+                {
+                    objArray[i] = new Translation(svcObj[i]);
+                }
+                return objArray;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get a translation request by ID.
+        /// </summary>
+        /// <param name="req_id">translation request id</param>
+        /// <returns>Translation (or null if none)</returns>
+        public Translation TranslationRequestGetById(int req_id)
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Translation svcObj = service.TranslationRequestGetById(req_id, session);
+                if (svcObj == null) return null;
+                Translation outObj = new Translation(svcObj);
+                return outObj;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get all translation answers for a Request ID.
+        /// </summary>
+        /// <param name="req_id">translation request id</param>
+        /// <param name="session">session id</param>
+        /// <returns>Array of Translations (possibly empty)</returns>
+        public Translation[] TranslationAnswersGetByReqId(int req_id)
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Translation[] svcObj = service.TranslationAnswersGetByReqId(req_id, session);
                 if (svcObj == null) return null;
                 Translation[] objArray = new Translation[svcObj.Length];
                 for (int i = 0; i < objArray.Length; i++)

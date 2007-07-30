@@ -76,6 +76,7 @@ namespace Omni.Web
                     collection.Add(new JSONStringValue("trans_rating"), new JSONStringValue(t.TransRating.ToString()));
                     collection.Add(new JSONStringValue("trans_date"), new JSONStringValue(t.TransDate.ToString()));
                     collection.Add(new JSONStringValue("trans_user"), new JSONStringValue(t.TransUser.ToString()));
+                    collection.Add(new JSONStringValue("trans_username"), new JSONStringValue(t.TransUsername.ToString()));
                 }
             }
             return collection;

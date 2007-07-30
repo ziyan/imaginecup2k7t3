@@ -51,6 +51,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback UserUpdateInterestsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UserUpdateLanguagesOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UserCurrentOperationCompleted;
         
         private System.Threading.SendOrPostCallback UserInterestsOperationCompleted;
@@ -76,6 +78,14 @@ namespace Omni.Client.org.omniproject.service {
         private System.Threading.SendOrPostCallback LanguageListOperationCompleted;
         
         private System.Threading.SendOrPostCallback TranslationSearchOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TranslationGetUnapprovedForUserOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TranslationGetNonPendingApprovalForUserOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TranslationRequestGetByIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TranslationAnswersGetByReqIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback DefinitionLookupOperationCompleted;
         
@@ -153,6 +163,9 @@ namespace Omni.Client.org.omniproject.service {
         public event UserUpdateInterestsCompletedEventHandler UserUpdateInterestsCompleted;
         
         /// <remarks/>
+        public event UserUpdateLanguagesCompletedEventHandler UserUpdateLanguagesCompleted;
+        
+        /// <remarks/>
         public event UserCurrentCompletedEventHandler UserCurrentCompleted;
         
         /// <remarks/>
@@ -190,6 +203,18 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event TranslationSearchCompletedEventHandler TranslationSearchCompleted;
+        
+        /// <remarks/>
+        public event TranslationGetUnapprovedForUserCompletedEventHandler TranslationGetUnapprovedForUserCompleted;
+        
+        /// <remarks/>
+        public event TranslationGetNonPendingApprovalForUserCompletedEventHandler TranslationGetNonPendingApprovalForUserCompleted;
+        
+        /// <remarks/>
+        public event TranslationRequestGetByIdCompletedEventHandler TranslationRequestGetByIdCompleted;
+        
+        /// <remarks/>
+        public event TranslationAnswersGetByReqIdCompletedEventHandler TranslationAnswersGetByReqIdCompleted;
         
         /// <remarks/>
         public event DefinitionLookupCompletedEventHandler DefinitionLookupCompleted;
@@ -543,6 +568,39 @@ namespace Omni.Client.org.omniproject.service {
             if ((this.UserUpdateInterestsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UserUpdateInterestsCompleted(this, new UserUpdateInterestsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/UserUpdateLanguages", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int UserUpdateLanguages(int[] ids, int[] skills, System.Guid session) {
+            object[] results = this.Invoke("UserUpdateLanguages", new object[] {
+                        ids,
+                        skills,
+                        session});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UserUpdateLanguagesAsync(int[] ids, int[] skills, System.Guid session) {
+            this.UserUpdateLanguagesAsync(ids, skills, session, null);
+        }
+        
+        /// <remarks/>
+        public void UserUpdateLanguagesAsync(int[] ids, int[] skills, System.Guid session, object userState) {
+            if ((this.UserUpdateLanguagesOperationCompleted == null)) {
+                this.UserUpdateLanguagesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUserUpdateLanguagesOperationCompleted);
+            }
+            this.InvokeAsync("UserUpdateLanguages", new object[] {
+                        ids,
+                        skills,
+                        session}, this.UserUpdateLanguagesOperationCompleted, userState);
+        }
+        
+        private void OnUserUpdateLanguagesOperationCompleted(object arg) {
+            if ((this.UserUpdateLanguagesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UserUpdateLanguagesCompleted(this, new UserUpdateLanguagesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -946,6 +1004,126 @@ namespace Omni.Client.org.omniproject.service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationGetUnapprovedForUser", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation[] TranslationGetUnapprovedForUser(System.Guid session) {
+            object[] results = this.Invoke("TranslationGetUnapprovedForUser", new object[] {
+                        session});
+            return ((Translation[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationGetUnapprovedForUserAsync(System.Guid session) {
+            this.TranslationGetUnapprovedForUserAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationGetUnapprovedForUserAsync(System.Guid session, object userState) {
+            if ((this.TranslationGetUnapprovedForUserOperationCompleted == null)) {
+                this.TranslationGetUnapprovedForUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationGetUnapprovedForUserOperationCompleted);
+            }
+            this.InvokeAsync("TranslationGetUnapprovedForUser", new object[] {
+                        session}, this.TranslationGetUnapprovedForUserOperationCompleted, userState);
+        }
+        
+        private void OnTranslationGetUnapprovedForUserOperationCompleted(object arg) {
+            if ((this.TranslationGetUnapprovedForUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationGetUnapprovedForUserCompleted(this, new TranslationGetUnapprovedForUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationGetNonPendingApprovalForUser", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation[] TranslationGetNonPendingApprovalForUser(System.Guid session) {
+            object[] results = this.Invoke("TranslationGetNonPendingApprovalForUser", new object[] {
+                        session});
+            return ((Translation[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationGetNonPendingApprovalForUserAsync(System.Guid session) {
+            this.TranslationGetNonPendingApprovalForUserAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationGetNonPendingApprovalForUserAsync(System.Guid session, object userState) {
+            if ((this.TranslationGetNonPendingApprovalForUserOperationCompleted == null)) {
+                this.TranslationGetNonPendingApprovalForUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationGetNonPendingApprovalForUserOperationCompleted);
+            }
+            this.InvokeAsync("TranslationGetNonPendingApprovalForUser", new object[] {
+                        session}, this.TranslationGetNonPendingApprovalForUserOperationCompleted, userState);
+        }
+        
+        private void OnTranslationGetNonPendingApprovalForUserOperationCompleted(object arg) {
+            if ((this.TranslationGetNonPendingApprovalForUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationGetNonPendingApprovalForUserCompleted(this, new TranslationGetNonPendingApprovalForUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationRequestGetById", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation TranslationRequestGetById(int req_id, System.Guid session) {
+            object[] results = this.Invoke("TranslationRequestGetById", new object[] {
+                        req_id,
+                        session});
+            return ((Translation)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationRequestGetByIdAsync(int req_id, System.Guid session) {
+            this.TranslationRequestGetByIdAsync(req_id, session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationRequestGetByIdAsync(int req_id, System.Guid session, object userState) {
+            if ((this.TranslationRequestGetByIdOperationCompleted == null)) {
+                this.TranslationRequestGetByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationRequestGetByIdOperationCompleted);
+            }
+            this.InvokeAsync("TranslationRequestGetById", new object[] {
+                        req_id,
+                        session}, this.TranslationRequestGetByIdOperationCompleted, userState);
+        }
+        
+        private void OnTranslationRequestGetByIdOperationCompleted(object arg) {
+            if ((this.TranslationRequestGetByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationRequestGetByIdCompleted(this, new TranslationRequestGetByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationAnswersGetByReqId", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation[] TranslationAnswersGetByReqId(int req_id, System.Guid session) {
+            object[] results = this.Invoke("TranslationAnswersGetByReqId", new object[] {
+                        req_id,
+                        session});
+            return ((Translation[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationAnswersGetByReqIdAsync(int req_id, System.Guid session) {
+            this.TranslationAnswersGetByReqIdAsync(req_id, session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationAnswersGetByReqIdAsync(int req_id, System.Guid session, object userState) {
+            if ((this.TranslationAnswersGetByReqIdOperationCompleted == null)) {
+                this.TranslationAnswersGetByReqIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationAnswersGetByReqIdOperationCompleted);
+            }
+            this.InvokeAsync("TranslationAnswersGetByReqId", new object[] {
+                        req_id,
+                        session}, this.TranslationAnswersGetByReqIdOperationCompleted, userState);
+        }
+        
+        private void OnTranslationAnswersGetByReqIdOperationCompleted(object arg) {
+            if ((this.TranslationAnswersGetByReqIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationAnswersGetByReqIdCompleted(this, new TranslationAnswersGetByReqIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/DefinitionLookup", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string DefinitionLookup(string lang, string word) {
             object[] results = this.Invoke("DefinitionLookup", new object[] {
@@ -1189,6 +1367,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private int trans_userField;
         
+        private string trans_usernameField;
+        
         /// <remarks/>
         public TransType type {
             get {
@@ -1366,6 +1546,16 @@ namespace Omni.Client.org.omniproject.service {
             }
             set {
                 this.trans_userField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string trans_username {
+            get {
+                return this.trans_usernameField;
+            }
+            set {
+                this.trans_usernameField = value;
             }
         }
     }
@@ -1813,6 +2003,32 @@ namespace Omni.Client.org.omniproject.service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void UserUpdateLanguagesCompletedEventHandler(object sender, UserUpdateLanguagesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserUpdateLanguagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserUpdateLanguagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
     public delegate void UserCurrentCompletedEventHandler(object sender, UserCurrentCompletedEventArgs e);
     
     /// <remarks/>
@@ -2136,6 +2352,110 @@ namespace Omni.Client.org.omniproject.service {
         private object[] results;
         
         internal TranslationSearchCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationGetUnapprovedForUserCompletedEventHandler(object sender, TranslationGetUnapprovedForUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationGetUnapprovedForUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationGetUnapprovedForUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationGetNonPendingApprovalForUserCompletedEventHandler(object sender, TranslationGetNonPendingApprovalForUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationGetNonPendingApprovalForUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationGetNonPendingApprovalForUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationRequestGetByIdCompletedEventHandler(object sender, TranslationRequestGetByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationRequestGetByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationRequestGetByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationAnswersGetByReqIdCompletedEventHandler(object sender, TranslationAnswersGetByReqIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationAnswersGetByReqIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationAnswersGetByReqIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

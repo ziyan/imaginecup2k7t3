@@ -163,6 +163,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UserUpdateLanguages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ids" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="skills" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserUpdateLanguagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserUpdateLanguagesResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UserCurrent">
         <s:complexType>
           <s:sequence>
@@ -448,6 +464,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="trans_rating" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="trans_date" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="trans_user" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="trans_username" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:simpleType name="TransType">
@@ -463,6 +480,64 @@
           <s:enumeration value="Group" />
         </s:restriction>
       </s:simpleType>
+      <s:element name="TranslationGetUnapprovedForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationGetUnapprovedForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TranslationGetUnapprovedForUserResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationGetNonPendingApprovalForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationGetNonPendingApprovalForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TranslationGetNonPendingApprovalForUserResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationRequestGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationRequestGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TranslationRequestGetByIdResult" type="tns:Translation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationAnswersGetByReqId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationAnswersGetByReqIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TranslationAnswersGetByReqIdResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="DefinitionLookup">
         <s:complexType>
           <s:sequence>
@@ -569,6 +644,12 @@
   <wsdl:message name="UserUpdateInterestsSoapOut">
     <wsdl:part name="parameters" element="tns:UserUpdateInterestsResponse" />
   </wsdl:message>
+  <wsdl:message name="UserUpdateLanguagesSoapIn">
+    <wsdl:part name="parameters" element="tns:UserUpdateLanguages" />
+  </wsdl:message>
+  <wsdl:message name="UserUpdateLanguagesSoapOut">
+    <wsdl:part name="parameters" element="tns:UserUpdateLanguagesResponse" />
+  </wsdl:message>
   <wsdl:message name="UserCurrentSoapIn">
     <wsdl:part name="parameters" element="tns:UserCurrent" />
   </wsdl:message>
@@ -647,6 +728,30 @@
   <wsdl:message name="TranslationSearchSoapOut">
     <wsdl:part name="parameters" element="tns:TranslationSearchResponse" />
   </wsdl:message>
+  <wsdl:message name="TranslationGetUnapprovedForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslationGetUnapprovedForUser" />
+  </wsdl:message>
+  <wsdl:message name="TranslationGetUnapprovedForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslationGetUnapprovedForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TranslationGetNonPendingApprovalForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslationGetNonPendingApprovalForUser" />
+  </wsdl:message>
+  <wsdl:message name="TranslationGetNonPendingApprovalForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslationGetNonPendingApprovalForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TranslationRequestGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslationRequestGetById" />
+  </wsdl:message>
+  <wsdl:message name="TranslationRequestGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslationRequestGetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="TranslationAnswersGetByReqIdSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslationAnswersGetByReqId" />
+  </wsdl:message>
+  <wsdl:message name="TranslationAnswersGetByReqIdSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslationAnswersGetByReqIdResponse" />
+  </wsdl:message>
   <wsdl:message name="DefinitionLookupSoapIn">
     <wsdl:part name="parameters" element="tns:DefinitionLookup" />
   </wsdl:message>
@@ -711,9 +816,14 @@
       <wsdl:output message="tns:UserUpdateSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="UserUpdateInterests">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update a user's interests.</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update a user's interests. Any not in the provided list will be removed.</wsdl:documentation>
       <wsdl:input message="tns:UserUpdateInterestsSoapIn" />
       <wsdl:output message="tns:UserUpdateInterestsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdateLanguages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update a user's languages. Any not in the provided list will be removed.</wsdl:documentation>
+      <wsdl:input message="tns:UserUpdateLanguagesSoapIn" />
+      <wsdl:output message="tns:UserUpdateLanguagesSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="UserCurrent">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get current user information.</wsdl:documentation>
@@ -780,13 +890,33 @@
       <wsdl:input message="tns:TranslationSearchSoapIn" />
       <wsdl:output message="tns:TranslationSearchSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="TranslationGetUnapprovedForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all unapproved translations for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:TranslationGetUnapprovedForUserSoapIn" />
+      <wsdl:output message="tns:TranslationGetUnapprovedForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TranslationGetNonPendingApprovalForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all translations owned by the current user, except those pending approval.</wsdl:documentation>
+      <wsdl:input message="tns:TranslationGetNonPendingApprovalForUserSoapIn" />
+      <wsdl:output message="tns:TranslationGetNonPendingApprovalForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TranslationRequestGetById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a translation request by ID.</wsdl:documentation>
+      <wsdl:input message="tns:TranslationRequestGetByIdSoapIn" />
+      <wsdl:output message="tns:TranslationRequestGetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TranslationAnswersGetByReqId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all translation answers for a Request ID.</wsdl:documentation>
+      <wsdl:input message="tns:TranslationAnswersGetByReqIdSoapIn" />
+      <wsdl:output message="tns:TranslationAnswersGetByReqIdSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="DefinitionLookup">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Dictionary definition lookup service.</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Dictionary definition lookup service. (PUBLIC / SESSIONLESS)</wsdl:documentation>
       <wsdl:input message="tns:DefinitionLookupSoapIn" />
       <wsdl:output message="tns:DefinitionLookupSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="TranslationLookup">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Translate a message.</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Translate a message automatically. (PUBLIC / SESSIONLESS)</wsdl:documentation>
       <wsdl:input message="tns:TranslationLookupSoapIn" />
       <wsdl:output message="tns:TranslationLookupSoapOut" />
     </wsdl:operation>
@@ -885,6 +1015,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserUpdateInterests">
       <soap:operation soapAction="http://service.omniproject.org/UserUpdateInterests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUpdateLanguages">
+      <soap:operation soapAction="http://service.omniproject.org/UserUpdateLanguages" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1002,6 +1141,42 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationSearch">
       <soap:operation soapAction="http://service.omniproject.org/TranslationSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationGetUnapprovedForUser">
+      <soap:operation soapAction="http://service.omniproject.org/TranslationGetUnapprovedForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationGetNonPendingApprovalForUser">
+      <soap:operation soapAction="http://service.omniproject.org/TranslationGetNonPendingApprovalForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationRequestGetById">
+      <soap:operation soapAction="http://service.omniproject.org/TranslationRequestGetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationAnswersGetByReqId">
+      <soap:operation soapAction="http://service.omniproject.org/TranslationAnswersGetByReqId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1129,6 +1304,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserUpdateLanguages">
+      <soap12:operation soapAction="http://service.omniproject.org/UserUpdateLanguages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UserCurrent">
       <soap12:operation soapAction="http://service.omniproject.org/UserCurrent" style="document" />
       <wsdl:input>
@@ -1239,6 +1423,42 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationSearch">
       <soap12:operation soapAction="http://service.omniproject.org/TranslationSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationGetUnapprovedForUser">
+      <soap12:operation soapAction="http://service.omniproject.org/TranslationGetUnapprovedForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationGetNonPendingApprovalForUser">
+      <soap12:operation soapAction="http://service.omniproject.org/TranslationGetNonPendingApprovalForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationRequestGetById">
+      <soap12:operation soapAction="http://service.omniproject.org/TranslationRequestGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationAnswersGetByReqId">
+      <soap12:operation soapAction="http://service.omniproject.org/TranslationAnswersGetByReqId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

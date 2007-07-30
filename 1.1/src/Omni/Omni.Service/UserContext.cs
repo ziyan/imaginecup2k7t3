@@ -137,10 +137,22 @@ namespace Omni.Service
                 throw new SystemException();
         }
 
-        public int UpdateInterests(int[] ids)
+        public int UpdateLanguages(int[] ids, int[] skills)
         {
             if (this.user == null) throw new UserNotLoggedInException();
             if (ids == null) throw new ArgumentNullException();
+            if (skills == null) throw new ArgumentNullException();
+            // Empty arrays will remove existing languages
+
+            int val = Data.StoredProcedure.UserUpdateLanguages(this.user.id, ids, skills, session.Connection);
+            if (val == 0) return val;
+            else throw new SystemException();
+        }
+
+        public int UpdateInterests(int[] ids)
+        {
+            if (this.user == null) throw new UserNotLoggedInException();
+            if (ids == null) return 1;// throw new ArgumentNullException();
             // An empty array will remove existing interests
 
             int val = Data.StoredProcedure.UserUpdateInterests(this.user.id, ids, session.Connection);

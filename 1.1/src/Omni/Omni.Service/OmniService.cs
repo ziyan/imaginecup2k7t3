@@ -146,11 +146,24 @@ namespace Omni.Service
         /// </summary>
         /// <param name="ids">array of interest ids</param>
         /// <returns>0 for success</returns>
-        [WebMethod(Description = "Update a user's interests.")]
+        [WebMethod(Description = "Update a user's interests. Any not in the provided list will be removed.")]
         public int UserUpdateInterests(int[] ids, Guid session)
         {
             ServiceSession Session = ServiceSession.Get(session);
             return Session.UserContext.UpdateInterests(ids);
+        }
+
+        /// <summary>
+        /// Update a user's languages. Any not in the provided list will be removed.
+        /// The same index in both array should refer to the same language.
+        /// </summary>
+        /// <param name="ids">array of interest ids</param>
+        /// <returns>0 for success</returns>
+        [WebMethod(Description = "Update a user's languages. Any not in the provided list will be removed.")]
+        public int UserUpdateLanguages(int[] ids, int[] skills, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            return Session.UserContext.UpdateLanguages(ids, skills);
         }
 
         /// <summary>
@@ -346,6 +359,104 @@ namespace Omni.Service
             return Data.StoredProcedure.TranslationSearch(keyword, src_lang_id, dst_lang_id, Session.Connection);
         }
 
+        /// <summary>
+        /// Get all unapproved translations for the current user.
+        /// </summary>
+        /// <param name="session">session id</param>
+        /// <returns>Array of Translations</returns>
+        [WebMethod(Description = "Get all unapproved translations for the current user.")]
+        public Data.Translation[] TranslationGetUnapprovedForUser(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            Data.Translation[] trans = Data.StoredProcedure.TranslationGetUnapprovedForUser(Session.UserContext.User.id, Session.Connection);
+
+            if (trans != null)
+            {
+                foreach (Data.Translation t in trans)
+                {
+                    t.username = UserUsernameById(t.user_id, Session.Connection);
+                    if(t.dst_type == Omni.Data.TransDstType.User)
+                        t.dst_username = UserUsernameById(t.dst_id, Session.Connection);
+
+                }
+            }
+
+            return trans;
+        }
+
+        /// <summary>
+        /// Get all translations owned by the current user, except those pending approval.
+        /// </summary>
+        /// <param name="session">session id</param>
+        /// <returns>Array of Translations</returns>
+        [WebMethod(Description = "Get all translations owned by the current user, except those pending approval.")]
+        public Data.Translation[] TranslationGetNonPendingApprovalForUser(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            Data.Translation[] trans = Data.StoredProcedure.TranslationGetNonPendingApprovalForUser(Session.UserContext.User.id, Session.Connection);
+
+            if (trans != null)
+            {
+                foreach (Data.Translation t in trans)
+                {
+                    t.username = UserUsernameById(t.user_id, Session.Connection);
+                    if (t.dst_type == Omni.Data.TransDstType.User)
+                        t.dst_username = UserUsernameById(t.dst_id, Session.Connection);
+
+                }
+            }
+
+            return trans;
+        }
+
+        /// <summary>
+        /// Get a translation request by ID.
+        /// </summary>
+        /// <param name="req_id">translation request id</param>
+        /// <param name="session">session id</param>
+        /// <returns>Translation (or null if none)</returns>
+        [WebMethod(Description = "Get a translation request by ID.")]
+        public Data.Translation TranslationRequestGetById(int req_id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            Data.Translation trans = Data.StoredProcedure.TranslationRequestGetById(req_id, Session.Connection);
+
+            if (trans != null)
+            {
+                trans.username = UserUsernameById(trans.user_id, Session.Connection);
+                if (trans.dst_type == Omni.Data.TransDstType.User)
+                    trans.dst_username = UserUsernameById(trans.dst_id, Session.Connection);
+            }
+            return trans;
+        }
+
+        /// <summary>
+        /// Get all translation answers for a Request ID.
+        /// </summary>
+        /// <param name="req_id">translation request id</param>
+        /// <param name="session">session id</param>
+        /// <returns>Array of Translations (possibly empty)</returns>
+        [WebMethod(Description = "Get all translation answers for a Request ID.")]
+        public Data.Translation[] TranslationAnswersGetByReqId(int req_id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            Data.Translation[] trans = Data.StoredProcedure.TranslationAnswersGetByReqId(req_id, Session.Connection);
+
+            if (trans != null)
+            {
+                foreach (Data.Translation t in trans)
+                {
+                    t.username = UserUsernameById(t.user_id, Session.Connection);
+                    if (t.dst_type == Omni.Data.TransDstType.User)
+                        t.dst_username = UserUsernameById(t.dst_id, Session.Connection);
+                    t.trans_username = UserUsernameById(t.trans_user, Session.Connection);
+                }
+            }
+            return trans;
+        }
+
         #endregion
 
         #region Lookup service
@@ -355,20 +466,20 @@ namespace Omni.Service
         /// <param name="lang_id">Language id</param>
         /// <param name="word">Word</param>
         /// <returns>Definition for word</returns>
-        [WebMethod(Description = "Dictionary definition lookup service.")]
+        [WebMethod(Description = "Dictionary definition lookup service. (PUBLIC / SESSIONLESS)")]
         public string DefinitionLookup(string lang, string word)
         {
             return External.DictionaryService.Lookup(lang, word);
         }
 
         /// <summary>
-        /// Translate a message.
+        /// Translate a message automatically. (PUBLIC / SESSIONLESS)
         /// </summary>
         /// <param name="src_lang_id">Source language id</param>
         /// <param name="dst_lang_id">Destination language id</param>
         /// <param name="message">Message</param>
         /// <returns>Translated message</returns>
-        [WebMethod(Description = "Translate a message.")]
+        [WebMethod(Description = "Translate a message automatically. (PUBLIC / SESSIONLESS)")]
         public string TranslationLookup(string src_lang, string dst_lang, string message)
         {
             return External.TranslationService.Lookup(src_lang, dst_lang, message);

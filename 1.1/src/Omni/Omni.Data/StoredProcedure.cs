@@ -101,7 +101,26 @@ namespace Omni.Data
                 cmd.ExecuteNonQuery();
             }
 
-            return -10;
+            return 0;
+        }
+        public static int UserUpdateLanguages(int userid, int[] ids, int[] skills, Connection connection)
+        {
+            if (ids.Length != skills.Length) return -1;
+
+            SqlCommand cmd = GetStoredProcedure("omni_user_lang_delete_all", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, userid);
+            cmd.ExecuteNonQuery();
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                cmd = GetStoredProcedure("omni_user_lang_set_by_id", connection);
+                SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, userid);
+                SetStoredProcedureParameter(cmd, "@lang_id", SqlDbType.Int, ids[i]);
+                SetStoredProcedureParameter(cmd, "@self_rating", SqlDbType.Int, skills[i]);
+                cmd.ExecuteNonQuery();
+            }
+
+            return 0;
         }
         public static Interest[] UserInterests(int user_id, Connection connection)
         {
@@ -355,6 +374,107 @@ namespace Omni.Data
             reader.Dispose();
 
             return result.ToArray();
+        }
+        public static Translation[] TranslationGetUnapprovedForUser(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_get_unapp_by_user", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> result = new List<Translation>();
+            while (reader.Read())
+            {
+                result.Add(new Translation(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["user_id"]), "",
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TransDstType)Convert.ToInt32(reader["dst_type"]),
+                                        "",
+                                        Convert.ToString(reader["subject"]),
+                                        "", Convert.ToDateTime(reader["date"]), false));
+            }
+            reader.Close();
+            reader.Dispose();
+
+            return result.ToArray();
+        }
+        public static Translation[] TranslationGetNonPendingApprovalForUser(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_get_non_unapp_by_user", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> result = new List<Translation>();
+            while (reader.Read())
+            {
+                result.Add(new Translation(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["user_id"]), "",
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TransDstType)Convert.ToInt32(reader["dst_type"]),
+                                        "",
+                                        Convert.ToString(reader["subject"]),
+                                        "", Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["completed"])));
+            }
+            reader.Close();
+            reader.Dispose();
+
+            return result.ToArray();
+        }
+        public static Translation TranslationRequestGetById(int req_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_req_get_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@req_id", SqlDbType.Int, req_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            Translation result = null;
+            if (reader.Read())
+            {
+                result = new Translation(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["user_id"]), "",
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TransDstType)Convert.ToInt32(reader["dst_type"]),
+                                        "",
+                                        Convert.ToString(reader["subject"]),
+                                        Convert.ToString(reader["message"]),
+                                        Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["completed"]));
+            }
+            reader.Close();
+            reader.Dispose();
+
+            return result;
+        }
+        public static Translation[] TranslationAnswersGetByReqId(int req_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_get_by_req_id", connection);
+            SetStoredProcedureParameter(cmd, "@req_id", SqlDbType.Int, req_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> results = new List<Translation>();
+            while (reader.Read())
+            {
+                results.Add(new Translation(req_id,
+                                        Convert.ToInt32(reader["user_id"]), "",
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TransDstType)Convert.ToInt32(reader["dst_type"]), "",
+                                        Convert.ToString(reader["subject"]),
+                                        Convert.ToString(reader["message"]),
+                                        Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["completed"]),
+                                        Convert.ToInt32(reader["ans_id"]),
+                                        Convert.ToString(reader["trans_message"]),
+                                        Convert.ToInt32(reader["rating"]),
+                                        Convert.ToDateTime(reader["ans_date"]),
+                                        Convert.ToInt32(reader["ans_user_id"]), ""));
+            }
+            reader.Close();
+            reader.Dispose();
+
+            return results.ToArray();
         }
 
         #endregion
