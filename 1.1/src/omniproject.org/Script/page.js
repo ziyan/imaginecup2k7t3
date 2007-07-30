@@ -203,16 +203,27 @@ function page_update_langbar()
         if(pages[i] == "AutoTrans")
         {
             if(langbar_expanded) link_class="class=\"select\"";
-            $("langbarlinks").innerHTML+="<a id=\"LangBarLink"+pages[i]+"\" href=\"#\" "+link_class+" onclick=\"langbar_auto_trans();return false;\">"+lang_getHTML("LangBarLink"+pages[i])+"</a>";
+            $("langbarlinks").innerHTML+="<a id=\"LangBarLink"+pages[i]+"\" href=\"#\" "+link_class+" onclick=\"langbar_auto_trans_toggle();return false;\">"+lang_getHTML("LangBarLink"+pages[i])+"</a>";
         }
         else
             $("langbarlinks").innerHTML+="<a id=\"LangBarLink"+pages[i]+"\" href=\"#\" "+link_class+" onclick=\"page_change('"+pages[i]+"');return false;\">"+lang_getHTML("LangBarLink"+pages[i])+"</a>";
     }
 }
 
-function langbar_auto_trans()
+function langbar_auto_trans_toggle()
 {
     langbar_expanded = !langbar_expanded;
+    langbar_auto_trans_update();
+}
+
+function langbar_auto_trans_expand()
+{
+    langbar_expanded = true;
+    langbar_auto_trans_update();
+}
+
+function langbar_auto_trans_update()
+{
     page_update_langbar();
 
     if(langbar_expanded)

@@ -494,7 +494,7 @@ function get_user_current_language_html()
             rating = ratingObj; }
     
         html += "<tr><td>"+sys_lang_by_id(user_temp_languages[i],"UserProfileLang"+i,true)+"</td>";
-        html += "<td style=\"font-size: 130%;\">";
+        html += "<td style=\"font-size: 100%;\">";
         for(var k=1; k<=5; k++)
         {
             var chk = "";
