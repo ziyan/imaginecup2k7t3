@@ -503,7 +503,7 @@ function get_user_current_language_html()
             if(k<5) html += " | ";
         }
         html += "</td>";
-        html += "<a href=\"#\" onclick=\"user_profile_lang_remove("+user_temp_languages[i]+"); return false\"><span id=\"Omni_Localized_UserProfileLanguagesRemove\">Remove Language</span></a>";
+        html += "<td><a href=\"#\" onclick=\"user_profile_lang_remove("+user_temp_languages[i]+"); return false\"><span id=\"Omni_Localized_UserProfileLanguagesRemove\">Remove Language</span></a></td></tr>";
     }
     if(user_temp_languages.length>0)
         html += "</table>";
