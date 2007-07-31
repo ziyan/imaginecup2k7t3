@@ -26,6 +26,7 @@ namespace Omni.Web
                 collection.Add(new JSONStringValue("username"), new JSONStringValue(user.Username));
                 collection.Add(new JSONStringValue("email"), new JSONStringValue(user.Email));
                 collection.Add(new JSONStringValue("name"), new JSONStringValue(user.Name));
+                collection.Add(new JSONStringValue("user_rating"), new JSONStringValue(user.UserRating.ToString()));
                 collection.Add(new JSONStringValue("description"), new JSONStringValue(user.Description == null ? "" : user.Description));
                 collection.Add(new JSONStringValue("sn_network"), new JSONStringValue(user.SnNetwork == null ? "" : user.SnNetwork));
                 collection.Add(new JSONStringValue("sn_screenname"), new JSONStringValue(user.SnScreenname == null ? "" : user.SnScreenname));

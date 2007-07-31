@@ -83,9 +83,17 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback TranslationGetNonPendingApprovalForUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TranslationGetRequestsForUserOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TranslationFindGlobalRequestsForUserOperationCompleted;
+        
         private System.Threading.SendOrPostCallback TranslationRequestGetByIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback TranslationAnswersGetByReqIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TranslationRequestAddOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TranslationAnswerAddOperationCompleted;
         
         private System.Threading.SendOrPostCallback DefinitionLookupOperationCompleted;
         
@@ -211,10 +219,22 @@ namespace Omni.Client.org.omniproject.service {
         public event TranslationGetNonPendingApprovalForUserCompletedEventHandler TranslationGetNonPendingApprovalForUserCompleted;
         
         /// <remarks/>
+        public event TranslationGetRequestsForUserCompletedEventHandler TranslationGetRequestsForUserCompleted;
+        
+        /// <remarks/>
+        public event TranslationFindGlobalRequestsForUserCompletedEventHandler TranslationFindGlobalRequestsForUserCompleted;
+        
+        /// <remarks/>
         public event TranslationRequestGetByIdCompletedEventHandler TranslationRequestGetByIdCompleted;
         
         /// <remarks/>
         public event TranslationAnswersGetByReqIdCompletedEventHandler TranslationAnswersGetByReqIdCompleted;
+        
+        /// <remarks/>
+        public event TranslationRequestAddCompletedEventHandler TranslationRequestAddCompleted;
+        
+        /// <remarks/>
+        public event TranslationAnswerAddCompletedEventHandler TranslationAnswerAddCompleted;
         
         /// <remarks/>
         public event DefinitionLookupCompletedEventHandler DefinitionLookupCompleted;
@@ -1062,6 +1082,64 @@ namespace Omni.Client.org.omniproject.service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationGetRequestsForUser", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation[] TranslationGetRequestsForUser(System.Guid session) {
+            object[] results = this.Invoke("TranslationGetRequestsForUser", new object[] {
+                        session});
+            return ((Translation[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationGetRequestsForUserAsync(System.Guid session) {
+            this.TranslationGetRequestsForUserAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationGetRequestsForUserAsync(System.Guid session, object userState) {
+            if ((this.TranslationGetRequestsForUserOperationCompleted == null)) {
+                this.TranslationGetRequestsForUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationGetRequestsForUserOperationCompleted);
+            }
+            this.InvokeAsync("TranslationGetRequestsForUser", new object[] {
+                        session}, this.TranslationGetRequestsForUserOperationCompleted, userState);
+        }
+        
+        private void OnTranslationGetRequestsForUserOperationCompleted(object arg) {
+            if ((this.TranslationGetRequestsForUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationGetRequestsForUserCompleted(this, new TranslationGetRequestsForUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationFindGlobalRequestsForUser", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Translation[] TranslationFindGlobalRequestsForUser(System.Guid session) {
+            object[] results = this.Invoke("TranslationFindGlobalRequestsForUser", new object[] {
+                        session});
+            return ((Translation[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationFindGlobalRequestsForUserAsync(System.Guid session) {
+            this.TranslationFindGlobalRequestsForUserAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationFindGlobalRequestsForUserAsync(System.Guid session, object userState) {
+            if ((this.TranslationFindGlobalRequestsForUserOperationCompleted == null)) {
+                this.TranslationFindGlobalRequestsForUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationFindGlobalRequestsForUserOperationCompleted);
+            }
+            this.InvokeAsync("TranslationFindGlobalRequestsForUser", new object[] {
+                        session}, this.TranslationFindGlobalRequestsForUserOperationCompleted, userState);
+        }
+        
+        private void OnTranslationFindGlobalRequestsForUserOperationCompleted(object arg) {
+            if ((this.TranslationFindGlobalRequestsForUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationFindGlobalRequestsForUserCompleted(this, new TranslationFindGlobalRequestsForUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationRequestGetById", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Translation TranslationRequestGetById(int req_id, System.Guid session) {
             object[] results = this.Invoke("TranslationRequestGetById", new object[] {
@@ -1120,6 +1198,80 @@ namespace Omni.Client.org.omniproject.service {
             if ((this.TranslationAnswersGetByReqIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.TranslationAnswersGetByReqIdCompleted(this, new TranslationAnswersGetByReqIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationRequestAdd", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int TranslationRequestAdd(int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TransDstType dst_type, System.Guid session) {
+            object[] results = this.Invoke("TranslationRequestAdd", new object[] {
+                        src_lang_id,
+                        dst_lang_id,
+                        subject,
+                        message,
+                        dst_id,
+                        dst_type,
+                        session});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationRequestAddAsync(int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TransDstType dst_type, System.Guid session) {
+            this.TranslationRequestAddAsync(src_lang_id, dst_lang_id, subject, message, dst_id, dst_type, session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationRequestAddAsync(int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TransDstType dst_type, System.Guid session, object userState) {
+            if ((this.TranslationRequestAddOperationCompleted == null)) {
+                this.TranslationRequestAddOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationRequestAddOperationCompleted);
+            }
+            this.InvokeAsync("TranslationRequestAdd", new object[] {
+                        src_lang_id,
+                        dst_lang_id,
+                        subject,
+                        message,
+                        dst_id,
+                        dst_type,
+                        session}, this.TranslationRequestAddOperationCompleted, userState);
+        }
+        
+        private void OnTranslationRequestAddOperationCompleted(object arg) {
+            if ((this.TranslationRequestAddCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationRequestAddCompleted(this, new TranslationRequestAddCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationAnswerAdd", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int TranslationAnswerAdd(int req_id, string message, System.Guid session) {
+            object[] results = this.Invoke("TranslationAnswerAdd", new object[] {
+                        req_id,
+                        message,
+                        session});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationAnswerAddAsync(int req_id, string message, System.Guid session) {
+            this.TranslationAnswerAddAsync(req_id, message, session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationAnswerAddAsync(int req_id, string message, System.Guid session, object userState) {
+            if ((this.TranslationAnswerAddOperationCompleted == null)) {
+                this.TranslationAnswerAddOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationAnswerAddOperationCompleted);
+            }
+            this.InvokeAsync("TranslationAnswerAdd", new object[] {
+                        req_id,
+                        message,
+                        session}, this.TranslationAnswerAddOperationCompleted, userState);
+        }
+        
+        private void OnTranslationAnswerAddOperationCompleted(object arg) {
+            if ((this.TranslationAnswerAddCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationAnswerAddCompleted(this, new TranslationAnswerAddCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1232,6 +1384,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.DateTime log_dateField;
         
+        private float user_ratingField;
+        
         /// <remarks/>
         public string name {
             get {
@@ -1319,6 +1473,16 @@ namespace Omni.Client.org.omniproject.service {
             }
             set {
                 this.log_dateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float user_rating {
+            get {
+                return this.user_ratingField;
+            }
+            set {
+                this.user_ratingField = value;
             }
         }
     }
@@ -2419,6 +2583,58 @@ namespace Omni.Client.org.omniproject.service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationGetRequestsForUserCompletedEventHandler(object sender, TranslationGetRequestsForUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationGetRequestsForUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationGetRequestsForUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationFindGlobalRequestsForUserCompletedEventHandler(object sender, TranslationFindGlobalRequestsForUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationFindGlobalRequestsForUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationFindGlobalRequestsForUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Translation[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Translation[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
     public delegate void TranslationRequestGetByIdCompletedEventHandler(object sender, TranslationRequestGetByIdCompletedEventArgs e);
     
     /// <remarks/>
@@ -2465,6 +2681,58 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Translation[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationRequestAddCompletedEventHandler(object sender, TranslationRequestAddCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationRequestAddCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationRequestAddCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationAnswerAddCompletedEventHandler(object sender, TranslationAnswerAddCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationAnswerAddCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationAnswerAddCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
             }
         }
     }

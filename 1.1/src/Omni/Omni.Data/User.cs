@@ -9,7 +9,7 @@ namespace Omni.Data
         public User()
         {
         }
-        public User(int id, string username, string name, string email, string description, string sn_network, string sn_screenname, DateTime reg_date, DateTime log_date)
+        public User(int id, string username, string name, string email, string description, string sn_network, string sn_screenname, DateTime reg_date, DateTime log_date, float user_rating)
         {
             this.id = id;
             this.username = username;
@@ -20,6 +20,7 @@ namespace Omni.Data
             this.sn_screenname = sn_screenname;
             this.reg_date = reg_date;
             this.log_date = log_date;
+            this.user_rating = user_rating;
         }
         public string name;
         public string username;
@@ -30,5 +31,6 @@ namespace Omni.Data
         public string sn_screenname;
         public DateTime reg_date;
         public DateTime log_date;
+        public float user_rating;
     }
 }

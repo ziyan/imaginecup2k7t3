@@ -554,6 +554,56 @@ namespace Omni.Client
         }
 
         /// <summary>
+        /// Get all open personal translation requests for a user.
+        /// </summary>
+        /// <returns>Array of Translations</returns>
+        public Translation[] TranslationGetRequestsForUser()
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Translation[] svcObj = service.TranslationGetRequestsForUser(session);
+                if (svcObj == null) return null;
+                Translation[] objArray = new Translation[svcObj.Length];
+                for (int i = 0; i < objArray.Length; i++)
+                {
+                    objArray[i] = new Translation(svcObj[i]);
+                }
+                return objArray;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Find global translation requests for a user (based on their languages).
+        /// </summary>
+        /// <returns>Array of Translations</returns>
+        public Translation[] TranslationFindGlobalRequestsForUser()
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Translation[] svcObj = service.TranslationFindGlobalRequestsForUser(session);
+                if (svcObj == null) return null;
+                Translation[] objArray = new Translation[svcObj.Length];
+                for (int i = 0; i < objArray.Length; i++)
+                {
+                    objArray[i] = new Translation(svcObj[i]);
+                }
+                return objArray;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Get a translation request by ID.
         /// </summary>
         /// <param name="req_id">translation request id</param>
@@ -600,6 +650,42 @@ namespace Omni.Client
                 Exception.Rethrow(e);
             }
             return null;
+        }
+
+        /// <summary>
+        /// Add a translation request.
+        /// </summary>
+        /// <returns>0 for success</returns>
+        public int TranslationRequestAdd(int src_lang_id, int dst_lang_id, string subject, string message, int dst_id)
+        {
+            CheckSession();
+            try
+            {
+                return service.TranslationRequestAdd(src_lang_id, dst_lang_id, subject, message, dst_id, Omni.Client.org.omniproject.service.TransDstType.User,  session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return 1;
+        }
+
+        /// <summary>
+        /// Answer an existing translation request.
+        /// </summary>
+        /// <returns>0 for success</returns>
+        public int TranslationAnswerAdd(int req_id, string message)
+        {
+            CheckSession();
+            try
+            {
+                return service.TranslationAnswerAdd(req_id, message, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return 1;
         }
 
         #endregion

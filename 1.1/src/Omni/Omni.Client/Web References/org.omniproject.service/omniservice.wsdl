@@ -204,6 +204,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="sn_screenname" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="reg_date" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="log_date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="user_rating" type="s:float" />
         </s:sequence>
       </s:complexType>
       <s:element name="UserInterests">
@@ -508,6 +509,34 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="TranslationGetRequestsForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationGetRequestsForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TranslationGetRequestsForUserResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationFindGlobalRequestsForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationFindGlobalRequestsForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TranslationFindGlobalRequestsForUserResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="TranslationRequestGetById">
         <s:complexType>
           <s:sequence>
@@ -535,6 +564,42 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="TranslationAnswersGetByReqIdResult" type="tns:ArrayOfTranslation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationRequestAdd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="src_lang_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dst_lang_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dst_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dst_type" type="tns:TransDstType" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationRequestAddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TranslationRequestAddResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationAnswerAdd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationAnswerAddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TranslationAnswerAddResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -740,6 +805,18 @@
   <wsdl:message name="TranslationGetNonPendingApprovalForUserSoapOut">
     <wsdl:part name="parameters" element="tns:TranslationGetNonPendingApprovalForUserResponse" />
   </wsdl:message>
+  <wsdl:message name="TranslationGetRequestsForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslationGetRequestsForUser" />
+  </wsdl:message>
+  <wsdl:message name="TranslationGetRequestsForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslationGetRequestsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TranslationFindGlobalRequestsForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslationFindGlobalRequestsForUser" />
+  </wsdl:message>
+  <wsdl:message name="TranslationFindGlobalRequestsForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslationFindGlobalRequestsForUserResponse" />
+  </wsdl:message>
   <wsdl:message name="TranslationRequestGetByIdSoapIn">
     <wsdl:part name="parameters" element="tns:TranslationRequestGetById" />
   </wsdl:message>
@@ -751,6 +828,18 @@
   </wsdl:message>
   <wsdl:message name="TranslationAnswersGetByReqIdSoapOut">
     <wsdl:part name="parameters" element="tns:TranslationAnswersGetByReqIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="TranslationRequestAddSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslationRequestAdd" />
+  </wsdl:message>
+  <wsdl:message name="TranslationRequestAddSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslationRequestAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="TranslationAnswerAddSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslationAnswerAdd" />
+  </wsdl:message>
+  <wsdl:message name="TranslationAnswerAddSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslationAnswerAddResponse" />
   </wsdl:message>
   <wsdl:message name="DefinitionLookupSoapIn">
     <wsdl:part name="parameters" element="tns:DefinitionLookup" />
@@ -900,6 +989,16 @@
       <wsdl:input message="tns:TranslationGetNonPendingApprovalForUserSoapIn" />
       <wsdl:output message="tns:TranslationGetNonPendingApprovalForUserSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="TranslationGetRequestsForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all open personal translation requests for a user.</wsdl:documentation>
+      <wsdl:input message="tns:TranslationGetRequestsForUserSoapIn" />
+      <wsdl:output message="tns:TranslationGetRequestsForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TranslationFindGlobalRequestsForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Find global translation requests for a user (based on their languages).</wsdl:documentation>
+      <wsdl:input message="tns:TranslationFindGlobalRequestsForUserSoapIn" />
+      <wsdl:output message="tns:TranslationFindGlobalRequestsForUserSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="TranslationRequestGetById">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a translation request by ID.</wsdl:documentation>
       <wsdl:input message="tns:TranslationRequestGetByIdSoapIn" />
@@ -909,6 +1008,16 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all translation answers for a Request ID.</wsdl:documentation>
       <wsdl:input message="tns:TranslationAnswersGetByReqIdSoapIn" />
       <wsdl:output message="tns:TranslationAnswersGetByReqIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TranslationRequestAdd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request a translation from other users.</wsdl:documentation>
+      <wsdl:input message="tns:TranslationRequestAddSoapIn" />
+      <wsdl:output message="tns:TranslationRequestAddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TranslationAnswerAdd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Answer a translation request.</wsdl:documentation>
+      <wsdl:input message="tns:TranslationAnswerAddSoapIn" />
+      <wsdl:output message="tns:TranslationAnswerAddSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="DefinitionLookup">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Dictionary definition lookup service. (PUBLIC / SESSIONLESS)</wsdl:documentation>
@@ -1166,6 +1275,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TranslationGetRequestsForUser">
+      <soap:operation soapAction="http://service.omniproject.org/TranslationGetRequestsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationFindGlobalRequestsForUser">
+      <soap:operation soapAction="http://service.omniproject.org/TranslationFindGlobalRequestsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TranslationRequestGetById">
       <soap:operation soapAction="http://service.omniproject.org/TranslationRequestGetById" style="document" />
       <wsdl:input>
@@ -1177,6 +1304,24 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationAnswersGetByReqId">
       <soap:operation soapAction="http://service.omniproject.org/TranslationAnswersGetByReqId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationRequestAdd">
+      <soap:operation soapAction="http://service.omniproject.org/TranslationRequestAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationAnswerAdd">
+      <soap:operation soapAction="http://service.omniproject.org/TranslationAnswerAdd" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1448,6 +1593,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="TranslationGetRequestsForUser">
+      <soap12:operation soapAction="http://service.omniproject.org/TranslationGetRequestsForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationFindGlobalRequestsForUser">
+      <soap12:operation soapAction="http://service.omniproject.org/TranslationFindGlobalRequestsForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TranslationRequestGetById">
       <soap12:operation soapAction="http://service.omniproject.org/TranslationRequestGetById" style="document" />
       <wsdl:input>
@@ -1459,6 +1622,24 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationAnswersGetByReqId">
       <soap12:operation soapAction="http://service.omniproject.org/TranslationAnswersGetByReqId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationRequestAdd">
+      <soap12:operation soapAction="http://service.omniproject.org/TranslationRequestAdd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationAnswerAdd">
+      <soap12:operation soapAction="http://service.omniproject.org/TranslationAnswerAdd" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -17,6 +17,7 @@ namespace Omni.Client
             this.sn_screenname = user.sn_screenname;
             this.reg_date = user.reg_date;
             this.log_date = user.log_date;
+            this.user_rating = user.user_rating;
         }
         private string name;
         private string username;
@@ -27,6 +28,7 @@ namespace Omni.Client
         private DateTime reg_date;
         private DateTime log_date;
         private int id;
+        private float user_rating;
         public int ID
         {
             get { return id; }
@@ -63,6 +65,9 @@ namespace Omni.Client
         {
             get { return log_date; }
         }
-	
+        public float UserRating
+        {
+            get { return user_rating; }
+        }
     }
 }

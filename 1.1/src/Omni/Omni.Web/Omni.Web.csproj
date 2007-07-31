@@ -40,6 +40,8 @@
   <ItemGroup>
     <Compile Include="Common.cs" />
     <Compile Include="Translation\AnswersGetByReqIDHandler.cs" />
+    <Compile Include="Translation\GetRequestsForUserHandler.cs" />
+    <Compile Include="Translation\FindGlobalRequestsForUserHandler.cs" />
     <Compile Include="Translation\RequestGetByIDHandler.cs" />
     <Compile Include="Translation\GetNonPendingApprovalForUserHandler.cs" />
     <Compile Include="Translation\GetUnapprovedForUserHandler.cs" />
@@ -61,6 +63,8 @@
     <Compile Include="Service\TranslationHandler.cs" />
     <Compile Include="Session\KeepAliveHandler.cs" />
     <Compile Include="Interest\ListHandler.cs" />
+    <Compile Include="Translation\AnswerAddHandler.cs" />
+    <Compile Include="Translation\RequestAddHandler.cs" />
     <Compile Include="User\UpdateLanguagesHandler.cs" />
     <Compile Include="User\LanguagesHandler.cs" />
     <Compile Include="User\ProfileHandler.cs" />

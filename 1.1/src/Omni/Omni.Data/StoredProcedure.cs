@@ -60,7 +60,7 @@ namespace Omni.Data
             User user = null;
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
-                user = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["log_date"]));
+                user = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), reader["log_date"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["log_date"]), Convert.ToSingle(reader["user_rating"]));
             reader.Close();
             reader.Dispose();
             return user;
@@ -144,7 +144,7 @@ namespace Omni.Data
             SqlDataReader reader = cmd.ExecuteReader();
             // Don't need their login date
             if (reader.Read())
-                user = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now);
+                user = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now, Convert.ToSingle(reader["user_rating"]));
             reader.Close();
             reader.Dispose();
 
@@ -204,7 +204,7 @@ namespace Omni.Data
             SqlDataReader reader = cmd.ExecuteReader();
             // Don't need their login date
             while (reader.Read())
-                users.Add(new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now));
+                users.Add(new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now, Convert.ToSingle(reader["user_rating"])));
             reader.Close();
             reader.Dispose();
 
@@ -260,7 +260,7 @@ namespace Omni.Data
             // Don't need their login date
             while (reader.Read() && i < maxresults)
             {
-                users.Add(new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now));
+                users.Add(new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now, Convert.ToSingle(reader["user_rating"])));
                 i++;
             }
             reader.Close();
@@ -294,7 +294,7 @@ namespace Omni.Data
             // Don't need their login date
             while (reader.Read() && i < maxresults)
             {
-                User u = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now);
+                User u = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now, Convert.ToSingle(reader["user_rating"]));
                 users.Add(new UserSimil(u, Convert.ToInt16(reader["self_rating"]), Convert.ToSingle(reader["net_rating"]), Convert.ToDouble(reader["simil"])));
                 i++;
             }
@@ -422,6 +422,55 @@ namespace Omni.Data
 
             return result.ToArray();
         }
+        public static Translation[] TranslationGetRequestsForUser(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_req_get_for_user", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> result = new List<Translation>();
+            while (reader.Read())
+            {
+                result.Add(new Translation(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["user_id"]), "",
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TransDstType)Convert.ToInt32(reader["dst_type"]),
+                                        "",
+                                        Convert.ToString(reader["subject"]),
+                                        "", Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["completed"])));
+            }
+            reader.Close();
+            reader.Dispose();
+
+            return result.ToArray();
+        }
+        public static Translation[] TranslationFindGlobalRequestsForUser(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_req_find_global_for_user", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Translation> result = new List<Translation>();
+            while (reader.Read())
+            {
+                result.Add(new Translation(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["user_id"]), "",
+                                        Convert.ToInt32(reader["src_lang_id"]),
+                                        Convert.ToInt32(reader["dst_lang_id"]),
+                                        Convert.ToInt32(reader["dst_id"]),
+                                        (TransDstType)Convert.ToInt32(reader["dst_type"]),
+                                        "",
+                                        Convert.ToString(reader["subject"]),
+                                        "", Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["completed"])));
+            }
+            reader.Close();
+            reader.Dispose();
+
+            return result.ToArray();
+        }
+
         public static Translation TranslationRequestGetById(int req_id, Connection connection)
         {
             SqlCommand cmd = GetStoredProcedure("omni_trans_req_get_by_id", connection);
@@ -475,6 +524,30 @@ namespace Omni.Data
             reader.Dispose();
 
             return results.ToArray();
+        }
+
+        public static int TranslationAnswerAdd(int user_id, int req_id, string message, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_ans_add", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SetStoredProcedureParameter(cmd, "@req_id", SqlDbType.Int, req_id);
+            SetStoredProcedureParameter(cmd, "@message", SqlDbType.NText, message);
+            object result = cmd.ExecuteScalar();
+            return (result == null) ? 0 : Convert.ToInt32(result);
+        }
+
+        public static int TranslationRequestAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TransDstType dst_type, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_ans_add", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SetStoredProcedureParameter(cmd, "@src_lang_id", SqlDbType.Int, src_lang_id);
+            SetStoredProcedureParameter(cmd, "@dst_lang_id", SqlDbType.Int, dst_lang_id);
+            SetStoredProcedureParameter(cmd, "@subject", SqlDbType.NVarChar, subject);
+            SetStoredProcedureParameter(cmd, "@message", SqlDbType.NText, message);
+            SetStoredProcedureParameter(cmd, "@dst_id", SqlDbType.Int, dst_id);
+            SetStoredProcedureParameter(cmd, "@dst_type", SqlDbType.TinyInt, dst_type);
+            object result = cmd.ExecuteScalar();
+            return (result == null) ? 0 : Convert.ToInt32(result);
         }
 
         #endregion

@@ -412,6 +412,58 @@ namespace Omni.Service
         }
 
         /// <summary>
+        /// Get all open personal translation requests for a user.
+        /// </summary>
+        /// <param name="session">session id</param>
+        /// <returns>Array of Translations</returns>
+        [WebMethod(Description = "Get all open personal translation requests for a user.")]
+        public Data.Translation[] TranslationGetRequestsForUser(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            Data.Translation[] trans = Data.StoredProcedure.TranslationGetRequestsForUser(Session.UserContext.User.id, Session.Connection);
+
+            if (trans != null)
+            {
+                foreach (Data.Translation t in trans)
+                {
+                    t.username = UserUsernameById(t.user_id, Session.Connection);
+                    if (t.dst_type == Omni.Data.TransDstType.User)
+                        t.dst_username = UserUsernameById(t.dst_id, Session.Connection);
+
+                }
+            }
+
+            return trans;
+        }
+
+        /// <summary>
+        /// Find global translation requests for a user (based on their languages).
+        /// </summary>
+        /// <param name="session">session id</param>
+        /// <returns>Array of Translations</returns>
+        [WebMethod(Description = "Find global translation requests for a user (based on their languages).")]
+        public Data.Translation[] TranslationFindGlobalRequestsForUser(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            Data.Translation[] trans = Data.StoredProcedure.TranslationFindGlobalRequestsForUser(Session.UserContext.User.id, Session.Connection);
+
+            if (trans != null)
+            {
+                foreach (Data.Translation t in trans)
+                {
+                    t.username = UserUsernameById(t.user_id, Session.Connection);
+                    if (t.dst_type == Omni.Data.TransDstType.User)
+                        t.dst_username = UserUsernameById(t.dst_id, Session.Connection);
+
+                }
+            }
+
+            return trans;
+        }
+
+        /// <summary>
         /// Get a translation request by ID.
         /// </summary>
         /// <param name="req_id">translation request id</param>
@@ -455,6 +507,40 @@ namespace Omni.Service
                 }
             }
             return trans;
+        }
+
+        /// <summary>
+        /// Request a translation from other users.
+        /// </summary>
+        /// <param name="src_lang_id">src_lang_id</param>
+        /// <param name="dst_lang_id">dst_lang_id</param>
+        /// <param name="subject">subject</param>
+        /// <param name="message">message</param>
+        /// <param name="dst_id">dst_id</param>
+        /// <param name="dst_type">dst_type</param>
+        /// <param name="session">session id</param>
+        /// <returns>1 for success</returns>
+        [WebMethod(Description = "Request a translation from other users.")]
+        public int TranslationRequestAdd(int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, Data.TransDstType dst_type, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.TranslationRequestAdd(Session.UserContext.User.id, src_lang_id, dst_lang_id, subject, message, dst_id, dst_type, Session.Connection);
+        }
+
+        /// <summary>
+        /// Answer a translation request.
+        /// </summary>
+        /// <param name="req_id">request id</param>
+        /// <param name="message">message to translate/param>
+        /// <param name="session">session id</param>
+        /// <returns>0 for success</returns>
+        [WebMethod(Description = "Answer a translation request.")]
+        public int TranslationAnswerAdd(int req_id, string message, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.TranslationAnswerAdd(Session.UserContext.User.id, req_id, message, Session.Connection);
         }
 
         #endregion
