@@ -235,6 +235,33 @@ function friends_list_retrieve_callback()
     table.innerHTML = tablestr;
 }
 
+// For other areas of Omni
+var friends_list_retrieve_silent_callback = null;
+function friends_list_retrieve_silent(callback)
+{
+    friends_list_retrieve_silent_callback = callback;
+    if(friends != null)
+    {
+        friends_list_retrieve_silent_callback();
+        return;
+    }
+    if(friends_list_ajax == null)
+        friends_list_ajax = new AniScript.Web.Ajax();
+    friends_list_ajax.setHandler(friends_list_retrieve_silent_callback);
+    friends_list_ajax.request(hosturl + "handler/friends/ListHandler.ashx");
+}
+
+function friends_list_retrieve_silent_callback()
+{
+    if(!friends_list_ajax.isDone()) return;
+    
+    if(friends_list_ajax.hasError()) return;
+    
+    // Do whatever is necessary w/ "friends" object -
+    // Populate drop down list, etc.
+    friends_list_retrieve_silent_callback();
+}
+
 // Add & Remove a Friend
 
 var friends_remove_ajax = null;

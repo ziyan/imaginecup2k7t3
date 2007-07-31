@@ -58,6 +58,7 @@ function clear_cached_results()
     get_introduced_results = null;
     friends_removed_friend = null;
     friends_added_friend = null;
+    friends_list_retrieve_silent_callback = null;
     // trans.js
     view_trans_active_tab_id = null;
     trans_details_active_trans_id = null;
