@@ -149,7 +149,10 @@ function page_change(page_name)
             break;
         case "PerformTrans":
             page_goto_perform_trans();
-            break;                            
+            break;
+        case "RequestTrans":
+            page_goto_request_trans();
+            break;
         default:
             page_name = "Home";
             page_goto_home();
@@ -288,12 +291,12 @@ function page_goto_friends()
     friends_list_retrieve();    
 }
 
-function page_goto_view_trans()
+function page_goto_view_trans(tab_param)
 {
     page_layout_equal_left_right();
     content_right.appendChild($("transdetailpanel"));
     content_left.appendChild($("viewtranspanel"));
-    view_trans_init();
+    view_trans_init(tab_param);
 }
 
 function page_goto_perform_trans()
@@ -302,4 +305,15 @@ function page_goto_perform_trans()
     content_right.appendChild($("transdetailpanel"));
     content_left.appendChild($("performtranspanel"));
     perform_trans_init();
+}
+
+function page_goto_request_trans()
+{
+    page_layout_big_left_right();
+    //content_right.appendChild($("requesttranspanel"));
+    //content_left.appendChild($("viewtranspanel"));
+    content_left.appendChild($("requesttranspanel"));
+    //request_trans_init();
+    //set_view_trans_tab("ViewTransTabMyTranslations");
+    //view_trans_init();
 }

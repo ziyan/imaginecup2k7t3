@@ -538,7 +538,7 @@ namespace Omni.Data
 
         public static int TranslationRequestAdd(int user_id, int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, TransDstType dst_type, Connection connection)
         {
-            SqlCommand cmd = GetStoredProcedure("omni_trans_ans_add", connection);
+            SqlCommand cmd = GetStoredProcedure("omni_trans_req_add", connection);
             SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
             SetStoredProcedureParameter(cmd, "@src_lang_id", SqlDbType.Int, src_lang_id);
             SetStoredProcedureParameter(cmd, "@dst_lang_id", SqlDbType.Int, dst_lang_id);

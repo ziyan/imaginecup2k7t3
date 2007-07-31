@@ -656,12 +656,12 @@ namespace Omni.Client
         /// Add a translation request.
         /// </summary>
         /// <returns>0 for success</returns>
-        public int TranslationRequestAdd(int src_lang_id, int dst_lang_id, string subject, string message, int dst_id)
+        public int TranslationRequestAdd(int src_lang_id, int dst_lang_id, string subject, string message, int dst_id, int dst_type)
         {
             CheckSession();
             try
             {
-                return service.TranslationRequestAdd(src_lang_id, dst_lang_id, subject, message, dst_id, Omni.Client.org.omniproject.service.TransDstType.User,  session);
+                return service.TranslationRequestAdd(src_lang_id, dst_lang_id, subject, message, dst_id, (org.omniproject.service.TransDstType)dst_type,  session);
             }
             catch (System.Exception e)
             {

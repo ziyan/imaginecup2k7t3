@@ -170,6 +170,7 @@
 	"OmniProfileRemoveFriendConfirmYes":"Yes",
 	"OmniProfileRemoveFriendConfirmNo":"No",
 	"OmniProfileStatusError":"系统出错, 请稍候再试",
+	"OmniProfileRequestTrans":"Request Translation",
 	
 	"OmniUserTableUsername":"用户名",
 	"OmniUserTableDisplayName":"昵称",	
@@ -279,5 +280,15 @@
 	"PerformTransTitle":"Perform Translation",
 	"PerformTransPersonal":"My Translations",	
 	"PerformTransGlobal":"All Translations",
-	"PerformTransLoading":" Loading ... "	
+	"PerformTransLoading":" 加载中 ... ",
+	
+	"RequestTransTitle":"Request Translation",
+	"RequestTransDesiredTranslator":"Desired Translator:",
+	"RequestTransSpecificUser":"Specific User",
+	"RequestTransGlobal":"Global / Anyone",
+	"RequestTransSrcLang":"Source Language:",
+	"RequestTransDstLang":"Destination Language:",
+	"RequestTransTextToTrans":"Text to Translate:",
+	"RequestTransSubmit":"Submit Request",
+	"RequestTransErrorMissingFields":"Error: Fill out all fields."	
 }

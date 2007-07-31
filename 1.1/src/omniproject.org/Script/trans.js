@@ -268,6 +268,14 @@ function view_trans_init()
     }
 }
 
+function set_view_trans_tab(tab_param)
+{
+    if(tab_param != undefined && tab_param != null)
+    {
+        view_trans_active_tab_id = tab_param;
+    }
+}
+
 var view_trans_approval_ajax = null;
 var view_trans_mine_ajax = null;
 
