@@ -88,14 +88,14 @@ function omni_profile_panel_display(user)
         $("omniprofilepanel_emailrow").style.display = "none";
         $("omniprofilepanel_imrow1").style.display = "none";
         $("omniprofilepanel_imrow2").style.display = "none";
-        $("omniprofilepanel_imrow3").style.display = "none";        
+        $("omniprofilepanel_imrow3").style.display = "none";
     }
     else
     {
-        $("omniprofilepanel_emailrow").style.display = null;
-        $("omniprofilepanel_imrow1").style.display = null;
-        $("omniprofilepanel_imrow2").style.display = null;
-        $("omniprofilepanel_imrow3").style.display = null;        
+        $("omniprofilepanel_emailrow").style.display = '';
+        $("omniprofilepanel_imrow1").style.display = '';
+        $("omniprofilepanel_imrow2").style.display = '';
+        $("omniprofilepanel_imrow3").style.display = '';       
     }
     
     // Get Interests
@@ -125,7 +125,7 @@ function omni_profile_friends_retrieve()
         omni_profile_friends_ajax = new AniScript.Web.Ajax();
     omni_profile_friends_ajax.setHandler(omni_profile_friends_callback);
     $("omniprofilepanel_actionsrow").style.display = "none";
-    $("omniprofilepanel_actionsloading").style.display = null;
+    $("omniprofilepanel_actionsloading").style.display = '';
     omni_profile_friends_ajax.request(hosturl+"handler/friends/checkfriendpairhandler.ashx","friendid="+escape(omni_profile_panel_user.id));
 
 }
@@ -185,18 +185,18 @@ function omni_profile_friends_callback()
         return;
     }    
     var friends = omni_profile_friends_ajax.getJSON().friends;
-    $("omniprofilepanel_actionsrow").style.display = null;
+    $("omniprofilepanel_actionsrow").style.display = '';
     $("omniprofilepanel_actionsloading").style.display = "none";
     var addfriend = $("Omni_Localized_OmniProfileAddFriend");
     var removefriend = $("Omni_Localized_OmniProfileRemoveFriend");
     if(friends == 1)
     {
         addfriend.style.display = "none";
-        removefriend.style.display = null;
+        removefriend.style.display = '';
     }
     else
     {
-        addfriend.style.display = null;
+        addfriend.style.display = '';
         removefriend.style.display = "none";
     }    
 }

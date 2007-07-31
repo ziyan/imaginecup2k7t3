@@ -58,7 +58,9 @@ function lang_getText(key)
     if(lang_db[key]!=undefined)
         return lang_db[key];
     else
+    {
         return "";
+    }
 }
 //get a localized string with auto update function in code (RECOMMENDED)
 function lang_getHTML(key)
@@ -92,9 +94,9 @@ function lang_get()
 function lang_update_title()
 {
     //page title
-    if(eval("lang_db.PageTitle"+page_current)!=undefined)
+    if(lang_db["PageTitle"+page_current]!=undefined)
     {
-        document.title = eval("lang_db.PageTitle"+page_current);
+        document.title = lang_db["PageTitle"+page_current];
     }
 }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
@@ -63,7 +63,7 @@
 <!--end of content-->
 <!--begin of footer-->
 <div id="footer" class="footer">
-under development
+<!-- under development -->
 </div>
 <!--end of footer-->
 <!--begin of shader-->
@@ -113,20 +113,18 @@ under development
                 <p class="heading">
                     <span id="Omni_Localized_UserPanelOmniThings">Things to do on Omni:</span>
                 </p>
-                <span class="para">
-                    <ul>
-                        <li><a href="#" onclick="page_change('GetIntroduced'); return false"><span id="Omni_Localized_UserPanelOmniThings1">Meet someone new</span></a></li>
-                        <li><a href="#" onclick="page_change('PerformTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings2">Help someone with a translation</span></a></li>
-                        <li><a href="#" onclick="page_change('HallOfFame'); return false"><span id="Omni_Localized_UserPanelOmniThings3">View the top translators on the network</span></a></li>
-                        <li><a href="#" onclick="page_change('Friends'); return false"><span id="Omni_Localized_UserPanelOmniThings4">Find someone you know</span></a></li>
-                        <li><a href="#" onclick="page_change('Messages'); return false"><span id="Omni_Localized_UserPanelOmniThings5">Send a message to a friend</span></a></li>
-                        <li><a href="#" onclick="page_change('RequestTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings6">Get help with a language problem</span></a></li>
-                        <li><a href="#" onclick="page_change('Profile'); return false"><span id="Omni_Localized_UserPanelOmniThings7">Tell Omni more about yourself</span></a></li>
-                        <li><a href="#" onclick="page_change('ViewTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings8">View translations you've been involved with in the past</span></a></li>
-                        <li><a href="#" onclick="page_change('ViewTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings9">Search translations that have already been completed</span></a></li>
-                        <li><a href="#" onclick="langbar_auto_trans_expand(); return false"><span id="Omni_Localized_UserPanelOmniThings10">Get a quick automated translation</span></a></li>
-                    </ul>
-                </span>
+                <ul class="para">
+                    <li><a href="#" onclick="page_change('GetIntroduced'); return false"><span id="Omni_Localized_UserPanelOmniThings1">Meet someone new</span></a></li>
+                    <li><a href="#" onclick="page_change('PerformTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings2">Help someone with a translation</span></a></li>
+                    <li><a href="#" onclick="page_change('HallOfFame'); return false"><span id="Omni_Localized_UserPanelOmniThings3">View the top translators on the network</span></a></li>
+                    <li><a href="#" onclick="page_change('Friends'); return false"><span id="Omni_Localized_UserPanelOmniThings4">Find someone you know</span></a></li>
+                    <li><a href="#" onclick="page_change('Messages'); return false"><span id="Omni_Localized_UserPanelOmniThings5">Send a message to a friend</span></a></li>
+                    <li><a href="#" onclick="page_change('RequestTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings6">Get help with a language problem</span></a></li>
+                    <li><a href="#" onclick="page_change('Profile'); return false"><span id="Omni_Localized_UserPanelOmniThings7">Tell Omni more about yourself</span></a></li>
+                    <li><a href="#" onclick="page_change('ViewTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings8">View translations you've been involved with in the past</span></a></li>
+                    <li><a href="#" onclick="page_change('ViewTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings9">Search translations that have already been completed</span></a></li>
+                    <li><a href="#" onclick="langbar_auto_trans_expand(); return false"><span id="Omni_Localized_UserPanelOmniThings10">Get a quick automated translation</span></a></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -579,7 +577,21 @@ under development
         </div>
     </div>
     <!--end of viewtranspanel-->
-    <!--begin of viewtranspanel-->
+    <!--begin of performtranspanel-->
+    <div id="performtranspanel" class="standardpanel">
+        <div class="title">
+            <span id="Omni_Localized_PerformTransTitle">Perform Translation222</span>
+        </div>
+        <div class="content" style="margin-bottom: 30px;">
+            <span id="Omni_Localized_PerformTransPersonal" class="heading">My Translations</span><br />
+            <span id="performtrans_personal"></span><br /><br />
+            <span id="Omni_Localized_PerformTransGlobal" class="heading">All Translations</span><br />   
+            <span id="performtrans_global"></span>
+            <br /><br />
+        </div>        
+    </div>
+    <!--end of performtranspanel-->
+    <!--begin of transdetailpanel-->
     <div id="transdetailpanel" class="boxpanel">
         <div class="title">
             <span id="Omni_Localized_TransDetailTitle">Translation Details</span>
@@ -588,9 +600,16 @@ under development
         <div id="transdetailpanel_req"></div>
         <br /><br />
         <div id="transdetailpanel_ans"></div>
+        <div id="transdetailpanel_submit" >
+            <table class="detailtable">
+                <tr><th><span id="Omni_Localized_TransDetailsTranslateThisMsg">Translate This Message</span></th></tr>
+                <tr><td><textarea id="transdetailpanel_translatetext" cols="40" rows="4" style="width:99%"></textarea></td></tr>
+                <tr><td><input type="button" id="Omni_Localized_TransDetailsTranslateSubmit" value="Submit My Translation" onclick="trans_details_submit_translation(); return false" /></td> </tr>
+            </table>
+        </div>
         </div>
     </div>
-    <!--end of viewtranspanel-->    
+    <!--end of transdetailpanel-->    
 </div>
 
 </body>

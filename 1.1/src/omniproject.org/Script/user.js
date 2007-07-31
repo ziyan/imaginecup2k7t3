@@ -629,9 +629,9 @@ function user_update()
     $("form_user_profile_sn_network").disabled = true;
     $("form_user_profile_sn_screenname").disabled = true;
     $("form_user_profile_interests").style.display = "none";
-    $("userprofilepanel_interestsupdating").style.display = null;
+    $("userprofilepanel_interestsupdating").style.display = '';
     $("form_user_profile_languages").style.display = "none";
-    $("userprofilepanel_languagesupdating").style.display = null;
+    $("userprofilepanel_languagesupdating").style.display = '';
     $("Omni_Localized_UserProfileSubmitButton").disabled = true;
     $("userprofilepanel_status").innerHTML=loading_img+" "+ lang_getHTML("UserProfileUpdating");
     // ajax
@@ -685,7 +685,7 @@ function user_update_callback()
 function user_update_interests_callback()
 {
     if(!user_update_interests_ajax.isDone()) return;
-    $("form_user_profile_interests").style.display = null;
+    $("form_user_profile_interests").style.display = '';
     $("userprofilepanel_interestsupdating").style.display = "none";
     
     $("Omni_Localized_UserProfileSubmitButton").disabled = false;
@@ -713,7 +713,7 @@ function user_update_interests_callback()
 function user_update_languages_callback()
 {
     if(!user_update_languages_ajax.isDone()) return;
-    $("form_user_profile_languages").style.display = null;
+    $("form_user_profile_languages").style.display = '';
     $("userprofilepanel_languagesupdating").style.display = "none";
     
     $("Omni_Localized_UserProfileSubmitButton").disabled = false;

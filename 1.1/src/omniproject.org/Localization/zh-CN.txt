@@ -257,7 +257,9 @@
 	"ViewTransSearchKeywords":"Keywords:",
 	"ViewTransSearchButton":"Search",
 	"ViewTransNoResults":"No translations found.",
-	"ViewTransStatusError":"System error, please try again later",
+	"ViewTransStatusError":"系统出错, 请稍候再试",
+	"TransDetailTranslateThisMsg":"Translate This Message",
+	"TransDetailTranslateSubmit":"Submit My Translation",	
 	
 	"TransDetailTitle":"Translation Details",
 	"TransDetailLoading":" 加载中 ... ",
@@ -272,5 +274,10 @@
 	"TransHeaderRating":"Rating",
 	"TransHeaderCompleted":"Completed",
 	"TransHeaderCompletedYes":"Yes",
-	"TransHeaderGlobal":"Global"
+	"TransHeaderGlobal":"Global",
+	
+	"PerformTransTitle":"Perform Translation",
+	"PerformTransPersonal":"My Translations",	
+	"PerformTransGlobal":"All Translations",
+	"PerformTransLoading":" Loading ... "	
 }

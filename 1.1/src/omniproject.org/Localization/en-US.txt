@@ -265,7 +265,9 @@
 	
 	"TransDetailTitle":"Translation Details",
 	"TransDetailLoading":" Loading ... ",
-	"TransDetailStatusError":"System error, please try again later",	
+	"TransDetailStatusError":"System error, please try again later",
+	"TransDetailTranslateThisMsg":"Translate This Message",
+	"TransDetailTranslateSubmit":"Submit My Translation",
 	
 	"TransHeaderDate":"Date",
 	"TransHeaderRequestor":"Requestor",
@@ -276,5 +278,10 @@
 	"TransHeaderRating":"Rating",
 	"TransHeaderCompleted":"Completed",
 	"TransHeaderCompletedYes":"Yes",
-	"TransHeaderGlobal":"Global"
+	"TransHeaderGlobal":"Global",
+	
+	"PerformTransTitle":"Perform Translation",
+	"PerformTransPersonal":"My Translations",	
+	"PerformTransGlobal":"All Translations",
+	"PerformTransLoading":" Loading ... "	
 }

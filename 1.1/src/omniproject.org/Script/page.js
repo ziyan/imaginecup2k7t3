@@ -146,7 +146,10 @@ function page_change(page_name)
             break;    
         case "ViewTrans":
             page_goto_view_trans();
-            break;                
+            break;
+        case "PerformTrans":
+            page_goto_perform_trans();
+            break;                            
         default:
             page_name = "Home";
             page_goto_home();
@@ -291,4 +294,12 @@ function page_goto_view_trans()
     content_right.appendChild($("transdetailpanel"));
     content_left.appendChild($("viewtranspanel"));
     view_trans_init();
+}
+
+function page_goto_perform_trans()
+{
+    page_layout_equal_left_right();
+    content_right.appendChild($("transdetailpanel"));
+    content_left.appendChild($("performtranspanel"));
+    perform_trans_init();
 }
