@@ -42,7 +42,6 @@
 	"UserPanelOmniThings9":"Search translations that have already been completed",
 	"UserPanelOmniThings10":"Get a quick automated translation",
 	
-	
 	"UserLoginTitle":"User Login",
 	"UserLoginUsername":"Username: ",
 	"UserLoginPassword":"Password: ",
@@ -269,6 +268,7 @@
 	"TransDetailStatusError":"System error, please try again later",
 	"TransDetailTranslateThisMsg":"Translate This Message",
 	"TransDetailTranslateSubmit":"Submit My Translation",
+	"TransDetailPleaseRate":"Please rate this message",
 	
 	"TransHeaderDate":"Date",
 	"TransHeaderRequestor":"Requestor",
@@ -292,7 +292,9 @@
 	"RequestTransGlobal":"Global / Anyone",
 	"RequestTransSrcLang":"Source Language:",
 	"RequestTransDstLang":"Destination Language:",
+	"RequestTransSubject":"Subject:",
 	"RequestTransTextToTrans":"Text to Translate:",
 	"RequestTransSubmit":"Submit Request",
-	"RequestTransErrorMissingFields":"Error: Fill out all fields."
+	"RequestTransErrorMissingFields":"Error: Fill out all fields.",
+	"RequestTransStatusError":"System error, please try again later"
 }

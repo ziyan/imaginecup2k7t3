@@ -259,12 +259,13 @@
 	"ViewTransSearchButton":"Search",
 	"ViewTransNoResults":"No translations found.",
 	"ViewTransStatusError":"系统出错, 请稍候再试",
-	"TransDetailTranslateThisMsg":"Translate This Message",
-	"TransDetailTranslateSubmit":"Submit My Translation",	
 	
 	"TransDetailTitle":"Translation Details",
 	"TransDetailLoading":" 加载中 ... ",
 	"TransDetailStatusError":"系统出错, 请稍候再试",	
+	"TransDetailTranslateThisMsg":"Translate This Message",
+	"TransDetailTranslateSubmit":"Submit My Translation",
+	"TransDetailPleaseRate":"Please rate this message",
 	
 	"TransHeaderDate":"Date",
 	"TransHeaderRequestor":"Requestor",
@@ -288,7 +289,9 @@
 	"RequestTransGlobal":"Global / Anyone",
 	"RequestTransSrcLang":"Source Language:",
 	"RequestTransDstLang":"Destination Language:",
+	"RequestTransSubject":"Subject:",
 	"RequestTransTextToTrans":"Text to Translate:",
 	"RequestTransSubmit":"Submit Request",
-	"RequestTransErrorMissingFields":"Error: Fill out all fields."	
+	"RequestTransErrorMissingFields":"Error: Fill out all fields.",
+	"RequestTransStatusError":"系统出错, 请稍候再试"
 }

@@ -247,15 +247,17 @@ function friends_list_retrieve_silent(callback)
     }
     if(friends_list_ajax == null)
         friends_list_ajax = new AniScript.Web.Ajax();
-    friends_list_ajax.setHandler(friends_list_retrieve_silent_callback);
+    friends_list_ajax.setHandler(friends_list_retrieve_silent_first_callback);
     friends_list_ajax.request(hosturl + "handler/friends/ListHandler.ashx");
 }
 
-function friends_list_retrieve_silent_callback()
+function friends_list_retrieve_silent_first_callback()
 {
     if(!friends_list_ajax.isDone()) return;
     
     if(friends_list_ajax.hasError()) return;
+    
+    friends = friends_list_ajax.getJSON();
     
     // Do whatever is necessary w/ "friends" object -
     // Populate drop down list, etc.

@@ -2,11 +2,15 @@
  * Module for rater
  */
 
-function rater_create(id, type, current_rating, user_rating)
+function rater_create(id, _type, current_rating, user_rating)
 {
     //type = 0      can not rate
     //type = 1      can rate once
     //type = 2      can rate multiple time
+    
+    var type = _type;
+    if(user_rating > 0) type = 0;
+    
     var html="";
     html+="<ul id=\""+id+"\" class=\"rater\">";
     html+="<li id=\""+id+"_current_rating\" class=\"current-rating\" style=\"width:"+(current_rating*25)+"px;\">"+current_rating+"</li>";
@@ -38,6 +42,8 @@ function rater_rate(id, type, score)
     
     if(type==1)
     {
+        // FIXME: Handle rating or something
+    
         $(id+"_user_rating").innerHTML = score;
         $(id+"_user_rating").style.width = ""+(score*25)+"px";
     }

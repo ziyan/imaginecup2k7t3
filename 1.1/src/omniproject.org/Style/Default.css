@@ -262,6 +262,7 @@ a:hover, a:active
 {
 	text-align:left;
 	font-size: 12pt;
+	font-weight: bold;
 	border-bottom: dashed 1px #666666;
 }
 .standardpanel .content

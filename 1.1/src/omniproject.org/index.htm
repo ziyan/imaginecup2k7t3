@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
@@ -122,7 +122,7 @@
                     <li><a href="#" onclick="page_change('RequestTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings6">Get help with a language problem</span></a></li>
                     <li><a href="#" onclick="page_change('Profile'); return false"><span id="Omni_Localized_UserPanelOmniThings7">Tell Omni more about yourself</span></a></li>
                     <li><a href="#" onclick="page_change('ViewTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings8">View translations you've been involved with in the past</span></a></li>
-                    <li><a href="#" onclick="page_change('ViewTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings9">Search translations that have already been completed</span></a></li>
+                    <li><a href="#" onclick="set_view_trans_tab('ViewTransTabAllTranslations');page_change('ViewTrans'); return false"><span id="Omni_Localized_UserPanelOmniThings9">Search translations that have already been completed</span></a></li>
                     <li><a href="#" onclick="langbar_auto_trans_expand(); return false"><span id="Omni_Localized_UserPanelOmniThings10">Get a quick automated translation</span></a></li>
                 </ul>
             </div>
@@ -485,13 +485,15 @@
                         <input type="button" value="Add Friend" id="Omni_Localized_OmniProfileAddFriend" onclick="friends_add(omni_profile_panel_user); return false" />
                         <input type="button" value="Remove Friend" id="Omni_Localized_OmniProfileRemoveFriend" onclick="friends_remove(omni_profile_panel_user); return false" />
                     </td>
-                    <td style="width: 30px;">
+                    <td>
+                        <input type="button" value="Send Message" id="Omni_Localized_OmniProfileSendMessage" onclick="" />
                     </td>
                     <td>
-                        <input type="button" value="Send Message" id="Omni_Localized_OmniProfileSendMessage" onclick="" /></td>
+                        <input type="button" value="Request Translation" id="Omni_Localized_OmniProfileRequestTrans" onclick="page_change('RequestTrans',omni_profile_panel_user); return false" />
+                    </td>                    
                 </tr>
                 <tr id="omniprofilepanel_actionsloading" style="display: none;">
-                    <td colspan="4">
+                    <td colspan="3">
                         <img alt="" src="image/loading.gif" title="loading" style="width: 16px; height: 16px" /><span
                             id="Omni_Localized_OmniProfileLoading_Actions"> Loading ... </span>
                     </td>
@@ -611,18 +613,68 @@
     </div>
     <!--end of transdetailpanel-->
     <!--begin of requesttranspanel-->
-    <div id="requesttranspanel" class="boxpanel">
+    <div id="requesttranspanel" class="standardpanel">
         <div class="title">
             <span id="Omni_Localized_RequestTransTitle">Request Translation</span>
         </div>
         <div class="content" style="margin-bottom: 30px;">
-        <table border="0" width="385" cellpadding="2">
-            <tr>
-                <td><span id="Omni_Localized_PerformTransDesiredTranslator">Desired Translator:</span></td>
-                <td></td>
-            </tr>
-        </table>
+            <table border="0" width="585" cellpadding="2" style="line-height: 175%;">
+                <tr>
+                    <td>
+                        <span id="Omni_Localized_PerformTransDesiredTranslator">Desired Translator:</span></td>
+                    <td>
+                        <span id="requesttranspanel_nonfixeddst">
+                            <select id="requesttranspanel_dsttype" onchange="if(this.selectedIndex == 0) $('requesttranspanel_friends').style.display = 'none'; else $('requesttranspanel_friends').style.display = ''; return false">
+                                <option id="Omni_Localized_RequestTransGlobal" selected="selected" value="0">Global
+                                    / Anyone</option>
+                                <option id="Omni_Localized_RequestTransSpecificUser" value="1">Specific User</option>
+                            </select>
+                            <span id="requesttranspanel_friends" style="display: none;"></span></span><span id="requesttranspanel_fixeddst"
+                                style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="Omni_Localized_RequestTransSrcLang">Source Language:</span></td>
+                    <td>
+                        <select id="requesttranspanel_srclang" onchange="request_trans_validate_lang(); return false">
+                        </select>
+                        <span id="requesttranspanel_srclang_status"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="Omni_Localized_RequestTransDstLang">Destination Language:</span></td>
+                    <td>
+                        <select id="requesttranspanel_dstlang" onchange="request_trans_validate_lang(); return false">
+                        </select>
+                        <span id="requesttranspanel_dstlang_status"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="Omni_Localized_RequestTransSubject">Subject:</span></td>
+                    <td>
+                        <input type="text" maxlength="255" style="width: 400px;" id="requesttranspanel_subject" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="Omni_Localized_RequestTransTextToTrans">Text to Translate:</span></td>
+                    <td>
+                        <textarea cols="60" rows="5" id="requesttranspanel_message" style="width: 400px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" id="Omni_Localized_RequestTransSubmit" onclick="request_trans_submit(); return false"
+                            value="Submit Request" />
+                        &nbsp;&nbsp; <span id="requesttranspanel_status"></span>
+                    </td>
+                </tr>
+            </table>
         </div>
+    </div>
     <!--end of requesttranspanel-->
 </div>
 

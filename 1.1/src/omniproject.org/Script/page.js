@@ -122,7 +122,7 @@ function page_layout_big_center()
 }
 
 //changing page
-function page_change(page_name)
+function page_change(page_name, param)
 {
     if (pool === null) return; // this happens during initialization
 
@@ -151,7 +151,7 @@ function page_change(page_name)
             page_goto_perform_trans();
             break;
         case "RequestTrans":
-            page_goto_request_trans();
+            page_goto_request_trans(param);
             break;
         default:
             page_name = "Home";
@@ -291,12 +291,12 @@ function page_goto_friends()
     friends_list_retrieve();    
 }
 
-function page_goto_view_trans(tab_param)
+function page_goto_view_trans()
 {
     page_layout_equal_left_right();
     content_right.appendChild($("transdetailpanel"));
     content_left.appendChild($("viewtranspanel"));
-    view_trans_init(tab_param);
+    view_trans_init();
 }
 
 function page_goto_perform_trans()
@@ -307,13 +307,13 @@ function page_goto_perform_trans()
     perform_trans_init();
 }
 
-function page_goto_request_trans()
+function page_goto_request_trans(param)
 {
     page_layout_big_left_right();
     //content_right.appendChild($("requesttranspanel"));
     //content_left.appendChild($("viewtranspanel"));
     content_left.appendChild($("requesttranspanel"));
-    //request_trans_init();
+    request_trans_init(param);
     //set_view_trans_tab("ViewTransTabMyTranslations");
     //view_trans_init();
 }
