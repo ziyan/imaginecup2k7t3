@@ -35,6 +35,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserRank.cs" />
     <Compile Include="Enumeration.cs" />
     <Compile Include="Translation.cs" />
     <Compile Include="UserLanguage.cs" />
@@ -104,6 +105,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\org.omniproject.service\UserLanguage.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\org.omniproject.service\UserRank.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\org.omniproject.service\UserSimil.datasource">

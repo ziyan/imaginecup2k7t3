@@ -466,6 +466,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="trans_date" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="trans_user" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="trans_username" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="user_rating" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:simpleType name="TransType">
@@ -600,6 +601,61 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="TranslationAnswerAddResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationAnswerRate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="trans_ans_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="rating" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationAnswerRateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TranslationAnswerRateResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HallOfFameByQuantity">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HallOfFameByQuantityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HallOfFameByQuantityResult" type="tns:ArrayOfUserRank" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserRank">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserRank" nillable="true" type="tns:UserRank" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserRank">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          <s:element minOccurs="1" maxOccurs="1" name="rank" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="HallOfFameByRating">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HallOfFameByRatingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HallOfFameByRatingResult" type="tns:ArrayOfUserRank" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -841,6 +897,24 @@
   <wsdl:message name="TranslationAnswerAddSoapOut">
     <wsdl:part name="parameters" element="tns:TranslationAnswerAddResponse" />
   </wsdl:message>
+  <wsdl:message name="TranslationAnswerRateSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslationAnswerRate" />
+  </wsdl:message>
+  <wsdl:message name="TranslationAnswerRateSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslationAnswerRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="HallOfFameByQuantitySoapIn">
+    <wsdl:part name="parameters" element="tns:HallOfFameByQuantity" />
+  </wsdl:message>
+  <wsdl:message name="HallOfFameByQuantitySoapOut">
+    <wsdl:part name="parameters" element="tns:HallOfFameByQuantityResponse" />
+  </wsdl:message>
+  <wsdl:message name="HallOfFameByRatingSoapIn">
+    <wsdl:part name="parameters" element="tns:HallOfFameByRating" />
+  </wsdl:message>
+  <wsdl:message name="HallOfFameByRatingSoapOut">
+    <wsdl:part name="parameters" element="tns:HallOfFameByRatingResponse" />
+  </wsdl:message>
   <wsdl:message name="DefinitionLookupSoapIn">
     <wsdl:part name="parameters" element="tns:DefinitionLookup" />
   </wsdl:message>
@@ -1018,6 +1092,21 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Answer a translation request.</wsdl:documentation>
       <wsdl:input message="tns:TranslationAnswerAddSoapIn" />
       <wsdl:output message="tns:TranslationAnswerAddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TranslationAnswerRate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rate a translation answer.</wsdl:documentation>
+      <wsdl:input message="tns:TranslationAnswerRateSoapIn" />
+      <wsdl:output message="tns:TranslationAnswerRateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HallOfFameByQuantity">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the users in the Hall of Fame, for Most Active.</wsdl:documentation>
+      <wsdl:input message="tns:HallOfFameByQuantitySoapIn" />
+      <wsdl:output message="tns:HallOfFameByQuantitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HallOfFameByRating">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the users in the Hall of Fame by highest User Score.</wsdl:documentation>
+      <wsdl:input message="tns:HallOfFameByRatingSoapIn" />
+      <wsdl:output message="tns:HallOfFameByRatingSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="DefinitionLookup">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Dictionary definition lookup service. (PUBLIC / SESSIONLESS)</wsdl:documentation>
@@ -1322,6 +1411,33 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationAnswerAdd">
       <soap:operation soapAction="http://service.omniproject.org/TranslationAnswerAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationAnswerRate">
+      <soap:operation soapAction="http://service.omniproject.org/TranslationAnswerRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HallOfFameByQuantity">
+      <soap:operation soapAction="http://service.omniproject.org/HallOfFameByQuantity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HallOfFameByRating">
+      <soap:operation soapAction="http://service.omniproject.org/HallOfFameByRating" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1640,6 +1756,33 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationAnswerAdd">
       <soap12:operation soapAction="http://service.omniproject.org/TranslationAnswerAdd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationAnswerRate">
+      <soap12:operation soapAction="http://service.omniproject.org/TranslationAnswerRate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HallOfFameByQuantity">
+      <soap12:operation soapAction="http://service.omniproject.org/HallOfFameByQuantity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HallOfFameByRating">
+      <soap12:operation soapAction="http://service.omniproject.org/HallOfFameByRating" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -43,6 +43,7 @@ namespace Omni.Web.Translation
             }
             JSONObjectCollection collection = new JSONObjectCollection();
             collection.Add(new JSONStringValue("status"), new JSONStringValue(status));
+            collection.Add(new JSONStringValue("reqid"), new JSONNumberValue(reqid));
             context.Response.Write(collection.ToString());
         }
 

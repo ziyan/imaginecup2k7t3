@@ -49,6 +49,17 @@ namespace Omni.Web
             return collection;
         }
 
+        public static JSONObjectCollection getUserRankJSON(Client.UserRank us)
+        {
+            JSONObjectCollection collection = new JSONObjectCollection();
+            if (us != null)
+            {
+                collection.Add(new JSONStringValue("user"), getUserJSON(us.User));
+                collection.Add(new JSONStringValue("rank"), new JSONStringValue(us.Rank.ToString()));
+            }
+            return collection;
+        }
+
         public static JSONObjectCollection getTranslationJSON(Client.Translation t)
         {
 
@@ -78,6 +89,7 @@ namespace Omni.Web
                     collection.Add(new JSONStringValue("trans_date"), new JSONStringValue(t.TransDate.ToString()));
                     collection.Add(new JSONStringValue("trans_user"), new JSONStringValue(t.TransUser.ToString()));
                     collection.Add(new JSONStringValue("trans_username"), new JSONStringValue(t.TransUsername.ToString()));
+                    collection.Add(new JSONStringValue("user_rating"), new JSONStringValue(t.UserRating.ToString()));
                 }
             }
             return collection;

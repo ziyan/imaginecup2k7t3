@@ -496,7 +496,7 @@ namespace Omni.Data
 
             return result;
         }
-        public static Translation[] TranslationAnswersGetByReqId(int req_id, Connection connection)
+        public static Translation[] TranslationAnswersGetByReqId(int user_id, int req_id, Connection connection)
         {
             SqlCommand cmd = GetStoredProcedure("omni_trans_get_by_req_id", connection);
             SetStoredProcedureParameter(cmd, "@req_id", SqlDbType.Int, req_id);
@@ -518,10 +518,19 @@ namespace Omni.Data
                                         Convert.ToString(reader["trans_message"]),
                                         Convert.ToInt32(reader["rating"]),
                                         Convert.ToDateTime(reader["ans_date"]),
-                                        Convert.ToInt32(reader["ans_user_id"]), ""));
+                                        Convert.ToInt32(reader["ans_user_id"]), "", 0));
             }
             reader.Close();
             reader.Dispose();
+
+            foreach (Translation t in results)
+            {
+                cmd = GetStoredProcedure("omni_trans_ans_rate_get_by_id", connection);
+                SetStoredProcedureParameter(cmd, "@ans_id", SqlDbType.Int, t.trans_id);
+                SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+                object result = cmd.ExecuteScalar();
+                t.user_rating = (result == null) ? 0 : Convert.ToInt32(result);
+            }
 
             return results.ToArray();
         }
@@ -548,6 +557,101 @@ namespace Omni.Data
             SetStoredProcedureParameter(cmd, "@dst_type", SqlDbType.TinyInt, dst_type);
             object result = cmd.ExecuteScalar();
             return (result == null) ? 0 : Convert.ToInt32(result);
+        }
+
+        public static int TranslationAnswerRate(int user_id, int trans_ans_id, int rating, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_ans_rate_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SetStoredProcedureParameter(cmd, "@trans_ans_id", SqlDbType.Int, trans_ans_id);
+            SetStoredProcedureParameter(cmd, "@rating", SqlDbType.Int, rating);
+            object result = cmd.ExecuteScalar();
+            return (result == null) ? 0 : Convert.ToInt32(result);
+        }
+        #endregion
+
+        #region Hall of Fame
+
+        public static UserRank[] HallOfFameByQuantity(int user_id, float interval, int maxresults, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_rank_by_quantity", connection);
+            SetStoredProcedureParameter(cmd, "@interval", SqlDbType.Float, interval);
+
+            List<UserRank> users = new List<UserRank>();
+            SqlDataReader reader = cmd.ExecuteReader();
+            int i = 0;
+            // Don't need their login date
+            while (reader.Read() && i < maxresults)
+            {
+                User u = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now, Convert.ToSingle(reader["user_rating"]));
+                users.Add(new UserRank(u, Convert.ToSingle(reader["quantity"])));
+                i++;
+            }
+            reader.Close();
+            reader.Dispose();
+
+            foreach (UserRank us in users)
+            {
+                if (user_id == 0)
+                {
+                    us.user.email = "";
+                    us.user.sn_network = "";
+                    us.user.sn_screenname = "";
+                    us.user.description = "";
+                }
+                else if (us.user.id != user_id)
+                {
+                    if (FriendsCheckFriendPair(us.user.id, user_id, connection) == 0)
+                    {
+                        // Not the profile user's friend, remove contact info
+                        us.user.email = "";
+                        us.user.sn_network = "";
+                        us.user.sn_screenname = "";
+                    }
+                }
+            }
+
+            return users.ToArray();
+        }
+
+        public static UserRank[] HallOfFameByRating(int user_id, int maxresults, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_rank_by_rating", connection);
+
+            List<UserRank> users = new List<UserRank>();
+            SqlDataReader reader = cmd.ExecuteReader();
+            int i = 0;
+            // Don't need their login date
+            while (reader.Read() && i < maxresults)
+            {
+                User u = new User((int)reader["id"], reader["username"].ToString(), reader["name"].ToString(), reader["email"].ToString(), reader["description"].ToString(), reader["sn_network"].ToString(), reader["sn_screenname"].ToString(), Convert.ToDateTime(reader["reg_date"]), DateTime.Now, Convert.ToSingle(reader["user_rating"]));
+                users.Add(new UserRank(u, Convert.ToSingle(reader["user_rating"])));
+                i++;
+            }
+            reader.Close();
+            reader.Dispose();
+
+            foreach (UserRank us in users)
+            {
+                if (user_id == 0)
+                {
+                    us.user.email = "";
+                    us.user.sn_network = "";
+                    us.user.sn_screenname = "";
+                    us.user.description = "";
+                }
+                else if (us.user.id != user_id)
+                {
+                    if (FriendsCheckFriendPair(us.user.id, user_id, connection) == 0)
+                    {
+                        // Not the profile user's friend, remove contact info
+                        us.user.email = "";
+                        us.user.sn_network = "";
+                        us.user.sn_screenname = "";
+                    }
+                }
+            }
+            return users.ToArray();
         }
 
         #endregion

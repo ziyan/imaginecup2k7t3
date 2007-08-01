@@ -95,6 +95,12 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback TranslationAnswerAddOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TranslationAnswerRateOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback HallOfFameByQuantityOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback HallOfFameByRatingOperationCompleted;
+        
         private System.Threading.SendOrPostCallback DefinitionLookupOperationCompleted;
         
         private System.Threading.SendOrPostCallback TranslationLookupOperationCompleted;
@@ -235,6 +241,15 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event TranslationAnswerAddCompletedEventHandler TranslationAnswerAddCompleted;
+        
+        /// <remarks/>
+        public event TranslationAnswerRateCompletedEventHandler TranslationAnswerRateCompleted;
+        
+        /// <remarks/>
+        public event HallOfFameByQuantityCompletedEventHandler HallOfFameByQuantityCompleted;
+        
+        /// <remarks/>
+        public event HallOfFameByRatingCompletedEventHandler HallOfFameByRatingCompleted;
         
         /// <remarks/>
         public event DefinitionLookupCompletedEventHandler DefinitionLookupCompleted;
@@ -1276,6 +1291,97 @@ namespace Omni.Client.org.omniproject.service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationAnswerRate", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int TranslationAnswerRate(int trans_ans_id, int rating, System.Guid session) {
+            object[] results = this.Invoke("TranslationAnswerRate", new object[] {
+                        trans_ans_id,
+                        rating,
+                        session});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationAnswerRateAsync(int trans_ans_id, int rating, System.Guid session) {
+            this.TranslationAnswerRateAsync(trans_ans_id, rating, session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationAnswerRateAsync(int trans_ans_id, int rating, System.Guid session, object userState) {
+            if ((this.TranslationAnswerRateOperationCompleted == null)) {
+                this.TranslationAnswerRateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationAnswerRateOperationCompleted);
+            }
+            this.InvokeAsync("TranslationAnswerRate", new object[] {
+                        trans_ans_id,
+                        rating,
+                        session}, this.TranslationAnswerRateOperationCompleted, userState);
+        }
+        
+        private void OnTranslationAnswerRateOperationCompleted(object arg) {
+            if ((this.TranslationAnswerRateCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationAnswerRateCompleted(this, new TranslationAnswerRateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/HallOfFameByQuantity", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserRank[] HallOfFameByQuantity(System.Guid session) {
+            object[] results = this.Invoke("HallOfFameByQuantity", new object[] {
+                        session});
+            return ((UserRank[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void HallOfFameByQuantityAsync(System.Guid session) {
+            this.HallOfFameByQuantityAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void HallOfFameByQuantityAsync(System.Guid session, object userState) {
+            if ((this.HallOfFameByQuantityOperationCompleted == null)) {
+                this.HallOfFameByQuantityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnHallOfFameByQuantityOperationCompleted);
+            }
+            this.InvokeAsync("HallOfFameByQuantity", new object[] {
+                        session}, this.HallOfFameByQuantityOperationCompleted, userState);
+        }
+        
+        private void OnHallOfFameByQuantityOperationCompleted(object arg) {
+            if ((this.HallOfFameByQuantityCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.HallOfFameByQuantityCompleted(this, new HallOfFameByQuantityCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/HallOfFameByRating", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public UserRank[] HallOfFameByRating(System.Guid session) {
+            object[] results = this.Invoke("HallOfFameByRating", new object[] {
+                        session});
+            return ((UserRank[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void HallOfFameByRatingAsync(System.Guid session) {
+            this.HallOfFameByRatingAsync(session, null);
+        }
+        
+        /// <remarks/>
+        public void HallOfFameByRatingAsync(System.Guid session, object userState) {
+            if ((this.HallOfFameByRatingOperationCompleted == null)) {
+                this.HallOfFameByRatingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnHallOfFameByRatingOperationCompleted);
+            }
+            this.InvokeAsync("HallOfFameByRating", new object[] {
+                        session}, this.HallOfFameByRatingOperationCompleted, userState);
+        }
+        
+        private void OnHallOfFameByRatingOperationCompleted(object arg) {
+            if ((this.HallOfFameByRatingCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.HallOfFameByRatingCompleted(this, new HallOfFameByRatingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/DefinitionLookup", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string DefinitionLookup(string lang, string word) {
             object[] results = this.Invoke("DefinitionLookup", new object[] {
@@ -1493,6 +1599,39 @@ namespace Omni.Client.org.omniproject.service {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
+    public partial class UserRank {
+        
+        private User userField;
+        
+        private float rankField;
+        
+        /// <remarks/>
+        public User user {
+            get {
+                return this.userField;
+            }
+            set {
+                this.userField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float rank {
+            get {
+                return this.rankField;
+            }
+            set {
+                this.rankField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.42")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://service.omniproject.org/")]
     public partial class Translation {
         
         private TransType typeField;
@@ -1532,6 +1671,8 @@ namespace Omni.Client.org.omniproject.service {
         private int trans_userField;
         
         private string trans_usernameField;
+        
+        private int user_ratingField;
         
         /// <remarks/>
         public TransType type {
@@ -1720,6 +1861,16 @@ namespace Omni.Client.org.omniproject.service {
             }
             set {
                 this.trans_usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int user_rating {
+            get {
+                return this.user_ratingField;
+            }
+            set {
+                this.user_ratingField = value;
             }
         }
     }
@@ -2733,6 +2884,84 @@ namespace Omni.Client.org.omniproject.service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationAnswerRateCompletedEventHandler(object sender, TranslationAnswerRateCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationAnswerRateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationAnswerRateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void HallOfFameByQuantityCompletedEventHandler(object sender, HallOfFameByQuantityCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class HallOfFameByQuantityCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal HallOfFameByQuantityCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserRank[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserRank[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void HallOfFameByRatingCompletedEventHandler(object sender, HallOfFameByRatingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class HallOfFameByRatingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal HallOfFameByRatingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserRank[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserRank[])(this.results[0]));
             }
         }
     }

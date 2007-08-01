@@ -494,7 +494,10 @@ namespace Omni.Service
         public Data.Translation[] TranslationAnswersGetByReqId(int req_id, Guid session)
         {
             ServiceSession Session = ServiceSession.Get(session);
-            Data.Translation[] trans = Data.StoredProcedure.TranslationAnswersGetByReqId(req_id, Session.Connection);
+            int user_id = 0;
+            if (Session.UserContext.User != null) user_id = Session.UserContext.User.id;
+
+            Data.Translation[] trans = Data.StoredProcedure.TranslationAnswersGetByReqId(user_id, req_id, Session.Connection);
 
             if (trans != null)
             {
@@ -543,7 +546,51 @@ namespace Omni.Service
             return Data.StoredProcedure.TranslationAnswerAdd(Session.UserContext.User.id, req_id, message, Session.Connection);
         }
 
+        /// <summary>
+        /// Rate a translation answer.
+        /// </summary>
+        /// <param name="trans_ans_id">translation answer id</param>
+        /// <param name="rating">answer rating</param>
+        /// <param name="session">session id</param>
+        /// <returns>0 for success</returns>
+        [WebMethod(Description = "Rate a translation answer.")]
+        public int TranslationAnswerRate(int trans_ans_id, int rating, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.TranslationAnswerRate(Session.UserContext.User.id, trans_ans_id, rating, Session.Connection);
+        }
+
         #endregion
+
+
+        #region Hall of Fame
+        /// <summary>
+        /// Get the users in the Hall of Fame, for Most Active.
+        /// </summary>>
+        /// <returns>Array of UserRank objects (users/ranks) (Max 40)</returns>
+        [WebMethod(Description = "Get the users in the Hall of Fame, for Most Active.")]
+        public Data.UserRank[] HallOfFameByQuantity(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            int user_id = 0;
+            if (Session.UserContext.User != null) user_id = Session.UserContext.User.id;
+            return Data.StoredProcedure.HallOfFameByQuantity(user_id, 30, 40, Session.Connection);
+        }
+        /// <summary>
+        /// Get the users in the Hall of Fame by highest User Score.
+        /// </summary>>
+        /// <returns>Array of UserRank objects (users/ranks) (Max 40)</returns>
+        [WebMethod(Description = "Get the users in the Hall of Fame by highest User Score.")]
+        public Data.UserRank[] HallOfFameByRating(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            int user_id = 0;
+            if (Session.UserContext.User != null) user_id = Session.UserContext.User.id;
+            return Data.StoredProcedure.HallOfFameByRating(user_id, 40, Session.Connection);
+        }
+        #endregion
+
 
         #region Lookup service
         /// <summary>

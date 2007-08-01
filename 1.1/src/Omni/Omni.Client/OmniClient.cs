@@ -688,7 +688,82 @@ namespace Omni.Client
             return 1;
         }
 
+        /// <summary>
+        /// Rate an existing translation answer.
+        /// </summary>
+        /// <returns>0 for success</returns>
+        public int TranslationAnswerRate(int trans_ans_id, int rating)
+        {
+            CheckSession();
+            try
+            {
+                return service.TranslationAnswerRate(trans_ans_id, rating, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return 1;
+        }
+
         #endregion
+
+
+        #region Hall of Fame
+
+        /// <summary>
+        /// Get the users in the Hall of Fame, for Most Active.
+        /// </summary>
+        /// <returns>Array of UserRank</returns>
+        public UserRank[] HallOfFameByQuantity()
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.UserRank[] svcUsers = service.HallOfFameByQuantity(session);
+                if (svcUsers == null) return null;
+                UserRank[] users = new UserRank[svcUsers.Length];
+                for (int i = 0; i < users.Length; i++)
+                {
+                    users[i] = new UserRank(svcUsers[i]);
+                }
+                return users;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get the users in the Hall of Fame, by highest User Score.
+        /// </summary>
+        /// <returns>Array of UserRank</returns>
+        public UserRank[] HallOfFameByRating()
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.UserRank[] svcUsers = service.HallOfFameByRating(session);
+                if (svcUsers == null) return null;
+                UserRank[] users = new UserRank[svcUsers.Length];
+                for (int i = 0; i < users.Length; i++)
+                {
+                    users[i] = new UserRank(svcUsers[i]);
+                }
+                return users;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        #endregion
+
+
 
         #region Lookup service
         /// <summary>
