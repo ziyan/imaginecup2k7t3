@@ -229,7 +229,7 @@ function view_trans_details_ans_callback()
 
 var view_trans_active_tab_id = null;
 var trans_details_active_trans_id = null;
-function view_trans_init()
+function view_trans_init(retrieve)
 {
     if(trans_details_active_trans_id == null)
         $("transdetailpanel").style.display = "none";
@@ -264,15 +264,16 @@ function view_trans_init()
     {
         if(view_trans_active_tab_id.indexOf("AllTranslations")>-1)
         {
+            // No retrieve check since they have to search before an ajax request anyway
             view_trans_all_init();
         }
         else if(view_trans_active_tab_id.indexOf("MyTranslations")>-1)
         {
-            view_trans_mine_init();
+            if(retrieve) view_trans_mine_init();
         }
         else if(view_trans_active_tab_id.indexOf("NeedApproval")>-1)
         {
-            view_trans_approval_init();
+            if(retrieve) view_trans_approval_init();
         }
     }
 }
@@ -420,7 +421,7 @@ function view_trans_search_callback()
 function view_trans_tab_change(str)
 {
     view_trans_active_tab_id = str;
-    view_trans_init();
+    view_trans_init(true);
 }
 
 

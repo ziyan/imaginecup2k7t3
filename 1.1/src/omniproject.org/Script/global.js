@@ -60,10 +60,13 @@ function clear_cached_results()
     friends_removed_friend = null;
     friends_added_friend = null;
     friends_list_retrieve_silent_callback = null;
+    omni_profile_panel_reset();
     // trans.js
     view_trans_active_tab_id = null;
     trans_details_active_trans_id = null;
     view_trans_details_req_obj = null;
     view_trans_details_ans_obj = null;
-    view_trans_init();
+    view_trans_init(false);
+    // halloffame.js
+    hall_of_fame_init(false);
 }

@@ -293,5 +293,15 @@
 	"RequestTransTextToTrans":"Text to Translate:",
 	"RequestTransSubmit":"Submit Request",
 	"RequestTransErrorMissingFields":"Error: Fill out all fields.",
-	"RequestTransStatusError":"系统出错, 请稍候再试"
+	"RequestTransStatusError":"系统出错, 请稍候再试",
+	
+	"HallOfFameTitle":"Hall of Fame",
+	"HallOfFameOverview":"The users listed below have worked hard to help other Omni users learn languages. Please join us in thanking and congratulating them.",
+	"HallOfFameByQuantity":"Most active users (Last 30 days)",
+	"HallOfFameByRating":"Highest ranked users (All Time)",
+	"HallOfFameRatingOverview":"User ratings are calculated by adding up the quality ratings from all the of the translations that the user has performed.",
+	"HallOfFameRank":"Rank",
+	"HallOfFameMyRating":"My rating:",
+	"HallOfFameStatusError":"System error, please try again later",
+	"HallOfFameLoading":" 加载中 ... "
 }

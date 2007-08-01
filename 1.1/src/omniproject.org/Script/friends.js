@@ -62,8 +62,16 @@ function profile_interests_table(ids, prefix)
 // Omni Profile Panel
 function omni_profile_panel_reset()
 {
-    $("omniprofilepanel_content_empty").style.display = "block";
-    $("omniprofilepanel_content").style.display = "none";
+    if(!user_is_logged_in())
+    {
+        $("omniprofilepanel").style.display = "none";
+    }
+    else
+    {
+        $("omniprofilepanel").style.display = "";
+        $("omniprofilepanel_content_empty").style.display = "block";
+        $("omniprofilepanel_content").style.display = "none";
+    }
 }
 
 var omni_profile_panel_user = null;
@@ -452,3 +460,4 @@ function get_introduced_callback()
     }
     else table.innerHTML = "<span id=\"Omni_Localized_GetIntroducedNoMatch\" style=\"color:green;\">"+lang_getText("GetIntroducedNoMatch")+"</span>";
 }
+

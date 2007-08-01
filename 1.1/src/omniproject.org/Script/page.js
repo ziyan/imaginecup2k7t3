@@ -153,6 +153,9 @@ function page_change(page_name, param)
         case "RequestTrans":
             page_goto_request_trans(param);
             break;
+        case "HallOfFame":
+            page_goto_hall_of_fame();
+            break;            
         default:
             page_name = "Home";
             page_goto_home();
@@ -316,4 +319,17 @@ function page_goto_request_trans(param)
     request_trans_init(param);
     //set_view_trans_tab("ViewTransTabMyTranslations");
     //view_trans_init();
+}
+
+function page_goto_hall_of_fame()
+{
+    if(user_is_logged_in())
+    {
+        page_layout_equal_left_right();
+        content_right.appendChild($("omniprofilepanel"));
+    }
+    else page_layout_big_left_right();
+    content_left.appendChild($("halloffamepanel"));
+    omni_profile_panel_reset();
+    hall_of_fame_init();
 }

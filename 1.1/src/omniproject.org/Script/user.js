@@ -191,8 +191,7 @@ function user_logout()
     user_info_clear();
     
     // Clear cache of any saved data from last user
-    clear_cached_results();
-    
+    clear_cached_results();    
     user_state_update();
 }
 function user_logout_callback()

@@ -12,6 +12,7 @@
     <script type="text/javascript" src="Script/system.js"></script>
     <script type="text/javascript" src="Script/page.js"></script>    
     <script type="text/javascript" src="Script/user.js"></script>
+    <script type="text/javascript" src="Script/halloffame.js"></script>
     <script type="text/javascript" src="Script/friends.js"></script>    
     <script type="text/javascript" src="Script/trans.js"></script>
     <script type="text/javascript" src="Script/service.js"></script>
@@ -676,6 +677,45 @@
         </div>
     </div>
     <!--end of requesttranspanel-->
+    <!--begin of halloffamepanel-->
+    <div id="halloffamepanel" class="standardpanel">
+        <div class="title">
+            <span id="Omni_Localized_HallOfFameTitle">Hall of Fame</span>
+        </div>
+        <div class="content" style="margin-bottom: 30px;">
+            <table id="halloffamepanel_myratingtable">
+                <tr>
+                    <td class="colheading">
+                        <img alt="" src="image/info.gif" title="info" />&nbsp;&nbsp;<span id="Omni_Localized_HallOfFameMyRating">My
+                            rating:</span></td>
+                    <td style="width: 15px;">
+                    </td>
+                    <td>
+                        <span id="halloffamepanel_myrating"></span>
+                    </td>
+                </tr>
+            </table>
+            <p style="margin: 4px; margin-bottom: 14px; line-height: 20px;">
+                <span id="Omni_Localized_HallOfFameOverview">The users listed below have worked hard
+                    to help other Omni users learn languages. Please join us in thanking and congratulating
+                    them.</span>
+            </p>
+            <span id="Omni_Localized_HallOfFameByRating" style="line-height: 20px;" class="heading">
+                Highest ranked users (All Time)</span><br />
+            <p style="margin: 4px; margin-bottom: 14px; line-height: 20px;">
+                <img alt="" src="image/info.gif" title="info" />&nbsp;&nbsp; <span id="Omni_Localized_HallOfFameRatingOverview">
+                    User ratings are calculated by adding up the quality ratings from all the of the
+                    translations that the user has performed.</span>
+            </p>
+            <span id="halloffamepanel_byratingtable"></span>
+            <br />
+            <span id="Omni_Localized_HallOfFameByQuantity" style="line-height: 20px;" class="heading">
+                Most active users (Last 30 days)</span><br />
+            <span id="halloffamepanel_byquantitytable"></span>
+            <br />
+        </div>
+    </div>
+    <!--end of halloffamepanel-->
 </div>
 
 </body>
