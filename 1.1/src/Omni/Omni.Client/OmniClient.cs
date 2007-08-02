@@ -706,6 +706,26 @@ namespace Omni.Client
             return 1;
         }
 
+        /// <summary>
+        /// Close a translation request (opened by the current user) by approving a specific answer.
+        /// </summary>
+        /// <param name="req_id">req_id</param>
+        /// <param name="ans_id">ans_id</param>
+        /// <returns>0 for success</returns>
+        public int TranslationRequestClose(int req_id, int ans_id)
+        {
+            CheckSession();
+            try
+            {
+                return service.TranslationRequestClose(req_id, ans_id, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return 1;
+        }
+
         #endregion
 
 

@@ -561,6 +561,21 @@ namespace Omni.Service
             return Data.StoredProcedure.TranslationAnswerRate(Session.UserContext.User.id, trans_ans_id, rating, Session.Connection);
         }
 
+        /// <summary>
+        /// Close a translation request (opened by the current user) by approving a specific answer.
+        /// </summary>
+        /// <param name="req_id">req_id</param>
+        /// <param name="ans_id">ans_id</param>
+        /// <param name="session">session id</param>
+        /// <returns>0 for success</returns>
+        [WebMethod(Description = "Close a translation request (opened by the current user) by approving a specific answer.")]
+        public int TranslationRequestClose(int req_id, int ans_id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.TranslationRequestClose(Session.UserContext.User.id, req_id, ans_id, Session.Connection);
+        }
+
         #endregion
 
 

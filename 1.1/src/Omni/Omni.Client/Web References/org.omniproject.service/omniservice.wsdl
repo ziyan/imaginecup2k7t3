@@ -620,6 +620,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="TranslationRequestClose">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ans_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranslationRequestCloseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TranslationRequestCloseResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HallOfFameByQuantity">
         <s:complexType>
           <s:sequence>
@@ -903,6 +919,12 @@
   <wsdl:message name="TranslationAnswerRateSoapOut">
     <wsdl:part name="parameters" element="tns:TranslationAnswerRateResponse" />
   </wsdl:message>
+  <wsdl:message name="TranslationRequestCloseSoapIn">
+    <wsdl:part name="parameters" element="tns:TranslationRequestClose" />
+  </wsdl:message>
+  <wsdl:message name="TranslationRequestCloseSoapOut">
+    <wsdl:part name="parameters" element="tns:TranslationRequestCloseResponse" />
+  </wsdl:message>
   <wsdl:message name="HallOfFameByQuantitySoapIn">
     <wsdl:part name="parameters" element="tns:HallOfFameByQuantity" />
   </wsdl:message>
@@ -1097,6 +1119,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rate a translation answer.</wsdl:documentation>
       <wsdl:input message="tns:TranslationAnswerRateSoapIn" />
       <wsdl:output message="tns:TranslationAnswerRateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TranslationRequestClose">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Close a translation request (opened by the current user) by approving a specific answer.</wsdl:documentation>
+      <wsdl:input message="tns:TranslationRequestCloseSoapIn" />
+      <wsdl:output message="tns:TranslationRequestCloseSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HallOfFameByQuantity">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the users in the Hall of Fame, for Most Active.</wsdl:documentation>
@@ -1420,6 +1447,15 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationAnswerRate">
       <soap:operation soapAction="http://service.omniproject.org/TranslationAnswerRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationRequestClose">
+      <soap:operation soapAction="http://service.omniproject.org/TranslationRequestClose" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1765,6 +1801,15 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationAnswerRate">
       <soap12:operation soapAction="http://service.omniproject.org/TranslationAnswerRate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TranslationRequestClose">
+      <soap12:operation soapAction="http://service.omniproject.org/TranslationRequestClose" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -97,6 +97,8 @@ namespace Omni.Client.org.omniproject.service {
         
         private System.Threading.SendOrPostCallback TranslationAnswerRateOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TranslationRequestCloseOperationCompleted;
+        
         private System.Threading.SendOrPostCallback HallOfFameByQuantityOperationCompleted;
         
         private System.Threading.SendOrPostCallback HallOfFameByRatingOperationCompleted;
@@ -244,6 +246,9 @@ namespace Omni.Client.org.omniproject.service {
         
         /// <remarks/>
         public event TranslationAnswerRateCompletedEventHandler TranslationAnswerRateCompleted;
+        
+        /// <remarks/>
+        public event TranslationRequestCloseCompletedEventHandler TranslationRequestCloseCompleted;
         
         /// <remarks/>
         public event HallOfFameByQuantityCompletedEventHandler HallOfFameByQuantityCompleted;
@@ -1320,6 +1325,39 @@ namespace Omni.Client.org.omniproject.service {
             if ((this.TranslationAnswerRateCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.TranslationAnswerRateCompleted(this, new TranslationAnswerRateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://service.omniproject.org/TranslationRequestClose", RequestNamespace="http://service.omniproject.org/", ResponseNamespace="http://service.omniproject.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int TranslationRequestClose(int req_id, int ans_id, System.Guid session) {
+            object[] results = this.Invoke("TranslationRequestClose", new object[] {
+                        req_id,
+                        ans_id,
+                        session});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TranslationRequestCloseAsync(int req_id, int ans_id, System.Guid session) {
+            this.TranslationRequestCloseAsync(req_id, ans_id, session, null);
+        }
+        
+        /// <remarks/>
+        public void TranslationRequestCloseAsync(int req_id, int ans_id, System.Guid session, object userState) {
+            if ((this.TranslationRequestCloseOperationCompleted == null)) {
+                this.TranslationRequestCloseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTranslationRequestCloseOperationCompleted);
+            }
+            this.InvokeAsync("TranslationRequestClose", new object[] {
+                        req_id,
+                        ans_id,
+                        session}, this.TranslationRequestCloseOperationCompleted, userState);
+        }
+        
+        private void OnTranslationRequestCloseOperationCompleted(object arg) {
+            if ((this.TranslationRequestCloseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TranslationRequestCloseCompleted(this, new TranslationRequestCloseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2901,6 +2939,32 @@ namespace Omni.Client.org.omniproject.service {
         private object[] results;
         
         internal TranslationAnswerRateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    public delegate void TranslationRequestCloseCompletedEventHandler(object sender, TranslationRequestCloseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TranslationRequestCloseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TranslationRequestCloseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

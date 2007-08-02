@@ -568,6 +568,16 @@ namespace Omni.Data
             object result = cmd.ExecuteScalar();
             return (result == null) ? 0 : Convert.ToInt32(result);
         }
+
+        public static int TranslationRequestClose(int user_id, int req_id, int ans_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_trans_req_close", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SetStoredProcedureParameter(cmd, "@req_id", SqlDbType.Int, req_id);
+            SetStoredProcedureParameter(cmd, "@ans_id", SqlDbType.Int, ans_id);
+            object result = cmd.ExecuteScalar();
+            return (result == null) ? 0 : Convert.ToInt32(result);
+        }
         #endregion
 
         #region Hall of Fame
