@@ -127,15 +127,15 @@ function get_trans_ans_table(translations)
     {
     var tablestr = "<table class=\"transtable\" style=\"font-size: 95%;\" cellpadding=\"2\" ><tr class=\"header\"><td>"+lang_getHTML("TransHeaderDate","DetailAns"+x)+"</td>";
     tablestr += "<td>"+lang_getHTML("TransHeaderTranslator","DetailAns"+x)+"</td>";
-    if(translations[x].user_rating > 0)
+    if(translations[x].user_rating > 0 || translations[x].trans_user == user_current_id)
         tablestr += "<td>"+lang_getHTML("TransHeaderRating","DetailAns"+x)+"</td></tr>";
     else tablestr += "<td>"+lang_getHTML("TransDetailPleaseRate","DetailAns"+x)+"</td></tr>";
     tablestr += "<tr class\"data\">";
     tablestr += "<td>"+translations[x].trans_date+"</td>";
     tablestr += "<td>"+translations[x].trans_username+"</td>";
     var ratertype = 1;
-    if(!user_is_logged_in()) ratertype = 0;
-    tablestr += "<td>"+rater_create("TransAns"+x,ratertype,parseInt(translations[x].trans_rating),translations[x].user_rating)+"</td>";
+    if(!user_is_logged_in() || translations[x].trans_user == user_current_id) ratertype = 0;
+    tablestr += "<td>"+rater_create("TransAnsRater"+x,ratertype,parseInt(translations[x].trans_rating),translations[x].user_rating)+"</td>";
     tablestr += "</tr>";
     tablestr += "<tr class=\"data\"><td colspan=\"3\"><textarea cols=\"40\" rows=\"4\" readonly=\"readonly\" style=\"width:99%\">"+translations[x].trans_body+"</textarea></td><tr>";
     tablestr += "</table>";
@@ -153,6 +153,12 @@ var view_trans_details_ans_obj = null;
 
 function view_trans_details(id)
 {
+    if(id == undefined || id == null)
+    {
+        $("transdetailpanel").style.display = 'none';
+        return; // For render after page reload
+    }
+
     trans_details_active_trans_id = id;
     $("transdetailpanel").style.display = '';
     $("transdetailpanel").scrollIntoView();
@@ -187,6 +193,7 @@ function view_trans_details_req_callback()
     if(status=="OK")
     {
         var result = view_trans_details_req_ajax.getJSON().result;
+        view_trans_details_req_obj = result;
         $("transdetailpanel_req").innerHTML=get_trans_req_table(result);
         if(result.user_id == user_current_id)
             $("transdetailpanel_submit").style.display = 'none';
@@ -209,6 +216,7 @@ function view_trans_details_ans_callback()
     if(status=="OK")
     {
         var results = view_trans_details_ans_ajax.getJSON().results;
+        view_trans_details_ans_obj = results;
         $("transdetailpanel_ans").innerHTML=get_trans_ans_table(results);
         for(var x=0;x<results.length;x++)
         {
@@ -449,7 +457,7 @@ function perform_trans_personal_callback()
     //if(status=="OK")
     {
         var results = perform_trans_personal_ajax.getJSON().results;
-        $("performtrans_personal").innerHTML=get_trans_table("PerformPersonal", results, false, true, true, false);
+        $("performtrans_personal").innerHTML=get_trans_table("PerformPersonal", results, false, true, true, true);
     }
     /*else
     {
@@ -583,8 +591,6 @@ function request_trans_submit()
     var srclangid = $("requesttranspanel_srclang").options[$("requesttranspanel_srclang").selectedIndex].value;
     var dstlangid = $("requesttranspanel_dstlang").options[$("requesttranspanel_dstlang").selectedIndex].value;
     var dsttype = $("requesttranspanel_dsttype").options[$("requesttranspanel_dsttype").selectedIndex].value;
-    
-    // FIXME: Request Translation from Omni profile panel
     
     var dstid = 0;
     if(dsttype == 1) // Specific User

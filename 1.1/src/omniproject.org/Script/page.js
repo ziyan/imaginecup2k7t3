@@ -299,7 +299,8 @@ function page_goto_view_trans()
     page_layout_equal_left_right();
     content_right.appendChild($("transdetailpanel"));
     content_left.appendChild($("viewtranspanel"));
-    view_trans_init();
+    view_trans_init(true);
+    view_trans_details(null);
 }
 
 function page_goto_perform_trans()
@@ -308,6 +309,7 @@ function page_goto_perform_trans()
     content_right.appendChild($("transdetailpanel"));
     content_left.appendChild($("performtranspanel"));
     perform_trans_init();
+    view_trans_details(null);
 }
 
 function page_goto_request_trans(param)

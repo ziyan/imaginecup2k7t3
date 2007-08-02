@@ -28,6 +28,8 @@ function rater_create(id, _type, current_rating, user_rating)
     return html;
 }
 
+var rate_answer_ajax = null;
+
 function rater_rate(id, type, score)
 {
     if(type==0||type==1)
@@ -42,7 +44,18 @@ function rater_rate(id, type, score)
     
     if(type==1)
     {
-        // FIXME: Handle rating or something
+        var rateridx = id.replace("TransAnsRater","");
+        if(view_trans_details_ans_obj == null) return;
+        var ansobj = view_trans_details_ans_obj[rateridx];
+        if(ansobj == undefined || ansobj == null) return;
+        var transansid = ansobj.trans_id;
+    
+        if(rate_answer_ajax == null) rate_answer_ajax = new AniScript.Web.Ajax();
+        rate_answer_ajax.setHandler(rate_answer_callback);
+        rate_answer_ajax.request(hosturl+"handler/translation/answerratehandler.ashx","transansid="+escape(transansid)+"&rating="+escape(score));
+        
+        ansobj.user_rating = score;
+        $("transdetailpanel_ans").innerHTML=get_trans_ans_table(view_trans_details_ans_obj);    
     
         $(id+"_user_rating").innerHTML = score;
         $(id+"_user_rating").style.width = ""+(score*25)+"px";
@@ -55,6 +68,11 @@ function rater_rate(id, type, score)
         $(id+"_current_rating").style.width = ""+(score*25)+"px";
     }
     $(id+"_rating").innerHTML=score;
+}
+
+function rate_answer_callback()
+{
+    // Don't do anything for now
 }
 
 function rater_get_rating(id)
