@@ -3,6 +3,8 @@
  */
 var lang_ajax = new AniScript.Web.Ajax(); //ajax object
 var lang_db = null; //json object
+var lang_placeholder_db = null; // For strings w/ placeholders
+// Note: Nothing in the placeholder DB should need localization
 
 //initialize the page
 function lang_init()
@@ -22,6 +24,8 @@ function lang_init()
         else
             lang_options[i].selected=false;
     }
+    if(lang_placeholder_db == null)
+        lang_placeholder_db = new Object();
     lang_load(lang_code);
 }
 //AniScript.Loader.add(lang_init);
@@ -113,7 +117,16 @@ function lang_display()
         {
             var key = spans[i].id.split("_")[2];
             if(lang_db[key]!=undefined)
-                spans[i].innerHTML = lang_db[key];
+            {
+                if(lang_check_placeholder_key(key))
+                {
+                    var fill = lang_placeholder_db[key];
+                    if(fill != undefined)
+                        spans[i].innerHTML = lang_fill_placeholder(key, fill);
+                    else spans[i].innerHTML = lang_db[key];
+                }
+                else spans[i].innerHTML = lang_db[key];
+            }
         }
     }
     //divs
@@ -190,7 +203,16 @@ function lang_display()
         {
             var key = links[i].id.split("_")[2];
             if(lang_db[key]!=undefined)
-                links[i].title = lang_db[key];
+            {
+                if(lang_check_placeholder_key(key))
+                {
+                    var fill = lang_placeholder_db[key];
+                    if(fill != undefined)
+                        links[i].title = lang_fill_placeholder(key, fill);
+                    else links[i].title = lang_db[key];
+                }
+                else links[i].title = lang_db[key];
+            }                
         }
     }
     //images
@@ -208,3 +230,35 @@ function lang_display()
         }
     }
 }
+
+
+// This might be a bad idea, but the only solution I see right now
+function lang_fill_placeholder(key, value, postfix)
+{
+    if(value==null || value=="") return lang_getText(key);
+    
+    if(postfix != undefined && postfix != null)
+    {
+        lang_placeholder_db[key+"_"+postfix] = value;
+    }
+    else
+    {
+        lang_placeholder_db[key] = value;
+    }
+    
+    return lang_getText(key).replace(localized_placeholder,value);
+}
+
+// true if key's string has a placeholder
+function lang_check_placeholder_key(key, value)
+{
+    return lang_getText(key).indexOf(localized_placeholder) > -1;
+}
+
+function lang_get_placeholder_span(key, value, postfix)
+{
+    if(postfix != undefined && postfix != null)
+        return "<span id=\"Omni_Localized_"+key+"_"+postfix+"\">"+lang_fill_placeholder(key, value, postfix)+"</span>";
+    else return "<span id=\"Omni_Localized_"+key+"\">"+lang_fill_placeholder(key, value, postfix)+"</span>";
+}
+

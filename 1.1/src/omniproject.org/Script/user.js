@@ -77,6 +77,9 @@ function user_state_update()
         $("form_user_login_password").value="";
         $("Omni_Localized_UserLoginSubmitButton").disabled=false;
         $("userpanel_status").innerHTML="";
+        
+        home_init(); // Re-initialize home page
+        
         page_update();
     }
     else
@@ -198,6 +201,23 @@ function user_logout_callback()
 {
     //if(!user_logout_ajax.isDone()) return;
 }
+
+
+
+function home_init()
+{
+    var title = $("Omni_Localized_UserPanelTitle");
+    if(title != undefined && title != null && user_current_obj != null)
+    {
+        title.innerHTML = lang_fill_placeholder("UserPanelTitle", user_current_obj.name);
+    }
+    else title.innerHTML = lang_fill_placeholder("UserPanelTitle", "");
+}
+
+
+
+
+
 
 
 //user register

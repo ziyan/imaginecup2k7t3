@@ -259,6 +259,8 @@ function page_goto_home()
     //content_center.appendChild($("servicetranspanel"));
     //content_left.appendChild($("servicedictpanel"));
     content_left.appendChild($("omnihomepanel"));
+    
+    home_init(); // see user.js
 }
 
 function page_goto_register()

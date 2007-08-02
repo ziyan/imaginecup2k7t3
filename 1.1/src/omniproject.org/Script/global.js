@@ -15,6 +15,10 @@ else
     if(hosturl.charAt(hosturl.length-1) != "/") hosturl = hosturl + "/";
 }
 
+// Placeholder for localized strings
+// Ex: "Welcome, __"
+var localized_placeholder = "__";
+
 // Global settings
 var loading_img = "<img alt=\"\" src=\"image/loading.gif\" title=\"loading\" style=\"width:16px;height:16px\" />";
 var error_img = "<img alt=\"\" src=\"image/error.gif\" title=\"error\"/>";
@@ -69,4 +73,6 @@ function clear_cached_results()
     view_trans_init(false);
     // halloffame.js
     hall_of_fame_init(false);
+    // lang.js
+    lang_placeholder_db = new Object();
 }

@@ -125,21 +125,25 @@ function get_trans_ans_table(translations)
     var allstr = "";
     for(var x=0; x < translations.length; x++)
     {
-    var tablestr = "<table class=\"transtable\" style=\"font-size: 95%;\" cellpadding=\"2\" ><tr class=\"header\"><td>"+lang_getHTML("TransHeaderDate","DetailAns"+x)+"</td>";
-    tablestr += "<td>"+lang_getHTML("TransHeaderTranslator","DetailAns"+x)+"</td>";
-    if(translations[x].user_rating > 0 || translations[x].trans_user == user_current_id)
-        tablestr += "<td>"+lang_getHTML("TransHeaderRating","DetailAns"+x)+"</td></tr>";
-    else tablestr += "<td>"+lang_getHTML("TransDetailPleaseRate","DetailAns"+x)+"</td></tr>";
-    tablestr += "<tr class\"data\">";
-    tablestr += "<td>"+translations[x].trans_date+"</td>";
-    tablestr += "<td>"+translations[x].trans_username+"</td>";
-    var ratertype = 1;
-    if(!user_is_logged_in() || translations[x].trans_user == user_current_id) ratertype = 0;
-    tablestr += "<td>"+rater_create("TransAnsRater"+x,ratertype,parseInt(translations[x].trans_rating),translations[x].user_rating)+"</td>";
-    tablestr += "</tr>";
-    tablestr += "<tr class=\"data\"><td colspan=\"3\"><textarea cols=\"40\" rows=\"4\" readonly=\"readonly\" style=\"width:99%\">"+translations[x].trans_body+"</textarea></td><tr>";
-    tablestr += "</table>";
-    allstr += tablestr+"<br /><br />"; 
+        var tablestr = "<table class=\"transtable\" style=\"font-size: 95%;\" cellpadding=\"2\" ><tr class=\"header\"><td>"+lang_getHTML("TransHeaderDate","DetailAns"+x)+"</td>";
+        tablestr += "<td>"+lang_getHTML("TransHeaderTranslator","DetailAns"+x)+"</td>";
+        if(translations[x].user_rating > 0 || translations[x].trans_user == user_current_id)
+            tablestr += "<td>"+lang_getHTML("TransHeaderRating","DetailAns"+x)+"</td></tr>";
+        else tablestr += "<td>"+lang_getHTML("TransDetailPleaseRate","DetailAns"+x)+"</td></tr>";
+        tablestr += "<tr class\"data\">";
+        tablestr += "<td>"+translations[x].trans_date+"</td>";
+        tablestr += "<td>"+translations[x].trans_username+"</td>";
+        var ratertype = 1;
+        if(!user_is_logged_in() || translations[x].trans_user == user_current_id) ratertype = 0;
+        tablestr += "<td>"+rater_create("TransAnsRater"+x,ratertype,parseInt(translations[x].trans_rating),translations[x].user_rating)+"</td>";
+        tablestr += "</tr>";
+        tablestr += "<tr class=\"data\"><td colspan=\"3\"><textarea cols=\"40\" rows=\"4\" readonly=\"readonly\" style=\"width:99%\">"+translations[x].trans_body+"</textarea></td><tr>";
+        if(user_current_id == translations[x].user_id && translations[x].completed.toLowerCase() != "true")
+        {
+            tablestr += "<tr class=\"data\"><td colspan=\"3\"><input type=\"button\" id=\"Omni_Localized_TransDetailApprove_Ans"+x+"\" onclick=\"trans_req_close("+x+")\" value=\"Approve\" /><span id=\"transdetailpanel_statusans"+x+"\"</td><tr>";
+        }
+        tablestr += "</table>";
+        allstr += tablestr+"<br /><br />"; 
     } 
     
     return allstr;       
@@ -163,10 +167,7 @@ function view_trans_details(id)
     $("transdetailpanel").style.display = '';
     $("transdetailpanel").scrollIntoView();
     
-    if(user_is_logged_in())
-        $("transdetailpanel_submit").style.display = '';
-    else $("transdetailpanel_submit").style.display = 'none';
-    $("Omni_Localized_TransDetailsTranslateSubmit").style.display = "none";
+    $("transdetailpanel_submit").style.display = 'none';
     
     // Request
     $("transdetailpanel_req").innerHTML=loading_img+" "+lang_getHTML("TransDetailLoading","Req"); 
@@ -200,7 +201,7 @@ function view_trans_details_req_callback()
     }
     else
     {
-        $("transdetailpanel_req").innerHTML="<span id=\"Omni_Localized_TransDetailStatusError_Req\" style=\"color:#993333;\">"+lang_getText("ViewTransStatusError")+"</span>";
+        $("transdetailpanel_req").innerHTML="<span id=\"Omni_Localized_TransDetailStatusError_Req\" style=\"color:#993333;\">"+lang_getText("TransDetailStatusError")+"</span>";
     }
 }
 
@@ -218,9 +219,11 @@ function view_trans_details_ans_callback()
         var results = view_trans_details_ans_ajax.getJSON().results;
         view_trans_details_ans_obj = results;
         $("transdetailpanel_ans").innerHTML=get_trans_ans_table(results);
+        if(results.length > 0)
+            $("transdetailpanel_submit").style.display = "";
         for(var x=0;x<results.length;x++)
         {
-            if(results[x].trans_user == user_current_id)
+            if(results[x].trans_user == user_current_id || results[x].user_id == user_current_id)
             {
                 $("transdetailpanel_submit").style.display = "none";
                 break;
@@ -230,10 +233,75 @@ function view_trans_details_ans_callback()
     }
     else
     {
-        $("transdetailpanel_ans").innerHTML="<span id=\"Omni_Localized_TransDetailStatusError_Ans\" style=\"color:#993333;\">"+lang_getText("ViewTransStatusError")+"</span>";
+        $("transdetailpanel_ans").innerHTML="<span id=\"Omni_Localized_TransDetailStatusError_Ans\" style=\"color:#993333;\">"+lang_getText("TransDetailStatusError")+"</span>";
     }
 }
 
+var trans_req_close_ajax = null;
+
+// Note: x is position in answer array, not any Omni id
+function trans_req_close(x)
+{
+    if(view_trans_details_ans_obj == null) return;
+    var ansobj = view_trans_details_ans_obj[x];
+    if(ansobj == null) return;
+
+    for(var i=0;i<view_trans_details_ans_obj.length;i++)
+    {
+        var buttonObj = $("Omni_Localized_TransDetailApprove_Ans"+i);
+        if(buttonObj != undefined && buttonObj != null)
+        {
+            buttonObj.disabled = true;
+        }
+    }
+    $("transdetailpanel_statusans"+x).innerHTML=loading_img+" "+lang_getHTML("TransDetailUpdating","Ans"+x); 
+    if(trans_req_close_ajax == null) trans_req_close_ajax = new AniScript.Web.Ajax();
+    trans_req_close_ajax.setHandler(trans_req_close_callback);
+    trans_req_close_ajax.request(hosturl + "handler/translation/requestclosehandler.ashx","reqid="+escape(ansobj.request_id)+"&ansid="+escape(ansobj.trans_id));  
+}
+
+function trans_req_close_callback()
+{
+    if(!trans_req_close_ajax.isDone()) return;
+    
+    var haserror = false;
+    var status = "";
+    if(trans_req_close_ajax.hasError()) haserror = true;
+    else
+    {
+        status = trans_req_close_ajax.getJSON().status;
+        if(status!="OK") haserror = true;
+    }
+    
+    for(var i=0;i<view_trans_details_ans_obj.length;i++)
+    {
+        var buttonObj = $("Omni_Localized_TransDetailApprove_Ans"+i);
+        if(buttonObj != undefined && buttonObj != null)
+        {
+            buttonObj.disabled = false;
+        }
+        var statusObj = $("transdetailpanel_statusans"+i);
+        if(statusObj != undefined && statusObj != null)
+        {
+            var msgtxt = "";
+            if(haserror)
+            {
+                msgtxt = "<span id=\"Omni_Localized_TransDetailStatusError_AnsRate"+i+"\" style=\"color:#993333;\">"+lang_getText("TransDetailStatusError")+"</span>";
+            }        
+            statusObj.innerHTML = msgtxt;
+        }
+    }    
+    if(haserror) return;
+    
+    // No error, change pages
+    set_view_trans_tab("ViewTransTabMyTranslations");
+    page_change("ViewTrans");
+    view_trans_details(trans_details_active_trans_id);   
+
+}
+
+
+// ------------------ View Translations --------------------
 
 var view_trans_active_tab_id = null;
 var trans_details_active_trans_id = null;
@@ -529,6 +597,7 @@ function request_trans_init(param)
         $("requesttranspanel_nonfixeddst").style.display = 'none';
         $("requesttranspanel_fixeddst").style.display = '';
         $("requesttranspanel_fixeddst").innerHTML = param.name+" ("+param.username+")";
+        request_trans_user = param;
     }
     else
     {
@@ -590,13 +659,22 @@ function request_trans_submit()
     }
     var srclangid = $("requesttranspanel_srclang").options[$("requesttranspanel_srclang").selectedIndex].value;
     var dstlangid = $("requesttranspanel_dstlang").options[$("requesttranspanel_dstlang").selectedIndex].value;
-    var dsttype = $("requesttranspanel_dsttype").options[$("requesttranspanel_dsttype").selectedIndex].value;
+    var dsttype = 0;
+    if(request_trans_user != null)
+        dsttype = 1;
+    else dsttype = $("requesttranspanel_dsttype").options[$("requesttranspanel_dsttype").selectedIndex].value;
     
     var dstid = 0;
     if(dsttype == 1) // Specific User
     {
-        var idx = $("requesttranspanel_friends").options[$("requesttranspanel_friends").selectedIndex].value;
-        dstid = friends[idx].id;
+        if(request_trans_user != null)
+            dstid = request_trans_user.id;
+        else
+        {
+            var selIdx = $("requesttranspanel_friendlist").selectedIndex;
+            var idx = $("requesttranspanel_friendlist").options[selIdx].value;
+            dstid = friends[idx].id;
+        }
     }
     
     if(request_trans_submit_ajax == null) request_trans_submit_ajax = new AniScript.Web.Ajax();
