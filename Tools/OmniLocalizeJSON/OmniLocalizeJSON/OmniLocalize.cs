@@ -302,6 +302,8 @@ namespace OmniLocalizeJSON
             //rsrcOtherHT will contain output resources
             foreach (KeyValuePair<String, String> kv in rsrcOtherHT)
             {
+                if (rsrcOtherFinalHT.ContainsKey(kv.Key)) continue;
+
                 rsrcOtherFinalHT.Add(kv.Key, kv.Value);
 
                 // Need to find a translation for all of these
@@ -332,7 +334,7 @@ namespace OmniLocalizeJSON
                     rsrcOtherFinalHT[kv.Key] = begWhitespace + defToOtherHT[defLangText] + endWhitespace;
                     continue;
                 }
-                outputTB.Text += "ERROR: No translated match for text: " + defLangText + newln;
+                outputTB.Text += "ERROR: No translated match for text: [" + defLangText +"]"+ newln;
             }
 
             // Write JSON
