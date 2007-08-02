@@ -42,6 +42,11 @@
 	"UserPanelOmniThings8":"View translations you've been involved with in the past",
 	"UserPanelOmniThings9":"Search translations that have already been completed",
 	"UserPanelOmniThings10":"Get a quick automated translation",
+	"UserPanelOmniHow":"How do I use Omni?",
+	"UserPanelOmniHow1":"It's a social network! Find friends, meet new people, and strike up a conversation with them. Don't worry about what language they speak, Omni is here to help you learn.",
+	"UserPanelOmniHow2":"The big orange bar is called the Language Toolbar. Anytime you need help saying or understanding something in another language, use the tools it provides you.",
+	"UserPanelOmniHow3":"Request and Perform translations often! When you can help someone learn, take the time to do it. When you have a question, don't be afraid to ask!",
+	
 	
 	"UserLoginTitle":"用户登录",
 	"UserLoginUsername":"用户名: ",
@@ -305,6 +310,6 @@
 	"HallOfFameRatingOverview":"User ratings are calculated by adding up the quality ratings from all the of the translations that the user has performed.",
 	"HallOfFameRank":"Rank",
 	"HallOfFameMyRating":"My rating:",
-	"HallOfFameStatusError":"System error, please try again later",
+	"HallOfFameStatusError":"系统出错, 请稍候再试",
 	"HallOfFameLoading":" 加载中 ... "
 }
