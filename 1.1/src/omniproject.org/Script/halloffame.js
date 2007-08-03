@@ -8,7 +8,7 @@ function hall_of_fame_init(retrieve)
 {
     if(user_is_logged_in())
     {
-        $("halloffamepanel_myrating").innerHTML = user_current_obj.user_rating;
+        $("halloffamepanel_myrating").innerHTML = roundTenths(user_current_obj.user_rating);
         $("halloffamepanel_myratingtable").style.display = '';
     }
     else
@@ -32,7 +32,9 @@ function get_hall_of_fame_table(results, prefix, resultobj)
         
         for(var x=0; x<results.length; x++)
         {
-            tablestr += "<tr><td>"+(x+1)+"</td><td><a href=\"#\" onclick=\"omni_profile_panel_display("+resultobj+"["+x+"].user); return false\">"+results[x].user.username+"</a></td><td>"+results[x].user.name+"</td><td>"+results[x].rank+"</td></tr>";
+            if(results[x].user.id == user_current_id)
+                tablestr += "<tr><td style=\"background-color: #d8e9fe;\">"+(x+1)+"</td><td style=\"background-color: #d8e9fe;\"><b><a href=\"#\" onclick=\"omni_profile_panel_display("+resultobj+"["+x+"].user); return false\">"+results[x].user.username+"</a></b></td><td style=\"background-color: #d8e9fe;\"><b>"+results[x].user.name+"</b></td><td style=\"background-color: #d8e9fe;\"><b>"+results[x].rank+"</b></td></tr>";
+            else tablestr += "<tr><td>"+(x+1)+"</td><td><a href=\"#\" onclick=\"omni_profile_panel_display("+resultobj+"["+x+"].user); return false\">"+results[x].user.username+"</a></td><td>"+results[x].user.name+"</td><td>"+results[x].rank+"</td></tr>";
         }
         tablestr += "</table>";
         return tablestr;

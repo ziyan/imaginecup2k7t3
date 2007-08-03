@@ -155,7 +155,10 @@ function page_change(page_name, param)
             break;
         case "HallOfFame":
             page_goto_hall_of_fame();
-            break;            
+            break;
+        case "Messages":
+            page_goto_messages();
+            break;               
         default:
             page_name = "Home";
             page_goto_home();
@@ -217,6 +220,16 @@ function page_update_langbar()
         else
             $("langbarlinks").innerHTML+="<a id=\"LangBarLink"+pages[i]+"\" href=\"#\" "+link_class+" onclick=\"page_change('"+pages[i]+"');return false;\">"+lang_getHTML("LangBarLink"+pages[i])+"</a>";
     }
+    
+    if(user_is_logged_in())
+    {
+        $("langbar_myratingval").innerHTML = roundTenths(user_current_obj.user_rating);
+        $("langbar_myrating").style.display = '';
+    }
+    else
+    {
+        $("langbar_myrating").style.display = 'none';
+    }    
 }
 
 function langbar_auto_trans_toggle()
@@ -254,10 +267,10 @@ function langbar_auto_trans_update()
 //pages
 function page_goto_home()
 {
-    page_layout_big_left_right();
+    if(user_is_logged_in())
+        page_layout_equal_left_right();
+    else page_layout_big_left_right();
     content_right.appendChild($("userpanel"));
-    //content_center.appendChild($("servicetranspanel"));
-    //content_left.appendChild($("servicedictpanel"));
     content_left.appendChild($("omnihomepanel"));
     
     home_init(); // see user.js
@@ -276,6 +289,7 @@ function page_goto_profile()
     content_right.appendChild($("userpanel"));
     content_left.appendChild($("userprofilepanel"));
     user_profile_retrieve();
+    user_summary_retrieve();
 }
 
 function page_goto_get_introduced()
@@ -336,4 +350,13 @@ function page_goto_hall_of_fame()
     content_left.appendChild($("halloffamepanel"));
     omni_profile_panel_reset();
     hall_of_fame_init();
+}
+
+function page_goto_messages()
+{
+    page_layout_equal_left_right();
+    content_right.appendChild($("messagedetailpanel"));
+    content_left.appendChild($("messagespanel"));
+    message_detail_panel_reset();
+    messages_retrieve();
 }

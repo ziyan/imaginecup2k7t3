@@ -15,6 +15,9 @@ else
     if(hosturl.charAt(hosturl.length-1) != "/") hosturl = hosturl + "/";
 }
 
+//alert(hosturl);
+
+
 // Placeholder for localized strings
 // Ex: "Welcome, __"
 var localized_placeholder = "__";
@@ -50,6 +53,17 @@ function newlnHTML2String(str) {
     return str.replace(/<br>/g,"\n");
 }
 
+// Misc
+function strIsTrue(str)
+{
+    return str.toLowerCase() == "true" || str == "1";
+}
+
+function roundTenths(val)
+{
+    return Math.round(val*10)/10;
+}
+
 // Clear globally cached results on logout
 function clear_cached_results()
 {
@@ -70,9 +84,17 @@ function clear_cached_results()
     trans_details_active_trans_id = null;
     view_trans_details_req_obj = null;
     view_trans_details_ans_obj = null;
+    request_trans_message = null;
+    request_trans_subject = null;
     view_trans_init(false);
     // halloffame.js
     hall_of_fame_init(false);
     // lang.js
     lang_placeholder_db = new Object();
+    // messages.js
+    message_details_active_msg_id = null;
+    message_details_obj = null;
+    messages_received_obj = null;
+    messages_sent_obj = null;
+    compose_message_user = null;
 }

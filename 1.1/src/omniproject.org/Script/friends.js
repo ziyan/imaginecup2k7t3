@@ -244,6 +244,7 @@ function friends_list_retrieve_callback()
 }
 
 // For other areas of Omni
+var friends_list_silent_ajax = null;
 var friends_list_retrieve_silent_callback = null;
 function friends_list_retrieve_silent(callback)
 {
@@ -253,19 +254,19 @@ function friends_list_retrieve_silent(callback)
         friends_list_retrieve_silent_callback();
         return;
     }
-    if(friends_list_ajax == null)
-        friends_list_ajax = new AniScript.Web.Ajax();
-    friends_list_ajax.setHandler(friends_list_retrieve_silent_first_callback);
-    friends_list_ajax.request(hosturl + "handler/friends/ListHandler.ashx");
+    if(friends_list_silent_ajax == null)
+        friends_list_silent_ajax = new AniScript.Web.Ajax();
+    friends_list_silent_ajax.setHandler(friends_list_retrieve_silent_first_callback);
+    friends_list_silent_ajax.request(hosturl + "handler/friends/ListHandler.ashx");
 }
 
 function friends_list_retrieve_silent_first_callback()
 {
-    if(!friends_list_ajax.isDone()) return;
+    if(!friends_list_silent_ajax.isDone()) return;
     
-    if(friends_list_ajax.hasError()) return;
+    if(friends_list_silent_ajax.hasError()) return;
     
-    friends = friends_list_ajax.getJSON();
+    friends = friends_list_silent_ajax.getJSON();
     
     // Do whatever is necessary w/ "friends" object -
     // Populate drop down list, etc.

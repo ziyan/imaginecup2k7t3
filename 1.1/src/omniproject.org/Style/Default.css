@@ -18,7 +18,7 @@ input, textarea, select, button
 
 a
 {
-	color: #006dba;
+	color: #005797; /*#006dba;*/
 	text-decoration: underline;
 	outline: none;
 }
@@ -27,6 +27,20 @@ a:hover, a:active
 {
 	color: #CC6600;
 	text-decoration: underline;
+	outline: none;
+}
+
+#userpanel_logged_in a
+{
+	color: #005797;
+	text-decoration: none;
+	outline: none;
+}
+
+#userpanel_logged_in a:hover, #userpanel_logged_in a:active
+{
+	color: #CC6600;
+	text-decoration: none;
 	outline: none;
 }
 

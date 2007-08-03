@@ -233,9 +233,10 @@ function lang_display()
 
 
 // This might be a bad idea, but the only solution I see right now
-function lang_fill_placeholder(key, value, postfix)
+function lang_fill_placeholder(key, val, postfix)
 {
-    if(value==null || value=="") return lang_getText(key);
+    var value = val;
+    if(val==undefined || val==null) value = "";
     
     if(postfix != undefined && postfix != null)
     {
@@ -245,7 +246,6 @@ function lang_fill_placeholder(key, value, postfix)
     {
         lang_placeholder_db[key] = value;
     }
-    
     return lang_getText(key).replace(localized_placeholder,value);
 }
 

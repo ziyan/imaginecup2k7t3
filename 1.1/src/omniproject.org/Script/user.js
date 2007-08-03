@@ -9,6 +9,8 @@ var user_current_interests_ajax = null; //ajax object
 var user_current_languages_ajax = null; //ajax object
 var user_current_id = 0;
 var user_current_obj = null;
+var user_current_summary_obj = null;
+var user_current_summary_ajax = new AniScript.Web.Ajax(); //ajax object
 
 var user_current_obj_lang = null; // IDs only.
 // This is pulled over on with UserCurrent, unlike user_current_languages
@@ -44,12 +46,45 @@ function user_current_callback()
         user_current_id = user_current_ajax.getJSON().user.id;
         user_current_obj = user_current_ajax.getJSON().user;
         user_current_obj_lang = user_current_ajax.getJSON().user_lang;
+        //user_current_summary_obj = user_current_ajax.getJSON().summary;
     }
     else
     {
         user_info_clear();
     }
     user_state_update();
+}
+
+function user_summary_retrieve()
+{
+    if(!user_is_logged_in()) return;
+    
+    $("usercontrolpanel_status").innerHTML = loading_img + " " + lang_getHTML("UserControlPanelLoading");
+    $("usercontrolpanel_complete").style.display = "none";
+    
+    user_current_summary_ajax.setHandler(user_summary_callback);
+    user_current_summary_ajax.request(hosturl+"handler/user/summaryhandler.ashx","user_id="+user_current_id);
+}
+
+function user_summary_callback()
+{
+    if(!user_current_summary_ajax.isDone()) return;
+    if(user_current_summary_ajax.hasError())
+    {
+        $("usercontrolpanel_status").innerHTML = "<span id=\"Omni_Localized_UserControlPanelStatusError\" style=\"color:#993333;line-height:20px\">"+lang_getText("UserControlPanelStatusError")+"</span>";
+        return;
+    }
+    if(user_current_summary_ajax.getJSON().status=="OK")
+    {
+        user_current_summary_obj = user_current_summary_ajax.getJSON().summary;
+        $("usercontrolpanel_status").innerHTML = "";
+        $("usercontrolpanel_complete").style.display = "";
+        user_control_panel_init();
+    }
+    else
+    {
+        $("usercontrolpanel_status").innerHTML = "<span id=\"Omni_Localized_UserControlPanelStatusError\" style=\"color:#993333;line-height:20px\">"+lang_getText("UserControlPanelStatusError")+"</span>";
+    }
 }
 
 //check if user is logged in
@@ -80,6 +115,13 @@ function user_state_update()
         
         home_init(); // Re-initialize home page
         
+        if(page_current == "Home")
+        {
+            if(user_is_logged_in())
+                page_layout_equal_left_right();
+            else page_layout_big_left_right();
+        }
+        
         page_update();
     }
     else
@@ -90,6 +132,14 @@ function user_state_update()
         $("userpanel_logged_in").style.display="none";
         $("omnihomepanel_not_logged_in").style.display="block";
         $("omnihomepanel_logged_in").style.display="none";
+        
+        if(page_current == "Home")
+        {
+            if(user_is_logged_in())
+                page_layout_equal_left_right();
+            else page_layout_big_left_right();
+        }
+        
         page_update(); 
     }
 }
@@ -99,6 +149,7 @@ function user_info_clear()
 {
     user_current_id = 0;
     user_current_obj = null;
+    user_current_summary_obj = null;
     user_current_obj_lang = null;
     user_current_interests = null;
     user_current_languages = null;
@@ -212,8 +263,92 @@ function home_init()
         title.innerHTML = lang_fill_placeholder("UserPanelTitle", user_current_obj.name);
     }
     else title.innerHTML = lang_fill_placeholder("UserPanelTitle", "");
+    
+    user_summary_retrieve();
 }
 
+function user_control_panel_init()
+{
+    if(!user_is_logged_in()) return;
+    if(user_current_summary_obj == null) return;
+    
+    var has_updated_profile = user_current_summary_obj.has_updated_profile
+    var unread_msgs = user_current_summary_obj.unread_msgs;
+    var open_personal_trans_req = user_current_summary_obj.open_personal_trans_req;
+    var trans_req_to_approve = user_current_summary_obj.trans_req_to_approve;
+    var open_global_trans_req = user_current_summary_obj.open_global_trans_req;
+    
+    if(has_updated_profile == 0)
+    {
+        $("usercontrolpanel_updateprofile").style.display = '';
+    }
+    else
+    {
+        $("usercontrolpanel_updateprofile").style.display = 'none';
+    }
+    
+    if(trans_req_to_approve == 0)
+    {
+        $("usercontrolpanel_approvetrans0").style.display = '';
+        $("usercontrolpanel_approvetrans1").style.display = 'none';
+        $("usercontrolpanel_approvetrans2").style.display = 'none';        
+    }
+    else if(trans_req_to_approve == 1)
+    {
+        $("usercontrolpanel_approvetrans0").style.display = 'none';
+        $("usercontrolpanel_approvetrans1").style.display = '';
+        $("usercontrolpanel_approvetrans2").style.display = 'none';        
+    }
+    else
+    {
+        $("usercontrolpanel_approvetrans0").style.display = 'none';
+        $("usercontrolpanel_approvetrans1").style.display = 'none';
+        $("usercontrolpanel_approvetrans2").style.display = ''; 
+        
+        $("Omni_Localized_UserControlPanelApproveTrans2").innerHTML = lang_fill_placeholder("UserControlPanelApproveTrans2", trans_req_to_approve);      
+    } 
+    
+    if(unread_msgs == 0)
+    {
+        $("usercontrolpanel_unreadmsgs0").style.display = '';
+        $("usercontrolpanel_unreadmsgs1").style.display = 'none';
+        $("usercontrolpanel_unreadmsgs2").style.display = 'none';        
+    }
+    else if(unread_msgs == 1)
+    {
+        $("usercontrolpanel_unreadmsgs0").style.display = 'none';
+        $("usercontrolpanel_unreadmsgs1").style.display = '';
+        $("usercontrolpanel_unreadmsgs2").style.display = 'none';        
+    }
+    else
+    {
+        $("usercontrolpanel_unreadmsgs0").style.display = 'none';
+        $("usercontrolpanel_unreadmsgs1").style.display = 'none';
+        $("usercontrolpanel_unreadmsgs2").style.display = ''; 
+        
+        $("Omni_Localized_UserControlPanelUnreadMsgs2").innerHTML = lang_fill_placeholder("UserControlPanelUnreadMsgs2", unread_msgs);      
+    }     
+    
+    if(has_updated_profile != 0)
+    {
+        $("usercontrolpanel_globalreq").style.display = '';
+        $("Omni_Localized_UserControlPanelGlobalReq").innerHTML = lang_fill_placeholder("UserControlPanelGlobalReq", open_global_trans_req);
+    }
+    else $("usercontrolpanel_globalreq").style.display = 'none';
+    
+    if(open_personal_trans_req == 1)
+    {
+        $("usercontrolpanel_personalreq1").style.display = '';
+        $("usercontrolpanel_personalreq2").style.display = 'none';        
+    }
+    else
+    {
+        $("usercontrolpanel_personalreq1").style.display = 'none';
+        $("usercontrolpanel_personalreq2").style.display = ''; 
+        $("Omni_Localized_UserControlPanelPersonalReq2").innerHTML = lang_fill_placeholder("UserControlPanelPersonalReq2", open_personal_trans_req);      
+    }     
+    
+}
 
 
 
@@ -475,7 +610,7 @@ function user_profile_update_temp_lang_skills()
 
 function get_user_current_language_html()
 {
-    var html = "<br/>";
+    var html = "";
     
     user_temp_languages.sort();
     
@@ -526,7 +661,7 @@ function get_user_current_language_html()
     }
     if(user_temp_languages.length>0)
         html += "</table>";
-    html += "<br/>";
+    //html += "<br/>";
     
     $("form_user_profile_languages").innerHTML = html;
 }
@@ -687,7 +822,7 @@ function user_update_callback()
     {
         // Don't overwrite another error msg w/ a success one
         if($("userprofilepanel_status").innerHTML.indexOf("UserProfileUpdating") > -1)
-            $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";
+            $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";  
         user_init();   
     }
     else if(status=="DuplicateEmail")
@@ -750,6 +885,8 @@ function user_update_languages_callback()
         {
             $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";
         }
+        
+        user_summary_retrieve();
     }
     else
     {

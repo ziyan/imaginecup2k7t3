@@ -16,9 +16,13 @@
 	"LangBarLinkViewTrans":"View Translations",
 	"LangBarLinkPerformTrans":"Perform Translation",
 	"LangBarLinkRequestTrans":"Request Translation",
+	"LangBarMyRating":"My rating:",
 	
 	"LanguageOptionZHCN":"Chinese (Simplified)",
 	"LanguageOptionENUS":"English (U.S.)",
+	"LanguageOptionKO":"Korean",
+	"LanguageOptionDE":"German",
+	
 	
 	"SplashPageInit":"Initializing page layout ...",
 	"SplashSystemInterestsInit":"Fetching system info ...",
@@ -98,6 +102,19 @@
 	"UserRegisterStatusDuplicateEmail":"The E-mail address has been used to register another account",
 	"UserRegisterStatusRegistered":"Your account has been successfully created. You can login now.",
 	
+	"UserControlPanelUpdateProfile":"It appears that you have not yet updated your profile, please take the time to tell Omni about yourself. This will allow us to make the site work for you.",
+	"UserControlPanelApproveTrans0":"You have no translations to approve.",
+	"UserControlPanelApproveTrans1":"You need to approve one translation.",
+	"UserControlPanelApproveTrans2":"You need to approve __ translations.",
+	"UserControlPanelGlobalReq":"There are __ translation requests matching your abilities and knowledge.",
+	"UserControlPanelPersonalReq1":"There is one personal translation request waiting for you.",
+	"UserControlPanelPersonalReq2":"There are __ personal translation requests waiting for you.",
+	"UserControlPanelUnreadMsgs0":"You have no unread messages.",
+	"UserControlPanelUnreadMsgs1":"You have 1 unread message.",
+	"UserControlPanelUnreadMsgs2":"You have __ unread messages.",
+	"UserControlPanelLoading":" Loading ... ",
+	"UserControlPanelStatusError":"System error, please try again later",
+	
 	"UserProfileTitle":"Profile",
 	"UserProfileSubmitButton":"Update",
 	"UserProfileResetButton":"Reset",	
@@ -109,11 +126,19 @@
 	"UserProfileNetwork":"Network:",
 	"UserProfileScreenname":"Screenname:",
 	"UserProfileHintProfileVisibility":"Your profile description will be visible to everyone.",
+	"UserProfileHintLanguages":"Choose languages that you know, or are planning to learn.",
+	"UserProfileHintIntroductions":"Your languages and interests can later be used to introduce you to other users. ",
 	"UserProfileLanguages":"Languages",
 	"UserProfileLanguagesAdd":"Add Language",
 	"UserProfileLanguagesRemove":"Remove Language",
 	"UserProfileLanguagesLanguage":"Language",
 	"UserProfileLanguagesSkill":"Skill",
+	"UserProfileSkillTableHeading":"Skill Level Table",
+	"UserProfileSkillTableRating1":"1 - Beginner",
+	"UserProfileSkillTableRating2":"2 - Novice",
+	"UserProfileSkillTableRating3":"3 - Intermediate",
+	"UserProfileSkillTableRating4":"4 - Advanced",
+	"UserProfileSkillTableRating5":"5 - Fluent",	
 	"UserProfileInterests":"Interests",	
 	"UserProfileStatusUpdated":"Operation complete",
 	"UserProfileStatusEmailInvalid":"Your E-mail address is invalid",
@@ -306,7 +331,7 @@
 	"RequestTransErrorMissingFields":"Error: Fill out all fields.",
 	"RequestTransStatusError":"System error, please try again later",
 	
-	"HallOfFameTitle":"Hall of Fame",
+	"HallOfFameTitle":"Hall Of Fame",
 	"HallOfFameOverview":"The users listed below have worked hard to help other Omni users learn languages. Please join us in thanking and congratulating them.",
 	"HallOfFameByQuantity":"Most active users (Last 30 days)",
 	"HallOfFameByRating":"Highest ranked users (All Time)",
@@ -314,5 +339,31 @@
 	"HallOfFameRank":"Rank",
 	"HallOfFameMyRating":"My rating:",
 	"HallOfFameStatusError":"System error, please try again later",
-	"HallOfFameLoading":" Loading ... "
+	"HallOfFameLoading":" Loading ... ",
+	
+	"MessagesTitle":"Messages",
+	"MessagesReceivedTab":"Received",
+	"MessagesSentTab":"Sent",
+	"MessagesCompose":"Compose a New Message",
+	"MessagesStatusError":"System error, please try again later",
+	"MessagesLoading":" Loading ... ",
+	
+	"MessageTableDate":"Date",
+	"MessageTableSender":"Sender",
+	"MessageTableRecipient":"Recipient",
+	"MessageTableSubject":"Subject",
+	"MessageTableNoResults":"No Results Found.",
+	
+	"MessageDetailsTitle":"Message Details:",
+	"MessageDetailsStatusError":"System error, please try again later",
+	"MessageDetailsLoading":" Loading ... ",
+	"MessageDetailsReply":"Reply to Sender",
+	"MessageDetailsRequestTranslation":"Request Translation",
+	
+	"ComposeMessageSendButton":"Send Message",
+	"ComposeMessageRequestTransButton":"Request Translation",
+	"ComposeMessageErrorSubjectRequired":"Error: Subject field is required.",
+	"ComposeMessageStatusError":"System error, please try again later",
+	"ComposeMessageLoading":" Loading ... "
+	
 }
