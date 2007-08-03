@@ -230,6 +230,21 @@ namespace Omni.Service
             if (id <= 0) throw new ArgumentOutOfRangeException();
             return Data.StoredProcedure.UserLanguages(id, Session.Connection);
         }
+
+        /// <summary>
+        /// Gets a user summary.
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <param name="session">session id</param>
+        /// <returns>UserSummary</returns>
+        [WebMethod(Description = "Gets a user's summary.")]
+        public Data.UserSummary UserSummary(int id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            if (id <= 0) throw new ArgumentOutOfRangeException();
+            return Data.StoredProcedure.UserSummary(id, Session.Connection);
+        }
         #endregion
 
         #region Friends
@@ -574,6 +589,97 @@ namespace Omni.Service
             ServiceSession Session = ServiceSession.Get(session);
             if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
             return Data.StoredProcedure.TranslationRequestClose(Session.UserContext.User.id, req_id, ans_id, Session.Connection);
+        }
+
+        #endregion
+
+        #region Message
+
+        /// <summary>
+        /// Get received messages for a user.
+        /// </summary>
+        /// <param name="session">session id</param>
+        /// <returns>Array of Messages</returns>
+        [WebMethod(Description = "Get received messages for a user.")]
+        public Data.Message[] MessageGetReceivedForUser(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            Data.Message[] msg = Data.StoredProcedure.MessageGetReceivedForUser(Session.UserContext.User.id, Session.Connection);
+
+            if (msg != null)
+            {
+                foreach (Data.Message m in msg)
+                {
+                    m.src_username = UserUsernameById(m.src_id, Session.Connection);
+                    if (m.dst_type == Omni.Data.MsgDstType.User)
+                        m.dst_username = UserUsernameById(m.dst_id, Session.Connection);
+
+                }
+            }
+
+            return msg;
+        }
+
+
+        /// <summary>
+        /// Get a message by ID.
+        /// </summary>
+        /// <param name="msg_id">msg_id</param>
+        /// <param name="session">session id</param>
+        /// <returns>Message (or null)</returns>
+        [WebMethod(Description = "Get a message by ID.")]
+        public Data.Message MessageGetById(int msg_id, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            Data.Message msg = Data.StoredProcedure.MessageGetById(msg_id, Session.Connection);
+
+            if (msg != null)
+            {
+                msg.src_username = UserUsernameById(msg.src_id, Session.Connection);
+                if (msg.dst_type == Omni.Data.MsgDstType.User)
+                    msg.dst_username = UserUsernameById(msg.dst_id, Session.Connection);
+            }
+
+            return msg;
+        }
+
+        /// <summary>
+        /// Get sent messages for a user.
+        /// </summary>
+        /// <param name="session">session id</param>
+        /// <returns>Array of Messages</returns>
+        [WebMethod(Description = "Get received messages for a user.")]
+        public Data.Message[] MessageGetSentForUser(Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            Data.Message[] msg = Data.StoredProcedure.MessageGetSentForUser(Session.UserContext.User.id, Session.Connection);
+
+            if (msg != null)
+            {
+                foreach (Data.Message m in msg)
+                {
+                    m.src_username = UserUsernameById(m.src_id, Session.Connection);
+                    if (m.dst_type == Omni.Data.MsgDstType.User)
+                        m.dst_username = UserUsernameById(m.dst_id, Session.Connection);
+                }
+            }
+
+            return msg;
+        }
+
+        /// <summary>
+        /// Send a message to an Omni member.
+        /// </summary>
+        /// <returns></returns>
+        [WebMethod(Description = "Send a message to an Omni member.")]
+        public int MessageSend(int dst_id, Data.MsgDstType dst_type, string subject, string message, Guid session)
+        {
+            ServiceSession Session = ServiceSession.Get(session);
+            if (!Session.UserContext.IsLoggedIn) throw new UserNotLoggedInException();
+            return Data.StoredProcedure.MessageSend(Session.UserContext.User.id, dst_id, dst_type, subject, message,  Session.Connection);
         }
 
         #endregion

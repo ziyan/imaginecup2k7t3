@@ -285,6 +285,26 @@ namespace Omni.Client
             }
             return null;
         }
+        /// <summary>
+        /// Get a user's summary.
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <returns>UserSummary object</returns>
+        public UserSummary UserSummary(int id)
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.UserSummary svcUser = service.UserSummary(id, session);
+                if (svcUser == null) return null;
+                return new UserSummary(svcUser);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
         #endregion
 
         #region Friends
@@ -718,6 +738,98 @@ namespace Omni.Client
             try
             {
                 return service.TranslationRequestClose(req_id, ans_id, session);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return 1;
+        }
+
+        #endregion
+
+        #region Message
+
+        /// <summary>
+        /// Get received messages for a user.
+        /// </summary>
+        /// <returns>Array of Messages</returns>
+        public Message[] MessageGetReceivedForUser()
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Message[] svcObj = service.MessageGetReceivedForUser(session);
+                if (svcObj == null) return null;
+                Message[] objArray = new Message[svcObj.Length];
+                for (int i = 0; i < objArray.Length; i++)
+                {
+                    objArray[i] = new Message(svcObj[i]);
+                }
+                return objArray;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get received messages for a user.
+        /// </summary>
+        /// <returns>Array of Messages</returns>
+        public Message[] MessageGetSentForUser()
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Message[] svcObj = service.MessageGetSentForUser(session);
+                if (svcObj == null) return null;
+                Message[] objArray = new Message[svcObj.Length];
+                for (int i = 0; i < objArray.Length; i++)
+                {
+                    objArray[i] = new Message(svcObj[i]);
+                }
+                return objArray;
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get a message by ID.
+        /// </summary>
+        /// <returns>Message</returns>
+        public Message MessageGetById(int msg_id)
+        {
+            CheckSession();
+            try
+            {
+                org.omniproject.service.Message svcObj = service.MessageGetById(msg_id, session);
+                if (svcObj == null) return null;
+                return new Message(svcObj);
+            }
+            catch (System.Exception e)
+            {
+                Exception.Rethrow(e);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Send a message to an Omni member.
+        /// </summary>
+        /// <returns></returns>
+        public int MessageSend(int dst_id, int dst_type, string subject, string message)
+        {
+            CheckSession();
+            try
+            {
+                return service.MessageSend(dst_id, (org.omniproject.service.MsgDstType)dst_type, subject, message, session);
             }
             catch (System.Exception e)
             {

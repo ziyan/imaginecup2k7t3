@@ -15,12 +15,17 @@ namespace Omni.Web.User
             Client.User user = Common.Client.UserCurrent;
 
             Client.UserLanguage[] languages = null;
+            //Client.UserSummary summary = null;
             if (user != null)
+            {
                 languages = Common.Client.UserLanguages(user.ID);
+                //summary = Common.Client.UserSummary(user.ID);
+            }
 
             JSONObjectCollection collection = new JSONObjectCollection();
             collection.Add(new JSONStringValue("loggedin"), new JSONBoolValue(user != null));
             collection.Add(new JSONStringValue("user"), Common.getUserJSON(user));
+            //collection.Add(new JSONStringValue("summary"), Common.getUserSummaryJSON(summary));
 
             JSONArrayCollection langIDs = new JSONArrayCollection();
             if (languages != null)

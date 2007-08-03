@@ -21,7 +21,7 @@ namespace Omni.Data
         }
         private static void SetStoredProcedureParameter(SqlCommand cmd, string name, SqlDbType type, object value)
         {
-            if(!cmd.Parameters.Contains(name))
+            if (!cmd.Parameters.Contains(name))
                 cmd.Parameters.Add(name, type);
             cmd.Parameters[name].SqlDbType = type;
             cmd.Parameters[name].Value = value;
@@ -192,6 +192,18 @@ namespace Omni.Data
             reader.Dispose();
             return result.ToArray();
         }
+        public static UserSummary UserSummary(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_user_get_summary", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            UserSummary user = null;
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+                user = new UserSummary(user_id, Convert.ToInt32(reader["has_updated_profile"]), Convert.ToInt32(reader["unread_msgs"]), Convert.ToInt32(reader["open_personal_trans_req"]), Convert.ToInt32(reader["trans_req_to_approve"]), Convert.ToInt32(reader["open_global_trans_req"]));
+            reader.Close();
+            reader.Dispose();
+            return user;
+        }
 
         #endregion
 
@@ -230,7 +242,7 @@ namespace Omni.Data
             SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
             SetStoredProcedureParameter(cmd, "@favor_user_id", SqlDbType.Int, friend_id);
             object result = cmd.ExecuteScalar();
-            int intResult =  (result == null) ? 0 : Convert.ToInt32(result);
+            int intResult = (result == null) ? 0 : Convert.ToInt32(result);
             return (intResult == 1) ? 1 : 0;
         }
         public static int FriendsAdd(int user_id, int friend_id, Connection connection)
@@ -665,6 +677,90 @@ namespace Omni.Data
         }
 
         #endregion
+
+        #region Message
+        public static Message[] MessageGetReceivedForUser(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_message_recv_by_user", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Message> result = new List<Message>();
+            while (reader.Read())
+            {
+                result.Add(new Message(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["src_id"]), "",
+                                        Convert.ToInt32(reader["dst_id"]), "",
+                                        (MsgDstType)Convert.ToInt32(reader["dst_type"]),
+                                        Convert.ToString(reader["subject"]),
+                                        "",
+                                        Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["unread"])));
+            }
+            reader.Close();
+            reader.Dispose();
+
+            return result.ToArray();
+        }
+        public static Message[] MessageGetSentForUser(int user_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_message_sent_by_user", connection);
+            SetStoredProcedureParameter(cmd, "@user_id", SqlDbType.Int, user_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Message> result = new List<Message>();
+            while (reader.Read())
+            {
+                result.Add(new Message(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["src_id"]), "",
+                                        Convert.ToInt32(reader["dst_id"]), "",
+                                        (MsgDstType)Convert.ToInt32(reader["dst_type"]),
+                                        Convert.ToString(reader["subject"]),
+                                        "",
+                                        Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["unread"])));
+            }
+            reader.Close();
+            reader.Dispose();
+
+            return result.ToArray();
+        }
+
+        public static Message MessageGetById(int msg_id, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_message_get_by_id", connection);
+            SetStoredProcedureParameter(cmd, "@msg_id", SqlDbType.Int, msg_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            Message result = null;
+            if (reader.Read())
+            {
+                result = (new Message(Convert.ToInt32(reader["id"]),
+                                        Convert.ToInt32(reader["src_id"]), "",
+                                        Convert.ToInt32(reader["dst_id"]), "",
+                                        (MsgDstType)Convert.ToInt32(reader["dst_type"]),
+                                        Convert.ToString(reader["subject"]),
+                                        Convert.ToString(reader["body"]),
+                                        Convert.ToDateTime(reader["date"]),
+                                        Convert.ToBoolean(reader["unread"])));
+            }
+            reader.Close();
+            reader.Dispose();
+
+            return result;
+        }
+
+        public static int MessageSend(int user_id, int dst_id, MsgDstType dst_type, string subject, string body, Connection connection)
+        {
+            SqlCommand cmd = GetStoredProcedure("omni_message_send_user", connection);
+            SetStoredProcedureParameter(cmd, "@src_id", SqlDbType.Int, user_id);
+            SetStoredProcedureParameter(cmd, "@dst_id", SqlDbType.Int, dst_id);
+            SetStoredProcedureParameter(cmd, "@dst_type", SqlDbType.Int, dst_type);
+            SetStoredProcedureParameter(cmd, "@subject", SqlDbType.NVarChar, subject);
+            SetStoredProcedureParameter(cmd, "@body", SqlDbType.NText, body);
+            object result = cmd.ExecuteScalar();
+            return (result == null) ? 0 : Convert.ToInt32(result);
+        }
+
+        #endregion
+
 
     }
 }

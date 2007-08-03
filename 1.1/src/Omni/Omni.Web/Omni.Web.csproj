@@ -41,6 +41,10 @@
     <Compile Include="Common.cs" />
     <Compile Include="HallOfFame\ByQuantityHandler.cs" />
     <Compile Include="HallOfFame\ByRatingHandler.cs" />
+    <Compile Include="Message\GetSentForUserHandler.cs" />
+    <Compile Include="Message\GetReceivedForUserHandler.cs" />
+    <Compile Include="Message\GetByIDHandler.cs" />
+    <Compile Include="Message\SendHandler.cs" />
     <Compile Include="Translation\AnswersGetByReqIDHandler.cs" />
     <Compile Include="Translation\AnswerRateHandler.cs" />
     <Compile Include="Translation\RequestCloseHandler.cs" />
@@ -69,6 +73,7 @@
     <Compile Include="Interest\ListHandler.cs" />
     <Compile Include="Translation\AnswerAddHandler.cs" />
     <Compile Include="Translation\RequestAddHandler.cs" />
+    <Compile Include="User\SummaryHandler.cs" />
     <Compile Include="User\UpdateLanguagesHandler.cs" />
     <Compile Include="User\LanguagesHandler.cs" />
     <Compile Include="User\ProfileHandler.cs" />

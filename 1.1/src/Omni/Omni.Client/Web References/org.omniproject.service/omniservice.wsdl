@@ -277,6 +277,31 @@
           <s:element minOccurs="1" maxOccurs="1" name="net_rating" type="s:float" />
         </s:sequence>
       </s:complexType>
+      <s:element name="UserSummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserSummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserSummaryResult" type="tns:UserSummary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserSummary">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="has_updated_profile" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="unread_msgs" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="open_personal_trans_req" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="trans_req_to_approve" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="open_global_trans_req" type="s:int" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="FriendsList">
         <s:complexType>
           <s:sequence>
@@ -636,6 +661,92 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="MessageGetReceivedForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MessageGetReceivedForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MessageGetReceivedForUserResult" type="tns:ArrayOfMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Message">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="src_id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="dst_id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="body" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="unread" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="dst_type" type="tns:MsgDstType" />
+          <s:element minOccurs="0" maxOccurs="1" name="src_username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dst_username" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MsgDstType">
+        <s:restriction base="s:string">
+          <s:enumeration value="User" />
+          <s:enumeration value="Group" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="MessageGetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="msg_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MessageGetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MessageGetByIdResult" type="tns:Message" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MessageGetSentForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MessageGetSentForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MessageGetSentForUserResult" type="tns:ArrayOfMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MessageSend">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dst_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dst_type" type="tns:MsgDstType" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="session" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MessageSendResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MessageSendResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HallOfFameByQuantity">
         <s:complexType>
           <s:sequence>
@@ -811,6 +922,12 @@
   <wsdl:message name="UserLanguagesSoapOut">
     <wsdl:part name="parameters" element="tns:UserLanguagesResponse" />
   </wsdl:message>
+  <wsdl:message name="UserSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:UserSummary" />
+  </wsdl:message>
+  <wsdl:message name="UserSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:UserSummaryResponse" />
+  </wsdl:message>
   <wsdl:message name="FriendsListSoapIn">
     <wsdl:part name="parameters" element="tns:FriendsList" />
   </wsdl:message>
@@ -925,6 +1042,30 @@
   <wsdl:message name="TranslationRequestCloseSoapOut">
     <wsdl:part name="parameters" element="tns:TranslationRequestCloseResponse" />
   </wsdl:message>
+  <wsdl:message name="MessageGetReceivedForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:MessageGetReceivedForUser" />
+  </wsdl:message>
+  <wsdl:message name="MessageGetReceivedForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:MessageGetReceivedForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageGetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:MessageGetById" />
+  </wsdl:message>
+  <wsdl:message name="MessageGetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:MessageGetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageGetSentForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:MessageGetSentForUser" />
+  </wsdl:message>
+  <wsdl:message name="MessageGetSentForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:MessageGetSentForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageSendSoapIn">
+    <wsdl:part name="parameters" element="tns:MessageSend" />
+  </wsdl:message>
+  <wsdl:message name="MessageSendSoapOut">
+    <wsdl:part name="parameters" element="tns:MessageSendResponse" />
+  </wsdl:message>
   <wsdl:message name="HallOfFameByQuantitySoapIn">
     <wsdl:part name="parameters" element="tns:HallOfFameByQuantity" />
   </wsdl:message>
@@ -1030,6 +1171,11 @@
       <wsdl:input message="tns:UserLanguagesSoapIn" />
       <wsdl:output message="tns:UserLanguagesSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="UserSummary">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a user's summary.</wsdl:documentation>
+      <wsdl:input message="tns:UserSummarySoapIn" />
+      <wsdl:output message="tns:UserSummarySoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="FriendsList">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all friends for a user.</wsdl:documentation>
       <wsdl:input message="tns:FriendsListSoapIn" />
@@ -1124,6 +1270,26 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Close a translation request (opened by the current user) by approving a specific answer.</wsdl:documentation>
       <wsdl:input message="tns:TranslationRequestCloseSoapIn" />
       <wsdl:output message="tns:TranslationRequestCloseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MessageGetReceivedForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get received messages for a user.</wsdl:documentation>
+      <wsdl:input message="tns:MessageGetReceivedForUserSoapIn" />
+      <wsdl:output message="tns:MessageGetReceivedForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MessageGetById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a message by ID.</wsdl:documentation>
+      <wsdl:input message="tns:MessageGetByIdSoapIn" />
+      <wsdl:output message="tns:MessageGetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MessageGetSentForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get received messages for a user.</wsdl:documentation>
+      <wsdl:input message="tns:MessageGetSentForUserSoapIn" />
+      <wsdl:output message="tns:MessageGetSentForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MessageSend">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send a message to an Omni member.</wsdl:documentation>
+      <wsdl:input message="tns:MessageSendSoapIn" />
+      <wsdl:output message="tns:MessageSendSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HallOfFameByQuantity">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the users in the Hall of Fame, for Most Active.</wsdl:documentation>
@@ -1285,6 +1451,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserLanguages">
       <soap:operation soapAction="http://service.omniproject.org/UserLanguages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserSummary">
+      <soap:operation soapAction="http://service.omniproject.org/UserSummary" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1456,6 +1631,42 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationRequestClose">
       <soap:operation soapAction="http://service.omniproject.org/TranslationRequestClose" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageGetReceivedForUser">
+      <soap:operation soapAction="http://service.omniproject.org/MessageGetReceivedForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageGetById">
+      <soap:operation soapAction="http://service.omniproject.org/MessageGetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageGetSentForUser">
+      <soap:operation soapAction="http://service.omniproject.org/MessageGetSentForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageSend">
+      <soap:operation soapAction="http://service.omniproject.org/MessageSend" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1646,6 +1857,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UserSummary">
+      <soap12:operation soapAction="http://service.omniproject.org/UserSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="FriendsList">
       <soap12:operation soapAction="http://service.omniproject.org/FriendsList" style="document" />
       <wsdl:input>
@@ -1810,6 +2030,42 @@
     </wsdl:operation>
     <wsdl:operation name="TranslationRequestClose">
       <soap12:operation soapAction="http://service.omniproject.org/TranslationRequestClose" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageGetReceivedForUser">
+      <soap12:operation soapAction="http://service.omniproject.org/MessageGetReceivedForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageGetById">
+      <soap12:operation soapAction="http://service.omniproject.org/MessageGetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageGetSentForUser">
+      <soap12:operation soapAction="http://service.omniproject.org/MessageGetSentForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageSend">
+      <soap12:operation soapAction="http://service.omniproject.org/MessageSend" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

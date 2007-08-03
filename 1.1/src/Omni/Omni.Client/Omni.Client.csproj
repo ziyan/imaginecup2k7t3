@@ -35,6 +35,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Message.cs" />
     <Compile Include="UserRank.cs" />
     <Compile Include="Enumeration.cs" />
     <Compile Include="Translation.cs" />
@@ -50,6 +51,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Interest.cs" />
+    <Compile Include="UserSummary.cs" />
     <Compile Include="Web References\org.omniproject.service\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,6 +95,9 @@
     <None Include="Web References\org.omniproject.service\Language.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\org.omniproject.service\Message.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\org.omniproject.service\omniservice.disco" />
     <None Include="Web References\org.omniproject.service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -111,6 +116,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\org.omniproject.service\UserSimil.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\org.omniproject.service\UserSummary.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>

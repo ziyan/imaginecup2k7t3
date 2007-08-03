@@ -43,6 +43,8 @@ namespace Omni
                 throw new ArgumentException();
             if (e.ToString().IndexOf("ArgumentOutOfRangeException") > -1)
                 throw new ArgumentOutOfRangeException();
+
+            throw e;
         }
     }
 }

@@ -36,6 +36,21 @@ namespace Omni.Web
             return collection;
         }
 
+        public static JSONObjectCollection getUserSummaryJSON(Client.UserSummary user)
+        {
+            JSONObjectCollection collection = new JSONObjectCollection();
+            if (user != null)
+            {
+                collection.Add(new JSONStringValue("id"), new JSONStringValue(user.ID.ToString()));
+                collection.Add(new JSONStringValue("has_updated_profile"), new JSONNumberValue(user.HasUpdatedProfile));
+                collection.Add(new JSONStringValue("unread_msgs"), new JSONNumberValue(user.UnreadMsgs));
+                collection.Add(new JSONStringValue("open_personal_trans_req"), new JSONNumberValue(user.OpenPersonalTransReq));
+                collection.Add(new JSONStringValue("trans_req_to_approve"), new JSONNumberValue(user.TransReqToApprove));
+                collection.Add(new JSONStringValue("open_global_trans_req"), new JSONNumberValue(user.OpenGlobalTransReq));
+            }
+            return collection;
+        }
+
         public static JSONObjectCollection getUserSimilJSON(Client.UserSimil us)
         {
             JSONObjectCollection collection = new JSONObjectCollection();
@@ -91,6 +106,26 @@ namespace Omni.Web
                     collection.Add(new JSONStringValue("trans_username"), new JSONStringValue(t.TransUsername.ToString()));
                     collection.Add(new JSONStringValue("user_rating"), new JSONStringValue(t.UserRating.ToString()));
                 }
+            }
+            return collection;
+        }
+
+        public static JSONObjectCollection getMessageJSON(Client.Message t)
+        {
+
+            JSONObjectCollection collection = new JSONObjectCollection();
+            if (t != null)
+            {
+                collection.Add(new JSONStringValue("id"), new JSONStringValue(t.ID.ToString()));
+                collection.Add(new JSONStringValue("src_id"), new JSONStringValue(t.SrcID.ToString()));
+                collection.Add(new JSONStringValue("dst_id"), new JSONStringValue(t.DstID.ToString()));
+                collection.Add(new JSONStringValue("subject"), new JSONStringValue(t.Subject));
+                collection.Add(new JSONStringValue("body"), new JSONStringValue(t.Body));
+                collection.Add(new JSONStringValue("date"), new JSONStringValue(t.Date.ToString()));
+                collection.Add(new JSONStringValue("unread"), new JSONStringValue(t.Unread.ToString()));
+                collection.Add(new JSONStringValue("dst_type"), new JSONStringValue(t.DstType.ToString()));
+                collection.Add(new JSONStringValue("src_username"), new JSONStringValue(t.SrcUsername.ToString()));
+                collection.Add(new JSONStringValue("dst_username"), new JSONStringValue(t.DstUsername.ToString()));
             }
             return collection;
         }
