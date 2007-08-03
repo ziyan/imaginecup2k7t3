@@ -632,7 +632,7 @@ function get_user_current_language_html()
                 html += "<option id=\"Omni_Localized_LanguageName"+system_languages[i].short_code+"\" value=\""+system_languages[i].id+"\">"+sys_lang_by_short_code(system_languages[i].short_code, "EditProfileLangDD")+"</option>";
         }
         html += "</select>&nbsp;&nbsp;&nbsp;&nbsp;";
-        html += "<a href=\"#\" onclick=\"user_profile_lang_add($('userprofile_langdd').options[$('userprofile_langdd').selectedIndex].value); return false\"><span id=\"Omni_Localized_UserProfileLanguagesAdd\">Add Language</span></a>";
+        html += "<a href=\"#\" onclick=\"user_profile_lang_add($('userprofile_langdd').options[$('userprofile_langdd').selectedIndex].value); return false\">"+lang_getHTML("UserProfileLanguagesAdd")+"</a>";
     }
     html += "<br/>";
     
@@ -657,7 +657,7 @@ function get_user_current_language_html()
             if(k<5) html += " | ";
         }
         html += "</td>";
-        html += "<td><a href=\"#\" onclick=\"user_profile_lang_remove("+user_temp_languages[i]+"); return false\"><span id=\"Omni_Localized_UserProfileLanguagesRemove\">Remove Language</span></a></td></tr>";
+        html += "<td><a href=\"#\" onclick=\"user_profile_lang_remove("+user_temp_languages[i]+"); return false\">"+lang_getHTML("UserProfileLanguagesRemove")+"</a></td></tr>";
     }
     if(user_temp_languages.length>0)
         html += "</table>";
