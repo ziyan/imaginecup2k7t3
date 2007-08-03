@@ -116,7 +116,7 @@
   "UserProfileScreenname": "即时消息昵称:",
   "UserProfileHintProfileVisibility": "请注意: 您的资料可能会被别人看见.",
   "UserProfileHintLanguages": "选择您懂的或者是正在学习的语言: ",
-  "UserProfileHintIntroductions": "Your languages and interests can later be used to introduce you to other users.",
+  "UserProfileHintIntroductions": "您的语言和兴趣爱好信息将在以后被用作新朋友匹配的依据。",
   "UserProfileLanguages": "语言",
   "UserProfileLanguagesAdd": "添加语言",
   "UserProfileLanguagesRemove": "删除语言",
