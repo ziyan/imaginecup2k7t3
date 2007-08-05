@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
@@ -802,7 +802,7 @@
     <!--begin of composemsgpanel-->
     <div id="composemsgpanel" class="standardpanel">
         <div class="title">
-            <span id="Omni_Localized_MessageComposeTitle">Compose a New Message</span>
+            <span id="Omni_Localized_MessagesCompose_Title">Compose a New Message</span>
         </div>
         <div class="content" style="margin-bottom: 30px;">
             <table border="0" width="385" id="composemsgpanel_details" style="line-height: 150%;">
@@ -824,8 +824,8 @@
                     </td>
                 </tr>          
             </table>
-	        <input type="button" id="Omni_Localized_ComposeMessageSubmitButton" value="Send Message" onclick="message_send(); return false" />
-	        <input type="button" id="Omni_Localized_ComposeMessageRequestTransButton" value="Request Translation" onclick="request_trans_set_message($('composemsgpanel_body').value); page_change('RequestTrans'); return false" />
+	        <input type="button" id="Omni_Localized_ComposeMessageSendButton" value="Send Message" onclick="message_send(); return false" />
+	        <input type="button" id="Omni_Localized_ComposeMessageRequestTransButton" value="Request Translation" onclick="request_trans_set_subject($('composemsgpanel_subject').value); request_trans_set_message($('composemsgpanel_body').value); page_change('RequestTrans'); return false" />
 	        <br />
 	        <span id="composemsgpanel_status"></span>
         </div>

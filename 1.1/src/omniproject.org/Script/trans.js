@@ -608,7 +608,6 @@ function request_trans_set_message(str)
 
 function request_trans_set_subject(str)
 {
-    alert(str);
     request_trans_subject = str;
 }
 
