@@ -132,17 +132,17 @@ a:hover, a:active
 }
 #langbar a:hover, .langbar a:active
 {
-	color: #cc5705;
+	color: #8e3b04; /*cc5705*/
 	text-decoration: underline;
-	background-color: #f6f6f6;
+	background-color: #ff8b24;
 	border-top: 1px solid #e1e1e1;
 }
 #langbar .select
 {
-	color: #8c8c8c;
+	color: #565656;
 	border-right: 1px dashed #CCCCCC;
 	border-top: 1px solid #999999;
-	background-color: #f6f6f6;
+	background-color: #ff8b24;
 }
 
 .content
