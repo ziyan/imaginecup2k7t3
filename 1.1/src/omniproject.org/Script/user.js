@@ -885,7 +885,15 @@ function user_update_languages_callback()
         {
             $("userprofilepanel_status").innerHTML="<span id=\"Omni_Localized_UserProfileStatusUpdated\" style=\"color:green;\">"+lang_getText("UserProfileStatusUpdated")+"</span>";
         }
-        
+
+        // FIXME : Totally unnecessary
+        var langIdArray = new Array();
+        for(var x=0; x<user_temp_languages.length; x++)
+        {
+            langIdArray.push(parseInt(user_temp_languages[x]));
+        }        
+        user_current_obj_lang = langIdArray;        
+
         user_summary_retrieve();
     }
     else
