@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="TranslationMode" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>Omni.Service.External.de.zeta_software.www.TranslationMode</TypeInfo>
+   <TypeInfo>Omni.Service.External.de.zeta_software.www.TranslationMode, Web References.de.zeta-software.www.Reference.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

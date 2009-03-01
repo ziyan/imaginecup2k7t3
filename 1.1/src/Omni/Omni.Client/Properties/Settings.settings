@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Omni_Client_org_omniproject_service_OmniService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://www.omniproject.org/service/omniservice.asmx</Value>
+      <Value Profile="(Default)">http://localhost/service/omniservice.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

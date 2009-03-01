@@ -341,7 +341,6 @@ BEGIN
 		   obj_trans_req.dst_id,
 		   obj_trans_req.date,
 		   obj_trans_req.completed,
-		   obj_trans_req.msg_id,
 		   obj_trans_req.id AS req_id
 		FROM obj_trans_req
 		WHERE obj_trans_req.completed = 1 AND obj_trans_req.user_id = @user_id
@@ -378,7 +377,6 @@ BEGIN
 		   obj_trans_req.dst_id,
 		   obj_trans_req.date,
 		   obj_trans_req.completed,
-		   obj_trans_req.msg_id,
 		   obj_trans_ans.id AS ans_id,
 		   obj_trans_ans.req_id,
 		   obj_trans_ans.message AS trans_message,
@@ -508,7 +506,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT id, src_lang_id, dst_lang_id, subject, dst_type, dst_id, date, msg_id FROM obj_trans_req
+	SELECT id, src_lang_id, dst_lang_id, subject, dst_type, dst_id, date FROM obj_trans_req
 		WHERE completed = 0 AND user_id = @user_id
 		ORDER BY date DESC
 END
